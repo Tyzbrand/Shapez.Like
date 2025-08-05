@@ -21,6 +21,8 @@ public class ReferenceHolder : MonoBehaviour
     public Destruction destructionSC;
     public Inventory inventorySC;
     public PlayerMove playerMoveSC;
+    public BuildingManager buildingManager;
+    public ItemManager itemManager;
     
 
 
