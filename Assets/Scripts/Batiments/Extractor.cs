@@ -20,4 +20,19 @@ public class Extractor : BuildingBH
         Debug.Log("Extractor Détruit !");
     }
 
+    public override void BuildingUpdate()
+    {
+        timer += Time.deltaTime;
+
+        if (timer >= ejectTimer)
+        {   
+            Vector2 spawnPos = worldPosition + Vector2.right;
+            if (buildingManager.GetBuildingOnTile(spawnPos) is Conveyor && ItemManager.IsSpaceFree(spawnPos))
+            {
+                ItemManager.AddItem(new ItemBH(RessourceBehaviour.RessourceType.Iron, spawnPos), spawnPos);
+                timer -= ejectTimer;
+            }
+            }
+
+    }
 }

@@ -1786,11 +1786,12 @@ MonoBehaviour:
   conveyorPrefab: {fileID: 5562092726253729984, guid: 5dbed95ba2d1ba44f85efe756ee8d6f9, type: 3}
   marketplacePrefab: {fileID: 1835868831058879866, guid: 42836f4d12a89c841a023b4ecbf8620a, type: 3}
   foundryPrefab: {fileID: 8753055527562394405, guid: 7ab9df23779b5dc4eaf25e5448ac8595, type: 3}
-  ironPrefab: {fileID: 6791808218332120609, guid: 95bfd58a70d02924fa51b90c424f91aa, type: 3}
-  copperPrefab: {fileID: 4867306225701024373, guid: 3e6bc8d6681783d4a942086d3b9f9a2e, type: 3}
-  coalPrefab: {fileID: 5785493119995563922, guid: 7e06612835a154d488168cc0edf1aa8e, type: 3}
-  ironIngotPrefab: {fileID: 944682254093453890, guid: 3715a579ad0ad8a41b5c1bd3e54b3b12, type: 3}
-  copperIngotPrefab: {fileID: 1882095440990646075, guid: bcd2319de2353c44bbd7fa724002d85c, type: 3}
+  itemPrefab: {fileID: 9126002369858062041, guid: d0046de0a6e35334ba5ec4f2851ac02a, type: 3}
+  ironSprite: {fileID: 21300000, guid: fc10e75cb67da9240baf65dfdd06577a, type: 3}
+  copperSprite: {fileID: 21300000, guid: 57dadc313221bf34e9e37e8c73b70bf2, type: 3}
+  coalSprite: {fileID: 21300000, guid: 1983118415dc1d64da9235cec5906b02, type: 3}
+  ironIngotSprite: {fileID: 21300000, guid: 6da698162e83aa049b7f4360efa06687, type: 3}
+  copperIngotSprite: {fileID: -3205963764227980960, guid: 7a3a74b5f33b5034e92ab6eea4c9b010, type: 3}
   extractorPreview: {fileID: 6773008830999798859, guid: 38da4848c0fd40149adb41431ad9ec01, type: 3}
   conveyorPreview: {fileID: 9189910684841454179, guid: 4949378352178914b841061d1670b107, type: 3}
   marketplacePreview: {fileID: 1171279089280773970, guid: 680c320bd5322ba46ba3ccfeccb3cc44, type: 3}

@@ -39,21 +39,22 @@ public class ReferenceHolder : MonoBehaviour
     public List<TileBase> extradableTiles;
 
 
-    //Prefabs de batiments
-    [Header("Batiments")]
+    //Prefabs
+    [Header("Prefabs")]
     public GameObject extractorPrefab;
     public GameObject conveyorPrefab;
     public GameObject marketplacePrefab;
     public GameObject foundryPrefab;
+    public GameObject itemPrefab;
 
 
-    //Prefabs de ressources
-    [Header("Ressources")]
-    public GameObject ironPrefab;
-    public GameObject copperPrefab;
-    public GameObject coalPrefab;
-    public GameObject ironIngotPrefab;
-    public GameObject copperIngotPrefab;
+    //Sprites de ressources
+    [Header("Sprites")]
+    public Sprite ironSprite;
+    public Sprite copperSprite;
+    public Sprite coalSprite;
+    public Sprite ironIngotSprite;
+    public Sprite copperIngotSprite;
 
 
     //Previews batiments

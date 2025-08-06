@@ -9,6 +9,8 @@ public class BuildingManager : MonoBehaviour
 
     private Placement placement;
     private PlayerVariables player;
+    private ItemManager itemManager;
+    private BuildingManager buildingManager;
 
     //---------------Méthodes Implémentées---------------
     //Logique
@@ -21,6 +23,8 @@ public class BuildingManager : MonoBehaviour
             buildingReferencer.Add(tilePos, building);
             AddVisual(building, tilePos, tilemap);
             building.BuidlingStart();
+
+            building.SetManagers(itemManager, buildingManager);
         }
 
     }
@@ -86,6 +90,8 @@ public class BuildingManager : MonoBehaviour
     {
         placement = ReferenceHolder.instance.placementSC;
         player = ReferenceHolder.instance.playervariable;
+        itemManager = ReferenceHolder.instance.itemManager;
+        buildingManager = ReferenceHolder.instance.buildingManager;
     }
 
     private void Update()
@@ -93,7 +99,7 @@ public class BuildingManager : MonoBehaviour
         foreach (var building in buildingReferencer.Values)
         {
             building.BuildingUpdate();
-            Debug.Log(buildingReferencer.Count);
+            
         }
     }
 

@@ -3,13 +3,13 @@ using UnityEngine;
 
 public class RessourceDictionnary : MonoBehaviour
 {
-    private Dictionary<RessourceBehaviour.RessourceType, GameObject> ressourcePrefab = new();
+    private Dictionary<RessourceBehaviour.RessourceType, Sprite> ressourceSprite = new();
 
-    private GameObject ironPrefab;
-    private GameObject copperPrefab;
-    private GameObject coalPrefab;
-    private GameObject ironIngotPrefab;
-    private GameObject copperIngotPrefab;
+    private Sprite ironPrefab;
+    private Sprite copperPrefab;
+    private Sprite coalPrefab;
+    private Sprite ironIngotPrefab;
+    private Sprite copperIngotPrefab;
 
 
 
@@ -18,26 +18,27 @@ public class RessourceDictionnary : MonoBehaviour
 
     private void Start()
     {
-        ironPrefab = ReferenceHolder.instance.ironPrefab;
-        ironIngotPrefab = ReferenceHolder.instance.ironIngotPrefab;
-        coalPrefab = ReferenceHolder.instance.coalPrefab;
-        copperPrefab = ReferenceHolder.instance.copperPrefab;
-        copperIngotPrefab = ReferenceHolder.instance.copperIngotPrefab;
+        ironPrefab = ReferenceHolder.instance.ironSprite;
+        ironIngotPrefab = ReferenceHolder.instance.ironIngotSprite;
+        coalPrefab = ReferenceHolder.instance.coalSprite;
+        copperPrefab = ReferenceHolder.instance.copperSprite;
+        copperIngotPrefab = ReferenceHolder.instance.copperIngotSprite;
 
 
 
-        ressourcePrefab.Add(RessourceBehaviour.RessourceType.Iron, ironPrefab);
-        ressourcePrefab.Add(RessourceBehaviour.RessourceType.Copper, copperPrefab);
-        ressourcePrefab.Add(RessourceBehaviour.RessourceType.Coal, coalPrefab);
-        ressourcePrefab.Add(RessourceBehaviour.RessourceType.IronIngot, ironIngotPrefab);
-        ressourcePrefab.Add(RessourceBehaviour.RessourceType.CopperIngot, copperIngotPrefab);
+        ressourceSprite.Add(RessourceBehaviour.RessourceType.Iron, ironPrefab);
+        ressourceSprite.Add(RessourceBehaviour.RessourceType.Copper, copperPrefab);
+        ressourceSprite.Add(RessourceBehaviour.RessourceType.Coal, coalPrefab);
+        ressourceSprite.Add(RessourceBehaviour.RessourceType.IronIngot, ironIngotPrefab);
+        ressourceSprite.Add(RessourceBehaviour.RessourceType.CopperIngot, copperIngotPrefab);
     }
 
 
 
-    public GameObject GetRessourcePrefab(RessourceBehaviour.RessourceType type)
+    public Sprite GetRessourceSprite(RessourceBehaviour.RessourceType type)
     {
-        return ressourcePrefab.TryGetValue(type, out var prefab) ? prefab : null;
+        ressourceSprite.TryGetValue(type, out Sprite sprite);
+        return sprite;
     }
 
 

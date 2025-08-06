@@ -2,10 +2,12 @@ using UnityEngine;
 
 public class Conveyor : BuildingBH
 {
+
     public Conveyor(Vector2 worldPosition) : base(worldPosition)
     {
 
     }
+
     public override void BuidlingStart()
     {
         Debug.Log("Conveyor !");
@@ -15,5 +17,6 @@ public class Conveyor : BuildingBH
     {
         Debug.Log("Conveyor Détruit");
     }
+
 
 }
