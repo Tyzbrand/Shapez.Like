@@ -1,6 +1,4 @@
-using System.Numerics;
-
-
+using UnityEngine;
 
 //Définit le comportement/données de TOUT les batiments
 public abstract class BuildingBH

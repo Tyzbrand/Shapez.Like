@@ -1467,6 +1467,8 @@ GameObject:
   - component: {fileID: 526294629}
   - component: {fileID: 526294633}
   - component: {fileID: 526294634}
+  - component: {fileID: 526294636}
+  - component: {fileID: 526294635}
   - component: {fileID: 526294630}
   m_Layer: 0
   m_Name: Player
@@ -1764,6 +1766,8 @@ MonoBehaviour:
   destructionSC: {fileID: 526294631}
   inventorySC: {fileID: 526294628}
   playerMoveSC: {fileID: 526294621}
+  buildingManager: {fileID: 526294636}
+  itemManager: {fileID: 526294635}
   groundTile: {fileID: 11400000, guid: ee2c8d04898cfdf4d8b042a95c4c798b, type: 2}
   borderTile: {fileID: 11400000, guid: 588ca63fe0bc71144bf26c33db30ad15, type: 2}
   restrictedTile: {fileID: 11400000, guid: 259d30b634d1fa24f9f317cae504e735, type: 2}
@@ -1797,6 +1801,7 @@ MonoBehaviour:
   destructionOverlay: {fileID: 2145555430}
   ressourceDictionnary: {fileID: 809173381}
   buildPriceDictionary: {fileID: 809173380}
+  prefabBuildingBHDictionnary: {fileID: 809173382}
   hubInventoryUI: {fileID: 870770356}
   buildMenu: {fileID: 1496887710}
   inventoryMenu: {fileID: 870770355}
@@ -1834,6 +1839,30 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 92f9edb1c91229941a81eb9cb59a1411, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &526294635
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 526294619}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91a9248a5c21eba45858317c5ae96e8e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &526294636
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 526294619}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0fd4fc235e110d443a183285297b1088, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &563168233
@@ -2290,6 +2319,7 @@ GameObject:
   - component: {fileID: 809173379}
   - component: {fileID: 809173381}
   - component: {fileID: 809173380}
+  - component: {fileID: 809173382}
   m_Layer: 0
   m_Name: Dictionnaires
   m_TagString: Untagged
@@ -2334,6 +2364,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9f023b7694737f645ab4e18800753552, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &809173382
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 809173378}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa6563e47fd64584d935af40fd913446, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &870770355

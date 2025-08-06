@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Tilemaps;
 using UnityEngine.EventSystems;
+using System;
 
 
 
@@ -17,10 +18,12 @@ public class Placement : MonoBehaviour
 
     private Camera playerCam;
     private PlayerVariables player;
+    private BuildingManager buildingManager;
     private List<TileBase> restrictedTiles; //Liste des tuiles sur lesquelles je ne peux pas construire (NE FONCTIONNE PAS)
 
     [HideInInspector]
     public GameObject currentBuild;
+    
     private GameObject Extractor;
     private GameObject conveyor;
     private GameObject marketPlace;
@@ -31,6 +34,7 @@ public class Placement : MonoBehaviour
 
     //Dictionnaire
     private BuildPriceDictionnary prices;
+    private PrefabBuildingBHDictionnary prefabDico;
 
 
 
@@ -45,8 +49,12 @@ public class Placement : MonoBehaviour
         playerCam = ReferenceHolder.instance.mainCamera;
         restrictedTiles = new List<TileBase>(ReferenceHolder.instance.restrictedTiles);
         player = ReferenceHolder.instance.playervariable;
+        buildingManager = ReferenceHolder.instance.buildingManager;
+
 
         prices = ReferenceHolder.instance.buildPriceDictionary;
+        prefabDico = ReferenceHolder.instance.prefabBuildingBHDictionnary;
+
 
 
 
@@ -59,34 +67,36 @@ public class Placement : MonoBehaviour
     {
         if (allowConstruciton)
         {
-            tilemap = FindFirstObjectByType<Tilemap>();
-
 
             if (currentBuild != null)
             {
-                if (GetComponent<PlayerVariables>().buildMode == true)
+                if (player.buildMode)
                 {
+                    tilemap = FindFirstObjectByType<Tilemap>();
+                    Vector3 mousePos3D = playerCam.ScreenToWorldPoint(Mouse.current.position.ReadValue());
+                    mousePos3D.z = 0;
+                    Vector2 mousePos2D = new Vector2(mousePos3D.x, mousePos3D.y);
 
-                    Vector3 mouseWorlPos = playerCam.ScreenToWorldPoint(Mouse.current.position.ReadValue());
-                    mouseWorlPos.z = 0;
-
-                    Vector3Int cellPos = tilemap.WorldToCell(mouseWorlPos);
-                    Vector3 placementpos = tilemap.GetCellCenterWorld(cellPos);
-
-                    int decalage = GetComponent<PlayerVariables>().rotation;
+                    int décalage = player.rotation;
+                    Vector3Int cellPos = tilemap.WorldToCell(mousePos2D);
                     TileBase underTile = tilemap.GetTile(cellPos);
 
-
-                    Collider2D colliderfound = Physics2D.OverlapCircle(placementpos, 0.2f, LayerMask.GetMask("Building", "Conveyor", "Interactable"));
-
-
-
-                    if (!restrictedTiles.Contains(underTile) && underTile != null && colliderfound == null && !EventSystem.current.IsPointerOverGameObject())
+                    if (!restrictedTiles.Contains(underTile) && underTile != null && !EventSystem.current.IsPointerOverGameObject())
                     {
-                        Instantiate(currentBuild, placementpos, Quaternion.Euler(0, 0, decalage));
-                        player.Money -= prices.GetPrice(currentBuild);
+                        Type type = prefabDico.GetPrefabType(currentBuild);
+
+                        if (type != null)
+                        {
+                            BuildingBH buildingInstance = (BuildingBH)Activator.CreateInstance(type, mousePos2D);
+                            buildingManager.AddBuilding(mousePos2D, buildingInstance, tilemap);
+                            player.Money -= prices.GetPrice(currentBuild);
+                        }
+                        
+                        
+                        
                     }
-                }
+                }   
+
             }
             allowConstruciton = false;
         }

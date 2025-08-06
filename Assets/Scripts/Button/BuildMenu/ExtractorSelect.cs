@@ -25,6 +25,7 @@ public class ExtractorSelect : MonoBehaviour
 
         previewSC.previewToUse = ReferenceHolder.instance.extractorPreview;
         placementSC.currentBuild = ReferenceHolder.instance.extractorPrefab; //Defeinir les batiements
+        
 
         previewSC.DestroyInstance();
         previewSC.CreateInstance(); //Afficher la preview
