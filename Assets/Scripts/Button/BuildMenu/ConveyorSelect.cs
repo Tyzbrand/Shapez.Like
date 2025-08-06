@@ -25,6 +25,7 @@ public class ConveyorSelect : MonoBehaviour
 
         previewSC.previewToUse = ReferenceHolder.instance.conveyorPreview;
         placementSC.currentBuild = ReferenceHolder.instance.conveyorPrefab; //Defeinir les batiements
+        placementSC.currentBuildingType = Placement.buildingType.Conveyor;
 
 
         previewSC.DestroyInstance();

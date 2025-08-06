@@ -20,6 +20,7 @@ public class BuildingManager : MonoBehaviour
         {
             buildingReferencer.Add(tilePos, building);
             AddVisual(building, tilePos, tilemap);
+            building.BuidlingStart();
         }
 
     }
@@ -31,6 +32,7 @@ public class BuildingManager : MonoBehaviour
         {
             RemoveVisual(building);
             buildingReferencer.Remove(tilePos);
+            building.BuildingOnDestroy();
         }
 
     }
@@ -91,6 +93,7 @@ public class BuildingManager : MonoBehaviour
         foreach (var building in buildingReferencer.Values)
         {
             building.BuildingUpdate();
+            Debug.Log(buildingReferencer.Count);
         }
     }
 

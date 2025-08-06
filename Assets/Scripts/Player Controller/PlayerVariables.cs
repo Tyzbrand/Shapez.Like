@@ -18,7 +18,7 @@ public class PlayerVariables : MonoBehaviour
     public GameObject currentPreview;
 
     //Données numériques visibles
-    public int Money = 100;
+    public int Money = 1000000;
     public int day = 1;
     public int seconds;
     public int minutes;

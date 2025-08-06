@@ -1675,7 +1675,7 @@ MonoBehaviour:
   rotation: 0
   currentBuild: {fileID: 0}
   currentPreview: {fileID: 0}
-  Money: 100
+  Money: 1000000
   day: 1
   seconds: 0
   minutes: 0
@@ -1707,6 +1707,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBuild: {fileID: 0}
+  currentBuildingType: 0
 --- !u!114 &526294627
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1801,7 +1802,6 @@ MonoBehaviour:
   destructionOverlay: {fileID: 2145555430}
   ressourceDictionnary: {fileID: 809173381}
   buildPriceDictionary: {fileID: 809173380}
-  prefabBuildingBHDictionnary: {fileID: 809173382}
   hubInventoryUI: {fileID: 870770356}
   buildMenu: {fileID: 1496887710}
   inventoryMenu: {fileID: 870770355}
@@ -2378,6 +2378,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa6563e47fd64584d935af40fd913446, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  extractorPrefab: {fileID: 0}
+  ConveyorPrefab: {fileID: 0}
+  marketplacePrefab: {fileID: 0}
+  foundryPrefab: {fileID: 0}
 --- !u!1 &870770355
 GameObject:
   m_ObjectHideFlags: 0

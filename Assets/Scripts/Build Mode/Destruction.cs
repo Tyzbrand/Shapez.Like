@@ -10,6 +10,7 @@ public class Destruction : MonoBehaviour
     private Preview previewSc;
     private Camera playerCam;
     private GameObject destructionOverlay;
+    private BuildingManager buildingManager;
     private bool allowDestruction = false;
 
 
@@ -20,6 +21,7 @@ public class Destruction : MonoBehaviour
         previewSc = ReferenceHolder.instance.previewSC;
         playerCam = ReferenceHolder.instance.mainCamera;
         destructionOverlay = ReferenceHolder.instance.destructionOverlay;
+        buildingManager = ReferenceHolder.instance.buildingManager;
     }
 
 
@@ -42,14 +44,12 @@ public class Destruction : MonoBehaviour
         {
             if (!EventSystem.current.IsPointerOverGameObject() && player.destructionMode)
             {
-                Vector2 mousePos = playerCam.ScreenToWorldPoint(Input.mousePosition);
-                RaycastHit2D[] objets = Physics2D.RaycastAll(mousePos, Vector2.zero, Mathf.Infinity, LayerMask.GetMask("Conveyor", "Building", "Foundry", "Interactable"));
+                Vector2 mousePos2D = playerCam.ScreenToWorldPoint(Input.mousePosition);
 
-                if (objets.Length > 0)
+                if (buildingManager.IsTileUsed(mousePos2D))
                 {
-                    Destroy(objets[0].collider.gameObject);
+                    buildingManager.RemoveBuilding(mousePos2D);
                 }
-
                 allowDestruction = false;
 
             }

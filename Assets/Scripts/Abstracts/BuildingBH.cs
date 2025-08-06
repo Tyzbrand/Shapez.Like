@@ -15,5 +15,15 @@ public abstract class BuildingBH
 
     }
 
+    public virtual void BuidlingStart()
+    {
+
+    }
+
+    public virtual void BuildingOnDestroy()
+    {
+        
+    }
+
 
 }

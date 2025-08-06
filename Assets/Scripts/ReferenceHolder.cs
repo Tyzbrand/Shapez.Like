@@ -85,7 +85,6 @@ public class ReferenceHolder : MonoBehaviour
     [Header("Dictionnaires")]
     public RessourceDictionnary ressourceDictionnary;
     public BuildPriceDictionnary buildPriceDictionary;
-    public PrefabBuildingBHDictionnary prefabBuildingBHDictionnary;
 
     //Panel UI
     [Header("Panel UI")]

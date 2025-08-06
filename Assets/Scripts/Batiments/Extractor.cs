@@ -10,10 +10,14 @@ public class Extractor : BuildingBH
 
     }
 
-    public override void BuildingUpdate()
+    public override void BuidlingStart()
     {
-        Debug.Log("Extractor");
+        Debug.Log("Extractor !");
     }
 
+    public override void BuildingOnDestroy()
+    {
+        Debug.Log("Extractor Détruit !");
+    }
 
 }

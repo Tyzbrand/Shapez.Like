@@ -6,8 +6,14 @@ public class Conveyor : BuildingBH
     {
 
     }
-    public override void BuildingUpdate()
+    public override void BuidlingStart()
     {
-        Debug.Log("Conveyor");
+        Debug.Log("Conveyor !");
     }
+
+    public override void BuildingOnDestroy()
+    {
+        Debug.Log("Conveyor Détruit");
+    }
+
 }

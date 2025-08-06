@@ -24,6 +24,7 @@ public class MarketplaceSelect : MonoBehaviour
 
         previewSC.previewToUse = ReferenceHolder.instance.marketplacePreview;
         placementSC.currentBuild = ReferenceHolder.instance.marketplacePrefab; //Defeinir les batiements
+        placementSC.currentBuildingType = Placement.buildingType.marketplace;
 
         previewSC.DestroyInstance();
         previewSC.CreateInstance(); //Afficher la preview

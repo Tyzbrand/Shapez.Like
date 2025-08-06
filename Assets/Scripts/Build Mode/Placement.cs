@@ -4,7 +4,6 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Tilemaps;
 using UnityEngine.EventSystems;
-using System;
 
 
 
@@ -23,18 +22,26 @@ public class Placement : MonoBehaviour
 
     [HideInInspector]
     public GameObject currentBuild;
-    
+
     private GameObject Extractor;
     private GameObject conveyor;
     private GameObject marketPlace;
     private GameObject foundry;
-    private Tilemap tilemap; 
+    private Tilemap tilemap;
     private bool allowConstruciton = false;
+    public buildingType currentBuildingType = buildingType.None;
 
 
     //Dictionnaire
     private BuildPriceDictionnary prices;
-    private PrefabBuildingBHDictionnary prefabDico;
+
+    public enum buildingType
+    {
+        None,
+        Extractor,
+        Conveyor,
+        marketplace
+    }
 
 
 
@@ -53,7 +60,7 @@ public class Placement : MonoBehaviour
 
 
         prices = ReferenceHolder.instance.buildPriceDictionary;
-        prefabDico = ReferenceHolder.instance.prefabBuildingBHDictionnary;
+
 
 
 
@@ -83,19 +90,14 @@ public class Placement : MonoBehaviour
 
                     if (!restrictedTiles.Contains(underTile) && underTile != null && !EventSystem.current.IsPointerOverGameObject())
                     {
-                        Type type = prefabDico.GetPrefabType(currentBuild);
+                        BuildingBH currentInstance = GetCurrentType(mousePos2D);
 
-                        if (type != null)
-                        {
-                            BuildingBH buildingInstance = (BuildingBH)Activator.CreateInstance(type, mousePos2D);
-                            buildingManager.AddBuilding(mousePos2D, buildingInstance, tilemap);
-                            player.Money -= prices.GetPrice(currentBuild);
-                        }
-                        
-                        
-                        
+                        buildingManager.AddBuilding(mousePos2D, currentInstance, tilemap);
+                        player.Money -= prices.GetPrice(currentBuild);
+
+
                     }
-                }   
+                }
 
             }
             allowConstruciton = false;
@@ -132,9 +134,24 @@ public class Placement : MonoBehaviour
             {
                 Debug.Log("Pas Assez d'argent");
             }
-           
+
         }
-                
+
+    }
+
+    private BuildingBH GetCurrentType(Vector2 mousePos2D)
+    {
+        switch (currentBuildingType)
+        {
+            case buildingType.Extractor:
+                return new Extractor(mousePos2D);
+            case buildingType.Conveyor:
+                return new Conveyor(mousePos2D);
+            case buildingType.marketplace:
+                return new Marketplace(mousePos2D);
+
+        }
+        return null;
     }
 }
 

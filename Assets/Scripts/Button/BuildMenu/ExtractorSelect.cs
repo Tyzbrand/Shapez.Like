@@ -7,6 +7,7 @@ public class ExtractorSelect : MonoBehaviour
     public Placement placementSC;
     private PlayerVariables player;
     private PlayerSwitchMode buildSC;
+    
 
 
 
@@ -16,7 +17,7 @@ public class ExtractorSelect : MonoBehaviour
         placementSC = ReferenceHolder.instance.placementSC;
         previewSC = ReferenceHolder.instance.previewSC;
         buildSC = ReferenceHolder.instance.playerSwitchMode;
-        
+
     }
 
     private void ExtractorBuild()
@@ -25,6 +26,9 @@ public class ExtractorSelect : MonoBehaviour
 
         previewSC.previewToUse = ReferenceHolder.instance.extractorPreview;
         placementSC.currentBuild = ReferenceHolder.instance.extractorPrefab; //Defeinir les batiements
+        placementSC.currentBuildingType = Placement.buildingType.Extractor;
+
+
         
 
         previewSC.DestroyInstance();
