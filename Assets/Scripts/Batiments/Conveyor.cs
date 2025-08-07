@@ -3,7 +3,7 @@ using UnityEngine;
 public class Conveyor : BuildingBH
 {
 
-    public Conveyor(Vector2 worldPosition) : base(worldPosition)
+    public Conveyor(Vector2 worldPosition, int rotation) : base(worldPosition, rotation)
     {
 
     }

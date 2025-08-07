@@ -145,28 +145,42 @@ public class ItemManager : MonoBehaviour
         itemToRemove.Clear();
         foreach (var item in itemReferencer)
         {
-            Vector2 nextPos = item.worldPosition + Vector2.right * Time.deltaTime;
+            BuildingBH currentBuilding = buildingManager.GetBuildingOnTile(item.worldPosition);
+
+            if (currentBuilding == null)
+            {
+                continue;
+            }
+            Vector2 currentDirection = currentBuilding.GetDirection();
+
+            Vector2 nextPos = item.worldPosition + currentDirection * Time.deltaTime;
+
+            BuildingBH nextBuilding = buildingManager.GetBuildingOnTile(nextPos);
 
 
-            if (buildingManager.GetBuildingOnTile(nextPos) is Marketplace)
+            if (nextBuilding is Marketplace)
             {
                 itemToRemove.Add(item);
             }
 
-            if (buildingManager.GetBuildingOnTile(nextPos) is Conveyor && IsSpaceFree(nextPos, item))
+            if (nextBuilding is Conveyor && IsSpaceFree(nextPos, item))
             {
                 item.worldPosition = nextPos;
+
             }
         }
+
         foreach (ItemBH itemToRemove in itemToRemove)
         {
             RemoveItem(itemToRemove);
         }
-        
+
     }
 
     private void LateUpdate()
     {
         UpdateVisual();
     }
+
+
 }

@@ -1,3 +1,4 @@
+
 using UnityEngine;
 
 //Définit les données de TOUT les items (n'est pas abstract car le comportement est le meme et est définit dans "ItemManager")

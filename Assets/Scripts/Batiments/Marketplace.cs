@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Marketplace : BuildingBH
 {
-    public Marketplace(Vector2 worldPosition) : base(worldPosition)
+    public Marketplace(Vector2 worldPosition, int rotation) : base(worldPosition, rotation)
     {
 
     }

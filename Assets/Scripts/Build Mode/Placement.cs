@@ -112,9 +112,9 @@ public class Placement : MonoBehaviour
 
     private void Rotate(InputAction.CallbackContext context) //Permet la rotation des objets du preview et de la map
     {
-        if (context.performed && GetComponent<PlayerVariables>().buildMode == true)
+        if (context.performed && player.buildMode == true)
         {
-            GetComponent<PlayerVariables>().rotation += 90;
+            player.rotation = (player.rotation + 90)% 360;
         }
     }
 
@@ -144,11 +144,11 @@ public class Placement : MonoBehaviour
         switch (currentBuildingType)
         {
             case buildingType.Extractor:
-                return new Extractor(mousePos2D);
+                return new Extractor(mousePos2D, player.rotation);
             case buildingType.Conveyor:
-                return new Conveyor(mousePos2D);
+                return new Conveyor(mousePos2D, player.rotation);
             case buildingType.marketplace:
-                return new Marketplace(mousePos2D);
+                return new Marketplace(mousePos2D, player.rotation);
 
         }
         return null;
