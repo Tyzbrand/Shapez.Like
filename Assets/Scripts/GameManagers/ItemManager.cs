@@ -11,8 +11,10 @@ public class ItemManager : MonoBehaviour
 
 
     private BuildingManager buildingManager;
+    private PlayerVariables player;
 
     private RessourceDictionnary ressourceDictionnary;
+    private RessourceData data;
 
     private GameObject itemPrefab;
 
@@ -138,6 +140,8 @@ public class ItemManager : MonoBehaviour
         buildingManager = ReferenceHolder.instance.buildingManager;
         ressourceDictionnary = ReferenceHolder.instance.ressourceDictionnary;
         itemPrefab = ReferenceHolder.instance.itemPrefab;
+        player = ReferenceHolder.instance.playervariable;
+        data = ReferenceHolder.instance.ressourceData;
     }
 
     private void Update()
@@ -159,8 +163,10 @@ public class ItemManager : MonoBehaviour
 
 
             if (nextBuilding is Marketplace)
-            {
+            {   
+                player.Money += data.GetPrice(item.itemType);
                 itemToRemove.Add(item);
+                
             }
 
             if (nextBuilding is Conveyor && IsSpaceFree(nextPos, item))
