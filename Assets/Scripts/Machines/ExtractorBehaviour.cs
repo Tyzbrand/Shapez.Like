@@ -1,4 +1,4 @@
-/*using System.Collections.Generic;
+/*
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
@@ -132,6 +132,7 @@ public class ExtractorBehaviour : MonoBehaviour
 
 
     }
+    */
 
 
 
@@ -148,5 +149,3 @@ public class ExtractorBehaviour : MonoBehaviour
 
 
 
-
-}*/

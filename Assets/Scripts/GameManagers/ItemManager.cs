@@ -6,7 +6,7 @@ public class ItemManager : MonoBehaviour
 {
     private List<ItemBH> itemReferencer = new();
     private List<GameObject> freeVisual = new();
-    private List<ItemBH> itemToRemove = new();
+    private HashSet<ItemBH> itemToRemove = new();
     private Dictionary<ItemBH, GameObject> itemVisualReferencer = new();
 
 
@@ -132,6 +132,8 @@ public class ItemManager : MonoBehaviour
     }
 
 
+
+
     //---------------Méthodes Unity---------------
 
 
@@ -149,38 +151,48 @@ public class ItemManager : MonoBehaviour
         itemToRemove.Clear();
         foreach (var item in itemReferencer)
         {
+
             BuildingBH currentBuilding = buildingManager.GetBuildingOnTile(item.worldPosition);
 
-            if (currentBuilding == null)
+            if (currentBuilding != null)
             {
-                continue;
+                Vector2 currentDirection = currentBuilding.GetDirection();
+
+                Vector2 nextPos = item.worldPosition + currentDirection * Time.deltaTime;
+
+                BuildingBH nextBuilding = buildingManager.GetBuildingOnTile(nextPos);
+
+                if (nextBuilding is Marketplace)
+                {
+                    player.Money += data.GetPrice(item.itemType);
+                    itemToRemove.Add(item);
+
+                }
+
+                if (nextBuilding is Conveyor && IsSpaceFree(nextPos, item))
+                {
+                    item.worldPosition = nextPos;
+
+                }
             }
-            Vector2 currentDirection = currentBuilding.GetDirection();
-
-            Vector2 nextPos = item.worldPosition + currentDirection * Time.deltaTime;
-
-            BuildingBH nextBuilding = buildingManager.GetBuildingOnTile(nextPos);
-
-
-            if (nextBuilding is Marketplace)
-            {   
-                player.Money += data.GetPrice(item.itemType);
+            
+            if (item.lastWorldPosition == item.worldPosition && !(currentBuilding is Conveyor))
+            {
+                item.idleTime += Time.deltaTime;
+            }
+            if (item.idleTime >= item.maxInactivityTime)
+            {
                 itemToRemove.Add(item);
-                
             }
 
-            if (nextBuilding is Conveyor && IsSpaceFree(nextPos, item))
-            {
-                item.worldPosition = nextPos;
+            item.lastWorldPosition = item.worldPosition;
 
-            }
         }
 
         foreach (ItemBH itemToRemove in itemToRemove)
         {
             RemoveItem(itemToRemove);
         }
-
     }
 
     private void LateUpdate()

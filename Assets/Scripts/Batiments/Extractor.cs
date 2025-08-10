@@ -1,10 +1,19 @@
 
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 public class Extractor : BuildingBH
 {
     public float ejectTimer = 3f;
     public float timer = 0f;
+    private int currentStorage = 0;
+    private int capacity;
+    private float ressourcesPerSecond;
+
+    public Tilemap tilemap;
+
+
+    private ExtractorData data;
 
     public Extractor(Vector2 worldPosition, int rotation) : base(worldPosition, rotation)
     {
@@ -14,6 +23,13 @@ public class Extractor : BuildingBH
     public override void BuidlingStart()
     {
         Debug.Log("Extractor !");
+        data = ReferenceHolder.instance.extractorData;
+
+        if (data != null)
+        {
+            capacity = data.capacity;
+            ressourcesPerSecond = data.ressourcesPerSecond;
+        }
 
     }
 

@@ -54,7 +54,8 @@ public class BuildingManager : MonoBehaviour
         {
             return building;
         }
-        return null;
+        else return null;
+  
     }
 
     //Visuel
