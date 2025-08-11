@@ -11,6 +11,7 @@ public class BuildingManager : MonoBehaviour
     private PlayerVariables player;
     private ItemManager itemManager;
     private BuildingManager buildingManager;
+    private RessourceDictionnary ressourceDictionnary;
 
     //---------------Méthodes Implémentées---------------
     //Logique
@@ -22,9 +23,14 @@ public class BuildingManager : MonoBehaviour
         {
             buildingReferencer.Add(tilePos, building);
             AddVisual(building, tilePos, tilemap);
+            building.SetManagers(itemManager, buildingManager);
+            building.SetDico(ressourceDictionnary);
+            building.tilemap = tilemap;
+           
             building.BuidlingStart();
 
-            building.SetManagers(itemManager, buildingManager);
+
+
         }
 
     }
@@ -56,6 +62,12 @@ public class BuildingManager : MonoBehaviour
         }
         else return null;
   
+    }
+
+    public Vector2Int GetUnderTile(Vector2 pos)
+    {
+        Vector2Int cellPos = ConvertInt(pos);
+        return cellPos;
     }
 
     //Visuel
@@ -93,6 +105,7 @@ public class BuildingManager : MonoBehaviour
         player = ReferenceHolder.instance.playervariable;
         itemManager = ReferenceHolder.instance.itemManager;
         buildingManager = ReferenceHolder.instance.buildingManager;
+        ressourceDictionnary = ReferenceHolder.instance.ressourceDictionnary;
     }
 
     private void Update()

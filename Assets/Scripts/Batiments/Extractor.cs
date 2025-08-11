@@ -1,16 +1,22 @@
 
+using System;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
 public class Extractor : BuildingBH
 {
-    public float ejectTimer = 3f;
-    public float timer = 0f;
+    public float ejectTimer = 0f;
     private int currentStorage = 0;
+    private float storageBuffer = 0.0f;
+    private float ejectInterval = 0.5f;
+
     private int capacity;
     private float ressourcesPerSecond;
+    private TileType underTile;
+    private bool canExtract = false;
+    private Sprite ressourceType;
 
-    public Tilemap tilemap;
+
 
 
     private ExtractorData data;
@@ -29,6 +35,23 @@ public class Extractor : BuildingBH
         {
             capacity = data.capacity;
             ressourcesPerSecond = data.ressourcesPerSecond;
+
+        }
+
+        Vector2Int underTIle2D = buildingManager.GetUnderTile(worldPosition);
+        Vector3Int underTile3D = new Vector3Int(underTIle2D.x, underTIle2D.y, 0);
+        underTile = tilemap.GetTile<TileType>(underTile3D);
+
+        if (underTile != null)
+        {
+            ressourceType = RessourceDictionnary.GetRessourceSprite(underTile.tileType);
+
+            if (ressourceType != null)
+            {
+                canExtract = true;
+            }
+
+
         }
 
     }
@@ -40,17 +63,40 @@ public class Extractor : BuildingBH
 
     public override void BuildingUpdate()
     {
-        timer += Time.deltaTime;
+        if (canExtract && currentStorage < capacity) //Gestion de la production logique
+        {
+            storageBuffer += ressourcesPerSecond * Time.deltaTime;
+            int unitToAdd = Mathf.FloorToInt(storageBuffer);
 
-        if (timer >= ejectTimer)
+            if (storageBuffer >= 1.0f)
+            {
+                int availableStorage = capacity - currentStorage;
+                int Amount = Mathf.Min(unitToAdd, availableStorage);
+
+                storageBuffer -= Amount;
+                currentStorage += Amount;
+            }
+
+
+        }
+
+        ejectTimer += Time.deltaTime;
+
+        if (currentStorage >= 1 && ejectTimer >= ejectInterval)//Gestion libération items
         {
             Vector2 spawnPos = new Vector2(Mathf.Floor(worldPosition.x) + 0.5f, Mathf.Floor(worldPosition.y) + 0.5f) + GetDirection();
+
             if (buildingManager.GetBuildingOnTile(spawnPos) is Conveyor && ItemManager.IsSpaceFree(spawnPos))
             {
-                ItemManager.AddItem(new ItemBH(RessourceBehaviour.RessourceType.Iron, spawnPos), spawnPos);
-                timer -= ejectTimer;
+                ItemManager.AddItem(new ItemBH(underTile.tileType, spawnPos), spawnPos);
+
+                currentStorage -= 1;
+                ejectTimer = 0;
             }
         }
+
+        Debug.Log(currentStorage);
+        
 
     }
 

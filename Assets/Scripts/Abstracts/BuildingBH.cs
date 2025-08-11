@@ -1,4 +1,6 @@
+using System;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 //Définit le comportement/données de TOUT les batiments
 public abstract class BuildingBH
@@ -7,6 +9,8 @@ public abstract class BuildingBH
     public int rotation;
     public ItemManager ItemManager;
     public BuildingManager buildingManager;
+    public RessourceDictionnary RessourceDictionnary;
+    public Tilemap tilemap;
 
     public BuildingBH(Vector2 wordlPosition, int rotation)
     {
@@ -36,7 +40,12 @@ public abstract class BuildingBH
         this.buildingManager = buildingManager;
     }
 
-        public Vector2 GetDirection()
+    public void SetDico(RessourceDictionnary ressourceDictionnary)
+    {
+        this.RessourceDictionnary = ressourceDictionnary;
+    }
+
+    public Vector2 GetDirection()
     {
         switch (rotation)
         {
