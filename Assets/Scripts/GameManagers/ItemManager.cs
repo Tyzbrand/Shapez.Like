@@ -157,10 +157,13 @@ public class ItemManager : MonoBehaviour
             if (currentBuilding != null)
             {
                 Vector2 currentDirection = currentBuilding.GetDirection();
-
                 Vector2 nextPos = item.worldPosition + currentDirection * Time.deltaTime;
 
                 BuildingBH nextBuilding = buildingManager.GetBuildingOnTile(nextPos);
+
+
+
+
 
                 if (nextBuilding is Marketplace)
                 {
@@ -171,11 +174,34 @@ public class ItemManager : MonoBehaviour
 
                 if (nextBuilding is Conveyor && IsSpaceFree(nextPos, item))
                 {
-                    item.worldPosition = nextPos;
+                    if (item.lastBuilding != null && item.lastBuilding != nextBuilding)
+                    {
+                        Vector2 nextDirection = nextBuilding.GetDirection();
+                        Vector2 nextCenter = CenterOnPerpendicularAxis(nextPos, nextDirection);
 
+                        if (currentDirection != nextDirection && IsSpaceFree(nextCenter, item))
+                        {
+                            item.worldPosition = nextCenter;
+                        }
+                        else if(IsSpaceFree(nextCenter, item))
+                        {
+                            item.worldPosition = nextPos;
+                        }
+                        
+                    }
+                    else
+                    {
+                        item.worldPosition = nextPos;
+                    }
+                    item.lastBuilding = nextBuilding;
                 }
+                else
+                {
+                    item.lastBuilding = currentBuilding;
+                }
+
             }
-            
+
             if (item.lastWorldPosition == item.worldPosition && !(currentBuilding is Conveyor))
             {
                 item.idleTime += Time.deltaTime;
@@ -198,6 +224,22 @@ public class ItemManager : MonoBehaviour
     private void LateUpdate()
     {
         UpdateVisual();
+    }
+
+    //---------------Méthodes Utilitaires---------------
+
+    private Vector2 CenterOnPerpendicularAxis(Vector2 currentPos, Vector2 direction)
+    {
+        Vector2 centeredPos = currentPos;
+        if (Mathf.Abs(direction.x) > Mathf.Abs(direction.y))
+        {
+            centeredPos.y = Mathf.FloorToInt(currentPos.y) + 0.5f;
+        }
+        else if (Mathf.Abs(direction.y) > Mathf.Abs(direction.x))
+        {
+            centeredPos.x = Mathf.FloorToInt(currentPos.x) + 0.5f;
+        }
+        return centeredPos;
     }
 
 

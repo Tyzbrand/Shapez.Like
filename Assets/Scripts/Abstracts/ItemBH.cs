@@ -9,6 +9,7 @@ public class ItemBH
     public Vector2 lastWorldPosition;
     public float idleTime = 0f;
     public float maxInactivityTime = 10f;
+    public BuildingBH lastBuilding = null;
 
 
     public ItemBH(RessourceBehaviour.RessourceType itemType, Vector2 worldPosition)
