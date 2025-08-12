@@ -79,7 +79,7 @@ public class Placement : MonoBehaviour
             {
                 if (player.buildMode)
                 {
-                    tilemap = FindFirstObjectByType<Tilemap>();
+                    tilemap = player.tilemap1;
                     Vector3 mousePos3D = playerCam.ScreenToWorldPoint(Mouse.current.position.ReadValue());
                     mousePos3D.z = 0;
                     Vector2 mousePos2D = new Vector2(mousePos3D.x, mousePos3D.y);
@@ -90,9 +90,9 @@ public class Placement : MonoBehaviour
 
                     if (!restrictedTiles.Contains(underTile) && underTile != null && !EventSystem.current.IsPointerOverGameObject())
                     {
-                        BuildingBH currentInstance = GetCurrentType(mousePos2D);
+                        BuildingBH currentInstance = GetCurrentType(mousePos2D, tilemap);
 
-                        buildingManager.AddBuilding(mousePos2D, currentInstance, tilemap);
+                        buildingManager.AddBuilding(mousePos2D, currentInstance);
                         player.Money -= prices.GetPrice(currentBuild);
 
 
@@ -121,11 +121,15 @@ public class Placement : MonoBehaviour
 
 
     private void Build(InputAction.CallbackContext context) //Permet de poser l'objet en question au clic droit
-    {
+    {   
 
         if (context.performed)
-        {
-            if (prices.GetPrice(currentBuild) <= player.Money)
+        {   
+            Vector3 mousePos3D = playerCam.ScreenToWorldPoint(Mouse.current.position.ReadValue());
+            mousePos3D.z = 0;
+            Vector2 mousePos2D = new Vector2(mousePos3D.x, mousePos3D.y);
+
+            if (prices.GetPrice(currentBuild) <= player.Money && !buildingManager.IsTileUsed(mousePos2D))
             {
                 allowConstruciton = true;
 
@@ -139,16 +143,16 @@ public class Placement : MonoBehaviour
 
     }
 
-    private BuildingBH GetCurrentType(Vector2 mousePos2D)
+    private BuildingBH GetCurrentType(Vector2 mousePos2D, Tilemap buildingTilemap)
     {
         switch (currentBuildingType)
         {
             case buildingType.Extractor:
-                return new Extractor(mousePos2D, player.rotation);
+                return new Extractor(mousePos2D, player.rotation, buildingTilemap);
             case buildingType.Conveyor:
-                return new Conveyor(mousePos2D, player.rotation);
+                return new Conveyor(mousePos2D, player.rotation, buildingTilemap);
             case buildingType.marketplace:
-                return new Marketplace(mousePos2D, player.rotation);
+                return new Marketplace(mousePos2D, player.rotation, buildingTilemap);
 
         }
         return null;

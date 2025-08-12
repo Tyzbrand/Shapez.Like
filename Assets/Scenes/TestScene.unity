@@ -1787,6 +1787,7 @@ MonoBehaviour:
   marketplacePrefab: {fileID: 1835868831058879866, guid: 42836f4d12a89c841a023b4ecbf8620a, type: 3}
   foundryPrefab: {fileID: 8753055527562394405, guid: 7ab9df23779b5dc4eaf25e5448ac8595, type: 3}
   itemPrefab: {fileID: 9126002369858062041, guid: d0046de0a6e35334ba5ec4f2851ac02a, type: 3}
+  hubPrefab: {fileID: 1265435161693959988, guid: 5f17b18a82c28c14cb296af624e724e1, type: 3}
   ironSprite: {fileID: 21300000, guid: fc10e75cb67da9240baf65dfdd06577a, type: 3}
   copperSprite: {fileID: 21300000, guid: 57dadc313221bf34e9e37e8c73b70bf2, type: 3}
   coalSprite: {fileID: 21300000, guid: 1983118415dc1d64da9235cec5906b02, type: 3}

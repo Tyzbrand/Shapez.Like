@@ -12,21 +12,23 @@ public class BuildingManager : MonoBehaviour
     private ItemManager itemManager;
     private BuildingManager buildingManager;
     private RessourceDictionnary ressourceDictionnary;
+    public Tilemap tilemap;
+
+    
 
     //---------------Méthodes Implémentées---------------
     //Logique
 
-    public void AddBuilding(Vector2 worldPos, BuildingBH building, Tilemap tilemap)
+    public void AddBuilding(Vector2 worldPos, BuildingBH building)
     {
         Vector2Int tilePos = ConvertInt(worldPos);
         if (!buildingReferencer.ContainsKey(tilePos))
         {
             buildingReferencer.Add(tilePos, building);
-            AddVisual(building, tilePos, tilemap);
+            AddVisual(building, tilePos);
             building.SetManagers(itemManager, buildingManager);
             building.SetDico(ressourceDictionnary);
-            building.tilemap = tilemap;
-           
+
             building.BuidlingStart();
 
 
@@ -61,13 +63,30 @@ public class BuildingManager : MonoBehaviour
             return building;
         }
         else return null;
-  
+
     }
 
     public Vector2Int GetUnderTile(Vector2 pos)
     {
         Vector2Int cellPos = ConvertInt(pos);
         return cellPos;
+    }
+
+    public void HubCreation()
+    {
+        Vector2 basePos = new Vector2(43, 107);
+        tilemap = FindFirstObjectByType<Tilemap>();
+
+        for (int x = 0; x < 4; x++)
+        {
+            for (int y = 0; y < 4; y++)
+            {
+                Vector2 hubPos = new Vector2(basePos.x + x, basePos.y + y);
+                AddBuilding(ConvertInt(hubPos), new Hub(hubPos, 0, tilemap));
+            }
+        }
+
+
     }
 
     //Visuel
@@ -81,10 +100,10 @@ public class BuildingManager : MonoBehaviour
         }
     }
 
-    private void AddVisual(BuildingBH building, Vector2Int tilePos, Tilemap tilemap)
+    private void AddVisual(BuildingBH building, Vector2Int tilePos)
     {
         if (!buildingVisualReferencer.ContainsKey(building))
-        {   
+        {
 
 
             Vector3Int tilePos3D = new Vector3Int(tilePos.x, tilePos.y, 0);
@@ -106,6 +125,8 @@ public class BuildingManager : MonoBehaviour
         itemManager = ReferenceHolder.instance.itemManager;
         buildingManager = ReferenceHolder.instance.buildingManager;
         ressourceDictionnary = ReferenceHolder.instance.ressourceDictionnary;
+
+
     }
 
     private void Update()
@@ -113,7 +134,7 @@ public class BuildingManager : MonoBehaviour
         foreach (var building in buildingReferencer.Values)
         {
             building.BuildingUpdate();
-            
+
         }
     }
 
@@ -123,5 +144,7 @@ public class BuildingManager : MonoBehaviour
     {
         return new Vector2Int(Mathf.FloorToInt(vector2.x), Mathf.FloorToInt(vector2.y));
     }
+
+    
 
 }

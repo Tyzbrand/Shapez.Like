@@ -1,8 +1,9 @@
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 public class Marketplace : BuildingBH
 {
-    public Marketplace(Vector2 worldPosition, int rotation) : base(worldPosition, rotation)
+    public Marketplace(Vector2 worldPosition, int rotation, Tilemap tilemap) : base(worldPosition, rotation, tilemap)
     {
 
     }

@@ -12,10 +12,12 @@ public abstract class BuildingBH
     public RessourceDictionnary RessourceDictionnary;
     public Tilemap tilemap;
 
-    public BuildingBH(Vector2 wordlPosition, int rotation)
+
+    public BuildingBH(Vector2 wordlPosition, int rotation, Tilemap tilemap)
     {
         this.worldPosition = wordlPosition;
         this.rotation = rotation;
+        this.tilemap = tilemap;
     }
 
     public virtual void BuildingUpdate() //Appelé toute les frames par le "BuildingManager"

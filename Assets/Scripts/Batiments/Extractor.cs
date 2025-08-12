@@ -1,7 +1,7 @@
 
-using System;
 using UnityEngine;
 using UnityEngine.Tilemaps;
+
 
 public class Extractor : BuildingBH
 {
@@ -19,9 +19,11 @@ public class Extractor : BuildingBH
 
 
 
+
+
     private ExtractorData data;
 
-    public Extractor(Vector2 worldPosition, int rotation) : base(worldPosition, rotation)
+    public Extractor(Vector2 worldPosition, int rotation, Tilemap tilemap) : base(worldPosition, rotation, tilemap)
     {
 
     }
@@ -36,7 +38,8 @@ public class Extractor : BuildingBH
             capacity = data.capacity;
             ressourcesPerSecond = data.ressourcesPerSecond;
 
-        }
+        }   
+
 
         Vector2Int underTIle2D = buildingManager.GetUnderTile(worldPosition);
         Vector3Int underTile3D = new Vector3Int(underTIle2D.x, underTIle2D.y, 0);
@@ -95,7 +98,6 @@ public class Extractor : BuildingBH
             }
         }
 
-        Debug.Log(currentStorage);
         
 
     }

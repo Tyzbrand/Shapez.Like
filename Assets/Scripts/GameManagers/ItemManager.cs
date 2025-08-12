@@ -167,9 +167,12 @@ public class ItemManager : MonoBehaviour
 
                 if (nextBuilding is Marketplace)
                 {
-                    player.Money += data.GetPrice(item.itemType);
-                    itemToRemove.Add(item);
+                    MarketPlaceAction(item);
+                }
 
+                if (nextBuilding is Hub)
+                {
+                    HubAction(item);
                 }
 
                 if (nextBuilding is Conveyor && IsSpaceFree(nextPos, item))
@@ -183,11 +186,11 @@ public class ItemManager : MonoBehaviour
                         {
                             item.worldPosition = nextCenter;
                         }
-                        else if(IsSpaceFree(nextCenter, item))
+                        else if (IsSpaceFree(nextCenter, item))
                         {
                             item.worldPosition = nextPos;
                         }
-                        
+
                     }
                     else
                     {
@@ -219,6 +222,8 @@ public class ItemManager : MonoBehaviour
         {
             RemoveItem(itemToRemove);
         }
+
+        Debug.Log(itemReferencer.Count);
     }
 
     private void LateUpdate()
@@ -240,6 +245,18 @@ public class ItemManager : MonoBehaviour
             centeredPos.x = Mathf.FloorToInt(currentPos.x) + 0.5f;
         }
         return centeredPos;
+    }
+
+    private void MarketPlaceAction(ItemBH item)
+    {
+        player.Money += data.GetPrice(item.itemType);
+        itemToRemove.Add(item);
+    }
+
+    private void HubAction(ItemBH item)
+    {
+        player.inventory.Add(item.itemType, 1);
+        itemToRemove.Add(item);
     }
 
 

@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 //-------------------------------------Gère toute les variables dynamiques simples du joueur -------------------------------------
 //Utilisation dans : -Placement et -PlayerMove
@@ -26,6 +27,7 @@ public class PlayerVariables : MonoBehaviour
 
     //References
     public Inventory inventory;
+    public Tilemap tilemap1;
 
 
     // Est dans un menu

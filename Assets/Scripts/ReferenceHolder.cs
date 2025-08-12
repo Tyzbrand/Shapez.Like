@@ -46,6 +46,7 @@ public class ReferenceHolder : MonoBehaviour
     public GameObject marketplacePrefab;
     public GameObject foundryPrefab;
     public GameObject itemPrefab;
+    public GameObject hubPrefab;
 
 
     //Sprites de ressources
