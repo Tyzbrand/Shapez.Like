@@ -102,6 +102,6 @@ public class Foundry : BuildingBH
     {
         return currentRecipe.input2;
     }
-
+    
 
 }

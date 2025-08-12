@@ -5,13 +5,16 @@ using UnityEngine.SceneManagement;
 public class PlayerMapTeleport : MonoBehaviour
 {
     private BuildingManager buildingManager;
+    private ItemManager itemManager;
     private Placement placementSC;
 
+
     private void Start()
-    {   
-        
+    {
+
         buildingManager = ReferenceHolder.instance.buildingManager;
         placementSC = ReferenceHolder.instance.placementSC;
+        itemManager = ReferenceHolder.instance.itemManager;
 
         placementSC.currentBuild = ReferenceHolder.instance.hubPrefab;
 
@@ -21,10 +24,10 @@ public class PlayerMapTeleport : MonoBehaviour
 
 
 
-        
-        
 
-        
+
+
+
 
     }
 }

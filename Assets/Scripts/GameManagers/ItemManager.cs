@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 
@@ -17,6 +18,7 @@ public class ItemManager : MonoBehaviour
     private RessourceData data;
 
     private GameObject itemPrefab;
+    public Transform parent;
 
 
     private const float itemSpacing = 0.5f;
@@ -71,6 +73,14 @@ public class ItemManager : MonoBehaviour
         return true;
     }
 
+    public void ClearItems()
+    {
+        foreach (ItemBH item in itemReferencer.ToList())
+        {
+            RemoveItem(item);
+        }
+    }
+
 
     //Visuel
 
@@ -95,7 +105,7 @@ public class ItemManager : MonoBehaviour
             }
             else
             {
-                GameObject visual = Instantiate(itemPrefab, worldPos, Quaternion.identity);
+                GameObject visual = Instantiate(itemPrefab, worldPos, Quaternion.identity, parent);
                 itemVisualReferencer.Add(item, visual);
                 visual.GetComponent<SpriteRenderer>().sprite = spriteToUse;
 
@@ -132,6 +142,17 @@ public class ItemManager : MonoBehaviour
     }
 
 
+    public void PreInstanciateVisuals(int amount, Transform parent)
+    {
+        for (int i = 0; i < amount; i++)
+        {
+            GameObject visual = Instantiate(itemPrefab, parent);
+            visual.SetActive(false);
+            freeVisual.Add(visual);
+        }
+    }
+
+
 
 
     //---------------Méthodes Unity---------------
@@ -144,6 +165,8 @@ public class ItemManager : MonoBehaviour
         itemPrefab = ReferenceHolder.instance.itemPrefab;
         player = ReferenceHolder.instance.playervariable;
         data = ReferenceHolder.instance.ressourceData;
+
+
     }
 
     private void Update()

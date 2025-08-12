@@ -8,6 +8,7 @@ public class MiscInput : MonoBehaviour
     private Camera cam;
     private PlayerSwitchMode switchMode;
     private GameObject inventoryPanel;
+    private BuildingManager buildingManager;
 
 
 
@@ -17,6 +18,7 @@ public class MiscInput : MonoBehaviour
         switchMode = ReferenceHolder.instance.playerSwitchMode;
         cam = ReferenceHolder.instance.mainCamera;
         inventoryPanel = ReferenceHolder.instance.inventoryMenu;
+        buildingManager = ReferenceHolder.instance.buildingManager;
     }
 
 
@@ -26,22 +28,12 @@ public class MiscInput : MonoBehaviour
         {
             Vector2 mousPos = cam.ScreenToWorldPoint(Input.mousePosition);
 
-
-
-            RaycastHit2D hub = Physics2D.Raycast(mousPos, Vector2.zero, Mathf.Infinity, LayerMask.GetMask("Hub"));
-
-            if (hub.collider != null)
-            {
-                switchMode.InventoryUIToggle();
-            }
-            else if (hub.collider == null && inventoryPanel.activeSelf)
+            if (buildingManager.GetBuildingOnTile(mousPos) is Hub)
             {
                 switchMode.InventoryUIToggle();
             }
 
-
-
-            if (Input.GetKeyDown(KeyCode.Escape) && !player.buildMenu && !player.buildMode)
+        if (Input.GetKeyDown(KeyCode.Escape) && !player.buildMenu && !player.buildMode)
             {
                 Application.Quit();
             }
