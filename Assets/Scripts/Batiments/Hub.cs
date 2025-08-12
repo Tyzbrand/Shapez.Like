@@ -3,7 +3,7 @@ using UnityEngine.Tilemaps;
 
 public class Hub : BuildingBH
 {
-    public Hub(Vector2 worldPos, int rotation, Tilemap tilemap) : base(worldPos, rotation, tilemap)
+    public Hub(Vector2 worldPosition, int rotation, Tilemap tilemap) : base(worldPosition, rotation, tilemap)
     {
 
     }

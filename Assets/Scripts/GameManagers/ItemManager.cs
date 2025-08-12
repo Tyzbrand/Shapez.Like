@@ -169,10 +169,13 @@ public class ItemManager : MonoBehaviour
                 {
                     MarketPlaceAction(item);
                 }
-
-                if (nextBuilding is Hub)
+                else if (nextBuilding is Hub)
                 {
                     HubAction(item);
+                }
+                else if (nextBuilding is Foundry)
+                {
+                    FoundryAction(item, nextBuilding);
                 }
 
                 if (nextBuilding is Conveyor && IsSpaceFree(nextPos, item))
@@ -257,6 +260,26 @@ public class ItemManager : MonoBehaviour
     {
         player.inventory.Add(item.itemType, 1);
         itemToRemove.Add(item);
+    }
+
+    private void FoundryAction(ItemBH item, BuildingBH building)
+    {
+        if (building is Foundry foundry)
+        {
+            if (item.itemType == foundry.currentRecipe.input1 && foundry.currentStorageInput1 == 0)
+            {
+                foundry.currentStorageInput1 += 1;
+                itemToRemove.Add(item);
+            }
+            if (item.itemType == foundry.currentRecipe.input2 && foundry.currentStorageInput2 == 0)
+            {
+                foundry.currentStorageInput2 += 1;
+                itemToRemove.Add(item);
+            }
+
+            
+        }
+        
     }
 
 

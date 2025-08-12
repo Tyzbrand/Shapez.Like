@@ -24,6 +24,7 @@ public class foundrySelect : MonoBehaviour
 
         previewSC.previewToUse = ReferenceHolder.instance.foundryPreview;
         placementSC.currentBuild = ReferenceHolder.instance.foundryPrefab; //Defeinir les batiements
+        placementSC.currentBuildingType = Placement.buildingType.Foundry;
 
         previewSC.DestroyInstance();
         previewSC.CreateInstance(); //Afficher la preview
