@@ -86,13 +86,8 @@ public class PlayerSwitchMode : MonoBehaviour
 
     public void InventoryUIToggle()
     {
-        if (inventoryPanel.activeSelf)
-        {
-            inventoryPanel.SetActive(false);
-        }
-        else
-            inventoryPanel.SetActive(true);
-
+        if (inventoryPanel.activeSelf) inventoryPanel.SetActive(false);
+        else if (!player.destructionMode) inventoryPanel.SetActive(true);
     }
 
 

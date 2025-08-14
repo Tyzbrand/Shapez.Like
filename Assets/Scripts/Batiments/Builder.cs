@@ -1,17 +1,15 @@
-using System.Collections;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
-public class Foundry : BuildingBH
+public class Builder : BuildingBH
 {
+    public Recipe1_1 currentRecipe;
+    private BuilderRecipe recipe;
     private BuildingData data;
-    private FoundryRecipe recipe;
-    public Recipe11_1 currentRecipe;
+
 
     private int capacity;
-    public int currentStorageInput1 = 0;
-    public int currentStorageInput2 = 0;
+    public int currentStorageInput = 0;
     private int currentStorageOutput = 0;
     private float ejectInterval = 0.5f;
     private float ejectTimer = 0f;
@@ -20,36 +18,36 @@ public class Foundry : BuildingBH
 
     private bool isProcessing = false;
 
-    public Foundry(Vector2 worldPosition, int rotation, Tilemap tilemap) : base(worldPosition, rotation, tilemap)
+    public Builder(Vector2 worldPosition, int rotation, Tilemap tilemap) : base(worldPosition, rotation, tilemap)
     {
-
+        
     }
 
     public override void BuidlingStart()
     {
-        Debug.Log("Foundry Construite");
+        Debug.Log("Builder Construit");
 
+        recipe = ReferenceHolder.instance.builderRecipe;
         data = ReferenceHolder.instance.buildingData;
-        recipe = ReferenceHolder.instance.foundryRecipe;
 
         if (data != null)
         {
-            capacity = data.foundryCapacity;
-
-            currentRecipe = recipe.foundryRecipes[1];
+            capacity = data.builderCapacity;
+            currentRecipe = recipe.BuilderRecipes[0];
             processInterval = currentRecipe.craftSpeed;
         }
-
-
-
-
     }
 
+    public override void BuildingOnDestroy()
+    {
+        Debug.Log("Builder Détruit");
 
+        
+    }
 
     public override void BuildingUpdate()
     {
-        if (currentStorageInput1 >= 1 && currentStorageInput2 >= 1 && !isProcessing && capacity > currentStorageOutput)
+        if (currentStorageInput >= 1 && !isProcessing && capacity > currentStorageOutput)
         {
             isProcessing = true;
         }
@@ -60,14 +58,12 @@ public class Foundry : BuildingBH
 
             if (processTimer >= processInterval)
             {
-                currentStorageInput1 -= 1;
-                currentStorageInput2 -= 1;
-
-                currentStorageOutput += 1;
+                currentStorageInput--;
+                currentStorageOutput++;
 
                 isProcessing = false;
 
-                processTimer = 0f;
+                processTimer = 0;
             }
         }
 
@@ -79,31 +75,12 @@ public class Foundry : BuildingBH
 
             if (buildingManager.GetBuildingOnTile(spawnPos) is Conveyor && ItemManager.IsSpaceFree(spawnPos))
             {
-                ItemBH outputItem = new ItemBH(currentRecipe.output, spawnPos);
+                ItemBH outputItem = new ItemBH(currentRecipe.Output, spawnPos);
                 ItemManager.AddItem(outputItem, spawnPos);
 
-                currentStorageOutput -= 1;
-                ejectTimer = 0;
+                currentStorageOutput--;
+                ejectTimer = 0f;
             }
         }
-
     }
-
-
-    public override void BuildingOnDestroy()
-    {
-        Debug.Log("Foundry détruite !");
-    }
-
-    public RessourceBehaviour.RessourceType GetInput1()
-    {
-        return currentRecipe.input1;
-    }
-
-    public RessourceBehaviour.RessourceType GetInput2()
-    {
-        return currentRecipe.input2;
-    }
-    
-
 }

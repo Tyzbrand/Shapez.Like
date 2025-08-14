@@ -4,12 +4,18 @@ public class RessourceBehaviour : MonoBehaviour
 {
     [System.Serializable]
     public enum RessourceType
-    {
-        Iron,
-        Copper,
+    {   
+        Empty,
         Coal,
+        Iron,
         IronIngot,
-        CopperIngot
+        IronPlate,
+        Copper,
+        CopperIngot,
+        CopperPlate,
+        Silver,
+        SilverIngot
+
     }
 
     public RessourceType type;

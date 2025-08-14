@@ -9,9 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 00067d9faf77fcd439f9d3e241e2dac7, type: 3}
-  m_Name: ExtractorData
+  m_Script: {fileID: 11500000, guid: e2ab3c57b2ea54540991f2c31b36281d, type: 3}
+  m_Name: BuildingData
   m_EditorClassIdentifier: 
-  price: 100
-  ressourcesPerSecond: 0.3
-  capacity: 10
+  extractorRessourcesPerSecond: 0.3
+  extractorCapacity: 10
+  foundryCapacity: 5
+  builderCapacity: 5

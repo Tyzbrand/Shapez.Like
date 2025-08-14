@@ -26,7 +26,6 @@ public class PlayerVariables : MonoBehaviour
     
 
     //References
-    public Inventory inventory;
     public Tilemap tilemap1;
 
 
@@ -40,10 +39,6 @@ public class PlayerVariables : MonoBehaviour
 
 
 
-    private void Awake()
-    {
-        inventory = GetComponent<Inventory>();
-    }
 
 
 

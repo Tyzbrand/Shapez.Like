@@ -3,8 +3,13 @@ using UnityEngine;
 
 public class Inventory : MonoBehaviour
 {
+    public int inventoryCapacity = 100;
+    private int totalItemCount;
     private Dictionary<RessourceBehaviour.RessourceType, int> inventory = new();
 
+
+
+    //-----------Méthodes Unity-----------
     private void Awake()
     {
         foreach (RessourceBehaviour.RessourceType type in System.Enum.GetValues(typeof(RessourceBehaviour.RessourceType)))
@@ -23,18 +28,18 @@ public class Inventory : MonoBehaviour
         }
     }
 
-   
-   
-   
-   
-   
+
+
+
+    //-----------Getter et Setters-----------
+
     public void Add(RessourceBehaviour.RessourceType type, int amount)
     {
-        if (amount <= 0)
-        {
-            return;
-        }
+        if (amount <= 0) return;
+        if (totalItemCount + amount > inventoryCapacity) return;
+
         inventory[type] += amount;
+        totalItemCount += amount;
     }
 
     public bool Remove(RessourceBehaviour.RessourceType type, int amount)
@@ -48,6 +53,7 @@ public class Inventory : MonoBehaviour
             return false;
         }
         inventory[type] -= amount;
+        totalItemCount -= amount;
         return true;
     }
 
@@ -60,6 +66,11 @@ public class Inventory : MonoBehaviour
     public Dictionary<RessourceBehaviour.RessourceType, int> GetInventory()
     {
         return new Dictionary<RessourceBehaviour.RessourceType, int>(inventory);
+    }
+
+    public int GetTotalItemCount()
+    {
+        return totalItemCount;
     }
     
 }

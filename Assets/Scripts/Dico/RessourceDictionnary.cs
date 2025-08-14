@@ -10,6 +10,10 @@ public class RessourceDictionnary : MonoBehaviour
     private Sprite coalPrefab;
     private Sprite ironIngotPrefab;
     private Sprite copperIngotPrefab;
+    private Sprite copperPlateSprite;
+    private Sprite IronPlateSprite;
+    private Sprite silverSprite;
+    private Sprite silverIngotSprite;
 
 
 
@@ -23,6 +27,10 @@ public class RessourceDictionnary : MonoBehaviour
         coalPrefab = ReferenceHolder.instance.coalSprite;
         copperPrefab = ReferenceHolder.instance.copperSprite;
         copperIngotPrefab = ReferenceHolder.instance.copperIngotSprite;
+        copperPlateSprite = ReferenceHolder.instance.copperPlateSprite;
+        IronPlateSprite = ReferenceHolder.instance.ironPlateSPrite;
+        silverSprite = ReferenceHolder.instance.silverSprite;
+        silverIngotSprite = ReferenceHolder.instance.silverIngotSprite;
 
 
 
@@ -31,6 +39,11 @@ public class RessourceDictionnary : MonoBehaviour
         ressourceSprite.Add(RessourceBehaviour.RessourceType.Coal, coalPrefab);
         ressourceSprite.Add(RessourceBehaviour.RessourceType.IronIngot, ironIngotPrefab);
         ressourceSprite.Add(RessourceBehaviour.RessourceType.CopperIngot, copperIngotPrefab);
+        ressourceSprite.Add(RessourceBehaviour.RessourceType.CopperPlate, copperPlateSprite);
+        ressourceSprite.Add(RessourceBehaviour.RessourceType.IronPlate, IronPlateSprite);
+        ressourceSprite.Add(RessourceBehaviour.RessourceType.Silver, silverSprite);
+        ressourceSprite.Add(RessourceBehaviour.RessourceType.SilverIngot, silverIngotSprite);
+
     }
 
 

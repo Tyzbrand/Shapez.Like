@@ -21,7 +21,7 @@ public class Extractor : BuildingBH
 
 
 
-    private ExtractorData data;
+    private BuildingData data;
 
     public Extractor(Vector2 worldPosition, int rotation, Tilemap tilemap) : base(worldPosition, rotation, tilemap)
     {
@@ -31,12 +31,12 @@ public class Extractor : BuildingBH
     public override void BuidlingStart()
     {
         Debug.Log("Extractor !");
-        data = ReferenceHolder.instance.extractorData;
+        data = ReferenceHolder.instance.buildingData;
 
         if (data != null)
         {
-            capacity = data.capacity;
-            ressourcesPerSecond = data.ressourcesPerSecond;
+            capacity = data.extractorCapacity;
+            ressourcesPerSecond = data.extractorRessourcesPerSecond;
 
         }   
 

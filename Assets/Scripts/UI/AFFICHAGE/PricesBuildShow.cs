@@ -9,6 +9,7 @@ public class PricesBuildShow : MonoBehaviour
     public TextMeshProUGUI conveyorPrice;
     public TextMeshProUGUI foundryPrice;
     public TextMeshProUGUI marketplacePrice;
+    public TextMeshProUGUI builderPrice;
     
 
     private BuildPriceDictionnary priceIndex;
@@ -26,6 +27,7 @@ public class PricesBuildShow : MonoBehaviour
         conveyorPrice.text = priceIndex.GetPrice(ReferenceHolder.instance.conveyorPrefab).ToString() + " $";
         foundryPrice.text = priceIndex.GetPrice(ReferenceHolder.instance.foundryPrefab).ToString() + " $";
         marketplacePrice.text = "FREE";
+        builderPrice.text = priceIndex.GetPrice(ReferenceHolder.instance.builderPrefab).ToString() + " $";
         
     }
 }

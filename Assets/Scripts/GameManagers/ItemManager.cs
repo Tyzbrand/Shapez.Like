@@ -13,6 +13,7 @@ public class ItemManager : MonoBehaviour
 
     private BuildingManager buildingManager;
     private PlayerVariables player;
+    private Inventory inventory;
 
     private RessourceDictionnary ressourceDictionnary;
     private RessourceData data;
@@ -53,7 +54,10 @@ public class ItemManager : MonoBehaviour
             {
                 continue;
             }
-            if (Vector2.Distance(other.worldPosition, position) < itemSpacing)
+
+            Vector2 delta = other.worldPosition - position;
+
+            if (Mathf.Abs(delta.x) < itemSpacing && Mathf.Abs(delta.y) < itemSpacing)
             {
                 return false;
             }
@@ -65,7 +69,9 @@ public class ItemManager : MonoBehaviour
     {
         foreach (var other in itemReferencer)
         {
-            if (Vector2.Distance(other.worldPosition, position) < itemSpacing)
+            Vector2 delta = other.worldPosition - position;
+
+            if (Mathf.Abs(delta.x) < itemSpacing && Mathf.Abs(delta.y) < itemSpacing)
             {
                 return false;
             }
@@ -165,6 +171,7 @@ public class ItemManager : MonoBehaviour
         itemPrefab = ReferenceHolder.instance.itemPrefab;
         player = ReferenceHolder.instance.playervariable;
         data = ReferenceHolder.instance.ressourceData;
+        inventory = ReferenceHolder.instance.inventorySC;
 
 
     }
@@ -188,18 +195,14 @@ public class ItemManager : MonoBehaviour
 
 
 
-                if (nextBuilding is Marketplace)
-                {
-                    MarketPlaceAction(item);
-                }
-                else if (nextBuilding is Hub)
-                {
-                    HubAction(item);
-                }
-                else if (nextBuilding is Foundry)
-                {
-                    FoundryAction(item, nextBuilding);
-                }
+                if (nextBuilding is Marketplace) MarketPlaceAction(item);
+
+                else if (nextBuilding is Hub) HubAction(item);
+
+                else if (nextBuilding is Foundry && IsItNextBuildingExit(item, nextBuilding, nextPos)) FoundryAction(item, nextBuilding);
+
+                else if (nextBuilding is Builder && IsItNextBuildingExit(item, nextBuilding, nextPos) ) BuilderAction(item, nextBuilding);
+
 
                 if (nextBuilding is Conveyor && IsSpaceFree(nextPos, item))
                 {
@@ -249,7 +252,6 @@ public class ItemManager : MonoBehaviour
             RemoveItem(itemToRemove);
         }
 
-        Debug.Log(itemReferencer.Count);
     }
 
     private void LateUpdate()
@@ -281,8 +283,12 @@ public class ItemManager : MonoBehaviour
 
     private void HubAction(ItemBH item)
     {
-        player.inventory.Add(item.itemType, 1);
-        itemToRemove.Add(item);
+        if (inventory.GetTotalItemCount() < inventory.inventoryCapacity)
+        {
+            inventory.Add(item.itemType, 1);
+            itemToRemove.Add(item);
+        }
+
     }
 
     private void FoundryAction(ItemBH item, BuildingBH building)
@@ -300,8 +306,29 @@ public class ItemManager : MonoBehaviour
                 itemToRemove.Add(item);
             }
 
-            
+
         }
+
+    }
+
+    private void BuilderAction(ItemBH item, BuildingBH building)
+    {
+        if (building is Builder builder)
+        {
+            if (item.itemType == builder.currentRecipe.Input && builder.currentStorageInput == 0)
+            {
+                builder.currentStorageInput++;
+                itemToRemove.Add(item);
+            }
+        }
+    }
+
+    private bool IsItNextBuildingExit(ItemBH item, BuildingBH nextBuilding, Vector2 nextPos)
+    {
+        Vector2 buildingDir = nextBuilding.GetDirection();
+        Vector2 fromDir = (item.worldPosition - nextPos).normalized;
+
+        return Vector2.Dot(fromDir, buildingDir) <= 0;
         
     }
 

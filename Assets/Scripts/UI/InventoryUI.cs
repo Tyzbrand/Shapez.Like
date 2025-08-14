@@ -14,11 +14,13 @@ public class InventoryUI : MonoBehaviour
     public TextMeshProUGUI type;
 
 
+
     public void OnEnable()
     {
         inventoryUI = ReferenceHolder.instance.hubInventoryUI;
         inventorySC = ReferenceHolder.instance.inventorySC;
         inventaire = inventorySC.GetInventory();
+    
         ShowInventory();
     }
 
@@ -48,6 +50,7 @@ public class InventoryUI : MonoBehaviour
         }
 
     }
+
 
 
 

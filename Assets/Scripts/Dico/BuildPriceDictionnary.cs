@@ -12,6 +12,7 @@ public class BuildPriceDictionnary : MonoBehaviour
     private GameObject conveyor;
     private GameObject marketplace;
     private GameObject foundry;
+    private GameObject builder;
 
 
 
@@ -21,6 +22,7 @@ public class BuildPriceDictionnary : MonoBehaviour
         conveyor = ReferenceHolder.instance.conveyorPrefab;
         marketplace = ReferenceHolder.instance.marketplacePrefab;
         foundry = ReferenceHolder.instance.foundryPrefab;
+        builder = ReferenceHolder.instance.builderPrefab;
 
 
 
@@ -32,6 +34,7 @@ public class BuildPriceDictionnary : MonoBehaviour
         buildPrice.Add(conveyor, 10);
         buildPrice.Add(marketplace, 0);
         buildPrice.Add(foundry, 500);
+        buildPrice.Add(builder, 750);
     }
 
 

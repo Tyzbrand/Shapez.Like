@@ -13,11 +13,15 @@ MonoBehaviour:
   m_Name: FoundryRecipe
   m_EditorClassIdentifier: 
   foundryRecipes:
-  - input1: 0
+  - input1: 1
+    input2: 5
+    output: 6
+    craftSpeed: 3
+  - input1: 1
     input2: 2
     output: 3
     craftSpeed: 3
   - input1: 1
-    input2: 2
-    output: 4
+    input2: 8
+    output: 9
     craftSpeed: 3

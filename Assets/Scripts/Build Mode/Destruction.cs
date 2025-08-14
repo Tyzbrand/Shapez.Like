@@ -47,8 +47,9 @@ public class Destruction : MonoBehaviour
                 Vector2 mousePos2D = playerCam.ScreenToWorldPoint(Input.mousePosition);
 
                 if (buildingManager.IsTileUsed(mousePos2D))
-                {
-                    buildingManager.RemoveBuilding(mousePos2D);
+                {   
+                    if(!(buildingManager.GetBuildingOnTile(mousePos2D) is Hub)) buildingManager.RemoveBuilding(mousePos2D);
+                    
                 }
                 allowDestruction = false;
 

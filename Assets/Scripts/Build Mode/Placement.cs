@@ -41,7 +41,8 @@ public class Placement : MonoBehaviour
         Extractor,
         Conveyor,
         marketplace,
-        Foundry
+        Foundry,
+        builder
     }
 
 
@@ -156,6 +157,8 @@ public class Placement : MonoBehaviour
                 return new Marketplace(mousePos2D, player.rotation, buildingTilemap);
             case buildingType.Foundry:
                 return new Foundry(mousePos2D, player.rotation, buildingTilemap);
+            case buildingType.builder:
+                return new Builder(mousePos2D, player.rotation, buildingTilemap);
 
         }
         return null;

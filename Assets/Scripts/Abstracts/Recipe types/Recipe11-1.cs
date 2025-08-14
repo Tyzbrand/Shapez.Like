@@ -1,5 +1,5 @@
 [System.Serializable]
-public class Recipe
+public class Recipe11_1
 {
     public RessourceBehaviour.RessourceType input1;
     public RessourceBehaviour.RessourceType input2;

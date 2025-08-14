@@ -20,23 +20,16 @@ public class ReferenceHolder : MonoBehaviour
     public Placement placementSC;
     public Destruction destructionSC;
     public Inventory inventorySC;
-    public PlayerMove playerMoveSC;
     public BuildingManager buildingManager;
     public ItemManager itemManager;
-    
+
 
 
 
     //Tuiles
     [Header("Tuiles")]
-    public TileBase groundTile;
-    public TileBase borderTile;
-    public TileBase restrictedTile;
-    public TileBase ironTile;
-    public TileBase copperTile;
-    public TileBase coalTile;
     public List<TileBase> restrictedTiles;
-    public List<TileBase> extradableTiles;
+
 
 
     //Prefabs
@@ -47,6 +40,7 @@ public class ReferenceHolder : MonoBehaviour
     public GameObject foundryPrefab;
     public GameObject itemPrefab;
     public GameObject hubPrefab;
+    public GameObject builderPrefab;
 
 
     //Sprites de ressources
@@ -56,6 +50,10 @@ public class ReferenceHolder : MonoBehaviour
     public Sprite coalSprite;
     public Sprite ironIngotSprite;
     public Sprite copperIngotSprite;
+    public Sprite copperPlateSprite;
+    public Sprite ironPlateSPrite;
+    public Sprite silverSprite;
+    public Sprite silverIngotSprite;
 
 
     //Previews batiments
@@ -64,18 +62,19 @@ public class ReferenceHolder : MonoBehaviour
     public GameObject conveyorPreview;
     public GameObject marketplacePreview;
     public GameObject foundryPreview;
+    public GameObject builderPrview;
 
 
     //Datas
     [Header("Données")]
-    public ExtractorData extractorData;
-    public FoundryData foundryData;
+    public BuildingData buildingData;
     public RessourceData ressourceData;
 
 
     //Recettes
     [Header("Recettes")]
     public FoundryRecipe foundryRecipe;
+    public BuilderRecipe builderRecipe;
 
 
     //Overlay
