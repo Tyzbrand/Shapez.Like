@@ -9,7 +9,7 @@ public class Destruction : MonoBehaviour
     private PlayerSwitchMode buildSc;
     private Preview previewSc;
     private Camera playerCam;
-    private GameObject destructionOverlay;
+    private DestructionOverlaySC destructionOverlay;
     private BuildingManager buildingManager;
     private bool allowDestruction = false;
 
@@ -20,13 +20,13 @@ public class Destruction : MonoBehaviour
         buildSc = ReferenceHolder.instance.playerSwitchMode;
         previewSc = ReferenceHolder.instance.previewSC;
         playerCam = ReferenceHolder.instance.mainCamera;
-        destructionOverlay = ReferenceHolder.instance.destructionOverlay;
+        destructionOverlay = ReferenceHolder.instance.overlayManager;
         buildingManager = ReferenceHolder.instance.buildingManager;
     }
 
 
 
-    private void DestructionSet()
+    public void DestructionSet()
     {
         if (!player.destructionMode)
         {
@@ -78,7 +78,7 @@ public class Destruction : MonoBehaviour
         player.destructionMode = true;
         buildSc.BuildGuiClose();
         buildSc.BuildModeOff();
-        destructionOverlay.SetActive(true);
+        destructionOverlay.DestructionOverlayToggle();
 
 
         if (previewSc.currentPreview != null)
@@ -91,7 +91,7 @@ public class Destruction : MonoBehaviour
     public void DestructionModeOff()
     {
         player.destructionMode = false;
-        destructionOverlay.SetActive(false);
+        destructionOverlay.DestructionOverlayToggle();
     }
 
 

@@ -1735,6 +1735,7 @@ GameObject:
   - component: {fileID: 526294634}
   - component: {fileID: 526294636}
   - component: {fileID: 526294635}
+  - component: {fileID: 526294637}
   - component: {fileID: 526294630}
   m_Layer: 0
   m_Name: Player
@@ -2036,6 +2037,8 @@ MonoBehaviour:
   inventorySC: {fileID: 526294628}
   buildingManager: {fileID: 526294636}
   itemManager: {fileID: 526294635}
+  timeManagerSC: {fileID: 526294637}
+  buildMenuButtonSC: {fileID: 57233880}
   restrictedTiles:
   - {fileID: 11400000, guid: 259d30b634d1fa24f9f317cae504e735, type: 2}
   - {fileID: 11400000, guid: 588ca63fe0bc71144bf26c33db30ad15, type: 2}
@@ -2065,13 +2068,15 @@ MonoBehaviour:
   foundryRecipe: {fileID: 11400000, guid: b06bb0981b70e2d49aca7c18ab065ebf, type: 2}
   builderRecipe: {fileID: 11400000, guid: 7f39244ec20158448a7a5f21f2218199, type: 2}
   ingameOverlay: {fileID: 1068522065}
-  destructionOverlay: {fileID: 2145555430}
+  destructionOverlayOld: {fileID: 0}
   ressourceDictionnary: {fileID: 809173381}
   buildPriceDictionary: {fileID: 809173380}
   hubInventoryUI: {fileID: 870770356}
   buildMenu: {fileID: 1496887710}
   inventoryMenu: {fileID: 870770355}
   pauseMenu: {fileID: 1409634697}
+  inGameOverlay: {fileID: 1409634698}
+  overlayManager: {fileID: 1409634700}
 --- !u!114 &526294631
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2134,6 +2139,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tilemap: {fileID: 0}
+--- !u!114 &526294637
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 526294619}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 859e68a62df0444469150cde5b0f6488, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &563168233
 GameObject:
   m_ObjectHideFlags: 0
@@ -3133,7 +3150,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1068522066
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3884,9 +3901,12 @@ GameObject:
   m_Component:
   - component: {fileID: 1409634696}
   - component: {fileID: 1409634695}
+  - component: {fileID: 1409634699}
   - component: {fileID: 1409634697}
+  - component: {fileID: 1409634698}
+  - component: {fileID: 1409634700}
   m_Layer: 5
-  m_Name: PauseMenu
+  m_Name: UI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3938,7 +3958,45 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5bdb2e769730fb843859c6b781121841, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pauseMenu: {fileID: 1409634695}
+  uI: {fileID: 1409634695}
+--- !u!114 &1409634698
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1409634693}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34ceceaeea2f98d48b2883f8ff5e5c90, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  uI: {fileID: 1409634695}
+--- !u!114 &1409634699
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1409634693}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a405ec83bfe2804f9978641fad5724a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1409634700
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1409634693}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 24465660957e9774e8c55fa2ff04fb6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  uI: {fileID: 1409634695}
 --- !u!1 &1409655455
 GameObject:
   m_ObjectHideFlags: 0

@@ -3,28 +3,19 @@ using UnityEngine.UIElements;
 
 public class PauseMenuSC : MonoBehaviour
 {
-    [SerializeField] private UIDocument pauseMenu;
-    private VisualElement root;
+    [SerializeField] private UIDocument uI;
+    private VisualElement panel;
 
     private PlayerVariables player;
 
-
-    private void Awake()
+    private void Start()
     {
-        DontDestroyOnLoad(gameObject);
-        pauseMenu.gameObject.SetActive(false);
-       
-    }
-
-
-    private void OnEnable()
-    {   
         player = ReferenceHolder.instance.playervariable;
+        panel = uI.rootVisualElement.Q<VisualElement>("PauseMenu");
 
-        root = pauseMenu.rootVisualElement;
-
-        var resumeBtn = root.Q<Button>("Resume");
-        var quitBtn = root.Q<Button>("Quit");
+        
+        var resumeBtn = panel.Q<Button>("Resume");
+        var quitBtn = panel.Q<Button>("Quit");
 
         resumeBtn.clicked -= ClosePauseMenu;
         quitBtn.clicked -= Application.Quit;
@@ -32,9 +23,8 @@ public class PauseMenuSC : MonoBehaviour
 
         resumeBtn.clicked += ClosePauseMenu;
         quitBtn.clicked += Application.Quit;
-
-
     }
+
 
 
 
@@ -42,21 +32,21 @@ public class PauseMenuSC : MonoBehaviour
 
     public void OpenPauseMenu()
     {
-        pauseMenu.gameObject.SetActive(true);
+        panel.style.display = DisplayStyle.Flex;
         player.isInUI = true;
 
     }
 
     public void ClosePauseMenu()
     {
-        pauseMenu.gameObject.SetActive(false);
+        panel.style.display = DisplayStyle.None;
         player.isInUI = false;
 
     }
 
     public void TogglePauseMenu()
     {
-        if (pauseMenu.gameObject.activeSelf)
+        if (panel.style.display == DisplayStyle.Flex)
         {
             ClosePauseMenu();
 

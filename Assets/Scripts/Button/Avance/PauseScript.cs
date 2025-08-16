@@ -2,23 +2,33 @@ using UnityEngine;
 
 public class PauseScript : MonoBehaviour
 {
-    private void SetPause()
+    private DestructionOverlaySC overlayManager;
+    void Start()
+    {
+        overlayManager = ReferenceHolder.instance.overlayManager;
+    }
+
+    public void SetPause()
     {
         Time.timeScale = 0f;
+        overlayManager.PauseOverlayOn();
     }
 
-    private void SetPlay()
+    public void SetPlay()
     {
         Time.timeScale = 1f;
+        overlayManager.PauseOverlayOff();
     }
 
-    private void SetX2()
+    public void SetX2()
     {
         Time.timeScale = 2f;
+        overlayManager.PauseOverlayOff();
     }
-    
-    private void Setx3()
+
+    public void Setx3()
     {
         Time.timeScale = 3f;
+        overlayManager.PauseOverlayOff();
     }
 }

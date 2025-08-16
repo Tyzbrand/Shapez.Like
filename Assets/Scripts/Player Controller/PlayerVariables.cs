@@ -36,7 +36,7 @@ public class PlayerVariables : MonoBehaviour
     //accélération
     public float timeScale = 1f;
 
-
+    
 
 
 

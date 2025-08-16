@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using UnityEditor.Overlays;
 using UnityEngine;
 
 
@@ -14,6 +15,7 @@ public class ItemManager : MonoBehaviour
     private BuildingManager buildingManager;
     private PlayerVariables player;
     private Inventory inventory;
+    private OverlaySC overlay;
 
     private RessourceDictionnary ressourceDictionnary;
     private RessourceData data;
@@ -172,6 +174,7 @@ public class ItemManager : MonoBehaviour
         player = ReferenceHolder.instance.playervariable;
         data = ReferenceHolder.instance.ressourceData;
         inventory = ReferenceHolder.instance.inventorySC;
+        overlay = ReferenceHolder.instance.inGameOverlay;
 
 
     }
@@ -279,6 +282,8 @@ public class ItemManager : MonoBehaviour
     {
         player.Money += data.GetPrice(item.itemType);
         itemToRemove.Add(item);
+        overlay.UpdateMoneyText();
+        
     }
 
     private void HubAction(ItemBH item)
@@ -287,6 +292,8 @@ public class ItemManager : MonoBehaviour
         {
             inventory.Add(item.itemType, 1);
             itemToRemove.Add(item);
+            overlay.UpdateObjectiveText();
+            overlay.UpdateStorageText();
         }
 
     }

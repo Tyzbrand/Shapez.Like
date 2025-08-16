@@ -23,6 +23,8 @@ public class ReferenceHolder : MonoBehaviour
     public Inventory inventorySC;
     public BuildingManager buildingManager;
     public ItemManager itemManager;
+    public PauseScript timeManagerSC;
+    public BuildMenuButton buildMenuButtonSC;
 
 
 
@@ -81,7 +83,7 @@ public class ReferenceHolder : MonoBehaviour
     //Overlay
     [Header("Overlay")]
     public GameObject ingameOverlay;
-    public GameObject destructionOverlay;
+    public GameObject destructionOverlayOld;
 
 
     //Dictionnaires
@@ -95,6 +97,8 @@ public class ReferenceHolder : MonoBehaviour
     public GameObject buildMenu;
     public GameObject inventoryMenu;
     public PauseMenuSC pauseMenu;
+    public OverlaySC inGameOverlay;
+    public DestructionOverlaySC overlayManager;
     
 
 

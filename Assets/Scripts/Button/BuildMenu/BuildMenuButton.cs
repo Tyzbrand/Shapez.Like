@@ -4,27 +4,27 @@ public class BuildMenuButton : MonoBehaviour
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     private PlayerSwitchMode modSwitch;
-    private PlayerVariables variable;
+    private PlayerVariables player;
     private Destruction destructionSc;
 
 
     private void Start()
     {
         modSwitch = ReferenceHolder.instance.playerSwitchMode;
-        variable = ReferenceHolder.instance.playervariable;
+        player = ReferenceHolder.instance.playervariable;
         destructionSc = ReferenceHolder.instance.destructionSC;
     }
 
 
-    private void BuildMenuToogle()
+    public void BuildMenuToogle()
     {
 
-        if (variable.buildMenu == false)
+        if (!player.buildMenu)
         {
             modSwitch.BuildGuiOpen();
 
         }
-        else if (variable.buildMenu == true)
+        else if (player.buildMenu)
         {
             modSwitch.BuildGuiClose();
 
