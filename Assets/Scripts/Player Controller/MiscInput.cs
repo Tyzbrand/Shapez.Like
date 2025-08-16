@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UIElements;
 
 public class MiscInput : MonoBehaviour
 {
@@ -9,6 +10,10 @@ public class MiscInput : MonoBehaviour
     private PlayerSwitchMode switchMode;
     private GameObject inventoryPanel;
     private BuildingManager buildingManager;
+    private GameObject ingameOverlay;
+    private PauseMenuSC pauseMenu;
+
+
 
 
 
@@ -19,6 +24,8 @@ public class MiscInput : MonoBehaviour
         cam = ReferenceHolder.instance.mainCamera;
         inventoryPanel = ReferenceHolder.instance.inventoryMenu;
         buildingManager = ReferenceHolder.instance.buildingManager;
+        ingameOverlay = ReferenceHolder.instance.ingameOverlay;
+        pauseMenu = ReferenceHolder.instance.pauseMenu;
     }
 
 
@@ -28,21 +35,20 @@ public class MiscInput : MonoBehaviour
         {
             Vector2 mousPos = cam.ScreenToWorldPoint(Input.mousePosition);
 
-            if (buildingManager.GetBuildingOnTile(mousPos) is Hub)
+            if (buildingManager.GetBuildingOnTile(mousPos) is Hub && !player.isInUI)
             {
                 switchMode.InventoryUIToggle();
             }
+        }
 
         if (Input.GetKeyDown(KeyCode.Escape) && !player.buildMenu && !player.buildMode)
-            {
-                Application.Quit();
-            }
-
-            
-            
-
-                
-            
+        {
+            pauseMenu.TogglePauseMenu();
         }
+
+
+
     }
+    
+
 }

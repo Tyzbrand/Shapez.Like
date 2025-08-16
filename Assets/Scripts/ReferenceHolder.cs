@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
+using UnityEngine.UIElements;
 
 public class ReferenceHolder : MonoBehaviour
 {
@@ -79,6 +80,7 @@ public class ReferenceHolder : MonoBehaviour
 
     //Overlay
     [Header("Overlay")]
+    public GameObject ingameOverlay;
     public GameObject destructionOverlay;
 
 
@@ -92,6 +94,7 @@ public class ReferenceHolder : MonoBehaviour
     public RectTransform hubInventoryUI;
     public GameObject buildMenu;
     public GameObject inventoryMenu;
+    public PauseMenuSC pauseMenu;
     
 
 

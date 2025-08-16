@@ -1,0 +1,10 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI/MainStyle.uss?fileID=7433441132597879392&amp;guid=fb7be9aa5a514a24590e44ddec9baadd&amp;type=3#MainStyle" />
+    <ui:VisualElement name="MainContainer" style="flex-grow: 1; background-color: rgb(188, 187, 173);">
+        <ui:Label text="SHAPEZ.LIKE" style="-unity-font-style: bold; font-size: 79px; -unity-text-align: upper-center; -unity-font-definition: url(&quot;project://database/Assets/UI%20Toolkit/UnityThemes/UnityDefaultRuntimeTheme.tss?fileID=2230732570650464555&amp;guid=d9d02dd8b7c443048b6aef7cc9988b1c&amp;type=3#NotInter-Regular&quot;);" />
+        <ui:VisualElement name="Buttons" style="flex-grow: 1; flex-direction: column; align-items: center; justify-content: center; align-content: flex-start; align-self: center; -unity-text-align: upper-center;">
+            <ui:Button text="Resume" name="Resume" selectable="false" enabled="true" class="MainStyle" style="width: 493px; height: 134px;" />
+            <ui:Button text="Quit" name="Quit" class="MainStyle" style="width: 493px; height: 134px;" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

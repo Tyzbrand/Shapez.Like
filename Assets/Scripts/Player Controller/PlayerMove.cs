@@ -1,6 +1,7 @@
 using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Networking.PlayerConnection;
 using Vector2 = UnityEngine.Vector2;
 using Vector3 = UnityEngine.Vector3;
 
@@ -24,6 +25,7 @@ public class PlayerMove : MonoBehaviour
     public float maxZoom = 30f;
 
     private Camera cam;
+    private PlayerVariables player;
 
     //Drag and move variables
     private UnityEngine.Vector3 mousePosition;
@@ -44,13 +46,13 @@ public class PlayerMove : MonoBehaviour
 
     private void Start()
     {
-        Application.targetFrameRate = 120;
         cam = ReferenceHolder.instance.mainCamera;
+        player = ReferenceHolder.instance.playervariable;
     }
     private void Update()
     {
         //Scroll
-        if (!GetComponent<PlayerVariables>().movementBlock)
+        if (!player.isInUI)
         {
             cam.orthographicSize -= scrollInput * zoomSpeed;
             cam.orthographicSize = Mathf.Clamp(cam.orthographicSize, minZoom, maxZoom);
@@ -69,7 +71,7 @@ public class PlayerMove : MonoBehaviour
     private void FixedUpdate()
     {
         //XY
-        if (!GetComponent<PlayerVariables>().movementBlock)
+        if (!player.isInUI)
         {
             Vector3 movement = new Vector3(moveInput.x, moveInput.y, 0f) * speed * finalSpeed * Time.fixedDeltaTime;
             transform.position += movement;
@@ -98,7 +100,7 @@ public class PlayerMove : MonoBehaviour
     //Input Drag and Move avec la souris
     private void DragMove(InputAction.CallbackContext context)
     {
-        if (context.performed && !GetComponent<PlayerVariables>().buildMode && !GetComponent<PlayerVariables>().movementBlock)
+        if (context.performed && !player.buildMode && !player.isInUI)
         {
             isDragging = true;
             mousePosition = cam.ScreenToWorldPoint(Mouse.current.position.ReadValue());

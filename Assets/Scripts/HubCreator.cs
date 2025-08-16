@@ -9,10 +9,12 @@ public class HubCreator : MonoBehaviour
     public Tilemap tilemap;
     public Transform parent;
 
+
     void Awake()
     {
         player = ReferenceHolder.instance.playervariable;
         player.tilemap1 = tilemap;
+
 
     }
 
