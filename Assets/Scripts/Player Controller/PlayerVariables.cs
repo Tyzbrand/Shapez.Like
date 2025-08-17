@@ -5,7 +5,7 @@ using UnityEngine.Tilemaps;
 //Utilisation dans : -Placement et -PlayerMove
 
 public class PlayerVariables : MonoBehaviour
-{   
+{
 
     //build Références
 
@@ -23,7 +23,7 @@ public class PlayerVariables : MonoBehaviour
     public int day = 1;
     public int seconds;
     public int minutes;
-    
+
 
     //References
     public Tilemap tilemap1;
@@ -36,9 +36,16 @@ public class PlayerVariables : MonoBehaviour
     //accélération
     public float timeScale = 1f;
 
-    
 
+    public void BuildModeOff()
+    {
+        buildMode = false;
+    }
 
+    public void BuildModeOn()
+    {
+        buildMode = true;
+    }
 
 
 

@@ -6,12 +6,13 @@ public class MiscInput : MonoBehaviour
 {
 
     private PlayerVariables player;
-    private Camera cam;
-    private PlayerSwitchMode switchMode;
-    private GameObject inventoryPanel;
-    private BuildingManager buildingManager;
-    private GameObject ingameOverlay;
+
     private PauseMenuSC pauseMenu;
+    private BuildMenuSC buildMenuSC;
+    private Preview previewSC;
+    private Destruction destructionSC;
+
+
 
 
 
@@ -20,31 +21,37 @@ public class MiscInput : MonoBehaviour
     private void Start()
     {
         player = ReferenceHolder.instance.playervariable;
-        switchMode = ReferenceHolder.instance.playerSwitchMode;
-        cam = ReferenceHolder.instance.mainCamera;
-        inventoryPanel = ReferenceHolder.instance.inventoryMenu;
-        buildingManager = ReferenceHolder.instance.buildingManager;
-        ingameOverlay = ReferenceHolder.instance.ingameOverlay;
         pauseMenu = ReferenceHolder.instance.pauseMenu;
+        buildMenuSC = ReferenceHolder.instance.buildMenu;
+        previewSC = ReferenceHolder.instance.previewSC;
+        destructionSC = ReferenceHolder.instance.destructionSC;
     }
 
 
     private void Update()
     {
-        if (Input.GetMouseButtonDown(0) && !player.buildMenu && !player.buildMode) //Selection UI batiment Ingame
-        {
-            Vector2 mousPos = cam.ScreenToWorldPoint(Input.mousePosition);
 
-            if (buildingManager.GetBuildingOnTile(mousPos) is Hub && !player.isInUI)
-            {
-                switchMode.InventoryUIToggle();
-            }
-        }
-
-        if (Input.GetKeyDown(KeyCode.Escape) && !player.buildMenu && !player.buildMode)
+        if (Input.GetKeyDown(KeyCode.Escape) && !player.buildMenu && !player.buildMode && !player.destructionMode)
         {
             pauseMenu.TogglePauseMenu();
         }
+        else if (Input.GetKeyDown(KeyCode.Escape) && player.buildMenu) buildMenuSC.BuildMenuOff();
+        else if (Input.GetKeyDown(KeyCode.Escape) && !player.buildMenu && player.buildMode)
+        {
+            buildMenuSC.BuildMenuOff();
+            player.buildMode = false;
+            previewSC.DestroyInstance();
+        }
+        else if (Input.GetKeyDown(KeyCode.Escape) && !player.buildMenu && !player.buildMode && player.destructionMode) destructionSC.DestructionSet();
+
+        if (Input.GetMouseButtonDown(1) && !player.buildMenu && player.buildMode)
+        {
+            buildMenuSC.BuildMenuOn();
+            player.buildMode = false;
+            previewSC.DestroyInstance();
+        }
+
+
 
 
 

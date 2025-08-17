@@ -16,7 +16,7 @@ public class BuildPriceDictionnary : MonoBehaviour
 
 
 
-    private void Start()
+    private void Awake()
     {
         extractor = ReferenceHolder.instance.extractorPrefab;
         conveyor = ReferenceHolder.instance.conveyorPrefab;

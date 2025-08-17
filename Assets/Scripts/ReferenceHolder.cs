@@ -11,20 +11,23 @@ public class ReferenceHolder : MonoBehaviour
     //Principaux éléments 
     [Header("Principaux éléments")]
     public Camera mainCamera;
+    public UIDocument uIDocument;
     
     
     //Scripts
     [Header("Scripts")]
     public PlayerVariables playervariable;
-    public PlayerSwitchMode playerSwitchMode;
     public Preview previewSC;
     public Placement placementSC;
     public Destruction destructionSC;
     public Inventory inventorySC;
+
+
+    //Game Managers
+    [Header("Game Managers")]
     public BuildingManager buildingManager;
     public ItemManager itemManager;
-    public PauseScript timeManagerSC;
-    public BuildMenuButton buildMenuButtonSC;
+    public TimeManager timeManager;
 
 
 
@@ -80,12 +83,6 @@ public class ReferenceHolder : MonoBehaviour
     public BuilderRecipe builderRecipe;
 
 
-    //Overlay
-    [Header("Overlay")]
-    public GameObject ingameOverlay;
-    public GameObject destructionOverlayOld;
-
-
     //Dictionnaires
     [Header("Dictionnaires")]
     public RessourceDictionnary ressourceDictionnary;
@@ -93,10 +90,8 @@ public class ReferenceHolder : MonoBehaviour
 
     //Panel UI
     [Header("Panel UI")]
-    public RectTransform hubInventoryUI;
-    public GameObject buildMenu;
-    public GameObject inventoryMenu;
     public PauseMenuSC pauseMenu;
+    public BuildMenuSC buildMenu;
     public OverlaySC inGameOverlay;
     public DestructionOverlaySC overlayManager;
     

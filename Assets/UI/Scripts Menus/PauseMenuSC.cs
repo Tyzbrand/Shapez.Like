@@ -7,13 +7,17 @@ public class PauseMenuSC : MonoBehaviour
     private VisualElement panel;
 
     private PlayerVariables player;
+    private DestructionOverlaySC overlayManager;
+    private TimeManager timeManager;
 
     private void Start()
     {
         player = ReferenceHolder.instance.playervariable;
+        overlayManager = ReferenceHolder.instance.overlayManager;
+        timeManager = ReferenceHolder.instance.timeManager;
         panel = uI.rootVisualElement.Q<VisualElement>("PauseMenu");
 
-        
+
         var resumeBtn = panel.Q<Button>("Resume");
         var quitBtn = panel.Q<Button>("Quit");
 
@@ -34,6 +38,8 @@ public class PauseMenuSC : MonoBehaviour
     {
         panel.style.display = DisplayStyle.Flex;
         player.isInUI = true;
+        timeManager.SetPause(false);
+
 
     }
 
@@ -41,6 +47,7 @@ public class PauseMenuSC : MonoBehaviour
     {
         panel.style.display = DisplayStyle.None;
         player.isInUI = false;
+        timeManager.SetPlay();
 
     }
 

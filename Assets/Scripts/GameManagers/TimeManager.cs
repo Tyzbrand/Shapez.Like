@@ -1,19 +1,19 @@
 using UnityEngine;
 
-public class DayCounter : MonoBehaviour
+public class TimeManager : MonoBehaviour
 {
+    private DestructionOverlaySC overlayManager;
     private PlayerVariables player;
-    private float counter;
     private OverlaySC overlay;
 
+    private float counter;
 
-
-    private void Start()
+    void Start()
     {
+        overlayManager = ReferenceHolder.instance.overlayManager;
         player = ReferenceHolder.instance.playervariable;
         overlay = ReferenceHolder.instance.inGameOverlay;
-    }
-
+    }   
 
     private void Update()
     {
@@ -44,6 +44,27 @@ public class DayCounter : MonoBehaviour
         
     }
 
+    public void SetPause(bool overlay)
+    {
+        Time.timeScale = 0f;
+        if(overlay) overlayManager.PauseOverlayOn();
+    }
 
+    public void SetPlay()
+    {
+        Time.timeScale = 1f;
+        overlayManager.PauseOverlayOff();
+    }
+
+    public void SetX2()
+    {
+        Time.timeScale = 2f;
+        overlayManager.PauseOverlayOff();
+    }
+
+    public void Setx3()
+    {
+        Time.timeScale = 3f;
+        overlayManager.PauseOverlayOff();
+    }
 }
-

@@ -3,86 +3,81 @@ using UnityEngine.UIElements;
 
 public class OverlaySC : MonoBehaviour
 {
-    [SerializeField] private UIDocument uI;
+    private UIDocument uI;
     private VisualElement panel;
 
     private PlayerVariables player;
-    private PauseScript timeManagerSC;
-    private BuildMenuButton buildMenuButtonSC;
+    private TimeManager timeManager;
+    private BuildMenuSC buildMenuSC;
     private ItemManager itemManager;
     private Destruction destructionSC;
     private Inventory inventorySC;
 
     private Label moneyText, storageText, dayText, timeText, objectiveText;
+    private Button buildMenuBtn, destructionBtn, itemDestructionBtn, pauseBtn, x1Btn, x2Btn, x3Btn;
 
 
 
     private void Start()
     {
+
         player = ReferenceHolder.instance.playervariable;
-        timeManagerSC = ReferenceHolder.instance.timeManagerSC;
-        buildMenuButtonSC = ReferenceHolder.instance.buildMenuButtonSC;
+        timeManager = ReferenceHolder.instance.timeManager;
+        buildMenuSC = ReferenceHolder.instance.buildMenu;
         itemManager = ReferenceHolder.instance.itemManager;
         destructionSC = ReferenceHolder.instance.destructionSC;
         inventorySC = ReferenceHolder.instance.inventorySC;
+        uI = ReferenceHolder.instance.uIDocument;
 
         panel = uI.rootVisualElement.Q<VisualElement>("InGameOverlay");
 
-        var moneyTxt = panel.Q<Label>("MoneyTxt");
-        var storageTxt = panel.Q<Label>("StorageTxt");
-        var objectiveTxt = panel.Q<Label>("ObjectiveTxt");
-        var dayTxt = panel.Q<Label>("DayTxt");
-        var timeTxt = panel.Q<Label>("TimeTxt");
+        moneyText = panel.Q<Label>("MoneyTxt");
+        storageText = panel.Q<Label>("StorageTxt");
+        objectiveText = panel.Q<Label>("ObjectiveTxt");
+        dayText = panel.Q<Label>("DayTxt");
+        timeText = panel.Q<Label>("TimeTxt");
 
 
-        var buildMenuBtn = panel.Q<Button>("BuildMenuBtn");
-        var destructionBtn = panel.Q<Button>("DestructionBtn");
-        var itemDestructionBtn = panel.Q<Button>("ItemDestructionBtn");
+        buildMenuBtn = panel.Q<Button>("BuildMenuBtn");
+        destructionBtn = panel.Q<Button>("DestructionBtn");
+        itemDestructionBtn = panel.Q<Button>("ItemDestructionBtn");
 
-        var pauseBtn = panel.Q<Button>("PauseBtn");
-        var x1Btn = panel.Q<Button>("x1Btn");
-        var x2Btn = panel.Q<Button>("x2Btn");
-        var x3Btn = panel.Q<Button>("x3Btn");
-
+        pauseBtn = panel.Q<Button>("PauseBtn");
+        x1Btn = panel.Q<Button>("x1Btn");
+        x2Btn = panel.Q<Button>("x2Btn");
+        x3Btn = panel.Q<Button>("x3Btn");
 
         //Désabonnement
-        buildMenuBtn.clicked -= buildMenuButtonSC.BuildMenuToogle;
+        buildMenuBtn.clicked -= buildMenuSC.BuildMenuToggle;
         destructionBtn.clicked -= destructionSC.DestructionSet;
         itemDestructionBtn.clicked -= itemManager.ClearItems;
 
-        pauseBtn.clicked -= timeManagerSC.SetPause;
-        x1Btn.clicked -= timeManagerSC.SetPlay;
-        x2Btn.clicked -= timeManagerSC.SetX2;
-        x3Btn.clicked -= timeManagerSC.Setx3;
+        pauseBtn.clicked -= SetPauseBtn;
+        x1Btn.clicked -= timeManager.SetPlay;
+        x2Btn.clicked -= timeManager.SetX2;
+        x3Btn.clicked -= timeManager.Setx3;
 
 
         //Abonnement
-        buildMenuBtn.clicked += buildMenuButtonSC.BuildMenuToogle;
+        buildMenuBtn.clicked += buildMenuSC.BuildMenuOn;
         destructionBtn.clicked += destructionSC.DestructionSet;
         itemDestructionBtn.clicked += itemManager.ClearItems;
 
-        pauseBtn.clicked += timeManagerSC.SetPause;
-        x1Btn.clicked += timeManagerSC.SetPlay;
-        x2Btn.clicked += timeManagerSC.SetX2;
-        x3Btn.clicked += timeManagerSC.Setx3;
+        pauseBtn.clicked += SetPauseBtn;
+        x1Btn.clicked += timeManager.SetPlay;
+        x2Btn.clicked += timeManager.SetX2;
+        x3Btn.clicked += timeManager.Setx3;
 
         //Assignation des textes
-        moneyTxt.text = player.Money + " $";
-        storageTxt.text = inventorySC.GetTotalItemCount() + "/" + inventorySC.inventoryCapacity;
-        dayTxt.text = "Day " + player.day;
-        timeTxt.text = player.minutes.ToString("00") + ":" + player.seconds.ToString("00");
-        objectiveTxt.text = "Iron Ingots: " + inventorySC.Get(RessourceBehaviour.RessourceType.IronIngot) + "/100";
+        moneyText.text = player.Money + " $";
+        storageText.text = inventorySC.GetTotalItemCount() + "/" + inventorySC.inventoryCapacity;
+        dayText.text = "Day " + player.day;
+        timeText.text = player.minutes.ToString("00") + ":" + player.seconds.ToString("00");
+        objectiveText.text = "Iron Ingots: " + inventorySC.Get(RessourceBehaviour.RessourceType.IronIngot) + "/100";
 
 
-        //Assignation des variables de texte
-        moneyText = moneyTxt;
-        storageText = storageTxt;
-        dayText = dayTxt;
-        timeText = timeTxt;
-        objectiveText = objectiveTxt;
 
     }
-
 
 
     //----------Méthodes de mise a jour du texte----------
@@ -110,6 +105,13 @@ public class OverlaySC : MonoBehaviour
     public void UpdateObjectiveText()
     {
         objectiveText.text = "Iron Ingots: " + inventorySC.Get(RessourceBehaviour.RessourceType.IronIngot) + "/100";
+    }
+
+
+    //----------Méthodes utilitaires----------
+    public void SetPauseBtn()
+    {
+        timeManager.SetPause(true);
     }
 
 

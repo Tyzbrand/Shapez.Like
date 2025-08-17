@@ -6,7 +6,6 @@ public class Destruction : MonoBehaviour
 {
 
     private PlayerVariables player;
-    private PlayerSwitchMode buildSc;
     private Preview previewSc;
     private Camera playerCam;
     private DestructionOverlaySC destructionOverlay;
@@ -17,7 +16,6 @@ public class Destruction : MonoBehaviour
     private void Start()
     {
         player = ReferenceHolder.instance.playervariable;
-        buildSc = ReferenceHolder.instance.playerSwitchMode;
         previewSc = ReferenceHolder.instance.previewSC;
         playerCam = ReferenceHolder.instance.mainCamera;
         destructionOverlay = ReferenceHolder.instance.overlayManager;
@@ -31,10 +29,13 @@ public class Destruction : MonoBehaviour
         if (!player.destructionMode)
         {
             DestructionModeOn();
+            destructionOverlay.DestructionOverlayOn();
+
         }
         else if (player.destructionMode)
         {
             DestructionModeOff();
+            destructionOverlay.DestructionOverlayOff();
         }
     }
 
@@ -76,9 +77,7 @@ public class Destruction : MonoBehaviour
     private void DestructionModeOn()
     {
         player.destructionMode = true;
-        buildSc.BuildGuiClose();
-        buildSc.BuildModeOff();
-        destructionOverlay.DestructionOverlayToggle();
+        player.BuildModeOff();
 
 
         if (previewSc.currentPreview != null)
@@ -88,10 +87,9 @@ public class Destruction : MonoBehaviour
     }
 
 
-    public void DestructionModeOff()
+    private void DestructionModeOff()
     {
         player.destructionMode = false;
-        destructionOverlay.DestructionOverlayToggle();
     }
 
 

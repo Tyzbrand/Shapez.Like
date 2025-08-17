@@ -17,8 +17,18 @@ public class DestructionOverlaySC : MonoBehaviour
     //Destruction Overlay
     public void DestructionOverlayToggle()
     {
-        if (destructionOverlay.style.display == DisplayStyle.None) destructionOverlay.style.display = DisplayStyle.Flex;
-        else destructionOverlay.style.display = DisplayStyle.None;
+        if (destructionOverlay.style.display == DisplayStyle.None) DestructionOverlayOn();
+        else DestructionOverlayOff();
+    }
+
+    public void DestructionOverlayOn()
+    {
+        destructionOverlay.style.display = DisplayStyle.Flex;
+    }
+
+    public void DestructionOverlayOff()
+    {
+        destructionOverlay.style.display = DisplayStyle.None;
     }
 
 

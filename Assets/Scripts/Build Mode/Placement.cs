@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Tilemaps;
 using UnityEngine.EventSystems;
+using UnityEditorInternal.VersionControl;
 
 
 
@@ -17,6 +18,7 @@ public class Placement : MonoBehaviour
 
     private Camera playerCam;
     private PlayerVariables player;
+    private OverlaySC OverlaySC;
     private BuildingManager buildingManager;
     private List<TileBase> restrictedTiles; //Liste des tuiles sur lesquelles je ne peux pas construire (NE FONCTIONNE PAS)
 
@@ -59,6 +61,7 @@ public class Placement : MonoBehaviour
         restrictedTiles = new List<TileBase>(ReferenceHolder.instance.restrictedTiles);
         player = ReferenceHolder.instance.playervariable;
         buildingManager = ReferenceHolder.instance.buildingManager;
+        OverlaySC = ReferenceHolder.instance.inGameOverlay;
 
 
         prices = ReferenceHolder.instance.buildPriceDictionary;
@@ -96,8 +99,7 @@ public class Placement : MonoBehaviour
 
                         buildingManager.AddBuilding(mousePos2D, currentInstance);
                         player.Money -= prices.GetPrice(currentBuild);
-
-
+                        OverlaySC.UpdateMoneyText();
                     }
                 }
 
@@ -122,7 +124,7 @@ public class Placement : MonoBehaviour
 
 
 
-    private void Build(InputAction.CallbackContext context) //Permet de poser l'objet en question au clic droit
+    private void Build(InputAction.CallbackContext context) //Permet de poser l'objet en question au clic Gauche
     {   
 
         if (context.performed)
