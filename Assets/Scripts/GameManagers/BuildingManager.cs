@@ -133,7 +133,7 @@ public class BuildingManager : MonoBehaviour
     {
         foreach (var building in buildingReferencer.Values)
         {
-            building.BuildingUpdate();
+            if (building.IsActive) building.BuildingUpdate();
 
         }
     }

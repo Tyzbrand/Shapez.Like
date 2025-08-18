@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.Tilemaps;
+using UnityEngine.UIElements;
 
 //-------------------------------------Gère toute les variables dynamiques simples du joueur -------------------------------------
 //Utilisation dans : -Placement et -PlayerMove

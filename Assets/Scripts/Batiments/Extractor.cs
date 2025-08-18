@@ -1,17 +1,18 @@
 
 using UnityEngine;
+using UnityEngine.Rendering;
 using UnityEngine.Tilemaps;
 
 
 public class Extractor : BuildingBH
 {
     public float ejectTimer = 0f;
-    private int currentStorage = 0;
+    public int currentStorage = 0;
     private float storageBuffer = 0.0f;
     private float ejectInterval = 0.5f;
 
-    private int capacity;
-    private float ressourcesPerSecond;
+    public int capacity;
+    public float ressourcesPerSecond;
     private TileType underTile;
     private bool canExtract = false;
     private Sprite ressourceType;
@@ -38,7 +39,7 @@ public class Extractor : BuildingBH
             capacity = data.extractorCapacity;
             ressourcesPerSecond = data.extractorRessourcesPerSecond;
 
-        }   
+        }
 
 
         Vector2Int underTIle2D = buildingManager.GetUnderTile(worldPosition);
@@ -66,6 +67,7 @@ public class Extractor : BuildingBH
 
     public override void BuildingUpdate()
     {
+
         if (canExtract && currentStorage < capacity) //Gestion de la production logique
         {
             storageBuffer += ressourcesPerSecond * Time.deltaTime;
@@ -98,8 +100,16 @@ public class Extractor : BuildingBH
             }
         }
 
-        
 
+
+    }
+
+    public float GetProgress()
+    {
+        if (!canExtract || currentStorage >= capacity) return 0f;
+
+        float progress = storageBuffer % 1f;
+        return Mathf.Clamp01(progress);
     }
 
 

@@ -500,6 +500,7 @@ MonoBehaviour:
   tilemap1: {fileID: 0}
   movementBlock: 0
   isInUI: 0
+  isInPauseUI: 0
   timeScale: 1
 --- !u!114 &526294626
 MonoBehaviour:
@@ -577,6 +578,7 @@ MonoBehaviour:
   buildingManager: {fileID: 526294636}
   itemManager: {fileID: 526294635}
   timeManager: {fileID: 526294637}
+  uIManager: {fileID: 1409634699}
   restrictedTiles:
   - {fileID: 11400000, guid: 259d30b634d1fa24f9f317cae504e735, type: 2}
   - {fileID: 11400000, guid: 588ca63fe0bc71144bf26c33db30ad15, type: 2}
@@ -610,8 +612,11 @@ MonoBehaviour:
   pauseMenu: {fileID: 1409634697}
   buildMenu: {fileID: 1409634701}
   hubUI: {fileID: 1409634702}
+  extractorUI: {fileID: 1409634703}
+  foundryUI: {fileID: 1409634704}
   inGameOverlay: {fileID: 1409634698}
   overlayManager: {fileID: 1409634700}
+  builderUI: {fileID: 1409634705}
 --- !u!114 &526294631
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -968,6 +973,9 @@ GameObject:
   - component: {fileID: 1409634700}
   - component: {fileID: 1409634701}
   - component: {fileID: 1409634702}
+  - component: {fileID: 1409634703}
+  - component: {fileID: 1409634704}
+  - component: {fileID: 1409634705}
   m_Layer: 5
   m_Name: UI
   m_TagString: Untagged
@@ -1081,6 +1089,42 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7951538441bd17742bac80b2c0ea17f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1409634703
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1409634693}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c36bcd1e55f32640ba0152bc40a8cec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1409634704
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1409634693}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7d3bd8ffd6b80f4881eee871af30681, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1409634705
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1409634693}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69ea4146fd996c04aaebd97c4fd859bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &2050732295

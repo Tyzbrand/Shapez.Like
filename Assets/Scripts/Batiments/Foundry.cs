@@ -6,19 +6,20 @@ using UnityEngine.Tilemaps;
 public class Foundry : BuildingBH
 {
     private BuildingData data;
-    private FoundryRecipe recipe;
+    public FoundryRecipe recipe;
     public Recipe11_1 currentRecipe;
 
-    private int capacity;
+    public int currentRecipeIndex = 0;
+    public int capacity;
     public int currentStorageInput1 = 0;
     public int currentStorageInput2 = 0;
-    private int currentStorageOutput = 0;
+    public int currentStorageOutput = 0;
     private float ejectInterval = 0.5f;
     private float ejectTimer = 0f;
-    private float processTimer = 0f;
+    public float processTimer = 0f;
     private float processInterval;
 
-    private bool isProcessing = false;
+    public bool isProcessing = false;
 
     public Foundry(Vector2 worldPosition, int rotation, Tilemap tilemap) : base(worldPosition, rotation, tilemap)
     {
@@ -36,7 +37,7 @@ public class Foundry : BuildingBH
         {
             capacity = data.foundryCapacity;
 
-            currentRecipe = recipe.foundryRecipes[1];
+            currentRecipe = recipe.foundryRecipes[currentRecipeIndex];
             processInterval = currentRecipe.craftSpeed;
         }
 

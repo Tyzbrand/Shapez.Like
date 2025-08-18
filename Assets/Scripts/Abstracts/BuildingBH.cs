@@ -11,6 +11,7 @@ public abstract class BuildingBH
     public BuildingManager buildingManager;
     public RessourceDictionnary RessourceDictionnary;
     public Tilemap tilemap;
+    public bool IsActive = true;
 
 
     public BuildingBH(Vector2 wordlPosition, int rotation, Tilemap tilemap)

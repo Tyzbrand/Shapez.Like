@@ -60,10 +60,61 @@
             <ui:Button text="Build" name="BuilderBuildBtn" style="position: absolute; top: 176px; left: 13px; width: 224px; height: 30px; border-left-color: rgb(0, 0, 0); border-right-color: rgb(0, 0, 0); border-top-color: rgb(0, 0, 0); border-bottom-color: rgb(0, 0, 0); border-top-width: 3px; border-right-width: 3px; border-bottom-width: 3px; border-left-width: 3px; background-color: rgb(30, 30, 28); font-size: 21px;" />
         </ui:VisualElement>
     </ui:VisualElement>
-    <ui:VisualElement name="BuildingUI" picking-mode="Ignore" style="position: absolute; width: 100%; height: 100%;">
+    <ui:VisualElement name="BuildingUI" picking-mode="Ignore" style="position: absolute; width: 100%; height: 100%; display: flex; top: 0; left: 0;">
         <ui:VisualElement name="InventoryUI" class="BackgroundStyle" style="flex-grow: 1; position: absolute; height: 761px; width: 427px; top: 229px; left: 1084px; justify-content: flex-start; align-self: center; align-content: center; align-items: flex-start; display: none;">
             <ui:Label text="Inentory" style="height: 35px; width: 162px; position: relative; top: 24px; left: 138px; align-items: center; margin-top: 3px; margin-right: 3px; margin-bottom: 3px; margin-left: 3px; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0;" />
             <ui:ListView name="InventoryList" class="BackgroundStyle" style="height: 650px; width: 407px; position: absolute; top: 75px; left: 31px; border-top-width: 0; border-right-width: 0; border-bottom-width: 0; border-left-width: 0; align-self: center; justify-content: center; translate: -24px 14px;" />
+        </ui:VisualElement>
+        <ui:VisualElement name="ExtractorUI" class="BackgroundStyle" style="flex-grow: 1; position: absolute; height: 289px; width: 427px; top: 229px; left: 1084px; justify-content: flex-start; align-self: center; align-content: center; align-items: flex-start; display: none;">
+            <ui:Label text="Extractor" style="height: 35px; width: 162px; position: relative; top: 24px; left: 138px; align-items: center; margin-top: 3px; margin-right: 3px; margin-bottom: 3px; margin-left: 3px; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0;" />
+            <ui:VisualElement name="TextContainer" style="flex-grow: 1; width: 417px; position: absolute; height: 105px; top: 87px; left: 2px; flex-direction: column; font-size: 17px; -unity-text-align: middle-left;">
+                <ui:Label text="Extraction speed&#10;" style="width: 189px; position: absolute;" />
+                <ui:Label text="Storage" style="position: absolute; translate: 0 43px;" />
+                <ui:Label text="0.3/s" name="EXResourcePerSecTxt" style="width: 189px; position: absolute; translate: 220px 0; -unity-text-align: middle-right;" />
+                <ui:Label text="0/10" name="EXStorageTxt" style="width: 189px; position: absolute; translate: 220px 43px; -unity-text-align: middle-right;" />
+            </ui:VisualElement>
+            <ui:VisualElement name="Process" style="flex-grow: 1; position: absolute; height: 35px; width: 403px; top: 460px; left: 7px; translate: 0 -266px;">
+                <ui:ProgressBar value="0" name="EXProgressBar" high-value="1" />
+            </ui:VisualElement>
+            <ui:Toggle name="EXToggle" value="true" style="position: absolute; top: 2px; left: 386px; width: 23px; background-color: rgba(255, 255, 255, 0); height: 28px;" />
+        </ui:VisualElement>
+        <ui:VisualElement name="FoundryUI" class="BackgroundStyle" style="flex-grow: 1; position: absolute; height: 525px; width: 427px; top: 229px; left: 1084px; justify-content: flex-start; align-self: center; align-content: center; align-items: flex-start; display: none;">
+            <ui:Label text="Foundry" style="height: 35px; width: 162px; position: relative; top: 24px; left: 138px; align-items: center; margin-top: 3px; margin-right: 3px; margin-bottom: 3px; margin-left: 3px; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0;" />
+            <ui:VisualElement name="TextContainer" style="flex-grow: 1; width: 417px; position: absolute; height: 350px; top: 87px; left: 2px; flex-direction: column; font-size: 17px; -unity-text-align: middle-left;">
+                <ui:Label text="Production speed&#10;" style="width: 189px; position: absolute;" />
+                <ui:Label text="Storage" style="position: absolute; translate: 0 43px;" />
+                <ui:Label text="0.3/s" name="FOProductionSpeedTxt" style="width: 189px; position: absolute; translate: 220px 0; -unity-text-align: middle-right;" />
+                <ui:Label text="0/5" name="FOStorageTxt" style="width: 189px; position: absolute; translate: 220px 43px; -unity-text-align: middle-right;" />
+                <ui:Label text="Recipe" style="position: absolute; translate: 0 112px; -unity-font-style: bold; color: rgb(229, 229, 229); font-size: 22px;" />
+                <ui:Label text="Fuel" style="position: absolute; translate: 0 160px; -unity-font-style: bold; color: rgb(135, 135, 135); font-size: 17px;" />
+                <ui:Label text="Raw ore" style="position: absolute; translate: 0 203px; -unity-font-style: bold; color: rgb(135, 135, 135); font-size: 17px;" />
+                <ui:Label text="Coal -&gt; Iron -&gt; Iron Ingot" name="FOCurrentRecipeTxt" style="position: absolute; translate: 0 281px; -unity-font-style: bold; color: rgb(135, 135, 135); font-size: 17px; width: 300px;" />
+                <ui:Button text="↺" name="FORecipeChangerBtn" style="position: absolute; top: 266px; left: 234px; width: 64px; height: 64px; translate: 78px 0; font-size: 41px; border-left-color: rgb(36, 36, 34); border-right-color: rgb(36, 36, 34); border-top-color: rgb(36, 36, 34); border-bottom-color: rgb(36, 36, 34); border-top-width: 2px; border-right-width: 2px; border-bottom-width: 2px; border-left-width: 2px; background-color: rgb(69, 69, 64);" />
+                <ui:Label text="0/1" name="FOCurrentIn1Txt" style="position: absolute; translate: 368px 160px; -unity-font-style: bold; color: rgb(135, 135, 135); font-size: 17px;" />
+                <ui:Label text="0/1" name="FOCurrentIn2Txt" style="position: absolute; translate: 368px 203px; -unity-font-style: bold; color: rgb(135, 135, 135); font-size: 17px; width: 41px;" />
+            </ui:VisualElement>
+            <ui:VisualElement name="Process" style="flex-grow: 1; position: absolute; height: 35px; width: 403px; top: 460px; left: 7px; translate: 0 -3px;">
+                <ui:ProgressBar value="0" name="FOProgressBar" high-value="1" />
+            </ui:VisualElement>
+            <ui:Toggle name="FOToggle" value="true" style="position: absolute; top: 2px; left: 386px; width: 23px; background-color: rgba(255, 255, 255, 0); height: 28px;" />
+        </ui:VisualElement>
+        <ui:VisualElement name="BuilderUI" class="BackgroundStyle" style="flex-grow: 1; position: absolute; height: 436px; width: 427px; top: 229px; left: 1084px; justify-content: flex-start; align-self: center; align-content: center; align-items: flex-start; display: none;">
+            <ui:Label text="Builder&#10;" style="height: 35px; width: 162px; position: relative; top: 24px; left: 138px; align-items: center; margin-top: 3px; margin-right: 3px; margin-bottom: 3px; margin-left: 3px; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0;" />
+            <ui:VisualElement name="TextContainer" style="flex-grow: 1; width: 417px; position: absolute; height: 350px; top: 87px; left: 2px; flex-direction: column; font-size: 17px; -unity-text-align: middle-left;">
+                <ui:Label text="Production speed&#10;" style="width: 189px; position: absolute;" />
+                <ui:Label text="Storage" style="position: absolute; translate: 0 43px;" />
+                <ui:Label text="0.3/s" name="BUProductionSpeedTxt" style="width: 189px; position: absolute; translate: 220px 0; -unity-text-align: middle-right;" />
+                <ui:Label text="0/5" name="BUStorageTxt" style="width: 189px; position: absolute; translate: 220px 43px; -unity-text-align: middle-right;" />
+                <ui:Label text="Recipe" style="position: absolute; translate: 0 112px; -unity-font-style: bold; color: rgb(229, 229, 229); font-size: 22px;" />
+                <ui:Label text="Raw Material" style="position: absolute; translate: 0 160px; -unity-font-style: bold; color: rgb(135, 135, 135); font-size: 17px;" />
+                <ui:Label text="Coal -&gt; Iron -&gt; Iron Ingot" name="BUCurrentRecipeTxt" style="position: absolute; translate: 0 226px; -unity-font-style: bold; color: rgb(135, 135, 135); font-size: 17px; width: 300px;" />
+                <ui:Button text="↺" name="BURecipeChangerBtn" style="position: absolute; top: 266px; left: 234px; width: 64px; height: 64px; translate: 78px -57px; font-size: 41px; border-left-color: rgb(36, 36, 34); border-right-color: rgb(36, 36, 34); border-top-color: rgb(36, 36, 34); border-bottom-color: rgb(36, 36, 34); border-top-width: 2px; border-right-width: 2px; border-bottom-width: 2px; border-left-width: 2px; background-color: rgb(69, 69, 64);" />
+                <ui:Label text="0/1" name="BUCurrentIn1Txt" style="position: absolute; translate: 368px 160px; -unity-font-style: bold; color: rgb(135, 135, 135); font-size: 17px;" />
+            </ui:VisualElement>
+            <ui:VisualElement name="Process" style="flex-grow: 1; position: absolute; height: 35px; width: 403px; top: 460px; left: 7px; translate: 0 -77px;">
+                <ui:ProgressBar value="0" name="BUProgressBar" high-value="1" />
+            </ui:VisualElement>
+            <ui:Toggle name="BUToggle" value="true" style="position: absolute; top: 2px; left: 386px; width: 23px; background-color: rgba(255, 255, 255, 0); height: 28px;" />
         </ui:VisualElement>
     </ui:VisualElement>
 </ui:UXML>

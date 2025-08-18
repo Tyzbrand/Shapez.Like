@@ -6,10 +6,11 @@ using UnityEngine.UIElements;
 public class HubUI : MonoBehaviour
 {
     private UIDocument uI;
-    private VisualElement panel;
+    public VisualElement panel;
     private ListView inventoryList;
     private Inventory inventory;
     private PlayerVariables player;
+    private UIManager uIManager;
 
     private List<KeyValuePair<RessourceBehaviour.RessourceType, int>> inventoryData;
 
@@ -18,8 +19,10 @@ public class HubUI : MonoBehaviour
         uI = ReferenceHolder.instance.uIDocument;
         inventory = ReferenceHolder.instance.inventorySC;
         player = ReferenceHolder.instance.playervariable;
+        uIManager = ReferenceHolder.instance.uIManager;
 
         panel = uI.rootVisualElement.Q<VisualElement>("InventoryUI");
+        uIManager.RegisterPanel(panel);
         inventoryList = panel.Q<ListView>("InventoryList");
 
         inventoryData = new List<KeyValuePair<RessourceBehaviour.RessourceType, int>>(inventory.GetInventory()
@@ -71,21 +74,13 @@ public class HubUI : MonoBehaviour
 
 
     //----------Méthodes d'affichage de l'ui----------
-    public void HubUIToggle()
+    public void HubUIOnShow()
     {
-        if (panel.resolvedStyle.display == DisplayStyle.None) panel.style.display = DisplayStyle.Flex;
-        else panel.style.display = DisplayStyle.None;
-    }
-
-    public void HubUIOn()
-    {
-        panel.style.display = DisplayStyle.Flex;
         player.isInUI = true;
     }
 
-    public void HubUIOff()
+    public void HubUIOnHide()
     {
-        panel.style.display = DisplayStyle.None; 
         player.isInUI = false;
     }
 }

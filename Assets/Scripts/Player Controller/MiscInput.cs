@@ -14,6 +14,11 @@ public class MiscInput : MonoBehaviour
     private Preview previewSC;
     private Destruction destructionSC;
     private HubUI hubUI;
+    private ExtractorUI extractorUI;
+    private BuilderUI builderUI;
+    private FoundryUI foundryUI;
+    private UIManager uIManager;
+
 
 
     private Camera cam;
@@ -32,8 +37,13 @@ public class MiscInput : MonoBehaviour
         previewSC = ReferenceHolder.instance.previewSC;
         destructionSC = ReferenceHolder.instance.destructionSC;
         hubUI = ReferenceHolder.instance.hubUI;
+        extractorUI = ReferenceHolder.instance.extractorUI;
+        builderUI = ReferenceHolder.instance.builderUI;
+        foundryUI = ReferenceHolder.instance.foundryUI;
         buildingManager = ReferenceHolder.instance.buildingManager;
         cam = ReferenceHolder.instance.mainCamera;
+        uIManager = ReferenceHolder.instance.uIManager;
+
     }
 
 
@@ -44,10 +54,9 @@ public class MiscInput : MonoBehaviour
         {
             pauseMenu.TogglePauseMenu();
         }
-        else if (Input.GetKeyDown(KeyCode.Escape) && player.buildMenu) buildMenuSC.BuildMenuOff(); //Fermer le build menu
         else if (Input.GetKeyDown(KeyCode.Escape) && !player.buildMenu && player.buildMode)//quiiter le build mode ET le menu (retour normal)
         {
-            buildMenuSC.BuildMenuOff();
+            uIManager.TogglePanel(buildMenuSC.panel, () => buildMenuSC.BuildMenuOnShow(), () => buildMenuSC.BuildMenuOnHide());
             player.buildMode = false;
             previewSC.DestroyInstance();
         }
@@ -55,17 +64,50 @@ public class MiscInput : MonoBehaviour
 
         if (Input.GetMouseButtonDown(1) && !player.buildMenu && player.buildMode)//quitter le build mode et revenir au menu
         {
-            buildMenuSC.BuildMenuOn();
+            uIManager.TogglePanel(buildMenuSC.panel, () => buildMenuSC.BuildMenuOnShow(), () => buildMenuSC.BuildMenuOnHide());
             player.buildMode = false;
             previewSC.DestroyInstance();
         }
 
-        if (Input.GetMouseButtonDown(0) && !player.buildMode && !player.buildMenu && !player.destructionMode && !EventSystem.current.IsPointerOverGameObject()) //ouvrir l'ui du Hub
+        if (Input.GetMouseButtonDown(0) && !player.buildMode && !player.buildMenu && !player.destructionMode && !EventSystem.current.IsPointerOverGameObject()) //Toggle les ui des batiments
         {
             Vector2 mousePos2D = cam.ScreenToWorldPoint(Input.mousePosition);
-            if (buildingManager.GetBuildingOnTile(mousePos2D) is Hub) hubUI.HubUIToggle();
+            var buildingSelected = buildingManager.GetBuildingOnTile(mousePos2D);
+            var currentPanel = uIManager.GetOpenPanel();
+
+            if (buildingSelected is Hub) uIManager.TogglePanel(hubUI.panel, () => hubUI.HubUIOnShow(), () => hubUI.HubUIOnHide());
+            else if (buildingSelected is Extractor extractor)
+            {
+                if (currentPanel == extractorUI.panel) extractorUI.refreshUI(extractor);
+                else uIManager.TogglePanel(extractorUI.panel, () => extractorUI.ExtractorUIOnShow(extractor), () => extractorUI.ExtractorUIOnHide());
+            }
+            else if (buildingSelected is Foundry foundry)
+            {
+                if (currentPanel == foundryUI.panel) foundryUI.refreshUI(foundry);
+                else uIManager.TogglePanel(foundryUI.panel, () => foundryUI.FoundryUIOnShow(foundry), () => foundryUI.FoundryUIOnHide());
+            }
+            else if (buildingSelected is Builder builder)
+            {
+                if (currentPanel == builderUI.panel) builderUI.refreshUI(builder);
+                else uIManager.TogglePanel(builderUI.panel, () => builderUI.BuilderUIOnShow(builder), () => builderUI.BuilderUIOnHide());
+            }
+            
         }
 
+        if (Input.GetKeyDown(KeyCode.Escape) && player.isInUI && !player.isInPauseUI && !player.destructionMode) //fermer un UI ouvert
+        {
+            VisualElement currentPanel = uIManager.GetOpenPanel();
+            if (currentPanel != null)
+            {
+                if (currentPanel == hubUI.panel) uIManager.HidePanel(currentPanel, () => hubUI.HubUIOnHide());
+                else if (currentPanel == extractorUI.panel) uIManager.HidePanel(currentPanel, () => extractorUI.ExtractorUIOnHide());
+                else if (currentPanel == foundryUI.panel) uIManager.HidePanel(currentPanel, () => foundryUI.FoundryUIOnHide());
+                else if (currentPanel == buildMenuSC.panel) uIManager.HidePanel(currentPanel, () => buildMenuSC.BuildMenuOnHide()); 
+                else if (currentPanel == builderUI.panel) uIManager.HidePanel(currentPanel, () => builderUI.BuilderUIOnHide());
+            }
+
+
+        }
 
 
 

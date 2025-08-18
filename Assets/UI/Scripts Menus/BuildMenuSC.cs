@@ -4,12 +4,13 @@ using UnityEngine.UIElements;
 public class BuildMenuSC : MonoBehaviour
 {
     private UIDocument uI;
-    private VisualElement panel;
+    public VisualElement panel;
 
     private PlayerVariables player;
     private Preview previewSC;
     private Placement placementSC;
     private BuildPriceDictionnary buildPriceLibrary;
+    private UIManager uIManager;
 
     private Label extractorPrice, conveyorPrice, marketplacePrice, foundryPrice, builderPrice;
     private Button extractorBuild, conveyorBuild, marketplaceBuild, foundryBuild, builderBuild;
@@ -24,8 +25,10 @@ public class BuildMenuSC : MonoBehaviour
         previewSC = ReferenceHolder.instance.previewSC;
         placementSC = ReferenceHolder.instance.placementSC;
         buildPriceLibrary = ReferenceHolder.instance.buildPriceDictionary;
+        uIManager = ReferenceHolder.instance.uIManager;
 
         panel = uI.rootVisualElement.Q<VisualElement>("BuildMenu");
+        uIManager.RegisterPanel(panel);
 
 
 
@@ -67,7 +70,7 @@ public class BuildMenuSC : MonoBehaviour
 
     private void ExtractorSelect()
     {
-        BuildMenuOff();
+        uIManager.TogglePanel(panel, () => BuildMenuOnShow(), () => BuildMenuOnHide());
         previewSC.previewToUse = ReferenceHolder.instance.extractorPreview;
         placementSC.currentBuild = ReferenceHolder.instance.extractorPrefab;
         placementSC.currentBuildingType = Placement.buildingType.Extractor;
@@ -81,7 +84,7 @@ public class BuildMenuSC : MonoBehaviour
 
     private void ConveyorSelect()
     {
-        BuildMenuOff();
+        uIManager.TogglePanel(panel, () => BuildMenuOnShow(), () => BuildMenuOnHide());
         previewSC.previewToUse = ReferenceHolder.instance.conveyorPreview;
         placementSC.currentBuild = ReferenceHolder.instance.conveyorPrefab; 
         placementSC.currentBuildingType = Placement.buildingType.Conveyor;
@@ -95,7 +98,7 @@ public class BuildMenuSC : MonoBehaviour
 
     private void MarketplaceSelect()
     {
-        BuildMenuOff();
+        uIManager.TogglePanel(panel, () => BuildMenuOnShow(), () => BuildMenuOnHide());
         previewSC.previewToUse = ReferenceHolder.instance.marketplacePreview;
         placementSC.currentBuild = ReferenceHolder.instance.marketplacePrefab;
         placementSC.currentBuildingType = Placement.buildingType.marketplace;
@@ -109,7 +112,7 @@ public class BuildMenuSC : MonoBehaviour
 
     private void FoundrySelect()
     {
-        BuildMenuOff();
+        uIManager.TogglePanel(panel, () => BuildMenuOnShow(), () => BuildMenuOnHide());
         previewSC.previewToUse = ReferenceHolder.instance.foundryPreview;
         placementSC.currentBuild = ReferenceHolder.instance.foundryPrefab;
         placementSC.currentBuildingType = Placement.buildingType.Foundry;
@@ -123,7 +126,7 @@ public class BuildMenuSC : MonoBehaviour
 
     private void BuilderSelect()
     {
-        BuildMenuOff();
+        uIManager.TogglePanel(panel, () => BuildMenuOnShow(), () => BuildMenuOnHide());
         previewSC.previewToUse = ReferenceHolder.instance.builderPrview;
         placementSC.currentBuild = ReferenceHolder.instance.builderPrefab;
         placementSC.currentBuildingType = Placement.buildingType.builder;
@@ -138,23 +141,15 @@ public class BuildMenuSC : MonoBehaviour
 
     //----------Méthodes de gestion du menu----------
 
-    public void BuildMenuToggle()
+    public void BuildMenuOnShow()
     {
-        if (panel.resolvedStyle.display == DisplayStyle.None) BuildMenuOn();
-        else BuildMenuOff();
-    }
-
-    public void BuildMenuOn()
-    {
-        panel.style.display = DisplayStyle.Flex;
         player.isInUI = true;
         player.buildMenu = true;
 
     }
 
-    public void BuildMenuOff()
+    public void BuildMenuOnHide()
     {
-        panel.style.display = DisplayStyle.None;
         player.isInUI = false;
         player.buildMenu = false;
         previewSC.DestroyInstance();

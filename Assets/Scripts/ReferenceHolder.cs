@@ -28,7 +28,7 @@ public class ReferenceHolder : MonoBehaviour
     public BuildingManager buildingManager;
     public ItemManager itemManager;
     public TimeManager timeManager;
-
+    public UIManager uIManager;
 
 
 
@@ -93,8 +93,11 @@ public class ReferenceHolder : MonoBehaviour
     public PauseMenuSC pauseMenu;
     public BuildMenuSC buildMenu;
     public HubUI hubUI;
+    public ExtractorUI extractorUI;
+    public FoundryUI foundryUI;
     public OverlaySC inGameOverlay;
     public DestructionOverlaySC overlayManager;
+    public BuilderUI builderUI;
     
 
 

@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -12,13 +13,15 @@ public class OverlaySC : MonoBehaviour
     private ItemManager itemManager;
     private Destruction destructionSC;
     private Inventory inventorySC;
+    private UIManager uIManager;
 
     private Label moneyText, storageText, dayText, timeText, objectiveText;
     private Button buildMenuBtn, destructionBtn, itemDestructionBtn, pauseBtn, x1Btn, x2Btn, x3Btn;
+    private Action buildMenuAction;
 
 
 
-    private void Awake()
+    private void Start()
     {
 
         player = ReferenceHolder.instance.playervariable;
@@ -28,8 +31,11 @@ public class OverlaySC : MonoBehaviour
         destructionSC = ReferenceHolder.instance.destructionSC;
         inventorySC = ReferenceHolder.instance.inventorySC;
         uI = ReferenceHolder.instance.uIDocument;
+        uIManager = ReferenceHolder.instance.uIManager;
+
 
         panel = uI.rootVisualElement.Q<VisualElement>("InGameOverlay");
+        buildMenuAction = () => uIManager.TogglePanel(buildMenuSC.panel, () => buildMenuSC.BuildMenuOnShow(), () => buildMenuSC.BuildMenuOnHide());
 
         moneyText = panel.Q<Label>("MoneyTxt");
         storageText = panel.Q<Label>("StorageTxt");
@@ -48,7 +54,6 @@ public class OverlaySC : MonoBehaviour
         x3Btn = panel.Q<Button>("x3Btn");
 
         //Désabonnement
-        buildMenuBtn.clicked -= buildMenuSC.BuildMenuToggle;
         destructionBtn.clicked -= destructionSC.DestructionSet;
         itemDestructionBtn.clicked -= itemManager.ClearItems;
 
@@ -59,7 +64,7 @@ public class OverlaySC : MonoBehaviour
 
 
         //Abonnement
-        buildMenuBtn.clicked += buildMenuSC.BuildMenuOn;
+        buildMenuBtn.clicked += buildMenuAction;
         destructionBtn.clicked += destructionSC.DestructionSet;
         itemDestructionBtn.clicked += itemManager.ClearItems;
 

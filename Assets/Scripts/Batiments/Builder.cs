@@ -4,19 +4,19 @@ using UnityEngine.Tilemaps;
 public class Builder : BuildingBH
 {
     public Recipe1_1 currentRecipe;
-    private BuilderRecipe recipe;
+    public BuilderRecipe recipe;
     private BuildingData data;
 
-
-    private int capacity;
+    public int currentRecipeIndex = 0;
+    public int capacity;
     public int currentStorageInput = 0;
-    private int currentStorageOutput = 0;
+    public int currentStorageOutput = 0;
     private float ejectInterval = 0.5f;
     private float ejectTimer = 0f;
-    private float processTimer = 0f;
+    public float processTimer = 0f;
     private float processInterval;
 
-    private bool isProcessing = false;
+    public bool isProcessing = false;
 
     public Builder(Vector2 worldPosition, int rotation, Tilemap tilemap) : base(worldPosition, rotation, tilemap)
     {
