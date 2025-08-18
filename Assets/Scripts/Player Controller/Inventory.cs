@@ -5,6 +5,7 @@ public class Inventory : MonoBehaviour
 {
     public int inventoryCapacity = 100;
     private int totalItemCount;
+    private HubUI hubUI;
     private Dictionary<RessourceBehaviour.RessourceType, int> inventory = new();
 
 
@@ -16,6 +17,11 @@ public class Inventory : MonoBehaviour
         {
             inventory[type] = 0;
         }
+    }
+
+    private void Start()
+    {
+        hubUI = ReferenceHolder.instance.hubUI;
     }
 
 
@@ -40,6 +46,7 @@ public class Inventory : MonoBehaviour
 
         inventory[type] += amount;
         totalItemCount += amount;
+        hubUI.RefreshInventoryUI();
     }
 
     public bool Remove(RessourceBehaviour.RessourceType type, int amount)
@@ -54,6 +61,7 @@ public class Inventory : MonoBehaviour
         }
         inventory[type] -= amount;
         totalItemCount -= amount;
+        hubUI.RefreshInventoryUI();
         return true;
     }
 

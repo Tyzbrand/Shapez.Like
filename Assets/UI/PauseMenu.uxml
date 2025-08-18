@@ -60,4 +60,10 @@
             <ui:Button text="Build" name="BuilderBuildBtn" style="position: absolute; top: 176px; left: 13px; width: 224px; height: 30px; border-left-color: rgb(0, 0, 0); border-right-color: rgb(0, 0, 0); border-top-color: rgb(0, 0, 0); border-bottom-color: rgb(0, 0, 0); border-top-width: 3px; border-right-width: 3px; border-bottom-width: 3px; border-left-width: 3px; background-color: rgb(30, 30, 28); font-size: 21px;" />
         </ui:VisualElement>
     </ui:VisualElement>
+    <ui:VisualElement name="BuildingUI" picking-mode="Ignore" style="position: absolute; width: 100%; height: 100%;">
+        <ui:VisualElement name="InventoryUI" class="BackgroundStyle" style="flex-grow: 1; position: absolute; height: 761px; width: 427px; top: 229px; left: 1084px; justify-content: flex-start; align-self: center; align-content: center; align-items: flex-start; display: none;">
+            <ui:Label text="Inentory" style="height: 35px; width: 162px; position: relative; top: 24px; left: 138px; align-items: center; margin-top: 3px; margin-right: 3px; margin-bottom: 3px; margin-left: 3px; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0;" />
+            <ui:ListView name="InventoryList" class="BackgroundStyle" style="height: 650px; width: 407px; position: absolute; top: 75px; left: 31px; border-top-width: 0; border-right-width: 0; border-bottom-width: 0; border-left-width: 0; align-self: center; justify-content: center; translate: -24px 14px;" />
+        </ui:VisualElement>
+    </ui:VisualElement>
 </ui:UXML>

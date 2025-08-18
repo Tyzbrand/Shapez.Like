@@ -140,7 +140,7 @@ public class BuildMenuSC : MonoBehaviour
 
     public void BuildMenuToggle()
     {
-        if (panel.style.display == DisplayStyle.None) BuildMenuOn();
+        if (panel.resolvedStyle.display == DisplayStyle.None) BuildMenuOn();
         else BuildMenuOff();
     }
 

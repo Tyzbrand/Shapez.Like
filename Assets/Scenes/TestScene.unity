@@ -607,10 +607,9 @@ MonoBehaviour:
   builderRecipe: {fileID: 11400000, guid: 7f39244ec20158448a7a5f21f2218199, type: 2}
   ressourceDictionnary: {fileID: 809173381}
   buildPriceDictionary: {fileID: 809173380}
-  hubInventoryUI: {fileID: 0}
-  inventoryMenu: {fileID: 0}
   pauseMenu: {fileID: 1409634697}
   buildMenu: {fileID: 1409634701}
+  hubUI: {fileID: 1409634702}
   inGameOverlay: {fileID: 1409634698}
   overlayManager: {fileID: 1409634700}
 --- !u!114 &526294631
@@ -968,6 +967,7 @@ GameObject:
   - component: {fileID: 1409634698}
   - component: {fileID: 1409634700}
   - component: {fileID: 1409634701}
+  - component: {fileID: 1409634702}
   m_Layer: 5
   m_Name: UI
   m_TagString: Untagged
@@ -1069,6 +1069,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8e3e8a270d8a233428e2f1d9ecdbfcac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1409634702
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1409634693}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7951538441bd17742bac80b2c0ea17f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &2050732295

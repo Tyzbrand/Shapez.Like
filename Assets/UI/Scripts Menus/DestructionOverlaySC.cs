@@ -17,7 +17,7 @@ public class DestructionOverlaySC : MonoBehaviour
     //Destruction Overlay
     public void DestructionOverlayToggle()
     {
-        if (destructionOverlay.style.display == DisplayStyle.None) DestructionOverlayOn();
+        if (destructionOverlay.resolvedStyle.display == DisplayStyle.None) DestructionOverlayOn();
         else DestructionOverlayOff();
     }
 
@@ -36,7 +36,7 @@ public class DestructionOverlaySC : MonoBehaviour
     //Pause Overlay
     public void PauseOverlayToggle()
     {
-        if (pauseOverlay.style.display == DisplayStyle.None) PauseOverlayOn();
+        if (pauseOverlay.resolvedStyle.display == DisplayStyle.None) PauseOverlayOn();
         else PauseOverlayOff();
     }
 

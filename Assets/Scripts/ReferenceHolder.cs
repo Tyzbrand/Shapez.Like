@@ -92,6 +92,7 @@ public class ReferenceHolder : MonoBehaviour
     [Header("Panel UI")]
     public PauseMenuSC pauseMenu;
     public BuildMenuSC buildMenu;
+    public HubUI hubUI;
     public OverlaySC inGameOverlay;
     public DestructionOverlaySC overlayManager;
     

@@ -37,7 +37,7 @@ public class PauseMenuSC : MonoBehaviour
     public void OpenPauseMenu()
     {
         panel.style.display = DisplayStyle.Flex;
-        player.isInUI = true;
+        player.isInPauseUI = true;
         timeManager.SetPause(false);
 
 
@@ -46,14 +46,14 @@ public class PauseMenuSC : MonoBehaviour
     public void ClosePauseMenu()
     {
         panel.style.display = DisplayStyle.None;
-        player.isInUI = false;
+        player.isInPauseUI = false;
         timeManager.SetPlay();
 
     }
 
     public void TogglePauseMenu()
     {
-        if (panel.style.display == DisplayStyle.Flex)
+        if (panel.resolvedStyle.display == DisplayStyle.Flex)
         {
             ClosePauseMenu();
 

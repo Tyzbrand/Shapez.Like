@@ -52,7 +52,7 @@ public class PlayerMove : MonoBehaviour
     private void Update()
     {
         //Scroll
-        if (!player.isInUI)
+        if (!player.isInUI && !player.isInPauseUI)
         {
             cam.orthographicSize -= scrollInput * zoomSpeed;
             cam.orthographicSize = Mathf.Clamp(cam.orthographicSize, minZoom, maxZoom);
@@ -71,7 +71,7 @@ public class PlayerMove : MonoBehaviour
     private void FixedUpdate()
     {
         //XY
-        if (!player.isInUI)
+        if (!player.isInUI && !player.isInPauseUI)
         {
             Vector3 movement = new Vector3(moveInput.x, moveInput.y, 0f) * speed * finalSpeed * Time.fixedDeltaTime;
             transform.position += movement;
@@ -100,7 +100,7 @@ public class PlayerMove : MonoBehaviour
     //Input Drag and Move avec la souris
     private void DragMove(InputAction.CallbackContext context)
     {
-        if (context.performed && !player.buildMode && !player.isInUI)
+        if (context.performed && !player.buildMode && !player.isInUI && !player.isInPauseUI)
         {
             isDragging = true;
             mousePosition = cam.ScreenToWorldPoint(Mouse.current.position.ReadValue());
