@@ -105,6 +105,7 @@ public class BuilderUI : MonoBehaviour
     {
         activeBuilder.currentRecipeIndex = (activeBuilder.currentRecipeIndex + 1) % activeBuilder.recipe.BuilderRecipes.Count;
         activeBuilder.currentRecipe = activeBuilder.recipe.BuilderRecipes[activeBuilder.currentRecipeIndex];
+        activeBuilder.currentStorageInput = 0;
         activeBuilder.currentStorageOutput = 0;
         activeBuilder.processTimer = 0f;
         activeBuilder.isProcessing = false;
