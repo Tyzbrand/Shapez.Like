@@ -8,7 +8,7 @@ public class ItemBH
     public Vector2 worldPosition;
     public Vector2 lastWorldPosition;
     public float idleTime = 0f;
-    public float maxInactivityTime = 10f;
+    public float maxInactivityTime = 5f;
     public BuildingBH lastBuilding = null;
 
 
