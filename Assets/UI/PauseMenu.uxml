@@ -33,33 +33,6 @@
     </ui:VisualElement>
     <ui:VisualElement name="DestructionOverlay" picking-mode="Ignore" style="flex-grow: 1; width: 1920px; height: 1080px; border-left-color: rgb(197, 20, 1); border-right-color: rgb(197, 20, 1); border-top-color: rgb(197, 20, 1); border-bottom-color: rgb(197, 20, 1); border-top-width: 7px; border-right-width: 7px; border-bottom-width: 7px; border-left-width: 7px; display: none; position: absolute;" />
     <ui:VisualElement name="PauseOverlay" picking-mode="Ignore" style="flex-grow: 1; width: 1920px; height: 1080px; border-left-color: rgb(207, 114, 0); border-right-color: rgb(207, 114, 0); border-top-color: rgb(207, 114, 0); border-bottom-color: rgb(207, 114, 0); border-top-width: 7px; border-right-width: 7px; border-bottom-width: 7px; border-left-width: 7px; display: none; position: absolute;" />
-    <ui:VisualElement name="BuildMenu" picking-mode="Ignore" class="BackgroundStyle" style="flex-grow: 1; height: 288px; position: absolute; width: 1920px; translate: 0 533px; top: 259px; left: 0; right: auto; bottom: auto; justify-content: center; align-self: flex-end; flex-direction: row-reverse; align-content: center; align-items: auto; display: none;">
-        <ui:VisualElement name="ExtractorBox" style="flex-grow: 1; position: absolute; height: 217px; top: 30px; width: 261px; left: 20px; background-color: rgb(44, 44, 41);">
-            <ui:Label text="Extractor" name="ExtractorNameTxt" />
-            <ui:Label text="Label" name="ExtractorPriceTxt" style="height: 15px; width: 111px; font-size: 18px; position: absolute; top: 43px; left: 67px;" />
-            <ui:Button text="Build" name="ExtractorBuildBtn" style="position: absolute; top: 176px; left: 13px; width: 224px; height: 30px; border-left-color: rgb(0, 0, 0); border-right-color: rgb(0, 0, 0); border-top-color: rgb(0, 0, 0); border-bottom-color: rgb(0, 0, 0); border-top-width: 3px; border-right-width: 3px; border-bottom-width: 3px; border-left-width: 3px; background-color: rgb(30, 30, 28); font-size: 21px;" />
-        </ui:VisualElement>
-        <ui:VisualElement name="ConveyorBox" style="flex-grow: 1; position: absolute; height: 217px; top: 30px; width: 261px; left: 20px; background-color: rgb(44, 44, 41); translate: 270px 0;">
-            <ui:Label text="Conveyor" name="ConveyorNameTxt" />
-            <ui:Label text="Label" name="ConveyorPriceTxt" style="height: 15px; width: 111px; font-size: 18px; position: absolute; top: 43px; left: 67px;" />
-            <ui:Button text="Build" name="ConveyorBuildBtn" style="position: absolute; top: 176px; left: 13px; width: 224px; height: 30px; border-left-color: rgb(0, 0, 0); border-right-color: rgb(0, 0, 0); border-top-color: rgb(0, 0, 0); border-bottom-color: rgb(0, 0, 0); border-top-width: 3px; border-right-width: 3px; border-bottom-width: 3px; border-left-width: 3px; background-color: rgb(30, 30, 28); font-size: 21px;" />
-        </ui:VisualElement>
-        <ui:VisualElement name="MarketplaceBox" style="flex-grow: 1; position: absolute; height: 217px; top: 30px; width: 261px; left: 20px; background-color: rgb(44, 44, 41); translate: 540px 0;">
-            <ui:Label text="Marketplace" name="MarketplaceNameTxt" />
-            <ui:Label text="Label" name="MarketplacePriceTxt" style="height: 15px; width: 111px; font-size: 18px; position: absolute; top: 43px; left: 67px;" />
-            <ui:Button text="Build" name="MarketplaceBuildBtn" style="position: absolute; top: 176px; left: 13px; width: 224px; height: 30px; border-left-color: rgb(0, 0, 0); border-right-color: rgb(0, 0, 0); border-top-color: rgb(0, 0, 0); border-bottom-color: rgb(0, 0, 0); border-top-width: 3px; border-right-width: 3px; border-bottom-width: 3px; border-left-width: 3px; background-color: rgb(30, 30, 28); font-size: 21px;" />
-        </ui:VisualElement>
-        <ui:VisualElement name="FoundryBox" style="flex-grow: 1; position: absolute; height: 217px; top: 30px; width: 261px; left: 20px; background-color: rgb(44, 44, 41); translate: 810px 0;">
-            <ui:Label text="Foundry" name="FoundryNameTxt" />
-            <ui:Label text="Label" name="FoundryPriceTxt" style="height: 15px; width: 111px; font-size: 18px; position: absolute; top: 43px; left: 67px;" />
-            <ui:Button text="Build" name="FoundryBuildBtn" style="position: absolute; top: 176px; left: 13px; width: 224px; height: 30px; border-left-color: rgb(0, 0, 0); border-right-color: rgb(0, 0, 0); border-top-color: rgb(0, 0, 0); border-bottom-color: rgb(0, 0, 0); border-top-width: 3px; border-right-width: 3px; border-bottom-width: 3px; border-left-width: 3px; background-color: rgb(30, 30, 28); font-size: 21px;" />
-        </ui:VisualElement>
-        <ui:VisualElement name="BuilderBox" style="flex-grow: 1; position: absolute; height: 217px; top: 30px; width: 261px; left: 20px; background-color: rgb(44, 44, 41); translate: 1080px 0;">
-            <ui:Label text="Builder" name="BuilderNameTxt" />
-            <ui:Label text="Label" name="BuilderPriceTxt" style="height: 15px; width: 111px; font-size: 18px; position: absolute; top: 43px; left: 67px;" />
-            <ui:Button text="Build" name="BuilderBuildBtn" style="position: absolute; top: 176px; left: 13px; width: 224px; height: 30px; border-left-color: rgb(0, 0, 0); border-right-color: rgb(0, 0, 0); border-top-color: rgb(0, 0, 0); border-bottom-color: rgb(0, 0, 0); border-top-width: 3px; border-right-width: 3px; border-bottom-width: 3px; border-left-width: 3px; background-color: rgb(30, 30, 28); font-size: 21px;" />
-        </ui:VisualElement>
-    </ui:VisualElement>
     <ui:VisualElement name="BuildingUI" picking-mode="Ignore" style="position: absolute; width: 100%; height: 100%; display: flex; top: 0; left: 0;">
         <ui:VisualElement name="InventoryUI" class="BackgroundStyle" style="flex-grow: 1; position: absolute; height: 761px; width: 427px; top: 229px; left: 1084px; justify-content: flex-start; align-self: center; align-content: center; align-items: flex-start; display: none;">
             <ui:Label text="Inentory" style="height: 35px; width: 162px; position: relative; top: 24px; left: 138px; align-items: center; margin-top: 3px; margin-right: 3px; margin-bottom: 3px; margin-left: 3px; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0;" />
@@ -116,5 +89,49 @@
             </ui:VisualElement>
             <ui:Toggle name="BUToggle" value="true" style="position: absolute; top: 2px; left: 386px; width: 23px; background-color: rgba(255, 255, 255, 0); height: 28px;" />
         </ui:VisualElement>
+    </ui:VisualElement>
+    <ui:VisualElement name="BuildMenu" picking-mode="Ignore" style="flex-grow: 1; flex-direction: column-reverse; align-self: center; width: 1058px; height: 0; display: none;">
+        <ui:TabView name="BuildMenuTabView" style="width: 1058px;">
+            <ui:Tab label="Production&#10;" name="ProductionTab" style="padding-left: 0; padding-right: 0; margin-right: 0; flex-direction: row;">
+                <ui:VisualElement class="BackgroundStyle" style="flex-grow: 1; width: 1058px; flex-direction: row; justify-content: flex-start; height: 230px;">
+                    <ui:VisualElement name="ExtractorBox" style="height: 215px; width: 264px; background-color: rgb(44, 44, 41); border-top-width: 2px; border-right-width: 2px; border-bottom-width: 2px; border-left-width: 2px; border-left-color: rgba(0, 0, 0, 0.98); border-right-color: rgba(0, 0, 0, 0.98); border-top-color: rgba(0, 0, 0, 0.98); border-bottom-color: rgba(0, 0, 0, 0.98); background-size: 100% 109%; display: flex;">
+                        <ui:Label text="Extractor" name="ExtractorNameTxt" />
+                        <ui:Label text="Label" name="ExtractorPriceTxt" style="height: 15px; width: 111px; font-size: 18px; position: absolute; top: 43px; left: 67px;" />
+                        <ui:Button text="Build" name="ExtractorBuildBtn" style="position: absolute; top: 166px; left: 13px; width: 224px; height: 30px; border-left-color: rgb(0, 0, 0); border-right-color: rgb(0, 0, 0); border-top-color: rgb(0, 0, 0); border-bottom-color: rgb(0, 0, 0); border-top-width: 3px; border-right-width: 3px; border-bottom-width: 3px; border-left-width: 3px; background-color: rgb(30, 30, 28); font-size: 21px;" />
+                    </ui:VisualElement>
+                </ui:VisualElement>
+            </ui:Tab>
+            <ui:Tab label="Logistic" name="LogisticTab" style="flex-direction: row; align-items: center;">
+                <ui:VisualElement class="BackgroundStyle" style="flex-grow: 1; width: 1058px; flex-direction: row; justify-content: flex-start; height: 230px;">
+                    <ui:VisualElement name="ConveyorBox" style="height: 217px; width: 261px; background-color: rgb(44, 44, 41); border-top-width: 2px; border-right-width: 2px; border-bottom-width: 2px; border-left-width: 2px; border-left-color: rgb(0, 0, 0); border-right-color: rgb(0, 0, 0); border-top-color: rgb(0, 0, 0); border-bottom-color: rgb(0, 0, 0);">
+                        <ui:Label text="Conveyor" name="ConveyorNameTxt" />
+                        <ui:Label text="Label" name="ConveyorPriceTxt" style="height: 15px; width: 111px; font-size: 18px; position: absolute; top: 43px; left: 67px;" />
+                        <ui:Button text="Build" name="ConveyorBuildBtn" style="position: absolute; top: 176px; left: 13px; width: 224px; height: 30px; border-left-color: rgb(0, 0, 0); border-right-color: rgb(0, 0, 0); border-top-color: rgb(0, 0, 0); border-bottom-color: rgb(0, 0, 0); border-top-width: 3px; border-right-width: 3px; border-bottom-width: 3px; border-left-width: 3px; background-color: rgb(30, 30, 28); font-size: 21px;" />
+                    </ui:VisualElement>
+                </ui:VisualElement>
+            </ui:Tab>
+            <ui:Tab label="Process" name="ProcessTab">
+                <ui:VisualElement class="BackgroundStyle" style="flex-grow: 1; flex-direction: row; width: 1058px; justify-content: flex-start; height: 230px;">
+                    <ui:VisualElement name="FoundryBox" style="height: 217px; width: 261px; background-color: rgb(44, 44, 41); border-top-width: 2px; border-right-width: 2px; border-bottom-width: 2px; border-left-width: 2px; border-left-color: rgb(0, 0, 0); border-right-color: rgb(0, 0, 0); border-top-color: rgb(0, 0, 0); border-bottom-color: rgb(0, 0, 0);">
+                        <ui:Label text="Foundry" name="FoundryNameTxt" />
+                        <ui:Label text="Label" name="FoundryPriceTxt" style="height: 15px; width: 111px; font-size: 18px; position: absolute; top: 43px; left: 67px;" />
+                        <ui:Button text="Build" name="FoundryBuildBtn" style="position: absolute; top: 176px; left: 13px; width: 224px; height: 30px; border-left-color: rgb(0, 0, 0); border-right-color: rgb(0, 0, 0); border-top-color: rgb(0, 0, 0); border-bottom-color: rgb(0, 0, 0); border-top-width: 3px; border-right-width: 3px; border-bottom-width: 3px; border-left-width: 3px; background-color: rgb(30, 30, 28); font-size: 21px;" />
+                    </ui:VisualElement>
+                    <ui:VisualElement name="BuilderBox" style="height: 217px; width: 261px; background-color: rgb(44, 44, 41); border-top-width: 2px; border-right-width: 2px; border-bottom-width: 2px; border-left-width: 2px; border-left-color: rgb(0, 0, 0); border-right-color: rgb(0, 0, 0); border-top-color: rgb(0, 0, 0); border-bottom-color: rgb(0, 0, 0);">
+                        <ui:Label text="Builder" name="BuilderNameTxt" />
+                        <ui:Label text="Label" name="BuilderPriceTxt" style="height: 15px; width: 111px; font-size: 18px; position: absolute; top: 43px; left: 67px;" />
+                        <ui:Button text="Build" name="BuilderBuildBtn" style="position: absolute; top: 176px; left: 13px; width: 224px; height: 30px; border-left-color: rgb(0, 0, 0); border-right-color: rgb(0, 0, 0); border-top-color: rgb(0, 0, 0); border-bottom-color: rgb(0, 0, 0); border-top-width: 3px; border-right-width: 3px; border-bottom-width: 3px; border-left-width: 3px; background-color: rgb(30, 30, 28); font-size: 21px;" />
+                    </ui:VisualElement>
+                    <ui:VisualElement name="MarketplaceBox" style="height: 217px; width: 261px; background-color: rgb(44, 44, 41); border-top-width: 2px; border-right-width: 2px; border-bottom-width: 2px; border-left-width: 2px; border-left-color: rgb(0, 0, 0); border-right-color: rgb(0, 0, 0); border-top-color: rgb(0, 0, 0); border-bottom-color: rgb(0, 0, 0);">
+                        <ui:Label text="Marketplace" name="MarketplaceNameTxt" />
+                        <ui:Label text="Label" name="MarketplacePriceTxt" style="height: 15px; width: 111px; font-size: 18px; position: absolute; top: 43px; left: 67px;" />
+                        <ui:Button text="Build" name="MarketplaceBuildBtn" style="position: absolute; top: 176px; left: 13px; width: 224px; height: 30px; border-left-color: rgb(0, 0, 0); border-right-color: rgb(0, 0, 0); border-top-color: rgb(0, 0, 0); border-bottom-color: rgb(0, 0, 0); border-top-width: 3px; border-right-width: 3px; border-bottom-width: 3px; border-left-width: 3px; background-color: rgb(30, 30, 28); font-size: 21px;" />
+                    </ui:VisualElement>
+                </ui:VisualElement>
+            </ui:Tab>
+            <ui:Tab label="Electricity" name="ElectricityTab">
+                <ui:VisualElement class="BackgroundStyle" style="flex-grow: 1; flex-direction: row; width: 1058px; height: 230px;" />
+            </ui:Tab>
+        </ui:TabView>
     </ui:VisualElement>
 </ui:UXML>

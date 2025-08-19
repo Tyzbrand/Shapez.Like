@@ -21,7 +21,7 @@ public class OverlaySC : MonoBehaviour
 
 
 
-    private void Start()
+    private void Awake()
     {
 
         player = ReferenceHolder.instance.playervariable;

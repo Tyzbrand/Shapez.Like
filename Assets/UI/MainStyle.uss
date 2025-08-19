@@ -41,3 +41,16 @@
     position: relative;
 }
 
+.unity-tab__header {
+    background-color: rgb(44, 44, 41);
+    color: rgb(135, 135, 135);
+    border-left-color: rgb(36, 36, 34);
+    border-right-color: rgb(36, 36, 34);
+    border-top-color: rgb(36, 36, 34);
+    border-bottom-color: rgb(36, 36, 34);
+    border-top-width: 4px;
+    border-right-width: 4px;
+    border-bottom-width: 4px;
+    border-left-width: 4px;
+    display: flex;
+}
