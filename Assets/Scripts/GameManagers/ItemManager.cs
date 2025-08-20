@@ -203,7 +203,8 @@ public class ItemManager : MonoBehaviour
 
                 else if (nextBuilding is Foundry && IsItNextBuildingExit(item, nextBuilding, nextPos)) FoundryAction(item, nextBuilding);
 
-                else if (nextBuilding is Builder && IsItNextBuildingExit(item, nextBuilding, nextPos) ) BuilderAction(item, nextBuilding);
+                else if (nextBuilding is Builder && IsItNextBuildingExit(item, nextBuilding, nextPos)) BuilderAction(item, nextBuilding);
+                else if (nextBuilding is CoalGenerator) CoalGeneratorAction(item, nextBuilding);
 
 
                 if (nextBuilding is Conveyor && IsSpaceFree(nextPos, item))
@@ -328,6 +329,18 @@ public class ItemManager : MonoBehaviour
             }
         }
     }
+    private void CoalGeneratorAction(ItemBH item, BuildingBH building)
+    {
+        Debug.Log(item.itemType);
+        if (building is CoalGenerator coalGenerator)
+        {
+            if (item.itemType == RessourceBehaviour.RessourceType.Coal && coalGenerator.currentStorage < coalGenerator.capacity)
+            {
+                coalGenerator.currentStorage++;
+                itemToRemove.Add(item);
+            }
+        }
+    }
 
     private bool IsItNextBuildingExit(ItemBH item, BuildingBH nextBuilding, Vector2 nextPos)
     {
@@ -335,7 +348,7 @@ public class ItemManager : MonoBehaviour
         Vector2 fromDir = (item.worldPosition - nextPos).normalized;
 
         return Vector2.Dot(fromDir, buildingDir) <= 0;
-        
+
     }
 
 

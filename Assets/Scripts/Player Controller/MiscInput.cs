@@ -18,6 +18,7 @@ public class MiscInput : MonoBehaviour
     private BuilderUI builderUI;
     private FoundryUI foundryUI;
     private UIManager uIManager;
+    private CoalGeneratorUI coalGeneratorUI;
 
 
 
@@ -43,6 +44,7 @@ public class MiscInput : MonoBehaviour
         buildingManager = ReferenceHolder.instance.buildingManager;
         cam = ReferenceHolder.instance.mainCamera;
         uIManager = ReferenceHolder.instance.uIManager;
+        coalGeneratorUI = ReferenceHolder.instance.coalGeneratorUI;
 
     }
 
@@ -91,6 +93,11 @@ public class MiscInput : MonoBehaviour
                 if (currentPanel == builderUI.panel) builderUI.refreshUI(builder);
                 else uIManager.TogglePanel(builderUI.panel, () => builderUI.BuilderUIOnShow(builder), () => builderUI.BuilderUIOnHide());
             }
+            else if (buildingSelected is CoalGenerator coalGenerator)
+            {
+                if (currentPanel == coalGeneratorUI.panel) coalGeneratorUI.refreshUI(coalGenerator);
+                else uIManager.TogglePanel(coalGeneratorUI.panel, () => coalGeneratorUI.CoalGeneratorUIOnShow(coalGenerator), () => coalGeneratorUI.CoalGeneratorUIOnHide());
+            }
             
         }
 
@@ -102,8 +109,9 @@ public class MiscInput : MonoBehaviour
                 if (currentPanel == hubUI.panel) uIManager.HidePanel(currentPanel, () => hubUI.HubUIOnHide());
                 else if (currentPanel == extractorUI.panel) uIManager.HidePanel(currentPanel, () => extractorUI.ExtractorUIOnHide());
                 else if (currentPanel == foundryUI.panel) uIManager.HidePanel(currentPanel, () => foundryUI.FoundryUIOnHide());
-                else if (currentPanel == buildMenuSC.panel) uIManager.HidePanel(currentPanel, () => buildMenuSC.BuildMenuOnHide()); 
+                else if (currentPanel == buildMenuSC.panel) uIManager.HidePanel(currentPanel, () => buildMenuSC.BuildMenuOnHide());
                 else if (currentPanel == builderUI.panel) uIManager.HidePanel(currentPanel, () => builderUI.BuilderUIOnHide());
+                else if (currentPanel == coalGeneratorUI.panel) uIManager.HidePanel(currentPanel, () => coalGeneratorUI.CoalGeneratorUIOnHide());
             }
 
 

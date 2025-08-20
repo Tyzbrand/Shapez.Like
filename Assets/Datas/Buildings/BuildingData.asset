@@ -16,3 +16,5 @@ MonoBehaviour:
   extractorCapacity: 10
   foundryCapacity: 5
   builderCapacity: 5
+  CoalGeneratorCapacity: 10
+  CoalGeneratorMaxProduction: 20

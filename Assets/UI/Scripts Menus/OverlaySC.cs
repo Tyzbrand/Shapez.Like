@@ -15,9 +15,10 @@ public class OverlaySC : MonoBehaviour
     private Inventory inventorySC;
     private UIManager uIManager;
 
-    private Label moneyText, storageText, dayText, timeText, objectiveText;
+    private Label moneyText, storageText, dayText, timeText, objectiveText, electricityText, electricityBalanceText;
     private Button buildMenuBtn, destructionBtn, itemDestructionBtn, pauseBtn, x1Btn, x2Btn, x3Btn;
     private Action buildMenuAction;
+    private StyleColor red, defaultColor, green;
 
 
 
@@ -42,6 +43,8 @@ public class OverlaySC : MonoBehaviour
         objectiveText = panel.Q<Label>("ObjectiveTxt");
         dayText = panel.Q<Label>("DayTxt");
         timeText = panel.Q<Label>("TimeTxt");
+        electricityText = panel.Q<Label>("ElectricityTxt");
+        electricityBalanceText = panel.Q<Label>("ElectricityBalanceTxt");
 
 
         buildMenuBtn = panel.Q<Button>("BuildMenuBtn");
@@ -52,6 +55,11 @@ public class OverlaySC : MonoBehaviour
         x1Btn = panel.Q<Button>("x1Btn");
         x2Btn = panel.Q<Button>("x2Btn");
         x3Btn = panel.Q<Button>("x3Btn");
+
+        green = new StyleColor(Color.seaGreen);
+        red = new StyleColor(Color.softRed);
+        defaultColor = new StyleColor(new Color32(135, 135, 135, 255));
+
 
         //Désabonnement
         destructionBtn.clicked -= destructionSC.DestructionSet;
@@ -79,6 +87,9 @@ public class OverlaySC : MonoBehaviour
         dayText.text = "Day " + player.day;
         timeText.text = player.minutes.ToString("00") + ":" + player.seconds.ToString("00");
         objectiveText.text = "Iron Ingots: " + inventorySC.Get(RessourceBehaviour.RessourceType.IronIngot) + "/100";
+
+        UpdateElectricityStorageText();
+        UpdateElectricityBalanceText();
 
 
 
@@ -110,6 +121,20 @@ public class OverlaySC : MonoBehaviour
     public void UpdateObjectiveText()
     {
         objectiveText.text = "Iron Ingots: " + inventorySC.Get(RessourceBehaviour.RessourceType.IronIngot) + "/100";
+    }
+
+    public void UpdateElectricityStorageText()
+    {
+        electricityText.text = player.electricityStorage + "/" + player.electricityMaxStorage + " kWh";
+
+    }
+
+    public void UpdateElectricityBalanceText()
+    {
+        if (player.electricityBalance < 0) electricityBalanceText.style.color = red;
+        else if (player.electricityBalance > 0) electricityBalanceText.style.color = green;
+        else if (player.electricityBalance == 0) electricityBalanceText.style.color = defaultColor;
+        electricityBalanceText.text = player.electricityBalance + " kW";
     }
 
 

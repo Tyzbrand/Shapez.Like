@@ -12,8 +12,8 @@ public class BuildMenuSC : MonoBehaviour
     private BuildPriceDictionnary buildPriceLibrary;
     private UIManager uIManager;
 
-    private Label extractorPrice, conveyorPrice, marketplacePrice, foundryPrice, builderPrice;
-    private Button extractorBuild, conveyorBuild, marketplaceBuild, foundryBuild, builderBuild;
+    private Label extractorPrice, conveyorPrice, marketplacePrice, foundryPrice, builderPrice, coalGeneratorPrice;
+    private Button extractorBuild, conveyorBuild, marketplaceBuild, foundryBuild, builderBuild, coalGeneratorBuild;
 
 
 
@@ -37,12 +37,14 @@ public class BuildMenuSC : MonoBehaviour
         marketplacePrice = panel.Q<Label>("MarketplacePriceTxt");
         foundryPrice = panel.Q<Label>("FoundryPriceTxt");
         builderPrice = panel.Q<Label>("BuilderPriceTxt");
+        coalGeneratorPrice = panel.Q<Label>("CoalGeneratorPriceTxt");
 
         extractorBuild = panel.Q<Button>("ExtractorBuildBtn");
         conveyorBuild = panel.Q<Button>("ConveyorBuildBtn");
         marketplaceBuild = panel.Q<Button>("MarketplaceBuildBtn");
         foundryBuild = panel.Q<Button>("FoundryBuildBtn");
         builderBuild = panel.Q<Button>("BuilderBuildBtn");
+        coalGeneratorBuild = panel.Q<Button>("CoalGeneratorBuildBtn");
 
 
         extractorBuild.clicked -= ExtractorSelect;
@@ -50,18 +52,21 @@ public class BuildMenuSC : MonoBehaviour
         marketplaceBuild.clicked -= MarketplaceSelect;
         foundryBuild.clicked -= FoundrySelect;
         builderBuild.clicked -= BuilderSelect;
+        coalGeneratorBuild.clicked -= CoalGeneratorSelect;
 
         extractorBuild.clicked += ExtractorSelect;
         conveyorBuild.clicked += ConveyorSelect;
         marketplaceBuild.clicked += MarketplaceSelect;
         foundryBuild.clicked += FoundrySelect;
         builderBuild.clicked += BuilderSelect;
+        coalGeneratorBuild.clicked += CoalGeneratorSelect;
 
         extractorPrice.text = buildPriceLibrary.GetPrice(ReferenceHolder.instance.extractorPrefab) + " $";
         conveyorPrice.text = buildPriceLibrary.GetPrice(ReferenceHolder.instance.conveyorPrefab) + " $";
         marketplacePrice.text = "Free";
         foundryPrice.text = buildPriceLibrary.GetPrice(ReferenceHolder.instance.foundryPrefab) + " $";
         builderPrice.text = buildPriceLibrary.GetPrice(ReferenceHolder.instance.builderPrefab) + " $";
+        coalGeneratorPrice.text = buildPriceLibrary.GetPrice(ReferenceHolder.instance.coalGeneratorPrefab) + " $";
 
     }
 
@@ -137,6 +142,21 @@ public class BuildMenuSC : MonoBehaviour
         player.buildMode = true;
         player.rotation = 0;
     }
+
+    private void CoalGeneratorSelect()
+    {
+        uIManager.TogglePanel(panel, () => BuildMenuOnShow(), () => BuildMenuOnHide());
+        previewSC.previewToUse = ReferenceHolder.instance.coalGeneratorPreview;
+        placementSC.currentBuild = ReferenceHolder.instance.coalGeneratorPrefab;
+        placementSC.currentBuildingType = Placement.buildingType.CoalGenerator;
+
+        previewSC.DestroyInstance();
+        previewSC.CreateInstance();
+
+        player.buildMode = true;
+        player.rotation = 0;
+    }
+
 
 
     //----------Méthodes de gestion du menu----------

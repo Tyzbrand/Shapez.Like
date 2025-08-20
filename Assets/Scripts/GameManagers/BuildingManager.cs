@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
@@ -11,6 +12,7 @@ public class BuildingManager : MonoBehaviour
     private PlayerVariables player;
     private ItemManager itemManager;
     private BuildingManager buildingManager;
+    private ElectricityManager electricityManager;
     private RessourceDictionnary ressourceDictionnary;
     public Tilemap tilemap;
 
@@ -26,7 +28,7 @@ public class BuildingManager : MonoBehaviour
         {
             buildingReferencer.Add(tilePos, building);
             AddVisual(building, tilePos);
-            building.SetManagers(itemManager, buildingManager);
+            building.SetManagers(itemManager, buildingManager, electricityManager);
             building.SetDico(ressourceDictionnary);
 
             building.BuidlingStart();
@@ -125,6 +127,7 @@ public class BuildingManager : MonoBehaviour
         itemManager = ReferenceHolder.instance.itemManager;
         buildingManager = ReferenceHolder.instance.buildingManager;
         ressourceDictionnary = ReferenceHolder.instance.ressourceDictionnary;
+        electricityManager = ReferenceHolder.instance.electricityManager;
 
 
     }

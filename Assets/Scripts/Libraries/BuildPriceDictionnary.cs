@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class BuildPriceDictionnary : MonoBehaviour
 {
-    private Dictionary<GameObject, int> buildPrice = new();
+    private Dictionary<GameObject, int> buildPrice;
 
 
 
@@ -13,28 +13,32 @@ public class BuildPriceDictionnary : MonoBehaviour
     private GameObject marketplace;
     private GameObject foundry;
     private GameObject builder;
+    private GameObject coalGenerator;
 
 
 
     private void Awake()
     {
+
         extractor = ReferenceHolder.instance.extractorPrefab;
         conveyor = ReferenceHolder.instance.conveyorPrefab;
         marketplace = ReferenceHolder.instance.marketplacePrefab;
         foundry = ReferenceHolder.instance.foundryPrefab;
         builder = ReferenceHolder.instance.builderPrefab;
+        coalGenerator = ReferenceHolder.instance.coalGeneratorPrefab;
+
+        buildPrice = new Dictionary<GameObject, int>()
+        {
+            {extractor, 100},
+            {conveyor, 10},
+            {marketplace, 0},
+            {foundry, 500},
+            {builder, 750},
+            {coalGenerator, 1500}
+        };
 
 
 
-
-
-
-
-        buildPrice.Add(extractor, 100);
-        buildPrice.Add(conveyor, 10);
-        buildPrice.Add(marketplace, 0);
-        buildPrice.Add(foundry, 500);
-        buildPrice.Add(builder, 750);
     }
 
 

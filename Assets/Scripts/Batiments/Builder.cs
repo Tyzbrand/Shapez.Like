@@ -20,7 +20,7 @@ public class Builder : BuildingBH
 
     public Builder(Vector2 worldPosition, int rotation, Tilemap tilemap) : base(worldPosition, rotation, tilemap)
     {
-        
+
     }
 
     public override void BuidlingStart()
@@ -42,7 +42,7 @@ public class Builder : BuildingBH
     {
         Debug.Log("Builder Détruit");
 
-        
+
     }
 
     public override void BuildingUpdate()
@@ -83,4 +83,5 @@ public class Builder : BuildingBH
             }
         }
     }
+
 }

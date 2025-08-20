@@ -9,9 +9,13 @@ public abstract class BuildingBH
     public int rotation;
     public ItemManager ItemManager;
     public BuildingManager buildingManager;
+    public ElectricityManager ElectricityManager;
     public RessourceDictionnary RessourceDictionnary;
     public Tilemap tilemap;
     public bool IsActive = true;
+
+    public float electricityProduction = 0f;
+    public float electricityConsomation = 0f;
 
 
     public BuildingBH(Vector2 wordlPosition, int rotation, Tilemap tilemap)
@@ -36,11 +40,22 @@ public abstract class BuildingBH
 
     }
 
+    public virtual void BuildingOnEnable()
+    {
+        
+    }
 
-    public void SetManagers(ItemManager itemManager, BuildingManager buildingManager)
+    public virtual void BuildingOnDisable()
+    {
+        
+    }
+
+
+    public void SetManagers(ItemManager itemManager, BuildingManager buildingManager, ElectricityManager electricityManager)
     {
         this.ItemManager = itemManager;
         this.buildingManager = buildingManager;
+        this.ElectricityManager = electricityManager;
     }
 
     public void SetDico(RessourceDictionnary ressourceDictionnary)

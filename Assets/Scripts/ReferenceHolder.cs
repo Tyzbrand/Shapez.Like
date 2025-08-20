@@ -29,6 +29,7 @@ public class ReferenceHolder : MonoBehaviour
     public ItemManager itemManager;
     public TimeManager timeManager;
     public UIManager uIManager;
+    public ElectricityManager electricityManager;
 
 
 
@@ -47,6 +48,7 @@ public class ReferenceHolder : MonoBehaviour
     public GameObject itemPrefab;
     public GameObject hubPrefab;
     public GameObject builderPrefab;
+    public GameObject coalGeneratorPrefab;
 
 
     //Sprites de ressources
@@ -69,6 +71,7 @@ public class ReferenceHolder : MonoBehaviour
     public GameObject marketplacePreview;
     public GameObject foundryPreview;
     public GameObject builderPrview;
+    public GameObject coalGeneratorPreview;
 
 
     //Datas
@@ -98,6 +101,7 @@ public class ReferenceHolder : MonoBehaviour
     public OverlaySC inGameOverlay;
     public DestructionOverlaySC overlayManager;
     public BuilderUI builderUI;
+    public CoalGeneratorUI coalGeneratorUI;
     
 
 

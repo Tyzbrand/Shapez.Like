@@ -58,11 +58,13 @@ public class ExtractorUI : MonoBehaviour
     private void ActiveBuilding()
     {
         activeExtractor.IsActive = true;
+        activeExtractor.BuildingOnEnable();
     }
 
     private void DisableBuilding()
     {
         activeExtractor.IsActive = false;
+        activeExtractor.BuildingOnDisable();
     }
 
     public void refreshUI(Extractor extractor)

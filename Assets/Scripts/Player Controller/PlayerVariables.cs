@@ -25,6 +25,13 @@ public class PlayerVariables : MonoBehaviour
     public int seconds;
     public int minutes;
 
+    //Electricité
+    public float electricityStorage = 0f;
+    public float production = 0f;
+    public float consomation = 0f;
+    public float electricityBalance = 0f;
+    public float electricityMaxStorage = 100f;
+
 
     //References
     public Tilemap tilemap1;

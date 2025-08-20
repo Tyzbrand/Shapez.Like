@@ -55,11 +55,13 @@ public class FoundryUI : MonoBehaviour
     private void DisableBuilding()
     {
         activeFoundry.IsActive = false;
+        activeFoundry.BuildingOnDisable();
     }
 
     private void ActiveBuilding()
     {
         activeFoundry.IsActive = true;
+        activeFoundry.BuildingOnEnable();
     }
 
     private void Update()

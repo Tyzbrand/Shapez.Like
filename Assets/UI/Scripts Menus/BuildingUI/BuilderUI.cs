@@ -39,11 +39,9 @@ public class BuilderUI : MonoBehaviour
         builderToggle = panel.Q<Toggle>("BUToggle");
         builderToggle.RegisterValueChangedCallback(evt =>
         {
-            if (evt.newValue)
-            {
-                ActiveBuilding();
-            }
+            if (evt.newValue) ActiveBuilding();
             else DisableBuilding();
+            
         });
 
         recipeChangerBtn.clicked += ChangeRecipe;
@@ -54,11 +52,13 @@ public class BuilderUI : MonoBehaviour
     private void DisableBuilding()
     {
         activeBuilder.IsActive = false;
+        activeBuilder.BuildingOnDisable();
     }
 
     private void ActiveBuilding()
     {
         activeBuilder.IsActive = true;
+        activeBuilder.BuildingOnEnable();
     }
 
     private void Update()

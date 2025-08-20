@@ -43,7 +43,8 @@ public class Placement : MonoBehaviour
         Conveyor,
         marketplace,
         Foundry,
-        builder
+        builder,
+        CoalGenerator
     }
 
 
@@ -160,6 +161,8 @@ public class Placement : MonoBehaviour
                 return new Foundry(mousePos2D, player.rotation, buildingTilemap);
             case buildingType.builder:
                 return new Builder(mousePos2D, player.rotation, buildingTilemap);
+            case buildingType.CoalGenerator:
+                return new CoalGenerator(mousePos2D, player.rotation, buildingTilemap);
 
         }
         return null;
