@@ -125,7 +125,7 @@ public class OverlaySC : MonoBehaviour
 
     public void UpdateElectricityStorageText()
     {
-        electricityText.text = player.electricityStorage + "/" + player.electricityMaxStorage + " kWh";
+        electricityText.text = player.electricityStorage.ToString("0.0") + "/" + player.electricityMaxStorage + " kWh";
 
     }
 

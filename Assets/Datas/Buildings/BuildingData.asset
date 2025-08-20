@@ -17,4 +17,4 @@ MonoBehaviour:
   foundryCapacity: 5
   builderCapacity: 5
   CoalGeneratorCapacity: 10
-  CoalGeneratorMaxProduction: 20
+  CoalGeneratorkWhPerSec: 0.3

@@ -331,7 +331,6 @@ public class ItemManager : MonoBehaviour
     }
     private void CoalGeneratorAction(ItemBH item, BuildingBH building)
     {
-        Debug.Log(item.itemType);
         if (building is CoalGenerator coalGenerator)
         {
             if (item.itemType == RessourceBehaviour.RessourceType.Coal && coalGenerator.currentStorage < coalGenerator.capacity)

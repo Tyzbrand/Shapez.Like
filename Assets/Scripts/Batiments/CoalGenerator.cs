@@ -6,7 +6,7 @@ public class CoalGenerator : BuildingBH
     private BuildingData data;
 
 
-    private float maxElectricityProduction;
+    private float ElectricityProductionPerSec;
     public int capacity;
 
 
@@ -28,7 +28,7 @@ public class CoalGenerator : BuildingBH
 
         if (data != null)
         {
-            maxElectricityProduction = data.CoalGeneratorMaxProduction;
+            ElectricityProductionPerSec = data.CoalGeneratorkWhPerSec;
             capacity = data.CoalGeneratorCapacity;
         }
 
@@ -46,7 +46,7 @@ public class CoalGenerator : BuildingBH
         if (burnTimer > 0f)
         {
             burnTimer -= Time.deltaTime;
-            electricityProduction = maxElectricityProduction;
+            electricityProduction = ElectricityProductionPerSec;
 
         }
         if (burnTimer <= 0f)
@@ -66,12 +66,9 @@ public class CoalGenerator : BuildingBH
     public override void BuildingOnDisable()
     {
         electricityProduction = 0f;
-        ElectricityManager.UpdateOverlay();
+       
     }
 
-    public override void BuildingOnEnable()
-    {
-        ElectricityManager.UpdateOverlay();
-    }
+
 
 }

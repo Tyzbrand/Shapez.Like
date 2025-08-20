@@ -27,8 +27,10 @@ public class ElectricityManager : MonoBehaviour
         {
             BalanceCalculation();
             if(player.electricityStorage < player.electricityMaxStorage) player.electricityStorage += player.electricityBalance;
+            if (player.electricityStorage > player.electricityMaxStorage) player.electricityStorage = player.electricityMaxStorage;
             if (player.electricityStorage < 0) player.electricityStorage = 0f;
-            if (player.electricityBalance != lastBalance) overlaySC.UpdateElectricityStorageText();
+            overlaySC.UpdateElectricityStorageText();  
+            
 
             timer -= timerInterval;
         }
@@ -51,7 +53,10 @@ public class ElectricityManager : MonoBehaviour
         }
 
         player.electricityBalance = production - consomation;
+        if (player.electricityBalance != lastBalance) overlaySC.UpdateElectricityBalanceText();
         lastBalance = player.electricityBalance;
+        
+
     }
 
     public void RegisterProducter(BuildingBH producer)
@@ -72,11 +77,6 @@ public class ElectricityManager : MonoBehaviour
     public void RemoveConsomer(BuildingBH consomer)
     {
         if (consomationBuilding.Contains(consomer)) consomationBuilding.Remove(consomer);
-    }
-
-    public void UpdateOverlay()
-    {
-        overlaySC.UpdateElectricityBalanceText();
     }
 
 

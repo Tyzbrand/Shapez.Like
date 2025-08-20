@@ -15,6 +15,6 @@ public class BuildingData : ScriptableObject
 
     [Header("Coal Generator")]
     public int CoalGeneratorCapacity;
-    public float CoalGeneratorMaxProduction;
+    public float CoalGeneratorkWhPerSec;
 
 }
