@@ -16,6 +16,18 @@ public class BuildingManager : MonoBehaviour
     private RessourceDictionnary ressourceDictionnary;
     public Tilemap tilemap;
 
+
+    public enum buildingType
+    {
+        None,
+        Extractor,
+        Conveyor,
+        marketplace,
+        Foundry,
+        builder,
+        CoalGenerator
+    }
+
     
 
     //---------------Méthodes Implémentées---------------

@@ -30,7 +30,7 @@ public class PlayerVariables : MonoBehaviour
     public float production = 0f;
     public float consomation = 0f;
     public float electricityBalance = 0f;
-    public float electricityMaxStorage = 100f;
+    public float electricityMaxStorage = 150f;
 
 
     //References

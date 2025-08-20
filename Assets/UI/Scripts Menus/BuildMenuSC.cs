@@ -9,7 +9,7 @@ public class BuildMenuSC : MonoBehaviour
     private PlayerVariables player;
     private Preview previewSC;
     private Placement placementSC;
-    private BuildPriceDictionnary buildPriceLibrary;
+    private BuildingLibrary buildPriceLibrary;
     private UIManager uIManager;
 
     private Label extractorPrice, conveyorPrice, marketplacePrice, foundryPrice, builderPrice, coalGeneratorPrice;
@@ -24,7 +24,7 @@ public class BuildMenuSC : MonoBehaviour
         player = ReferenceHolder.instance.playervariable;
         previewSC = ReferenceHolder.instance.previewSC;
         placementSC = ReferenceHolder.instance.placementSC;
-        buildPriceLibrary = ReferenceHolder.instance.buildPriceDictionary;
+        buildPriceLibrary = ReferenceHolder.instance.buildingLibrary;
         uIManager = ReferenceHolder.instance.uIManager;
 
         panel = uI.rootVisualElement.Q<VisualElement>("BuildMenu");
@@ -61,12 +61,12 @@ public class BuildMenuSC : MonoBehaviour
         builderBuild.clicked += BuilderSelect;
         coalGeneratorBuild.clicked += CoalGeneratorSelect;
 
-        extractorPrice.text = buildPriceLibrary.GetPrice(ReferenceHolder.instance.extractorPrefab) + " $";
-        conveyorPrice.text = buildPriceLibrary.GetPrice(ReferenceHolder.instance.conveyorPrefab) + " $";
+        extractorPrice.text = buildPriceLibrary.GetBuildingPrice(BuildingManager.buildingType.Extractor) + " $";
+        conveyorPrice.text = buildPriceLibrary.GetBuildingPrice(BuildingManager.buildingType.Conveyor) + " $";
         marketplacePrice.text = "Free";
-        foundryPrice.text = buildPriceLibrary.GetPrice(ReferenceHolder.instance.foundryPrefab) + " $";
-        builderPrice.text = buildPriceLibrary.GetPrice(ReferenceHolder.instance.builderPrefab) + " $";
-        coalGeneratorPrice.text = buildPriceLibrary.GetPrice(ReferenceHolder.instance.coalGeneratorPrefab) + " $";
+        foundryPrice.text = buildPriceLibrary.GetBuildingPrice(BuildingManager.buildingType.Foundry) + " $";
+        builderPrice.text = buildPriceLibrary.GetBuildingPrice(BuildingManager.buildingType.Extractor) + " $";
+        coalGeneratorPrice.text = buildPriceLibrary.GetBuildingPrice(BuildingManager.buildingType.CoalGenerator) + " $";
 
     }
 
@@ -78,7 +78,7 @@ public class BuildMenuSC : MonoBehaviour
         uIManager.TogglePanel(panel, () => BuildMenuOnShow(), () => BuildMenuOnHide());
         previewSC.previewToUse = ReferenceHolder.instance.extractorPreview;
         placementSC.currentBuild = ReferenceHolder.instance.extractorPrefab;
-        placementSC.currentBuildingType = Placement.buildingType.Extractor;
+        placementSC.currentBuildingType = BuildingManager.buildingType.Extractor;
 
         previewSC.DestroyInstance();
         previewSC.CreateInstance();
@@ -92,7 +92,7 @@ public class BuildMenuSC : MonoBehaviour
         uIManager.TogglePanel(panel, () => BuildMenuOnShow(), () => BuildMenuOnHide());
         previewSC.previewToUse = ReferenceHolder.instance.conveyorPreview;
         placementSC.currentBuild = ReferenceHolder.instance.conveyorPrefab; 
-        placementSC.currentBuildingType = Placement.buildingType.Conveyor;
+        placementSC.currentBuildingType = BuildingManager.buildingType.Conveyor;
 
         previewSC.DestroyInstance();
         previewSC.CreateInstance();
@@ -106,7 +106,7 @@ public class BuildMenuSC : MonoBehaviour
         uIManager.TogglePanel(panel, () => BuildMenuOnShow(), () => BuildMenuOnHide());
         previewSC.previewToUse = ReferenceHolder.instance.marketplacePreview;
         placementSC.currentBuild = ReferenceHolder.instance.marketplacePrefab;
-        placementSC.currentBuildingType = Placement.buildingType.marketplace;
+        placementSC.currentBuildingType = BuildingManager.buildingType.marketplace;
 
         previewSC.DestroyInstance();
         previewSC.CreateInstance();
@@ -120,7 +120,7 @@ public class BuildMenuSC : MonoBehaviour
         uIManager.TogglePanel(panel, () => BuildMenuOnShow(), () => BuildMenuOnHide());
         previewSC.previewToUse = ReferenceHolder.instance.foundryPreview;
         placementSC.currentBuild = ReferenceHolder.instance.foundryPrefab;
-        placementSC.currentBuildingType = Placement.buildingType.Foundry;
+        placementSC.currentBuildingType = BuildingManager.buildingType.Foundry;
 
         previewSC.DestroyInstance();
         previewSC.CreateInstance();
@@ -134,7 +134,7 @@ public class BuildMenuSC : MonoBehaviour
         uIManager.TogglePanel(panel, () => BuildMenuOnShow(), () => BuildMenuOnHide());
         previewSC.previewToUse = ReferenceHolder.instance.builderPrview;
         placementSC.currentBuild = ReferenceHolder.instance.builderPrefab;
-        placementSC.currentBuildingType = Placement.buildingType.builder;
+        placementSC.currentBuildingType = BuildingManager.buildingType.builder;
 
         previewSC.DestroyInstance();
         previewSC.CreateInstance();
@@ -148,7 +148,7 @@ public class BuildMenuSC : MonoBehaviour
         uIManager.TogglePanel(panel, () => BuildMenuOnShow(), () => BuildMenuOnHide());
         previewSC.previewToUse = ReferenceHolder.instance.coalGeneratorPreview;
         placementSC.currentBuild = ReferenceHolder.instance.coalGeneratorPrefab;
-        placementSC.currentBuildingType = Placement.buildingType.CoalGenerator;
+        placementSC.currentBuildingType = BuildingManager.buildingType.CoalGenerator;
 
         previewSC.DestroyInstance();
         previewSC.CreateInstance();

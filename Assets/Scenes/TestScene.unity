@@ -614,7 +614,7 @@ MonoBehaviour:
   foundryRecipe: {fileID: 11400000, guid: b06bb0981b70e2d49aca7c18ab065ebf, type: 2}
   builderRecipe: {fileID: 11400000, guid: 7f39244ec20158448a7a5f21f2218199, type: 2}
   ressourceDictionnary: {fileID: 809173381}
-  buildPriceDictionary: {fileID: 809173380}
+  buildingLibrary: {fileID: 809173380}
   pauseMenu: {fileID: 1409634697}
   buildMenu: {fileID: 1409634706}
   hubUI: {fileID: 1409634702}

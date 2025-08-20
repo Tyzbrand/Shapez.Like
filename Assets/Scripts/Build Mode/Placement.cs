@@ -30,22 +30,12 @@ public class Placement : MonoBehaviour
     private GameObject foundry;
     private Tilemap tilemap;
     private bool allowConstruciton = false;
-    public buildingType currentBuildingType = buildingType.None;
+    public BuildingManager.buildingType currentBuildingType = BuildingManager.buildingType.None;
 
 
     //Dictionnaire
-    private BuildPriceDictionnary prices;
+    private BuildingLibrary prices;
 
-    public enum buildingType
-    {
-        None,
-        Extractor,
-        Conveyor,
-        marketplace,
-        Foundry,
-        builder,
-        CoalGenerator
-    }
 
 
 
@@ -64,7 +54,7 @@ public class Placement : MonoBehaviour
         OverlaySC = ReferenceHolder.instance.inGameOverlay;
 
 
-        prices = ReferenceHolder.instance.buildPriceDictionary;
+        prices = ReferenceHolder.instance.buildingLibrary;
 
 
 
@@ -98,7 +88,7 @@ public class Placement : MonoBehaviour
                         BuildingBH currentInstance = GetCurrentType(mousePos2D, tilemap);
 
                         buildingManager.AddBuilding(mousePos2D, currentInstance);
-                        player.Money -= prices.GetPrice(currentBuild);
+                        player.Money -= prices.GetBuildingPrice(currentBuildingType);
                         OverlaySC.UpdateMoneyText();
                     }
                 }
@@ -133,7 +123,7 @@ public class Placement : MonoBehaviour
             mousePos3D.z = 0;
             Vector2 mousePos2D = new Vector2(mousePos3D.x, mousePos3D.y);
 
-            if (prices.GetPrice(currentBuild) <= player.Money && !buildingManager.IsTileUsed(mousePos2D))
+            if (prices.GetBuildingPrice(currentBuildingType) <= player.Money && !buildingManager.IsTileUsed(mousePos2D))
             {
                 allowConstruciton = true;
 
@@ -151,17 +141,17 @@ public class Placement : MonoBehaviour
     {
         switch (currentBuildingType)
         {
-            case buildingType.Extractor:
+            case BuildingManager.buildingType.Extractor:
                 return new Extractor(mousePos2D, player.rotation, buildingTilemap);
-            case buildingType.Conveyor:
+            case BuildingManager.buildingType.Conveyor:
                 return new Conveyor(mousePos2D, player.rotation, buildingTilemap);
-            case buildingType.marketplace:
+            case BuildingManager.buildingType.marketplace:
                 return new Marketplace(mousePos2D, player.rotation, buildingTilemap);
-            case buildingType.Foundry:
+            case BuildingManager.buildingType.Foundry:
                 return new Foundry(mousePos2D, player.rotation, buildingTilemap);
-            case buildingType.builder:
+            case BuildingManager.buildingType.builder:
                 return new Builder(mousePos2D, player.rotation, buildingTilemap);
-            case buildingType.CoalGenerator:
+            case BuildingManager.buildingType.CoalGenerator:
                 return new CoalGenerator(mousePos2D, player.rotation, buildingTilemap);
 
         }
