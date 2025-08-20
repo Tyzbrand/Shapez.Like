@@ -1,6 +1,5 @@
 
 using UnityEngine;
-using UnityEngine.Rendering;
 using UnityEngine.Tilemaps;
 
 
@@ -16,23 +15,23 @@ public class Extractor : BuildingBH
     private TileType underTile;
     private bool canExtract = false;
     private Sprite ressourceType;
-
-
-
-
-
-
     private BuildingData data;
+    private ExtractorUI extractorUI;
 
     public Extractor(Vector2 worldPosition, int rotation, Tilemap tilemap) : base(worldPosition, rotation, tilemap)
     {
 
     }
 
+
     public override void BuidlingStart()
     {
         Debug.Log("Extractor !");
         data = ReferenceHolder.instance.buildingData;
+        buildingLibrary = ReferenceHolder.instance.buildingLibrary;
+        extractorUI = ReferenceHolder.instance.extractorUI;
+
+        buildingType = BuildingManager.buildingType.Extractor;
 
         if (data != null)
         {
@@ -54,9 +53,11 @@ public class Extractor : BuildingBH
             {
                 canExtract = true;
             }
-
-
         }
+
+        buildingLibrary.RegisterBuildingUI(BuildingManager.buildingType.Extractor, ReferenceHolder.instance.extractorUI.panel);
+        buildingLibrary.RegisterBuildingOnShow(BuildingManager.buildingType.Extractor, () => extractorUI.ExtractorUIOnShow(this));
+        buildingLibrary.RegisterBuildingOnHide(BuildingManager.buildingType.Extractor, () => extractorUI.ExtractorUIOnHide());
 
     }
 

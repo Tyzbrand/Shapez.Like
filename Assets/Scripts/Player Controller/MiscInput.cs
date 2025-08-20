@@ -20,6 +20,8 @@ public class MiscInput : MonoBehaviour
     private UIManager uIManager;
     private CoalGeneratorUI coalGeneratorUI;
 
+    private BuildingLibrary buildingLib;
+
 
 
     private Camera cam;
@@ -45,6 +47,7 @@ public class MiscInput : MonoBehaviour
         cam = ReferenceHolder.instance.mainCamera;
         uIManager = ReferenceHolder.instance.uIManager;
         coalGeneratorUI = ReferenceHolder.instance.coalGeneratorUI;
+        buildingLib = ReferenceHolder.instance.buildingLibrary;
 
     }
 
@@ -75,53 +78,51 @@ public class MiscInput : MonoBehaviour
         {
             Vector2 mousePos2D = cam.ScreenToWorldPoint(Input.mousePosition);
             var buildingSelected = buildingManager.GetBuildingOnTile(mousePos2D);
-            var currentPanel = uIManager.GetOpenPanel();
 
-            if (buildingSelected is Hub) uIManager.TogglePanel(hubUI.panel, () => hubUI.HubUIOnShow(), () => hubUI.HubUIOnHide());
-            else if (buildingSelected is Extractor extractor)
+            if (buildingSelected != null)
             {
-                if (currentPanel == extractorUI.panel) extractorUI.refreshUI(extractor);
-                else uIManager.TogglePanel(extractorUI.panel, () => extractorUI.ExtractorUIOnShow(extractor), () => extractorUI.ExtractorUIOnHide());
+                var currentPanel = uIManager.GetOpenPanel();
+                var Type = buildingSelected.buildingType;
+                var uI = buildingLib.GetBuildingUI(Type);
+
+                if (uI != null)
+                {
+                    var OnHide = buildingLib.GetBuildingOnHide(Type);
+                    var OnSHow = buildingLib.GetBuildingOnShow(Type);
+
+
+                    if (currentPanel != uI) uIManager.TogglePanel(uI, OnSHow, OnHide);
+                }
+
             }
-            else if (buildingSelected is Foundry foundry)
-            {
-                if (currentPanel == foundryUI.panel) foundryUI.refreshUI(foundry);
-                else uIManager.TogglePanel(foundryUI.panel, () => foundryUI.FoundryUIOnShow(foundry), () => foundryUI.FoundryUIOnHide());
-            }
-            else if (buildingSelected is Builder builder)
-            {
-                if (currentPanel == builderUI.panel) builderUI.refreshUI(builder);
-                else uIManager.TogglePanel(builderUI.panel, () => builderUI.BuilderUIOnShow(builder), () => builderUI.BuilderUIOnHide());
-            }
-            else if (buildingSelected is CoalGenerator coalGenerator)
-            {
-                if (currentPanel == coalGeneratorUI.panel) coalGeneratorUI.refreshUI(coalGenerator);
-                else uIManager.TogglePanel(coalGeneratorUI.panel, () => coalGeneratorUI.CoalGeneratorUIOnShow(coalGenerator), () => coalGeneratorUI.CoalGeneratorUIOnHide());
-            }
-            
+            else if (player.isInUI) return;
+
         }
 
         if (Input.GetKeyDown(KeyCode.Escape) && player.isInUI && !player.isInPauseUI && !player.destructionMode) //fermer un UI ouvert
         {
             VisualElement currentPanel = uIManager.GetOpenPanel();
-            if (currentPanel != null)
-            {
-                if (currentPanel == hubUI.panel) uIManager.HidePanel(currentPanel, () => hubUI.HubUIOnHide());
-                else if (currentPanel == extractorUI.panel) uIManager.HidePanel(currentPanel, () => extractorUI.ExtractorUIOnHide());
-                else if (currentPanel == foundryUI.panel) uIManager.HidePanel(currentPanel, () => foundryUI.FoundryUIOnHide());
-                else if (currentPanel == buildMenuSC.panel) uIManager.HidePanel(currentPanel, () => buildMenuSC.BuildMenuOnHide());
-                else if (currentPanel == builderUI.panel) uIManager.HidePanel(currentPanel, () => builderUI.BuilderUIOnHide());
-                else if (currentPanel == coalGeneratorUI.panel) uIManager.HidePanel(currentPanel, () => coalGeneratorUI.CoalGeneratorUIOnHide());
-            }
-
+            if (currentPanel != null) hideAllPanel(currentPanel);
 
         }
-
-
-
-
-
     }
+
+
+    private void hideAllPanel(VisualElement currentPanel)
+    {
+        if (currentPanel == hubUI.panel) uIManager.HidePanel(currentPanel, () => hubUI.HubUIOnHide());
+        else if (currentPanel == extractorUI.panel) uIManager.HidePanel(currentPanel, () => extractorUI.ExtractorUIOnHide());
+        else if (currentPanel == foundryUI.panel) uIManager.HidePanel(currentPanel, () => foundryUI.FoundryUIOnHide());
+        else if (currentPanel == buildMenuSC.panel) uIManager.HidePanel(currentPanel, () => buildMenuSC.BuildMenuOnHide());
+        else if (currentPanel == builderUI.panel) uIManager.HidePanel(currentPanel, () => builderUI.BuilderUIOnHide());
+        else if (currentPanel == coalGeneratorUI.panel) uIManager.HidePanel(currentPanel, () => coalGeneratorUI.CoalGeneratorUIOnHide());
     
+    }
+
+
+
 
 }
+
+    
+

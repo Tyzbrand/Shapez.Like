@@ -4,6 +4,7 @@ using UnityEngine.Tilemaps;
 public class CoalGenerator : BuildingBH
 {
     private BuildingData data;
+    private CoalGeneratorUI coalGeneratorUI;
 
 
     private float ElectricityProductionPerSec;
@@ -24,13 +25,21 @@ public class CoalGenerator : BuildingBH
     public override void BuidlingStart()
     {
         data = ReferenceHolder.instance.buildingData;
+        coalGeneratorUI = ReferenceHolder.instance.coalGeneratorUI
+        ;
         ElectricityManager.RegisterProducter(this);
+
+        buildingType = BuildingManager.buildingType.CoalGenerator;
 
         if (data != null)
         {
             ElectricityProductionPerSec = data.CoalGeneratorkWhPerSec;
             capacity = data.CoalGeneratorCapacity;
         }
+
+        buildingLibrary.RegisterBuildingUI(BuildingManager.buildingType.CoalGenerator, ReferenceHolder.instance.coalGeneratorUI.panel);
+        buildingLibrary.RegisterBuildingOnShow(BuildingManager.buildingType.CoalGenerator, () => coalGeneratorUI.CoalGeneratorUIOnShow(this));
+        buildingLibrary.RegisterBuildingOnHide(BuildingManager.buildingType.CoalGenerator, () => coalGeneratorUI.CoalGeneratorUIOnHide());
 
         Debug.Log("Coal Generator Construit !");
     }

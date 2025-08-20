@@ -6,7 +6,10 @@ using UnityEngine.UIElements;
 public class UIManager : MonoBehaviour
 {
     private List<VisualElement> panels = new();
+    private Dictionary<VisualElement, MonoBehaviour> uIScript;
     public VisualElement activePanel;
+
+
 
     private void Awake()
     {
@@ -56,6 +59,8 @@ public class UIManager : MonoBehaviour
         }
         return null;
     }
+
+
 
 
 }

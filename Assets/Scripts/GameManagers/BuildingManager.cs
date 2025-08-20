@@ -14,12 +14,14 @@ public class BuildingManager : MonoBehaviour
     private BuildingManager buildingManager;
     private ElectricityManager electricityManager;
     private RessourceDictionnary ressourceDictionnary;
+    private BuildingLibrary buildingLibrary;
     public Tilemap tilemap;
 
 
     public enum buildingType
     {
         None,
+        Hub,
         Extractor,
         Conveyor,
         marketplace,
@@ -40,7 +42,7 @@ public class BuildingManager : MonoBehaviour
         {
             buildingReferencer.Add(tilePos, building);
             AddVisual(building, tilePos);
-            building.SetManagers(itemManager, buildingManager, electricityManager);
+            building.SetManagers(itemManager, buildingManager, electricityManager, buildingLibrary);
             building.SetDico(ressourceDictionnary);
 
             building.BuidlingStart();
@@ -95,8 +97,11 @@ public class BuildingManager : MonoBehaviour
         {
             for (int y = 0; y < 4; y++)
             {
+
                 Vector2 hubPos = new Vector2(basePos.x + x, basePos.y + y);
-                AddBuilding(ConvertInt(hubPos), new Hub(hubPos, 0, tilemap));
+                Hub hub = new Hub(hubPos, 0, tilemap);
+                AddBuilding(ConvertInt(hubPos), hub);
+
             }
         }
 
@@ -140,6 +145,7 @@ public class BuildingManager : MonoBehaviour
         buildingManager = ReferenceHolder.instance.buildingManager;
         ressourceDictionnary = ReferenceHolder.instance.ressourceDictionnary;
         electricityManager = ReferenceHolder.instance.electricityManager;
+        buildingLibrary = ReferenceHolder.instance.buildingLibrary;
 
 
     }

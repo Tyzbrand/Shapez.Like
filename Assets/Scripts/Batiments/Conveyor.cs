@@ -12,6 +12,7 @@ public class Conveyor : BuildingBH
     public override void BuidlingStart()
     {
         Debug.Log("Conveyor !");
+        buildingType = BuildingManager.buildingType.Conveyor;
     }
 
     public override void BuildingOnDestroy()

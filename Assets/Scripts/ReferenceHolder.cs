@@ -49,6 +49,7 @@ public class ReferenceHolder : MonoBehaviour
     public GameObject hubPrefab;
     public GameObject builderPrefab;
     public GameObject coalGeneratorPrefab;
+    public GameObject advancedExtractorPrefab;
 
 
     //Sprites de ressources
@@ -72,6 +73,7 @@ public class ReferenceHolder : MonoBehaviour
     public GameObject foundryPreview;
     public GameObject builderPrview;
     public GameObject coalGeneratorPreview;
+    public GameObject advancedExtractorPreview;
 
 
     //Datas

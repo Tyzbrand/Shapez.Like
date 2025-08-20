@@ -6,9 +6,9 @@ using UnityEngine.UIElements;
 public class BuildingLibrary : MonoBehaviour
 {
     private Dictionary<BuildingManager.buildingType, int> buildPrice;
-    private Dictionary<BuildingBH, VisualElement> buildingUILib;
-    private Dictionary<BuildingBH, Action> buildingOnShowLib;
-    private Dictionary<BuildingBH, Action> buildingOnHideLib;
+    private Dictionary<BuildingManager.buildingType, VisualElement> buildingUILib = new();
+    private Dictionary<BuildingManager.buildingType, Action> buildingOnShowLib = new();
+    private Dictionary<BuildingManager.buildingType, Action> buildingOnHideLib = new();
 
     private Placement placementSC;
 
@@ -24,7 +24,6 @@ public class BuildingLibrary : MonoBehaviour
         { BuildingManager.buildingType.builder, 750 }, { BuildingManager.buildingType.CoalGenerator, 1500 } };
 
 
-
     }
 
 
@@ -36,6 +35,56 @@ public class BuildingLibrary : MonoBehaviour
         }
         else
             return 0;
-        
+
+    }
+
+
+    //-----------------------------------------UI assignation-----------------------------------------
+
+    public void RegisterBuildingUI(BuildingManager.buildingType buildingType, VisualElement uI)
+    {
+        if (!buildingUILib.ContainsKey(buildingType)) buildingUILib.Add(buildingType, uI);
+    }
+
+    public VisualElement GetBuildingUI(BuildingManager.buildingType buildingType)
+    {
+        if (buildingUILib.TryGetValue(buildingType, out VisualElement uI))
+        {
+            return uI;
+        }
+        return null;
+    }
+
+
+    //-----------------------------------------On Show assignation-----------------------------------------
+
+    public void RegisterBuildingOnShow(BuildingManager.buildingType buildingType, Action onShow)
+    {
+        if (!buildingOnShowLib.ContainsKey(buildingType)) buildingOnShowLib.Add(buildingType, onShow);
+    }
+
+    public Action GetBuildingOnShow(BuildingManager.buildingType buildingType)
+    {
+        if (buildingOnShowLib.TryGetValue(buildingType, out Action onShow))
+        {
+            return onShow;
+        }
+        return null;
+    }
+
+    //-----------------------------------------On Hide assignation-----------------------------------------
+
+    public void RegisterBuildingOnHide(BuildingManager.buildingType buildingType, Action onHide)
+    {
+        if (!buildingOnHideLib.ContainsKey(buildingType)) buildingOnHideLib.Add(buildingType, onHide);
+    }
+
+    public Action GetBuildingOnHide(BuildingManager.buildingType buildingType)
+    {
+        if (buildingOnHideLib.TryGetValue(buildingType, out Action onHide))
+        {
+            return onHide;
+        }
+        return null;
     }
 }

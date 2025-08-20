@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using UnityEngine.Tilemaps;
+using UnityEngine.UIElements;
 
 //Définit le comportement/données de TOUT les batiments
 public abstract class BuildingBH
@@ -11,8 +12,12 @@ public abstract class BuildingBH
     public BuildingManager buildingManager;
     public ElectricityManager ElectricityManager;
     public RessourceDictionnary RessourceDictionnary;
+    public BuildingLibrary buildingLibrary;
     public Tilemap tilemap;
     public bool IsActive = true;
+    public VisualElement buildingUI = null;
+    public BuildingManager.buildingType buildingType;
+
 
     public float electricityProduction = 0f;
     public float electricityConsomation = 0f;
@@ -51,11 +56,13 @@ public abstract class BuildingBH
     }
 
 
-    public void SetManagers(ItemManager itemManager, BuildingManager buildingManager, ElectricityManager electricityManager)
+    public void SetManagers(ItemManager itemManager, BuildingManager buildingManager, ElectricityManager electricityManager, BuildingLibrary buildingLibrary)
     {
         this.ItemManager = itemManager;
         this.buildingManager = buildingManager;
         this.ElectricityManager = electricityManager;
+        this.buildingLibrary = buildingLibrary;
+
     }
 
     public void SetDico(RessourceDictionnary ressourceDictionnary)

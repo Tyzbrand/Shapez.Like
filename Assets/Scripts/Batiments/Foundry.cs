@@ -8,6 +8,7 @@ public class Foundry : BuildingBH
     private BuildingData data;
     public FoundryRecipe recipe;
     public Recipe11_1 currentRecipe;
+    private FoundryUI foundryUI;
 
     public int currentRecipeIndex = 0;
     public int capacity;
@@ -31,7 +32,10 @@ public class Foundry : BuildingBH
         Debug.Log("Foundry Construite");
 
         data = ReferenceHolder.instance.buildingData;
+        foundryUI = ReferenceHolder.instance.foundryUI;
         recipe = ReferenceHolder.instance.foundryRecipe;
+
+        buildingType = BuildingManager.buildingType.Foundry;
 
         if (data != null)
         {
@@ -41,7 +45,9 @@ public class Foundry : BuildingBH
             processInterval = currentRecipe.craftSpeed;
         }
 
-
+        buildingLibrary.RegisterBuildingUI(BuildingManager.buildingType.Foundry, ReferenceHolder.instance.foundryUI.panel);
+        buildingLibrary.RegisterBuildingOnShow(BuildingManager.buildingType.Foundry, () => foundryUI.FoundryUIOnShow(this));
+        buildingLibrary.RegisterBuildingOnHide(BuildingManager.buildingType.Foundry, () => foundryUI.FoundryUIOnHide());
 
 
     }
