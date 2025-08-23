@@ -23,6 +23,7 @@ public class BuildingManager : MonoBehaviour
         None,
         Hub,
         Extractor,
+        AdvancedExtractor,
         Conveyor,
         marketplace,
         Foundry,
@@ -154,8 +155,7 @@ public class BuildingManager : MonoBehaviour
     {
         foreach (var building in buildingReferencer.Values)
         {
-            if (building.IsActive) building.BuildingUpdate();
-
+            if (building.IsActive) building.BuildingUpdate(); 
         }
     }
 

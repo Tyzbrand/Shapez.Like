@@ -14,6 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   extractorRessourcesPerSecond: 0.3
   extractorCapacity: 10
+  advancedExtractorRessourcesPerSecond: 1.2
+  advancedExtractorCapacity: 30
+  advancedExtractorConsomationPerSec: 0.2
   foundryCapacity: 5
   builderCapacity: 5
   CoalGeneratorCapacity: 10

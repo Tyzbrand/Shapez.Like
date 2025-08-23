@@ -103,6 +103,22 @@
             </ui:VisualElement>
             <ui:Toggle name="CGToggle" value="true" style="position: absolute; top: 2px; left: 386px; width: 23px; background-color: rgba(255, 255, 255, 0); height: 28px;" />
         </ui:VisualElement>
+        <ui:VisualElement name="AExtractorUI" class="BackgroundStyle" style="flex-grow: 1; position: absolute; height: 449px; width: 427px; top: 229px; left: 1084px; justify-content: flex-start; align-self: center; align-content: center; align-items: flex-start; display: none;">
+            <ui:Label text="Advanced Extractor" style="height: 35px; width: 162px; position: relative; top: 24px; left: 138px; align-items: center; margin-top: 3px; margin-right: 3px; margin-bottom: 3px; margin-left: 3px; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0;" />
+            <ui:VisualElement name="TextContainer" style="flex-grow: 1; width: 417px; position: absolute; height: 124px; top: 87px; left: 2px; flex-direction: column; font-size: 17px; -unity-text-align: middle-left;">
+                <ui:Label text="Extraction speed&#10;" style="width: 189px; position: absolute;" />
+                <ui:Label text="Storage" style="position: absolute; translate: 0 43px;" />
+                <ui:Label text="Consumation" style="position: absolute; translate: 0 86px;" />
+                <ui:Label text="Need electricity !" name="AEXElecWarningTxt" style="position: absolute; top: 153px; left: 92px; width: 233px; -unity-text-align: middle-center; -unity-font-style: bold; color: rgb(154, 37, 37); display: none;" />
+                <ui:Label text="0.3/s" name="AEXResourcePerSecTxt" style="width: 189px; position: absolute; translate: 220px 0; -unity-text-align: middle-right;" />
+                <ui:Label text="0/10" name="AEXStorageTxt" style="width: 189px; position: absolute; translate: 220px 43px; -unity-text-align: middle-right;" />
+                <ui:Label text="0.2 kWh/s" name="AEXConsumationTxt" style="width: 189px; position: absolute; translate: 220px 86px; -unity-text-align: middle-right;" />
+            </ui:VisualElement>
+            <ui:VisualElement name="Process" style="flex-grow: 1; position: absolute; height: 35px; width: 403px; top: 640px; left: 9px; translate: 0 -266px;">
+                <ui:ProgressBar value="0" name="AEXProgressBar" high-value="1" />
+            </ui:VisualElement>
+            <ui:Toggle name="AEXToggle" value="true" style="position: absolute; top: 2px; left: 386px; width: 23px; background-color: rgba(255, 255, 255, 0); height: 28px;" />
+        </ui:VisualElement>
     </ui:VisualElement>
     <ui:VisualElement name="BuildMenu" picking-mode="Ignore" style="flex-grow: 1; flex-direction: column-reverse; align-self: center; width: 1058px; height: 0; display: none;">
         <ui:TabView name="BuildMenuTabView" style="width: 1058px;">
@@ -112,6 +128,11 @@
                         <ui:Label text="Extractor" name="ExtractorNameTxt" />
                         <ui:Label text="Label" name="ExtractorPriceTxt" style="height: 15px; width: 111px; font-size: 18px; position: absolute; top: 43px; left: 67px;" />
                         <ui:Button text="Build" name="ExtractorBuildBtn" style="position: absolute; top: 166px; left: 13px; width: 224px; height: 30px; border-left-color: rgb(0, 0, 0); border-right-color: rgb(0, 0, 0); border-top-color: rgb(0, 0, 0); border-bottom-color: rgb(0, 0, 0); border-top-width: 3px; border-right-width: 3px; border-bottom-width: 3px; border-left-width: 3px; background-color: rgb(30, 30, 28); font-size: 21px;" />
+                    </ui:VisualElement>
+                    <ui:VisualElement name="AExtractorBox" style="height: 215px; width: 310px; background-color: rgb(44, 44, 41); border-top-width: 2px; border-right-width: 2px; border-bottom-width: 2px; border-left-width: 2px; border-left-color: rgba(0, 0, 0, 0.98); border-right-color: rgba(0, 0, 0, 0.98); border-top-color: rgba(0, 0, 0, 0.98); border-bottom-color: rgba(0, 0, 0, 0.98); background-size: 100% 109%; display: flex;">
+                        <ui:Label text="Advanced extractor" name="AExtractorNameTxt" />
+                        <ui:Button text="Build" name="AExtractorBuildBtn" style="position: absolute; top: 167px; left: 40px; width: 224px; height: 30px; border-left-color: rgb(0, 0, 0); border-right-color: rgb(0, 0, 0); border-top-color: rgb(0, 0, 0); border-bottom-color: rgb(0, 0, 0); border-top-width: 3px; border-right-width: 3px; border-bottom-width: 3px; border-left-width: 3px; background-color: rgb(30, 30, 28); font-size: 21px;" />
+                        <ui:Label text="Label" name="AExtractorPriceTxt" style="height: 15px; width: 111px; font-size: 18px; position: absolute; top: 47px; left: 93px;" />
                     </ui:VisualElement>
                 </ui:VisualElement>
             </ui:Tab>
@@ -146,7 +167,7 @@
             <ui:Tab label="Electricity" name="ElectricityTab">
                 <ui:VisualElement class="BackgroundStyle" style="flex-grow: 1; flex-direction: row; width: 1058px; height: 230px; justify-content: flex-start;">
                     <ui:VisualElement name="CoalGeneratorBox" style="height: 217px; width: 261px; background-color: rgb(44, 44, 41); border-top-width: 2px; border-right-width: 2px; border-bottom-width: 2px; border-left-width: 2px; border-left-color: rgb(0, 0, 0); border-right-color: rgb(0, 0, 0); border-top-color: rgb(0, 0, 0); border-bottom-color: rgb(0, 0, 0);">
-                        <ui:Label text="Coal Generator" name="CoalGeneratorNameTxt" />
+                        <ui:Label text="Coal generator" name="CoalGeneratorNameTxt" />
                         <ui:Label text="Label" name="CoalGeneratorPriceTxt" style="height: 15px; width: 111px; font-size: 18px; position: absolute; top: 43px; left: 67px;" />
                         <ui:Button text="Build" name="CoalGeneratorBuildBtn" style="position: absolute; top: 176px; left: 13px; width: 224px; height: 30px; border-left-color: rgb(0, 0, 0); border-right-color: rgb(0, 0, 0); border-top-color: rgb(0, 0, 0); border-bottom-color: rgb(0, 0, 0); border-top-width: 3px; border-right-width: 3px; border-bottom-width: 3px; border-left-width: 3px; background-color: rgb(30, 30, 28); font-size: 21px;" />
                     </ui:VisualElement>

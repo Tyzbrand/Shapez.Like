@@ -99,6 +99,7 @@ public class ReferenceHolder : MonoBehaviour
     public BuildMenuSC buildMenu;
     public HubUI hubUI;
     public ExtractorUI extractorUI;
+    public AdvancedExtractorUI advancedExtractorUI;
     public FoundryUI foundryUI;
     public OverlaySC inGameOverlay;
     public DestructionOverlaySC overlayManager;

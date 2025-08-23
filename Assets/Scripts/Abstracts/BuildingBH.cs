@@ -15,6 +15,7 @@ public abstract class BuildingBH
     public BuildingLibrary buildingLibrary;
     public Tilemap tilemap;
     public bool IsActive = true;
+    public bool enoughtElectricity = false;
     public VisualElement buildingUI = null;
     public BuildingManager.buildingType buildingType;
 
@@ -47,12 +48,12 @@ public abstract class BuildingBH
 
     public virtual void BuildingOnEnable()
     {
-        
+
     }
 
     public virtual void BuildingOnDisable()
     {
-        
+
     }
 
 
@@ -85,6 +86,7 @@ public abstract class BuildingBH
         }
         return Vector2.right;
     }
+    
 
     
 

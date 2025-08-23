@@ -7,7 +7,7 @@ public class CoalGenerator : BuildingBH
     private CoalGeneratorUI coalGeneratorUI;
 
 
-    private float ElectricityProductionPerSec;
+    private float maxElectricityProduction;
     public int capacity;
 
 
@@ -33,7 +33,7 @@ public class CoalGenerator : BuildingBH
 
         if (data != null)
         {
-            ElectricityProductionPerSec = data.CoalGeneratorkWhPerSec;
+            maxElectricityProduction = data.CoalGeneratorkWhPerSec;
             capacity = data.CoalGeneratorCapacity;
         }
 
@@ -55,7 +55,7 @@ public class CoalGenerator : BuildingBH
         if (burnTimer > 0f)
         {
             burnTimer -= Time.deltaTime;
-            electricityProduction = ElectricityProductionPerSec;
+            electricityProduction = maxElectricityProduction;
 
         }
         if (burnTimer <= 0f)

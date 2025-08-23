@@ -17,6 +17,7 @@ public class MiscInput : MonoBehaviour
     private ExtractorUI extractorUI;
     private BuilderUI builderUI;
     private FoundryUI foundryUI;
+    private AdvancedExtractorUI advancedExtractorUI;
     private UIManager uIManager;
     private CoalGeneratorUI coalGeneratorUI;
 
@@ -42,6 +43,7 @@ public class MiscInput : MonoBehaviour
         hubUI = ReferenceHolder.instance.hubUI;
         extractorUI = ReferenceHolder.instance.extractorUI;
         builderUI = ReferenceHolder.instance.builderUI;
+        advancedExtractorUI = ReferenceHolder.instance.advancedExtractorUI;
         foundryUI = ReferenceHolder.instance.foundryUI;
         buildingManager = ReferenceHolder.instance.buildingManager;
         cam = ReferenceHolder.instance.mainCamera;
@@ -116,6 +118,7 @@ public class MiscInput : MonoBehaviour
         else if (currentPanel == buildMenuSC.panel) uIManager.HidePanel(currentPanel, () => buildMenuSC.BuildMenuOnHide());
         else if (currentPanel == builderUI.panel) uIManager.HidePanel(currentPanel, () => builderUI.BuilderUIOnHide());
         else if (currentPanel == coalGeneratorUI.panel) uIManager.HidePanel(currentPanel, () => coalGeneratorUI.CoalGeneratorUIOnHide());
+        else if (currentPanel == advancedExtractorUI.panel) uIManager.HidePanel(currentPanel, () => advancedExtractorUI.AExtractorUIOnHide());
     
     }
 

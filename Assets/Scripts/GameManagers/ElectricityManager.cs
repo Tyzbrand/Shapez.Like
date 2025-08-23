@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -24,39 +25,63 @@ public class ElectricityManager : MonoBehaviour
         timer += Time.deltaTime;
 
         if (timer >= timerInterval)
-        {
+        {   
             BalanceCalculation();
-            if(player.electricityStorage < player.electricityMaxStorage) player.electricityStorage += player.electricityBalance;
-            if (player.electricityStorage > player.electricityMaxStorage) player.electricityStorage = player.electricityMaxStorage;
-            if (player.electricityStorage < 0) player.electricityStorage = 0f;
-            overlaySC.UpdateElectricityStorageText();  
-            
+            player.electricityStorage = Mathf.Clamp(player.electricityStorage, 0f, player.electricityMaxStorage);
+            overlaySC.UpdateElectricityStorageText();
 
             timer -= timerInterval;
         }
-
-        
     }
 
 
-    private void BalanceCalculation()
+    private void BalanceCalculation()//A revoir très vite
     {
-        float production = 0f;
-        float consomation = 0f;
-        foreach (var producer in productionBuilding)
-        {
-            production += producer.electricityProduction;
-        }
+        float totalDemand = 0f;
+        float totalProduction = 0f;
+        float actualConsumption = 0f;
+
         foreach (var consomer in consomationBuilding)
         {
-            consomation += consomer.electricityConsomation;
+            totalDemand += consomer.electricityConsomation;
         }
 
-        player.electricityBalance = production - consomation;
-        if (player.electricityBalance != lastBalance) overlaySC.UpdateElectricityBalanceText();
+        foreach (var producter in productionBuilding)
+        {
+            totalProduction += producter.electricityProduction;
+        }
+
+        player.electricityStorage += totalProduction;
+        float availableElectricity = player.electricityStorage;
+
+        foreach (var consumer in consomationBuilding)
+        {
+            float consumerAmount = consumer.electricityConsomation;
+
+            if (availableElectricity >= consumerAmount)
+            {
+                consumer.enoughtElectricity = true;
+                availableElectricity -= consumerAmount;
+                actualConsumption += consumerAmount;
+            }
+            else
+            {   
+                consumer.electricityConsomation = 0f;
+                consumer.enoughtElectricity = false;
+                
+            } 
+        }
+
+        player.electricityStorage = availableElectricity;
+        player.electricityBalance = totalProduction - totalDemand;
+        player.realElectricityBalance = totalDemand - actualConsumption;
+
+        if (Mathf.Abs(player.electricityBalance - lastBalance) > 0.01f)
+        {
+            overlaySC.UpdateElectricityBalanceText();
+        }
         lastBalance = player.electricityBalance;
         
-
     }
 
     public void RegisterProducter(BuildingBH producer)
@@ -71,15 +96,12 @@ public class ElectricityManager : MonoBehaviour
 
     public void RemoveProducter(BuildingBH producer)
     {
-        if (productionBuilding.Contains(producer)) productionBuilding.Remove(producer);
+        productionBuilding.Remove(producer);
     }
 
     public void RemoveConsomer(BuildingBH consomer)
     {
-        if (consomationBuilding.Contains(consomer)) consomationBuilding.Remove(consomer);
+        consomationBuilding.Remove(consomer);
     }
-
-
-
 
 }
