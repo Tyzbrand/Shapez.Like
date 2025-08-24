@@ -119,11 +119,12 @@ public class AdvancedExtractor : BuildingBH
     public override void BuildingOnDisable()
     {
         electricityConsomation = 0f;
-        Debug.Log("Désactivé donc consomation: " + electricityConsomation);
+        storageBuffer = 0f;
+
     }
     public override void BuildingOnEnable()
     {
-        Debug.Log("Désactivé donc consomation: " + electricityConsomation);
+
     }
 
 }
