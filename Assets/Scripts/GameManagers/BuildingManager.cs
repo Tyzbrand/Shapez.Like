@@ -14,6 +14,7 @@ public class BuildingManager : MonoBehaviour
     private BuildingManager buildingManager;
     private ElectricityManager electricityManager;
     private RessourceDictionnary ressourceDictionnary;
+    private Statistics playerStats;
     private BuildingLibrary buildingLibrary;
     public Tilemap tilemap;
 
@@ -43,7 +44,7 @@ public class BuildingManager : MonoBehaviour
         {
             buildingReferencer.Add(tilePos, building);
             AddVisual(building, tilePos);
-            building.SetManagers(itemManager, buildingManager, electricityManager, buildingLibrary);
+            building.SetManagers(itemManager, buildingManager, electricityManager, buildingLibrary, playerStats);
             building.SetDico(ressourceDictionnary);
 
             building.BuidlingStart();
@@ -147,6 +148,7 @@ public class BuildingManager : MonoBehaviour
         ressourceDictionnary = ReferenceHolder.instance.ressourceDictionnary;
         electricityManager = ReferenceHolder.instance.electricityManager;
         buildingLibrary = ReferenceHolder.instance.buildingLibrary;
+        playerStats = ReferenceHolder.instance.playerStats;
 
 
     }

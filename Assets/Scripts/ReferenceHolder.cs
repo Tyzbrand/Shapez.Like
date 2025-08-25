@@ -21,6 +21,7 @@ public class ReferenceHolder : MonoBehaviour
     public Placement placementSC;
     public Destruction destructionSC;
     public Inventory inventorySC;
+    public Statistics playerStats;
 
 
     //Game Managers

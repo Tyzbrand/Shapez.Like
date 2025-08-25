@@ -6,7 +6,7 @@ public class ElectricityManager : MonoBehaviour
 {
     private PlayerVariables player;
     private OverlaySC overlaySC;
-
+    private Statistics playerStats;
     private float timer = 0f;
     private float timerInterval = 1f;
     private float lastBalance = 0f;
@@ -17,6 +17,7 @@ public class ElectricityManager : MonoBehaviour
     {
         player = ReferenceHolder.instance.playervariable;
         overlaySC = ReferenceHolder.instance.inGameOverlay;
+        playerStats = ReferenceHolder.instance.playerStats;
 
     }
 
@@ -35,7 +36,7 @@ public class ElectricityManager : MonoBehaviour
     }
 
 
-    private void BalanceCalculation()//A revoir très vite
+    private void BalanceCalculation()
     {
         float totalDemand = 0f;
         float totalProduction = 0f;
@@ -75,6 +76,9 @@ public class ElectricityManager : MonoBehaviour
         player.electricityStorage = availableElectricity;
         player.electricityBalance = totalProduction - totalDemand;
         player.realElectricityBalance = totalDemand - actualConsumption;
+
+        playerStats.IncrementFloatStat(Statistics.statType.ProducedElec, totalProduction);
+        playerStats.IncrementFloatStat(Statistics.statType.UsedElec, actualConsumption);
 
         if (Mathf.Abs(player.electricityBalance - lastBalance) > 0.01f)
         {

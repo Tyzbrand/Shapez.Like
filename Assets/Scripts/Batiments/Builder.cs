@@ -69,6 +69,8 @@ public class Builder : BuildingBH
                 currentStorageInput--;
                 currentStorageOutput++;
 
+                playerStats.IncrementFloatStat(Statistics.statType.ProcessedResourceAllTime, 1f);
+
                 isProcessing = false;
 
                 processTimer = 0;

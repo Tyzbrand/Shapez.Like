@@ -72,6 +72,8 @@ public class Foundry : BuildingBH
 
                 currentStorageOutput += 1;
 
+                playerStats.IncrementFloatStat(Statistics.statType.ProcessedResourceAllTime, 1f);
+
                 isProcessing = false;
 
                 processTimer = 0f;

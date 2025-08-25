@@ -82,6 +82,8 @@ public class AdvancedExtractor : BuildingBH
 
                 storageBuffer -= Amount;
                 currentStorage += Amount;
+
+                playerStats.IncrementFloatStat(Statistics.statType.RawResourcesAllTime, 1f);
             }
 
         }
@@ -100,7 +102,6 @@ public class AdvancedExtractor : BuildingBH
                 ejectTimer = 0;
             }
         }
-        Debug.Log(currentStorage + " et " + electricityConsomation);
 
 
 
@@ -120,10 +121,6 @@ public class AdvancedExtractor : BuildingBH
     {
         electricityConsomation = 0f;
         storageBuffer = 0f;
-
-    }
-    public override void BuildingOnEnable()
-    {
 
     }
 

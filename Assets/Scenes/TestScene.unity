@@ -284,6 +284,7 @@ GameObject:
   - component: {fileID: 526294628}
   - component: {fileID: 526294629}
   - component: {fileID: 526294634}
+  - component: {fileID: 526294635}
   - component: {fileID: 526294630}
   m_Layer: 0
   m_Name: Player
@@ -495,7 +496,7 @@ MonoBehaviour:
   day: 1
   seconds: 0
   minutes: 0
-  electricityStorage: 0
+  electricityStorage: 150
   production: 0
   consomation: 0
   electricityBalance: 0
@@ -579,6 +580,7 @@ MonoBehaviour:
   placementSC: {fileID: 526294626}
   destructionSC: {fileID: 526294631}
   inventorySC: {fileID: 526294628}
+  playerStats: {fileID: 526294635}
   buildingManager: {fileID: 1461742641}
   itemManager: {fileID: 1461742640}
   timeManager: {fileID: 1461742639}
@@ -652,6 +654,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92f9edb1c91229941a81eb9cb59a1411, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &526294635
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 526294619}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0bc0b6baf671d2a4ab4de64b2893e5fe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  trackedStat1: 0
 --- !u!1 &619394800
 GameObject:
   m_ObjectHideFlags: 0

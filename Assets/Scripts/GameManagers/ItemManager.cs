@@ -15,6 +15,7 @@ public class ItemManager : MonoBehaviour
     private PlayerVariables player;
     private Inventory inventory;
     private OverlaySC overlay;
+    private Statistics playerStats;
 
     private RessourceDictionnary ressourceDictionnary;
     private RessourceData data;
@@ -174,6 +175,7 @@ public class ItemManager : MonoBehaviour
         data = ReferenceHolder.instance.ressourceData;
         inventory = ReferenceHolder.instance.inventorySC;
         overlay = ReferenceHolder.instance.inGameOverlay;
+        playerStats = ReferenceHolder.instance.playerStats;
 
 
     }
@@ -280,9 +282,14 @@ public class ItemManager : MonoBehaviour
 
     private void MarketPlaceAction(ItemBH item)
     {
-        player.Money += data.GetPrice(item.itemType);
+        int price = data.GetPrice(item.itemType);
+
+        player.Money += price;
         itemToRemove.Add(item);
         overlay.UpdateMoneyText();
+
+        playerStats.IncrementFloatStat(Statistics.statType.MoneyAllTime, price);
+        playerStats.IncrementFloatStat(Statistics.statType.SoldResources, 1f);
         
     }
 
@@ -291,6 +298,9 @@ public class ItemManager : MonoBehaviour
         if (inventory.GetTotalItemCount() < inventory.inventoryCapacity)
         {
             inventory.Add(item.itemType, 1);
+
+            playerStats.IncrementFloatStat(Statistics.statType.StoredResources, 1f);
+
             itemToRemove.Add(item);
             overlay.UpdateObjectiveText();
             overlay.UpdateStorageText();

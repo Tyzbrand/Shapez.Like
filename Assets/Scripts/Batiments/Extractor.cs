@@ -81,6 +81,8 @@ public class Extractor : BuildingBH
 
                 storageBuffer -= Amount;
                 currentStorage += Amount;
+
+                playerStats.IncrementFloatStat(Statistics.statType.RawResourcesAllTime, 1f);
             }
 
 

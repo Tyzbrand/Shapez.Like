@@ -13,6 +13,7 @@ public abstract class BuildingBH
     public ElectricityManager ElectricityManager;
     public RessourceDictionnary RessourceDictionnary;
     public BuildingLibrary buildingLibrary;
+    public Statistics playerStats;
     public Tilemap tilemap;
     public bool IsActive = true;
     public bool enoughtElectricity = false;
@@ -57,12 +58,13 @@ public abstract class BuildingBH
     }
 
 
-    public void SetManagers(ItemManager itemManager, BuildingManager buildingManager, ElectricityManager electricityManager, BuildingLibrary buildingLibrary)
+    public void SetManagers(ItemManager itemManager, BuildingManager buildingManager, ElectricityManager electricityManager, BuildingLibrary buildingLibrary, Statistics playerStats)
     {
         this.ItemManager = itemManager;
         this.buildingManager = buildingManager;
         this.ElectricityManager = electricityManager;
         this.buildingLibrary = buildingLibrary;
+        this.playerStats = playerStats;
 
     }
 
