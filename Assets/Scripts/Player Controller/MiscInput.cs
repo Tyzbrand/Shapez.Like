@@ -81,20 +81,29 @@ public class MiscInput : MonoBehaviour
             Vector2 mousePos2D = cam.ScreenToWorldPoint(Input.mousePosition);
             var buildingSelected = buildingManager.GetBuildingOnTile(mousePos2D);
 
+            var currentPanel = uIManager.GetOpenPanel();
+
+            if (buildingSelected is Hub) uIManager.TogglePanel(hubUI.panel, () => hubUI.HubUIOnShow(), () => hubUI.HubUIOnHide());
+            else if (buildingSelected is Extractor extractor)
+            {
+                if (currentPanel == extractorUI.panel) extractorUI.refreshUI(extractor);
+                else uIManager.TogglePanel(extractorUI.panel, () => extractorUI.ExtractorUIOnShow(extractor), () => extractorUI.ExtractorUIOnHide());
+            }
+            else if (buildingSelected is Foundry foundry)
+            {
+                if (currentPanel == foundryUI.panel) foundryUI.refreshUI(foundry);
+                else uIManager.TogglePanel(foundryUI.panel, () => foundryUI.FoundryUIOnShow(foundry), () => foundryUI.FoundryUIOnHide());
+            }
+            else if (buildingSelected is Builder builder)
+            {
+                if (currentPanel == builderUI.panel) builderUI.refreshUI(builder);
+                else uIManager.TogglePanel(builderUI.panel, () => builderUI.BuilderUIOnShow(builder), () => builderUI.BuilderUIOnHide());
+            }
+            else if (buildingSelected is CoalGenerator coalGenerator)
             if (buildingSelected != null)
             {
-                var currentPanel = uIManager.GetOpenPanel();
-                var Type = buildingSelected.buildingType;
-                var uI = buildingLib.GetBuildingUI(Type);
-
-                if (uI != null)
-                {
-                    var OnHide = buildingLib.GetBuildingOnHide(Type);
-                    var OnSHow = buildingLib.GetBuildingOnShow(Type);
-
-
-                    if (currentPanel != uI) uIManager.TogglePanel(uI, OnSHow, OnHide);
-                }
+                if (currentPanel == coalGeneratorUI.panel) coalGeneratorUI.refreshUI(coalGenerator);
+                else uIManager.TogglePanel(coalGeneratorUI.panel, () => coalGeneratorUI.CoalGeneratorUIOnShow(coalGenerator), () => coalGeneratorUI.CoalGeneratorUIOnHide());
 
             }
             else if (player.isInUI) return;

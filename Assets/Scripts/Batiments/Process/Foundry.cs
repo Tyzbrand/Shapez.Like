@@ -45,9 +45,7 @@ public class Foundry : BuildingBH
             processInterval = currentRecipe.craftSpeed;
         }
 
-        buildingLibrary.RegisterBuildingUI(BuildingManager.buildingType.Foundry, ReferenceHolder.instance.foundryUI.panel);
-        buildingLibrary.RegisterBuildingOnShow(BuildingManager.buildingType.Foundry, () => foundryUI.FoundryUIOnShow(this));
-        buildingLibrary.RegisterBuildingOnHide(BuildingManager.buildingType.Foundry, () => foundryUI.FoundryUIOnHide());
+    
 
 
     }

@@ -37,10 +37,7 @@ public class CoalGenerator : BuildingBH
             capacity = data.CoalGeneratorCapacity;
         }
 
-        buildingLibrary.RegisterBuildingUI(BuildingManager.buildingType.CoalGenerator, ReferenceHolder.instance.coalGeneratorUI.panel);
-        buildingLibrary.RegisterBuildingOnShow(BuildingManager.buildingType.CoalGenerator, () => coalGeneratorUI.CoalGeneratorUIOnShow(this));
-        buildingLibrary.RegisterBuildingOnHide(BuildingManager.buildingType.CoalGenerator, () => coalGeneratorUI.CoalGeneratorUIOnHide());
-
+    
         Debug.Log("Coal Generator Construit !");
     }
 

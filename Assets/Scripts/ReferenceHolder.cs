@@ -52,6 +52,7 @@ public class ReferenceHolder : MonoBehaviour
     public GameObject coalGeneratorPrefab;
     public GameObject advancedExtractorPrefab;
     public GameObject junctionPrefab;
+    public GameObject splitterPrefab;
 
 
     //Sprites de ressources
@@ -77,6 +78,7 @@ public class ReferenceHolder : MonoBehaviour
     public GameObject coalGeneratorPreview;
     public GameObject advancedExtractorPreview;
     public GameObject junctionPreview;
+    public GameObject splitterPreview;
 
 
     //Datas

@@ -599,6 +599,7 @@ MonoBehaviour:
   coalGeneratorPrefab: {fileID: 1388157091394924419, guid: 9b23ef3dbaf0a1b4fa0eedcb6892fe12, type: 3}
   advancedExtractorPrefab: {fileID: 1844209767019608870, guid: b3e6a0e0e9e65b049a3a7e0590f29350, type: 3}
   junctionPrefab: {fileID: 4984034957206886652, guid: 14ea03d180e6ff043b423d5f0e3c78c8, type: 3}
+  splitterPrefab: {fileID: 3646279211497845444, guid: de85cabba61250346a6858aee2b3584c, type: 3}
   ironSprite: {fileID: 21300000, guid: fc10e75cb67da9240baf65dfdd06577a, type: 3}
   copperSprite: {fileID: 21300000, guid: 57dadc313221bf34e9e37e8c73b70bf2, type: 3}
   coalSprite: {fileID: 21300000, guid: 1983118415dc1d64da9235cec5906b02, type: 3}
@@ -616,6 +617,7 @@ MonoBehaviour:
   coalGeneratorPreview: {fileID: 1503961946427603055, guid: 9f1f3a49f26b9cd458de96417cf783f7, type: 3}
   advancedExtractorPreview: {fileID: 5028039229565729926, guid: bd479b464af449d449b16f28303f1fdd, type: 3}
   junctionPreview: {fileID: 7355111769849983332, guid: 9ee8f94727a7099449a65db2f558bbee, type: 3}
+  splitterPreview: {fileID: 7947787992822577350, guid: d7b071862f321234ab34ebe34e67e81a, type: 3}
   buildingData: {fileID: 11400000, guid: 5307edad733f7124ca993a72ff2076ef, type: 2}
   ressourceData: {fileID: 11400000, guid: 77cbd5c25f8dc794d96af61b9a0a0c0c, type: 2}
   foundryRecipe: {fileID: 11400000, guid: b06bb0981b70e2d49aca7c18ab065ebf, type: 2}

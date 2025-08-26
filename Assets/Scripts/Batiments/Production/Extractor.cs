@@ -55,9 +55,8 @@ public class Extractor : BuildingBH
             }
         }
 
-        buildingLibrary.RegisterBuildingUI(BuildingManager.buildingType.Extractor, ReferenceHolder.instance.extractorUI.panel);
-        buildingLibrary.RegisterBuildingOnShow(BuildingManager.buildingType.Extractor, () => extractorUI.ExtractorUIOnShow(this));
-        buildingLibrary.RegisterBuildingOnHide(BuildingManager.buildingType.Extractor, () => extractorUI.ExtractorUIOnHide());
+       
+        
 
     }
 

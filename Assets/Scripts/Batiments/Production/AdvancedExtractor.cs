@@ -45,9 +45,7 @@ public class AdvancedExtractor : BuildingBH
 
         if (underTile != null) canExtract = true;
 
-        buildingLibrary.RegisterBuildingUI(BuildingManager.buildingType.AdvancedExtractor, ReferenceHolder.instance.advancedExtractorUI.panel);
-        buildingLibrary.RegisterBuildingOnShow(BuildingManager.buildingType.AdvancedExtractor, () => extractorUI.AExtractorUIOnShow(this));
-        buildingLibrary.RegisterBuildingOnHide(BuildingManager.buildingType.AdvancedExtractor, () => extractorUI.AExtractorUIOnHide());
+    
 
         Debug.Log("AdvancedExtractor Construit !");
     }

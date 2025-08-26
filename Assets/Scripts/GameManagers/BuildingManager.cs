@@ -25,6 +25,7 @@ public class BuildingManager : MonoBehaviour
         Hub,
         Extractor,
         Junction,
+        Splitter,
         AdvancedExtractor,
         Conveyor,
         marketplace,

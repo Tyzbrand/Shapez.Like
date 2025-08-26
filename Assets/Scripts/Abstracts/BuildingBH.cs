@@ -57,6 +57,12 @@ public abstract class BuildingBH
 
     }
 
+    public virtual void BuildingAction(ItemBH item)
+    {
+        
+    }
+
+
 
     public void SetManagers(ItemManager itemManager, BuildingManager buildingManager, ElectricityManager electricityManager, BuildingLibrary buildingLibrary, Statistics playerStats)
     {

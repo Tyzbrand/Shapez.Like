@@ -41,9 +41,7 @@ public class Builder : BuildingBH
             processInterval = currentRecipe.craftSpeed;
         }
        
-        buildingLibrary.RegisterBuildingUI(BuildingManager.buildingType.builder, ReferenceHolder.instance.builderUI.panel);
-        buildingLibrary.RegisterBuildingOnShow(BuildingManager.buildingType.builder, () => builderUI.BuilderUIOnShow(this));
-        buildingLibrary.RegisterBuildingOnHide(BuildingManager.buildingType.builder, () => builderUI.BuilderUIOnHide());
+    
     }
 
     public override void BuildingOnDestroy()

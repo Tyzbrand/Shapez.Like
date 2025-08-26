@@ -208,6 +208,7 @@ public class ItemManager : MonoBehaviour
                 else if (nextBuilding is Builder && IsItNextBuildingExit(item, nextBuilding, nextPos)) BuilderAction(item, nextBuilding);
                 else if (nextBuilding is CoalGenerator) CoalGeneratorAction(item, nextBuilding);
                 else if (nextBuilding is Junction) JunctionAction(item, currentBuilding);
+                else if (nextBuilding is Splitter) nextBuilding.BuildingAction(item);
 
 
                 if (nextBuilding is Conveyor && IsSpaceFree(nextPos, item))
@@ -267,7 +268,7 @@ public class ItemManager : MonoBehaviour
 
     //---------------Méthodes Utilitaires---------------
 
-    private Vector2 CenterOnPerpendicularAxis(Vector2 currentPos, Vector2 direction)
+    public Vector2 CenterOnPerpendicularAxis(Vector2 currentPos, Vector2 direction)
     {
         Vector2 centeredPos = currentPos;
         if (Mathf.Abs(direction.x) > Mathf.Abs(direction.y))
