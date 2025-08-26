@@ -207,6 +207,7 @@ public class ItemManager : MonoBehaviour
 
                 else if (nextBuilding is Builder && IsItNextBuildingExit(item, nextBuilding, nextPos)) BuilderAction(item, nextBuilding);
                 else if (nextBuilding is CoalGenerator) CoalGeneratorAction(item, nextBuilding);
+                else if (nextBuilding is Junction) JunctionAction(item, currentBuilding);
 
 
                 if (nextBuilding is Conveyor && IsSpaceFree(nextPos, item))
@@ -327,7 +328,6 @@ public class ItemManager : MonoBehaviour
         }
 
     }
-
     private void BuilderAction(ItemBH item, BuildingBH building)
     {
         if (building is Builder builder)
@@ -349,6 +349,24 @@ public class ItemManager : MonoBehaviour
                 itemToRemove.Add(item);
             }
         }
+    }
+
+    private void JunctionAction(ItemBH item, BuildingBH currentConveyor)
+    {   
+        
+        Vector2 currentDir = currentConveyor.GetDirection().normalized;
+        Vector2 nextPos = item.worldPosition + currentDir * Time.deltaTime + currentDir * 1f;
+
+        BuildingBH nextBuilding = buildingManager.GetBuildingOnTile(nextPos);
+
+        if (nextBuilding is null) return;
+
+        Vector2 nextDir = nextBuilding.GetDirection();
+
+
+        if (nextBuilding is Conveyor && IsSpaceFree(nextPos) && currentDir == nextDir) item.worldPosition = nextPos;
+
+
     }
 
     private bool IsItNextBuildingExit(ItemBH item, BuildingBH nextBuilding, Vector2 nextPos)

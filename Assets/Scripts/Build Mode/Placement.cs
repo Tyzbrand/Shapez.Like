@@ -155,6 +155,8 @@ public class Placement : MonoBehaviour
                 return new CoalGenerator(mousePos2D, player.rotation, buildingTilemap);
             case BuildingManager.buildingType.AdvancedExtractor:
                 return new AdvancedExtractor(mousePos2D, player.rotation, buildingTilemap);
+            case BuildingManager.buildingType.Junction:
+                return new Junction(mousePos2D, player.rotation, buildingTilemap);
 
         }
         return null;
