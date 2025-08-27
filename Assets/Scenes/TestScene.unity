@@ -496,12 +496,12 @@ MonoBehaviour:
   day: 1
   seconds: 0
   minutes: 0
-  electricityStorage: 150
+  electricityStorage: 1000
   production: 0
   consomation: 0
   electricityBalance: 0
   realElectricityBalance: 0
-  electricityMaxStorage: 150
+  electricityMaxStorage: 1000
   tilemap1: {fileID: 0}
   movementBlock: 0
   isInUI: 0

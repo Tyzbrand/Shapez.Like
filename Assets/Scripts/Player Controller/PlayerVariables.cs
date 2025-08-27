@@ -26,12 +26,12 @@ public class PlayerVariables : MonoBehaviour
     public int minutes;
 
     //Electricité
-    public float electricityStorage = 150f;
+    public float electricityStorage = 1000f;
     public float production = 0f;
     public float consomation = 0f;
     public float electricityBalance = 0f;
     public float realElectricityBalance = 0f;
-    public float electricityMaxStorage = 150f;
+    public float electricityMaxStorage = 1000f;
 
 
     //References

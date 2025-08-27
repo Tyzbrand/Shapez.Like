@@ -78,6 +78,7 @@ public class MiscInput : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0) && !player.buildMode && !player.buildMenu && !player.destructionMode && !EventSystem.current.IsPointerOverGameObject()) //Toggle les ui des batiments
         {
+            
             Vector2 mousePos2D = cam.ScreenToWorldPoint(Input.mousePosition);
             var buildingSelected = buildingManager.GetBuildingOnTile(mousePos2D);
 
@@ -89,7 +90,7 @@ public class MiscInput : MonoBehaviour
                 if (currentPanel == extractorUI.panel)
                 {
                     if (buildingSelected == lastBuilding) uIManager.TogglePanel(extractorUI.panel, () => extractorUI.ExtractorUIOnShow(extractor), () => extractorUI.ExtractorUIOnHide());
-                    else {extractorUI.refreshUI(extractor); lastBuilding = buildingSelected;}    
+                    else { extractorUI.refreshUI(extractor); lastBuilding = buildingSelected; }
                 }
                 else
                 {
@@ -102,7 +103,7 @@ public class MiscInput : MonoBehaviour
                 if (currentPanel == foundryUI.panel)
                 {
                     if (buildingSelected == lastBuilding) uIManager.TogglePanel(foundryUI.panel, () => foundryUI.FoundryUIOnShow(foundry), () => foundryUI.FoundryUIOnHide());
-                    else {foundryUI.refreshUI(foundry); lastBuilding = buildingSelected;}    
+                    else { foundryUI.refreshUI(foundry); lastBuilding = buildingSelected; }
                 }
                 else
                 {
@@ -115,7 +116,7 @@ public class MiscInput : MonoBehaviour
                 if (currentPanel == builderUI.panel)
                 {
                     if (buildingSelected == lastBuilding) uIManager.TogglePanel(builderUI.panel, () => builderUI.BuilderUIOnShow(builder), () => builderUI.BuilderUIOnHide());
-                    else {builderUI.refreshUI(builder); lastBuilding = buildingSelected;}    
+                    else { builderUI.refreshUI(builder); lastBuilding = buildingSelected; }
                 }
                 else
                 {
@@ -128,7 +129,7 @@ public class MiscInput : MonoBehaviour
                 if (currentPanel == coalGeneratorUI.panel)
                 {
                     if (buildingSelected == lastBuilding) uIManager.TogglePanel(coalGeneratorUI.panel, () => coalGeneratorUI.CoalGeneratorUIOnShow(coalGenerator), () => coalGeneratorUI.CoalGeneratorUIOnHide());
-                    else {coalGeneratorUI.refreshUI(coalGenerator); lastBuilding = buildingSelected;}    
+                    else { coalGeneratorUI.refreshUI(coalGenerator); lastBuilding = buildingSelected; }
                 }
                 else
                 {
@@ -141,7 +142,7 @@ public class MiscInput : MonoBehaviour
                 if (currentPanel == advancedExtractorUI.panel)
                 {
                     if (buildingSelected == lastBuilding) uIManager.TogglePanel(advancedExtractorUI.panel, () => advancedExtractorUI.AExtractorUIOnShow(advancedExtractor), () => advancedExtractorUI.AExtractorUIOnHide());
-                    else {advancedExtractorUI.refreshUI(advancedExtractor); lastBuilding = buildingSelected;}    
+                    else { advancedExtractorUI.refreshUI(advancedExtractor); lastBuilding = buildingSelected; }
                 }
                 else
                 {

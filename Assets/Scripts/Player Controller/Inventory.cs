@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class Inventory : MonoBehaviour
 {
-    public int inventoryCapacity = 100;
+    public int inventoryCapacity = 10000;
     private int totalItemCount;
     private HubUI hubUI;
     private Dictionary<RessourceBehaviour.RessourceType, int> inventory = new();
