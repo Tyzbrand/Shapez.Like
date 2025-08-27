@@ -208,7 +208,7 @@ public class ItemManager : MonoBehaviour
                 else if (nextBuilding is Builder && IsItNextBuildingExit(item, nextBuilding, nextPos)) BuilderAction(item, nextBuilding);
                 else if (nextBuilding is CoalGenerator) CoalGeneratorAction(item, nextBuilding);
                 else if (nextBuilding is Junction) JunctionAction(item, currentBuilding);
-                else if (nextBuilding is Splitter) nextBuilding.BuildingAction(item);
+                else if (nextBuilding is Splitter || nextBuilding is Merger) nextBuilding.BuildingAction(item);
 
 
                 if (nextBuilding is Conveyor && IsSpaceFree(nextPos, item))

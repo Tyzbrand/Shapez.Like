@@ -54,6 +54,7 @@ public class ReferenceHolder : MonoBehaviour
     public GameObject advancedExtractorPrefab;
     public GameObject junctionPrefab;
     public GameObject splitterPrefab;
+    public GameObject mergerPrefab;
 
 
     //Sprites de ressources
@@ -80,6 +81,7 @@ public class ReferenceHolder : MonoBehaviour
     public GameObject advancedExtractorPreview;
     public GameObject junctionPreview;
     public GameObject splitterPreview;
+    public GameObject mergerPreview;
 
 
     //Datas

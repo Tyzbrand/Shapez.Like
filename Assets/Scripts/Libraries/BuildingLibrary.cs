@@ -18,7 +18,8 @@ public class BuildingLibrary : MonoBehaviour
 
 
         buildPrice = new Dictionary<BuildingManager.buildingType, int>() { { BuildingManager.buildingType.Extractor, 100 }, { BuildingManager.buildingType.Conveyor, 10 }, { BuildingManager.buildingType.marketplace, 0 }, { BuildingManager.buildingType.Foundry, 500 },
-        { BuildingManager.buildingType.builder, 750 }, { BuildingManager.buildingType.CoalGenerator, 1500 }, {BuildingManager.buildingType.AdvancedExtractor, 3000}, {BuildingManager.buildingType.Junction, 50}, {BuildingManager.buildingType.Splitter, 75} };
+        { BuildingManager.buildingType.builder, 750 }, { BuildingManager.buildingType.CoalGenerator, 1500 }, {BuildingManager.buildingType.AdvancedExtractor, 3000}, {BuildingManager.buildingType.Junction, 50}, {BuildingManager.buildingType.Splitter, 75},
+        { BuildingManager.buildingType.Merger, 75} };
 
 
     }

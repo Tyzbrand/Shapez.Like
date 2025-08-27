@@ -159,6 +159,8 @@ public class Placement : MonoBehaviour
                 return new Junction(mousePos2D, player.rotation, buildingTilemap);
             case BuildingManager.buildingType.Splitter:
                 return new Splitter(mousePos2D, player.rotation, buildingTilemap);
+            case BuildingManager.buildingType.Merger:
+                return new Merger(mousePos2D, player.rotation, buildingTilemap);
 
         }
         return null;

@@ -13,9 +13,9 @@ public class BuildMenuSC : MonoBehaviour
     private UIManager uIManager;
 
     private Label extractorPrice, conveyorPrice, marketplacePrice, foundryPrice, builderPrice, coalGeneratorPrice, advancedExtractorPrice,
-        junctionPrice, splitterPrice;
+        junctionPrice, splitterPrice, mergerPrice;
     private Button extractorBuild, conveyorBuild, marketplaceBuild, foundryBuild, builderBuild, coalGeneratorBuild, advancedExtractorBuild,
-        junctionBuild, splitterBuild;
+        junctionBuild, splitterBuild, mergerBuild;
 
 
 
@@ -43,6 +43,7 @@ public class BuildMenuSC : MonoBehaviour
         advancedExtractorPrice = panel.Q<Label>("AExtractorPriceTxt");
         junctionPrice = panel.Q<Label>("JunctionPriceTxt");
         splitterPrice = panel.Q<Label>("SplitterPriceTxt");
+        mergerPrice = panel.Q<Label>("MergerPriceTxt");
 
         extractorBuild = panel.Q<Button>("ExtractorBuildBtn");
         conveyorBuild = panel.Q<Button>("ConveyorBuildBtn");
@@ -53,6 +54,7 @@ public class BuildMenuSC : MonoBehaviour
         advancedExtractorBuild = panel.Q<Button>("AExtractorBuildBtn");
         junctionBuild = panel.Q<Button>("JunctionBuildBtn");
         splitterBuild = panel.Q<Button>("SplitterBuildBtn");
+        mergerBuild = panel.Q<Button>("MergerBuildBtn");
 
 
         extractorBuild.clicked -= ExtractorSelect;
@@ -64,6 +66,7 @@ public class BuildMenuSC : MonoBehaviour
         coalGeneratorBuild.clicked -= CoalGeneratorSelect;
         junctionBuild.clicked -= JunctionSelect;
         splitterBuild.clicked -= SplitterSelect;
+        mergerBuild.clicked -= MergerSelect;
 
         extractorBuild.clicked += ExtractorSelect;
         advancedExtractorBuild.clicked += AdvancedExtractorSelect;
@@ -74,6 +77,7 @@ public class BuildMenuSC : MonoBehaviour
         coalGeneratorBuild.clicked += CoalGeneratorSelect;
         junctionBuild.clicked += JunctionSelect;
         splitterBuild.clicked += SplitterSelect;
+        mergerBuild.clicked += MergerSelect;
 
         extractorPrice.text = buildPriceLibrary.GetBuildingPrice(BuildingManager.buildingType.Extractor) + " $";
         conveyorPrice.text = buildPriceLibrary.GetBuildingPrice(BuildingManager.buildingType.Conveyor) + " $";
@@ -84,6 +88,7 @@ public class BuildMenuSC : MonoBehaviour
         advancedExtractorPrice.text = buildPriceLibrary.GetBuildingPrice(BuildingManager.buildingType.AdvancedExtractor) + " $";
         junctionPrice.text = buildPriceLibrary.GetBuildingPrice(BuildingManager.buildingType.Junction) + " $";
         splitterPrice.text = buildPriceLibrary.GetBuildingPrice(BuildingManager.buildingType.Splitter) + " $";
+        mergerPrice.text = buildPriceLibrary.GetBuildingPrice(BuildingManager.buildingType.Merger) + " $";
 
     }
 
@@ -208,6 +213,20 @@ public class BuildMenuSC : MonoBehaviour
         previewSC.previewToUse = ReferenceHolder.instance.splitterPreview;
         placementSC.currentBuild = ReferenceHolder.instance.splitterPrefab;
         placementSC.currentBuildingType = BuildingManager.buildingType.Splitter;
+
+        previewSC.DestroyInstance();
+        previewSC.CreateInstance();
+
+        player.buildMode = true;
+        player.rotation = 0;
+    }
+
+    private void MergerSelect()
+    {
+        uIManager.TogglePanel(panel, () => BuildMenuOnShow(), () => BuildMenuOnHide());
+        previewSC.previewToUse = ReferenceHolder.instance.mergerPreview;
+        placementSC.currentBuild = ReferenceHolder.instance.mergerPrefab;
+        placementSC.currentBuildingType = BuildingManager.buildingType.Merger;
 
         previewSC.DestroyInstance();
         previewSC.CreateInstance();
