@@ -1,4 +1,4 @@
-using System;
+
 using UnityEngine;
 using UnityEngine.Tilemaps;
 using UnityEngine.UIElements;
@@ -57,7 +57,7 @@ public abstract class BuildingBH
 
     }
 
-    public virtual void BuildingAction(ItemBH item)
+    public virtual void BuildingAction(ItemBH item, Vector2 nextPos, BuildingBH currentBuilding)
     {
         
     }

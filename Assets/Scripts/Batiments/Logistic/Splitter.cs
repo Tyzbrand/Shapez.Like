@@ -21,7 +21,7 @@ public class Splitter : BuildingBH
         Debug.Log("Splitter détruit");
     }
 
-    public override void BuildingAction(ItemBH item)
+    public override void BuildingAction(ItemBH item, Vector2 useless, BuildingBH useless2)
     {
 
         Vector2 entryDir = -GetDirection();

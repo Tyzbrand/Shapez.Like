@@ -7,7 +7,7 @@ public class ItemManager : MonoBehaviour
 {
     private List<ItemBH> itemReferencer = new();
     private List<GameObject> freeVisual = new();
-    private HashSet<ItemBH> itemToRemove = new();
+    public HashSet<ItemBH> itemToRemove = new();
     private Dictionary<ItemBH, GameObject> itemVisualReferencer = new();
 
 
@@ -195,23 +195,8 @@ public class ItemManager : MonoBehaviour
 
                 BuildingBH nextBuilding = buildingManager.GetBuildingOnTile(nextPos);
 
-
-
-
-
-                if (nextBuilding is Marketplace) MarketPlaceAction(item);
-
-                else if (nextBuilding is Hub) HubAction(item);
-
-                else if (nextBuilding is Foundry && IsItNextBuildingExit(item, nextBuilding, nextPos)) FoundryAction(item, nextBuilding);
-
-                else if (nextBuilding is Builder && IsItNextBuildingExit(item, nextBuilding, nextPos)) BuilderAction(item, nextBuilding);
-                else if (nextBuilding is CoalGenerator) CoalGeneratorAction(item, nextBuilding);
-                else if (nextBuilding is Junction) JunctionAction(item, currentBuilding);
-                else if (nextBuilding is Splitter || nextBuilding is Merger) nextBuilding.BuildingAction(item);
-
-
-                if (nextBuilding is Conveyor && IsSpaceFree(nextPos, item))
+                if (nextBuilding != null && !(nextBuilding.buildingType is BuildingManager.buildingType.None) && !(nextBuilding is Conveyor)) nextBuilding.BuildingAction(item, nextPos, currentBuilding);
+                else if (nextBuilding is Conveyor && IsSpaceFree(nextPos, item))
                 {
                     if (item.lastBuilding != null && item.lastBuilding != nextBuilding)
                     {
@@ -282,95 +267,8 @@ public class ItemManager : MonoBehaviour
         return centeredPos;
     }
 
-    private void MarketPlaceAction(ItemBH item)
-    {
-        int price = data.GetPrice(item.itemType);
 
-        player.Money += price;
-        itemToRemove.Add(item);
-        overlay.UpdateMoneyText();
-
-        playerStats.IncrementFloatStat(Statistics.statType.MoneyAllTime, price);
-        playerStats.IncrementFloatStat(Statistics.statType.SoldResources, 1f);
-        
-    }
-
-    private void HubAction(ItemBH item)
-    {
-        if (inventory.GetTotalItemCount() < inventory.inventoryCapacity)
-        {
-            inventory.Add(item.itemType, 1);
-
-            playerStats.IncrementFloatStat(Statistics.statType.StoredResources, 1f);
-
-            itemToRemove.Add(item);
-            overlay.UpdateObjectiveText();
-            overlay.UpdateStorageText();
-        }
-
-    }
-
-    private void FoundryAction(ItemBH item, BuildingBH building)
-    {
-        if (building is Foundry foundry)
-        {
-            if (item.itemType == foundry.currentRecipe.input1 && foundry.currentStorageInput1 == 0)
-            {
-                foundry.currentStorageInput1 += 1;
-                itemToRemove.Add(item);
-            }
-            if (item.itemType == foundry.currentRecipe.input2 && foundry.currentStorageInput2 == 0)
-            {
-                foundry.currentStorageInput2 += 1;
-                itemToRemove.Add(item);
-            }
-
-
-        }
-
-    }
-    private void BuilderAction(ItemBH item, BuildingBH building)
-    {
-        if (building is Builder builder)
-        {
-            if (item.itemType == builder.currentRecipe.Input && builder.currentStorageInput == 0)
-            {
-                builder.currentStorageInput++;
-                itemToRemove.Add(item);
-            }
-        }
-    }
-    private void CoalGeneratorAction(ItemBH item, BuildingBH building)
-    {
-        if (building is CoalGenerator coalGenerator)
-        {
-            if (item.itemType == RessourceBehaviour.RessourceType.Coal && coalGenerator.currentStorage < coalGenerator.capacity)
-            {
-                coalGenerator.currentStorage++;
-                itemToRemove.Add(item);
-            }
-        }
-    }
-
-    private void JunctionAction(ItemBH item, BuildingBH currentConveyor)
-    {   
-        
-        Vector2 currentDir = currentConveyor.GetDirection().normalized;
-        Vector2 nextPos = item.worldPosition + currentDir * Time.deltaTime + currentDir * 1f;
-
-        BuildingBH nextBuilding = buildingManager.GetBuildingOnTile(nextPos);
-
-        if (nextBuilding is null) return;
-
-        Vector2 nextDir = nextBuilding.GetDirection();
-
-
-        if (nextBuilding is Conveyor && IsSpaceFree(nextPos) && currentDir == nextDir) item.worldPosition = nextPos;
-
-
-    }
-
-    private bool IsItNextBuildingExit(ItemBH item, BuildingBH nextBuilding, Vector2 nextPos)
+    public bool IsItNextBuildingExit(ItemBH item, BuildingBH nextBuilding, Vector2 nextPos)
     {
         Vector2 buildingDir = nextBuilding.GetDirection();
         Vector2 fromDir = (item.worldPosition - nextPos).normalized;

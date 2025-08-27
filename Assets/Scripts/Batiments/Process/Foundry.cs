@@ -96,6 +96,21 @@ public class Foundry : BuildingBH
 
     }
 
+    public override void BuildingAction(ItemBH item, Vector2 nextPos, BuildingBH useless)
+    {
+        if (!ItemManager.IsItNextBuildingExit(item, this, nextPos)) return;
+        if (item.itemType == currentRecipe.input1 && currentStorageInput1 == 0)
+            {
+                currentStorageInput1 += 1;
+                ItemManager.itemToRemove.Add(item);
+            }
+            if (item.itemType == currentRecipe.input2 && currentStorageInput2 == 0)
+            {
+                currentStorageInput2 += 1;
+                ItemManager.itemToRemove.Add(item);
+            }
+    }
+
 
     public override void BuildingOnDestroy()
     {

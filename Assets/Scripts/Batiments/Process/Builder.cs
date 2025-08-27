@@ -40,8 +40,8 @@ public class Builder : BuildingBH
             currentRecipe = recipe.BuilderRecipes[0];
             processInterval = currentRecipe.craftSpeed;
         }
-       
-    
+
+
     }
 
     public override void BuildingOnDestroy()
@@ -91,5 +91,18 @@ public class Builder : BuildingBH
             }
         }
     }
+
+    public override void BuildingAction(ItemBH item, Vector2 nextPos, BuildingBH useless)
+    {
+        if (!ItemManager.IsItNextBuildingExit(item, this, nextPos)) return;
+        if (item.itemType == currentRecipe.Input && currentStorageInput == 0)
+        {
+            currentStorageInput++;
+            ItemManager.itemToRemove.Add(item);
+        }       
+    }
+    
+        
+    
 
 }

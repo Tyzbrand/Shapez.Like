@@ -21,7 +21,7 @@ public class Merger : BuildingBH
         Debug.Log("Merger détruit");
     }
 
-    public override void BuildingAction(ItemBH item)
+    public override void BuildingAction(ItemBH item, Vector2 useless, BuildingBH useless2)
     {
         Vector2 exit = GetDirection();
         Vector2 enter1 = new Vector2(-exit.y, exit.x);

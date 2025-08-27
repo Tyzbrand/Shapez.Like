@@ -37,7 +37,7 @@ public class CoalGenerator : BuildingBH
             capacity = data.CoalGeneratorCapacity;
         }
 
-    
+
         Debug.Log("Coal Generator Construit !");
     }
 
@@ -72,7 +72,16 @@ public class CoalGenerator : BuildingBH
     public override void BuildingOnDisable()
     {
         electricityProduction = 0f;
-       
+
+    }
+
+    public override void BuildingAction(ItemBH item, Vector2 useless, BuildingBH useless2)
+    {
+        if (item.itemType == RessourceBehaviour.RessourceType.Coal && currentStorage < capacity)
+        {
+            currentStorage++;
+            ItemManager.itemToRemove.Add(item);
+        }
     }
 
 

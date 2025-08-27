@@ -18,6 +18,20 @@ public class Junction : BuildingBH
     public override void BuildingOnDestroy()
     {
         Debug.Log("Junction Detruite");
-    }  
+    }
 
+    public override void BuildingAction(ItemBH item, Vector2 useless, BuildingBH currentConveyor)
+    {
+        Vector2 currentDir = currentConveyor.GetDirection().normalized;
+        Vector2 nextPos1 = item.worldPosition + currentDir * Time.deltaTime + currentDir * 1f;
+
+        BuildingBH nextBuilding = buildingManager.GetBuildingOnTile(nextPos1);
+
+        if (nextBuilding is null) return;
+
+        Vector2 nextDir = nextBuilding.GetDirection();
+
+
+        if (nextBuilding is Conveyor && ItemManager.IsSpaceFree(nextPos1) && currentDir == nextDir) item.worldPosition = nextPos1;
+    }
 }
