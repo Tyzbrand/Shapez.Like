@@ -581,6 +581,7 @@ MonoBehaviour:
   destructionSC: {fileID: 526294631}
   inventorySC: {fileID: 526294628}
   playerStats: {fileID: 526294635}
+  miscInput: {fileID: 526294634}
   buildingManager: {fileID: 1461742641}
   itemManager: {fileID: 1461742640}
   timeManager: {fileID: 1461742639}
@@ -1048,6 +1049,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a405ec83bfe2804f9978641fad5724a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  miscInput: {fileID: 0}
 --- !u!114 &1409634700
 MonoBehaviour:
   m_ObjectHideFlags: 0

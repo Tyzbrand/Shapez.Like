@@ -8,12 +8,18 @@ public class UIManager : MonoBehaviour
     private List<VisualElement> panels = new();
     private Dictionary<VisualElement, MonoBehaviour> uIScript;
     public VisualElement activePanel;
+    public MiscInput miscInput;
 
 
 
     private void Awake()
     {
         DontDestroyOnLoad(gameObject);
+    }
+
+    private void Start()
+    {
+        miscInput = ReferenceHolder.instance.miscInput;
     }
 
     public void RegisterPanel(VisualElement panel)
@@ -48,6 +54,7 @@ public class UIManager : MonoBehaviour
         else
         {
             HidePanel(panelToToggle, OnHide);
+            miscInput.lastBuilding = null;
         }
     }
     public VisualElement GetOpenPanel()
