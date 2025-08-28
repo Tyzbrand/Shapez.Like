@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.U2D;
 
 
 public class ItemManager : MonoBehaviour
@@ -16,6 +17,7 @@ public class ItemManager : MonoBehaviour
     private Inventory inventory;
     private OverlaySC overlay;
     private Statistics playerStats;
+    private SpriteAtlas resourcesSprite;
 
     private RessourceDictionnary ressourceDictionnary;
     private RessourceData data;
@@ -97,7 +99,8 @@ public class ItemManager : MonoBehaviour
 
         if (!itemVisualReferencer.ContainsKey(item))
         {
-            Sprite spriteToUse = ressourceDictionnary.GetRessourceSprite(item.itemType);
+            Sprite spriteToUse = resourcesSprite.GetSprite(ressourceDictionnary.GetRessourceSpriteName(item.itemType));
+            if (spriteToUse == null) Debug.Log("Pas de sprite trouvé");
 
             if (freeVisual.Count >= 1)
             {
@@ -144,7 +147,6 @@ public class ItemManager : MonoBehaviour
         {
             ItemBH item = kvp.Key;
             GameObject visual = kvp.Value;
-
             visual.transform.position = item.worldPosition;
         }
     }
@@ -176,12 +178,13 @@ public class ItemManager : MonoBehaviour
         inventory = ReferenceHolder.instance.inventorySC;
         overlay = ReferenceHolder.instance.inGameOverlay;
         playerStats = ReferenceHolder.instance.playerStats;
+        resourcesSprite = ReferenceHolder.instance.resourcesSprite;
 
 
     }
 
     private void Update()
-    {
+    {   
         itemToRemove.Clear();
         foreach (var item in itemReferencer)
         {

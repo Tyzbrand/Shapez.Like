@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: BuilderRecipe
   m_EditorClassIdentifier: 
   BuilderRecipes:
-  - Input: 3
-    Output: 4
+  - Input: 4
+    Output: 5
     craftSpeed: 5
-  - Input: 6
-    Output: 7
+  - Input: 7
+    Output: 8
     craftSpeed: 5

@@ -664,6 +664,7 @@ MonoBehaviour:
   junctionPrefab: {fileID: 4984034957206886652, guid: 14ea03d180e6ff043b423d5f0e3c78c8, type: 3}
   splitterPrefab: {fileID: 3646279211497845444, guid: de85cabba61250346a6858aee2b3584c, type: 3}
   mergerPrefab: {fileID: 4487903144796050029, guid: 16f8cdc7bf39917419e763dee3f38909, type: 3}
+  resourcesSprite: {fileID: 100100200, guid: 03d1c93564a2c6344b2b08c40e0255f1, type: 3}
   ironSprite: {fileID: 21300000, guid: 32ae061ccfb30434b96785cb08a56563, type: 3}
   copperSprite: {fileID: 21300000, guid: 16d024ebe8a26f147a05237099755953, type: 3}
   coalSprite: {fileID: 21300000, guid: c4ab4a4a76e71e74089c156dfa2e88a2, type: 3}

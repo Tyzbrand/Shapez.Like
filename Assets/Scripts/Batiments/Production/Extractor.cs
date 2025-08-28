@@ -1,4 +1,5 @@
 
+using System;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
@@ -14,7 +15,7 @@ public class Extractor : BuildingBH
     public float ressourcesPerSecond;
     private TileType underTile;
     private bool canExtract = false;
-    private Sprite ressourceType;
+    private String ressourceType;
     private BuildingData data;
     private ExtractorUI extractorUI;
 
@@ -47,7 +48,7 @@ public class Extractor : BuildingBH
 
         if (underTile != null)
         {
-            ressourceType = RessourceDictionnary.GetRessourceSprite(underTile.tileType);
+            ressourceType = RessourceDictionnary.GetRessourceSpriteName(underTile.tileType);
 
             if (ressourceType != null)
             {

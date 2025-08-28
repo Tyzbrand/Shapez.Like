@@ -6,6 +6,7 @@ public class RessourceBehaviour : MonoBehaviour
     public enum RessourceType
     {   
         Empty,
+        Stone,
         Coal,
         Iron,
         IronIngot,

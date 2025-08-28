@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
+using UnityEngine.U2D;
 using UnityEngine.UIElements;
 
 public class ReferenceHolder : MonoBehaviour
@@ -59,16 +60,7 @@ public class ReferenceHolder : MonoBehaviour
 
     //Sprites de ressources
     [Header("Sprites")]
-    public Sprite ironSprite;
-    public Sprite copperSprite;
-    public Sprite coalSprite;
-    public Sprite ironIngotSprite;
-    public Sprite copperIngotSprite;
-    public Sprite copperPlateSprite;
-    public Sprite ironPlateSPrite;
-    public Sprite silverSprite;
-    public Sprite silverIngotSprite;
-
+    public SpriteAtlas resourcesSprite;
 
     //Previews batiments
     [Header("Preview")]
