@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 1a95bdea28256844a980613b6c4db8a0
+guid: e19f3e2134c61514484dd5bc46a9a6a7
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -2654669000071773011
-    second: Copper-plate_0
+      213: -7890891352249850197
+    second: Foundry-idle_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Copper-plate_0
+      name: Foundry-idle_0
       rect:
         serializedVersion: 2
-        x: 141
-        y: 144
-        width: 231
-        height: 224
+        x: 0
+        y: 0
+        width: 512
+        height: 512
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: da40b760c98b82bd0800000000000000
-      internalID: -2654669000071773011
+      spriteID: ba622f37f1ced7290800000000000000
+      internalID: -7890891352249850197
       vertices: []
       indices: 
       edges: []
@@ -148,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Copper-plate_0: -2654669000071773011
+      Foundry-idle_0: -7890891352249850197
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

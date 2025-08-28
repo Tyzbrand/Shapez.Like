@@ -665,15 +665,6 @@ MonoBehaviour:
   splitterPrefab: {fileID: 3646279211497845444, guid: de85cabba61250346a6858aee2b3584c, type: 3}
   mergerPrefab: {fileID: 4487903144796050029, guid: 16f8cdc7bf39917419e763dee3f38909, type: 3}
   resourcesSprite: {fileID: 100100200, guid: 03d1c93564a2c6344b2b08c40e0255f1, type: 3}
-  ironSprite: {fileID: 21300000, guid: 32ae061ccfb30434b96785cb08a56563, type: 3}
-  copperSprite: {fileID: 21300000, guid: 16d024ebe8a26f147a05237099755953, type: 3}
-  coalSprite: {fileID: 21300000, guid: c4ab4a4a76e71e74089c156dfa2e88a2, type: 3}
-  ironIngotSprite: {fileID: 21300000, guid: 5231c5d28db7d1b45892c0ec82cfeccd, type: 3}
-  copperIngotSprite: {fileID: 21300000, guid: 0bee820aabfea1c4f9318da057b6c5bf, type: 3}
-  copperPlateSprite: {fileID: 21300000, guid: 1a95bdea28256844a980613b6c4db8a0, type: 3}
-  ironPlateSPrite: {fileID: 21300000, guid: 4047979e41e296d4ca37960a4446994d, type: 3}
-  silverSprite: {fileID: 21300000, guid: 022b135b050c05e4880152ef7ff80836, type: 3}
-  silverIngotSprite: {fileID: 21300000, guid: fa168f4a73290904a934f4d3a8f2c90a, type: 3}
   extractorPreview: {fileID: 6773008830999798859, guid: 38da4848c0fd40149adb41431ad9ec01, type: 3}
   conveyorPreview: {fileID: 9189910684841454179, guid: 4949378352178914b841061d1670b107, type: 3}
   marketplacePreview: {fileID: 1171279089280773970, guid: 680c320bd5322ba46ba3ccfeccb3cc44, type: 3}

@@ -116,10 +116,10 @@ TextureImporter:
       name: Iron-Ingot_0
       rect:
         serializedVersion: 2
-        x: 116
-        y: 131
-        width: 301
-        height: 203
+        x: 105
+        y: 154
+        width: 302
+        height: 204
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}

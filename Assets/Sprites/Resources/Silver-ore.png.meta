@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: b492435f54418c9429080f130427b661
+guid: b164879ee4a98a040a1f81475fcc00af
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -4922073093485663829
-    second: Extractor_preview_allow 1_0
+      213: 8882846675198776253
+    second: Silver-ore_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -37,7 +37,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 0
+    filterMode: 2
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -113,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Extractor_preview_allow 1_0
+      name: Silver-ore_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 542
-        height: 542
+        x: 131
+        y: 174
+        width: 250
+        height: 164
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: ba96748899841bbb0800000000000000
-      internalID: -4922073093485663829
+      spriteID: db39b7ddcf5364b70800000000000000
+      internalID: 8882846675198776253
       vertices: []
       indices: 
       edges: []
@@ -148,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Extractor_preview_allow 1_0: -4922073093485663829
+      Silver-ore_0: 8882846675198776253
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
