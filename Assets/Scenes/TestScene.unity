@@ -347,6 +347,7 @@ GameObject:
   - component: {fileID: 526294629}
   - component: {fileID: 526294634}
   - component: {fileID: 526294635}
+  - component: {fileID: 526294636}
   - component: {fileID: 526294630}
   m_Layer: 0
   m_Name: Player
@@ -728,6 +729,34 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   trackedStat1: 0
+--- !u!114 &526294636
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 526294619}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 12fbba2888e9efd4ba1ead1e842674a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  foundryIdle: {fileID: 21300000, guid: e19f3e2134c61514484dd5bc46a9a6a7, type: 3}
+  foundryAction: {fileID: 21300000, guid: 1359ab0503e5ff04db4d832e345a625d, type: 3}
+  extractorIdle: {fileID: 21300000, guid: 0a249231b40ef7d448900b3ea1f577d1, type: 3}
+  extractorCoal: {fileID: 21300000, guid: b48ee33971b4e3f429fcb899d370439c, type: 3}
+  extractorStone: {fileID: 21300000, guid: 42334e20d6f2af54790f65f5fcfc78e3, type: 3}
+  extractorCopper: {fileID: 21300000, guid: 22e4b2b015160e940bba8dc7703d4430, type: 3}
+  extractorIron: {fileID: 21300000, guid: dadc133596b5b344d97e86be6a7dbd0b, type: 3}
+  Conveyor: {fileID: 21300000, guid: 1c1c17de6641fde4aaa36c12296bfe13, type: 3}
+  merger: {fileID: 21300000, guid: 617528d6328533f49b213ea6c443fe88, type: 3}
+  splitter: {fileID: 21300000, guid: 6d96dddc4d3bce342aa49f0ce2e66072, type: 3}
+  junction: {fileID: 21300000, guid: e4ea1b4281fde2f4c9b5a3ea5c888665, type: 3}
+  advancedExtractor: {fileID: 21300000, guid: a3081fe2bcaaa614881c39134de59d1d, type: 3}
+  builder: {fileID: 21300000, guid: 12460868ed992ad4c89541bb2aa2653c, type: 3}
+  coalGenerator: {fileID: 21300000, guid: d2ab6e4170d81e6438da47b383dc1af8, type: 3}
+  marketplace: {fileID: 21300000, guid: 1dc2d8d6e74e03f40a798a095af1e015, type: 3}
+  hub: {fileID: 21300000, guid: 74a0b827e7dc9c347ab99b01dee39838, type: 3}
 --- !u!1 &619394800
 GameObject:
   m_ObjectHideFlags: 0
