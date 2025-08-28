@@ -21,7 +21,7 @@ public class PlayerMove : MonoBehaviour
     private float baseZoom = 2.5f;
     private int ppu = 64;
     public float zoomSpeed = 0.5f;
-    public float minZoom = 5.5f;
+    public float minZoom = 3f;
     public float maxZoom = 30f;
 
     private Camera cam;
