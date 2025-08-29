@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.Tilemaps;
+using UnityEngine.VFX;
 
 public class BuildingManager : MonoBehaviour
 {
@@ -53,11 +54,8 @@ public class BuildingManager : MonoBehaviour
             building.SetDico(ressourceDictionnary);
             building.BuidlingStart();
             AddVisual(building, tilePos);
-            
-
-            
-
-
+            building.visual = GetBuildingVisual(building);
+            building.visualSpriteRenderer = building.visual.GetComponent<SpriteRenderer>();
 
         }
 
@@ -134,7 +132,7 @@ public class BuildingManager : MonoBehaviour
 
     private void AddVisual(BuildingBH building, Vector2Int tilePos)
     {
-        Sprite spriteToUse = buildingLibrary.GetBuildingSpriteForState(building.buildingType, true);
+        Sprite spriteToUse = buildingLibrary.GetBuildingSpriteForState(building.buildingType, false);
         if (spriteToUse == null) Debug.Log("Pas de sprite trouvé pour le batiment");
 
         Vector3Int tilePos3D = new Vector3Int(tilePos.x, tilePos.y, 0);
@@ -181,6 +179,12 @@ public class BuildingManager : MonoBehaviour
             visual.SetActive(false);
             freeVisual.Add(visual);
         }
+    }
+
+    public GameObject GetBuildingVisual(BuildingBH building)
+    {
+        buildingVisualReferencer.TryGetValue(building, out GameObject visual);
+        return visual;
     }
 
 

@@ -20,6 +20,10 @@ public class Foundry : BuildingBH
     public float processTimer = 0f;
     private float processInterval;
 
+    //state texture
+    private Sprite idle;
+    private Sprite action;
+
     public bool isProcessing = false;
 
     public Foundry(Vector2 worldPosition, int rotation, Tilemap tilemap) : base(worldPosition, rotation, tilemap)
@@ -45,7 +49,8 @@ public class Foundry : BuildingBH
             processInterval = currentRecipe.craftSpeed;
         }
 
-    
+        idle = buildingLibrary.GetBuildingSpriteForState(buildingType, false);
+        action = buildingLibrary.GetBuildingSpriteForState(buildingType, true);
 
 
     }
@@ -57,6 +62,7 @@ public class Foundry : BuildingBH
         if (currentStorageInput1 >= 1 && currentStorageInput2 >= 1 && !isProcessing && capacity > currentStorageOutput)
         {
             isProcessing = true;
+            SetActionTexture();
         }
 
         if (isProcessing)
@@ -73,6 +79,8 @@ public class Foundry : BuildingBH
                 playerStats.IncrementFloatStat(Statistics.statType.ProcessedResourceAllTime, 1f);
 
                 isProcessing = false;
+                SetIdleTexture();
+                
 
                 processTimer = 0f;
             }
@@ -100,17 +108,26 @@ public class Foundry : BuildingBH
     {
         if (!ItemManager.IsItNextBuildingExit(item, this, nextPos)) return;
         if (item.itemType == currentRecipe.input1 && currentStorageInput1 == 0)
-            {
-                currentStorageInput1 += 1;
-                ItemManager.itemToRemove.Add(item);
-            }
-            if (item.itemType == currentRecipe.input2 && currentStorageInput2 == 0)
-            {
-                currentStorageInput2 += 1;
-                ItemManager.itemToRemove.Add(item);
-            }
+        {
+            currentStorageInput1 += 1;
+            ItemManager.itemToRemove.Add(item);
+        }
+        if (item.itemType == currentRecipe.input2 && currentStorageInput2 == 0)
+        {
+            currentStorageInput2 += 1;
+            ItemManager.itemToRemove.Add(item);
+        }
     }
 
+    public override void BuildingOnDisable()
+    {
+        SetIdleTexture();
+    }
+
+    public override void BuildingOnEnable()
+    {
+        if (isProcessing) SetActionTexture();
+    }
 
     public override void BuildingOnDestroy()
     {
@@ -125,6 +142,16 @@ public class Foundry : BuildingBH
     public RessourceBehaviour.RessourceType GetInput2()
     {
         return currentRecipe.input2;
+    }
+
+    public void SetActionTexture()
+    {
+        visualSpriteRenderer.sprite = action;
+    }
+
+    public void SetIdleTexture()
+    {
+        visualSpriteRenderer.sprite = idle;
     }
     
 

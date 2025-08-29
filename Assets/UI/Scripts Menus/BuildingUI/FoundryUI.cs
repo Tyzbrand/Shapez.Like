@@ -119,6 +119,8 @@ public class FoundryUI : MonoBehaviour
         activeFoundry.processTimer = 0f;
         activeFoundry.isProcessing = false;
 
-        currentRecipeText.text = activeFoundry.currentRecipe.input1 + " + " + activeFoundry.currentRecipe.input2 + " => " + activeFoundry.currentRecipe.output; 
+        currentRecipeText.text = activeFoundry.currentRecipe.input1 + " + " + activeFoundry.currentRecipe.input2 + " => " + activeFoundry.currentRecipe.output;
+
+        if(!activeFoundry.isProcessing) activeFoundry.SetIdleTexture();
     }
 }

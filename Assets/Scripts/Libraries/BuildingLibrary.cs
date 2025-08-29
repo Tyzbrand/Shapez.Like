@@ -80,15 +80,15 @@ public class BuildingLibrary : MonoBehaviour
         {
             {BuildingManager.buildingType.Foundry, new Dictionary<bool, Sprite>{{true, foundryAction}, {false, foundryIdle}}},
             {BuildingManager.buildingType.Extractor, new Dictionary<bool, Sprite>{{true, extractorIdle}, {false, extractorIdle}}},
-            {BuildingManager.buildingType.Conveyor, new Dictionary<bool, Sprite>{{true, Conveyor}}},
-            {BuildingManager.buildingType.Merger, new Dictionary<bool, Sprite>{{true, merger}}},
-            {BuildingManager.buildingType.Splitter, new Dictionary<bool, Sprite>{{true, splitter}}},
-            {BuildingManager.buildingType.Junction, new Dictionary<bool, Sprite>{{true, junction}}},
+            {BuildingManager.buildingType.Conveyor, new Dictionary<bool, Sprite>{{false, Conveyor}}},
+            {BuildingManager.buildingType.Merger, new Dictionary<bool, Sprite>{{false, merger}}},
+            {BuildingManager.buildingType.Splitter, new Dictionary<bool, Sprite>{{false, splitter}}},
+            {BuildingManager.buildingType.Junction, new Dictionary<bool, Sprite>{{false, junction}}},
             {BuildingManager.buildingType.AdvancedExtractor, new Dictionary<bool, Sprite>{{true, advancedExtractor}, {false, advancedExtractor}}},
             {BuildingManager.buildingType.builder, new Dictionary<bool, Sprite>{{true, builder}, {false, builder}}},
             {BuildingManager.buildingType.CoalGenerator, new Dictionary<bool, Sprite>{{true, coalGenerator}, {false, coalGenerator}}},
             {BuildingManager.buildingType.marketplace, new Dictionary<bool, Sprite>{{true, marketplace}}},
-            {BuildingManager.buildingType.Hub, new Dictionary<bool, Sprite>{{true, hub}}},
+            {BuildingManager.buildingType.Hub, new Dictionary<bool, Sprite>{{false, hub}}},
         };
     }
 

@@ -19,6 +19,8 @@ public abstract class BuildingBH
     public bool enoughtElectricity = false;
     public VisualElement buildingUI = null;
     public BuildingManager.buildingType buildingType;
+    public GameObject visual;
+    public SpriteRenderer visualSpriteRenderer;
 
 
     public float electricityProduction = 0f;
