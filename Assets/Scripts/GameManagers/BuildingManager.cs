@@ -6,6 +6,7 @@ using UnityEngine.Tilemaps;
 public class BuildingManager : MonoBehaviour
 {
     private Dictionary<Vector2Int, BuildingBH> buildingReferencer = new();
+    public List<GameObject> freeVisual = new();
     private Dictionary<BuildingBH, GameObject> buildingVisualReferencer = new();
 
     private Placement placement;
@@ -17,6 +18,8 @@ public class BuildingManager : MonoBehaviour
     private Statistics playerStats;
     private BuildingLibrary buildingLibrary;
     public Tilemap tilemap;
+    public GameObject buildingPrefab;
+    public Transform parent;
 
 
     public enum buildingType
@@ -46,11 +49,13 @@ public class BuildingManager : MonoBehaviour
         if (!buildingReferencer.ContainsKey(tilePos))
         {
             buildingReferencer.Add(tilePos, building);
-            AddVisual(building, tilePos);
             building.SetManagers(itemManager, buildingManager, electricityManager, buildingLibrary, playerStats);
             building.SetDico(ressourceDictionnary);
-
             building.BuidlingStart();
+            AddVisual(building, tilePos);
+            
+
+            
 
 
 
@@ -64,8 +69,9 @@ public class BuildingManager : MonoBehaviour
         if (buildingReferencer.TryGetValue(tilePos, out BuildingBH building))
         {
             RemoveVisual(building);
-            buildingReferencer.Remove(tilePos);
             building.BuildingOnDestroy();
+            buildingReferencer.Remove(tilePos);
+            
         }
 
     }
@@ -119,22 +125,61 @@ public class BuildingManager : MonoBehaviour
     {
         if (buildingVisualReferencer.TryGetValue(building, out GameObject visual))
         {
-            Destroy(visual);
+            freeVisual.Add(visual);
             buildingVisualReferencer.Remove(building);
+            visual.SetActive(false);
         }
+
     }
 
     private void AddVisual(BuildingBH building, Vector2Int tilePos)
     {
-        if (!buildingVisualReferencer.ContainsKey(building))
+        Sprite spriteToUse = buildingLibrary.GetBuildingSpriteForState(building.buildingType, true);
+        if (spriteToUse == null) Debug.Log("Pas de sprite trouvé pour le batiment");
+
+        Vector3Int tilePos3D = new Vector3Int(tilePos.x, tilePos.y, 0);
+        Vector3 worldPos3D = tilemap.CellToWorld(tilePos3D);
+        worldPos3D += new Vector3(0.5f, 0.5f, 0f);
+
+        if (freeVisual.Count >= 1)
         {
+            GameObject visual = freeVisual[0];
+
+            freeVisual.Remove(visual);
+            buildingVisualReferencer.Add(building, visual);
+
+            var visualSprite = visual.GetComponent<SpriteRenderer>();
+            visualSprite.sprite = spriteToUse;
+
+            if (building.buildingType == buildingType.Conveyor) visualSprite.sortingOrder = 1;
+            else visualSprite.sortingOrder = 3;
+
+            visual.transform.position = worldPos3D;
+            visual.transform.rotation = Quaternion.Euler(0f, 0f, player.rotation);
+
+            visual.SetActive(true);
+
+        }
+        else
+        {
+            GameObject visual = Instantiate(buildingPrefab, worldPos3D, Quaternion.Euler(0f, 0f, player.rotation), parent);
+            var visualSprite = visual.GetComponent<SpriteRenderer>();
+
+            buildingVisualReferencer.Add(building, visual);
+            visualSprite.sprite = spriteToUse;
+            if (building.buildingType == buildingType.Conveyor) visualSprite.sortingOrder = 1;
+            else visualSprite.sortingOrder = 3;
+        }
+    }
 
 
-            Vector3Int tilePos3D = new Vector3Int(tilePos.x, tilePos.y, 0);
-            Vector3 worldPos3D = tilemap.CellToWorld(tilePos3D);
-            worldPos3D += new Vector3(0.5f, 0.5f, 0f);
-
-            buildingVisualReferencer.Add(building, Instantiate(placement.currentBuild, worldPos3D, Quaternion.Euler(0, 0, player.rotation)));
+    public void PreInstanciateVisual(int amount, Transform parent)
+    {
+        for (int i = 0; i < amount; i++)
+        {
+            GameObject visual = Instantiate(buildingPrefab, parent);
+            visual.SetActive(false);
+            freeVisual.Add(visual);
         }
     }
 
@@ -152,6 +197,8 @@ public class BuildingManager : MonoBehaviour
         electricityManager = ReferenceHolder.instance.electricityManager;
         buildingLibrary = ReferenceHolder.instance.buildingLibrary;
         playerStats = ReferenceHolder.instance.playerStats;
+        buildingPrefab = ReferenceHolder.instance.buildingPrefab;
+
 
 
     }

@@ -99,7 +99,6 @@ public class BuildMenuSC : MonoBehaviour
     {
         uIManager.TogglePanel(panel, () => BuildMenuOnShow(), () => BuildMenuOnHide());
         previewSC.previewToUse = ReferenceHolder.instance.extractorPreview;
-        placementSC.currentBuild = ReferenceHolder.instance.extractorPrefab;
         placementSC.currentBuildingType = BuildingManager.buildingType.Extractor;
 
         previewSC.DestroyInstance();
@@ -113,7 +112,6 @@ public class BuildMenuSC : MonoBehaviour
     {
         uIManager.TogglePanel(panel, () => BuildMenuOnShow(), () => BuildMenuOnHide());
         previewSC.previewToUse = ReferenceHolder.instance.advancedExtractorPreview;
-        placementSC.currentBuild = ReferenceHolder.instance.advancedExtractorPrefab;
         placementSC.currentBuildingType = BuildingManager.buildingType.AdvancedExtractor;
 
         previewSC.DestroyInstance();
@@ -127,7 +125,6 @@ public class BuildMenuSC : MonoBehaviour
     {
         uIManager.TogglePanel(panel, () => BuildMenuOnShow(), () => BuildMenuOnHide());
         previewSC.previewToUse = ReferenceHolder.instance.conveyorPreview;
-        placementSC.currentBuild = ReferenceHolder.instance.conveyorPrefab;
         placementSC.currentBuildingType = BuildingManager.buildingType.Conveyor;
 
         previewSC.DestroyInstance();
@@ -141,7 +138,6 @@ public class BuildMenuSC : MonoBehaviour
     {
         uIManager.TogglePanel(panel, () => BuildMenuOnShow(), () => BuildMenuOnHide());
         previewSC.previewToUse = ReferenceHolder.instance.marketplacePreview;
-        placementSC.currentBuild = ReferenceHolder.instance.marketplacePrefab;
         placementSC.currentBuildingType = BuildingManager.buildingType.marketplace;
 
         previewSC.DestroyInstance();
@@ -155,7 +151,6 @@ public class BuildMenuSC : MonoBehaviour
     {
         uIManager.TogglePanel(panel, () => BuildMenuOnShow(), () => BuildMenuOnHide());
         previewSC.previewToUse = ReferenceHolder.instance.foundryPreview;
-        placementSC.currentBuild = ReferenceHolder.instance.foundryPrefab;
         placementSC.currentBuildingType = BuildingManager.buildingType.Foundry;
 
         previewSC.DestroyInstance();
@@ -169,7 +164,6 @@ public class BuildMenuSC : MonoBehaviour
     {
         uIManager.TogglePanel(panel, () => BuildMenuOnShow(), () => BuildMenuOnHide());
         previewSC.previewToUse = ReferenceHolder.instance.builderPrview;
-        placementSC.currentBuild = ReferenceHolder.instance.builderPrefab;
         placementSC.currentBuildingType = BuildingManager.buildingType.builder;
 
         previewSC.DestroyInstance();
@@ -183,7 +177,6 @@ public class BuildMenuSC : MonoBehaviour
     {
         uIManager.TogglePanel(panel, () => BuildMenuOnShow(), () => BuildMenuOnHide());
         previewSC.previewToUse = ReferenceHolder.instance.coalGeneratorPreview;
-        placementSC.currentBuild = ReferenceHolder.instance.coalGeneratorPrefab;
         placementSC.currentBuildingType = BuildingManager.buildingType.CoalGenerator;
 
         previewSC.DestroyInstance();
@@ -197,7 +190,6 @@ public class BuildMenuSC : MonoBehaviour
     {
         uIManager.TogglePanel(panel, () => BuildMenuOnShow(), () => BuildMenuOnHide());
         previewSC.previewToUse = ReferenceHolder.instance.junctionPreview;
-        placementSC.currentBuild = ReferenceHolder.instance.junctionPrefab;
         placementSC.currentBuildingType = BuildingManager.buildingType.Junction;
 
         previewSC.DestroyInstance();
@@ -211,7 +203,6 @@ public class BuildMenuSC : MonoBehaviour
     {
         uIManager.TogglePanel(panel, () => BuildMenuOnShow(), () => BuildMenuOnHide());
         previewSC.previewToUse = ReferenceHolder.instance.splitterPreview;
-        placementSC.currentBuild = ReferenceHolder.instance.splitterPrefab;
         placementSC.currentBuildingType = BuildingManager.buildingType.Splitter;
 
         previewSC.DestroyInstance();
@@ -225,7 +216,6 @@ public class BuildMenuSC : MonoBehaviour
     {
         uIManager.TogglePanel(panel, () => BuildMenuOnShow(), () => BuildMenuOnHide());
         previewSC.previewToUse = ReferenceHolder.instance.mergerPreview;
-        placementSC.currentBuild = ReferenceHolder.instance.mergerPrefab;
         placementSC.currentBuildingType = BuildingManager.buildingType.Merger;
 
         previewSC.DestroyInstance();

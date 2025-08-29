@@ -43,10 +43,6 @@ public class Placement : MonoBehaviour
     private void Start()
     {
 
-        Extractor = ReferenceHolder.instance.extractorPrefab;
-        conveyor = ReferenceHolder.instance.conveyorPrefab;
-        marketPlace = ReferenceHolder.instance.marketplacePrefab;
-        foundry = ReferenceHolder.instance.foundryPrefab;
         playerCam = ReferenceHolder.instance.mainCamera;
         restrictedTiles = new List<TileBase>(ReferenceHolder.instance.restrictedTiles);
         player = ReferenceHolder.instance.playervariable;
@@ -56,12 +52,6 @@ public class Placement : MonoBehaviour
 
         prices = ReferenceHolder.instance.buildingLibrary;
 
-
-
-
-
-
-
     }
 
 
@@ -70,7 +60,7 @@ public class Placement : MonoBehaviour
         if (allowConstruciton)
         {
 
-            if (currentBuild != null)
+            if (currentBuildingType != BuildingManager.buildingType.None)
             {
                 if (player.buildMode)
                 {

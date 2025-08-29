@@ -16,7 +16,7 @@ public class PlayerMapTeleport : MonoBehaviour
         placementSC = ReferenceHolder.instance.placementSC;
         itemManager = ReferenceHolder.instance.itemManager;
 
-        placementSC.currentBuild = ReferenceHolder.instance.hubPrefab;
+        placementSC.currentBuildingType = BuildingManager.buildingType.Hub;
 
         SceneManager.LoadScene(1);
         Application.targetFrameRate = 165;

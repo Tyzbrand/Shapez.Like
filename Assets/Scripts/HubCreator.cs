@@ -7,7 +7,8 @@ public class HubCreator : MonoBehaviour
     private ItemManager itemManager;
     private PlayerVariables player;
     public Tilemap tilemap;
-    public Transform parent;
+    public Transform parentItem;
+    public Transform parentBuilding;
 
 
     void Awake()
@@ -23,10 +24,12 @@ public class HubCreator : MonoBehaviour
     {
         buildingManager = ReferenceHolder.instance.buildingManager;
         itemManager = ReferenceHolder.instance.itemManager;
-        itemManager.parent = this.parent;
+        itemManager.parent = parentItem;
+        buildingManager.parent = parentBuilding;
 
 
         buildingManager.HubCreation();
-        itemManager.PreInstanciateVisuals(100, parent);
+        itemManager.PreInstanciateVisuals(100, parentItem);
+        buildingManager.PreInstanciateVisual(18, parentBuilding);
     }
 }

@@ -44,18 +44,9 @@ public class ReferenceHolder : MonoBehaviour
 
     //Prefabs
     [Header("Prefabs")]
-    public GameObject extractorPrefab;
-    public GameObject conveyorPrefab;
-    public GameObject marketplacePrefab;
-    public GameObject foundryPrefab;
     public GameObject itemPrefab;
-    public GameObject hubPrefab;
-    public GameObject builderPrefab;
-    public GameObject coalGeneratorPrefab;
-    public GameObject advancedExtractorPrefab;
-    public GameObject junctionPrefab;
-    public GameObject splitterPrefab;
-    public GameObject mergerPrefab;
+    public GameObject buildingPrefab;
+   
 
 
     //Sprites de ressources

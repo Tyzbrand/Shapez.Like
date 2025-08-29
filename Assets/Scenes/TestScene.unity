@@ -653,18 +653,8 @@ MonoBehaviour:
   restrictedTiles:
   - {fileID: 11400000, guid: 259d30b634d1fa24f9f317cae504e735, type: 2}
   - {fileID: 11400000, guid: 588ca63fe0bc71144bf26c33db30ad15, type: 2}
-  extractorPrefab: {fileID: 2311168899955579251, guid: 1e7689d0b447a0d4e93a847856f3c5a0, type: 3}
-  conveyorPrefab: {fileID: 5562092726253729984, guid: 5dbed95ba2d1ba44f85efe756ee8d6f9, type: 3}
-  marketplacePrefab: {fileID: 1835868831058879866, guid: 42836f4d12a89c841a023b4ecbf8620a, type: 3}
-  foundryPrefab: {fileID: 8753055527562394405, guid: 7ab9df23779b5dc4eaf25e5448ac8595, type: 3}
   itemPrefab: {fileID: 9126002369858062041, guid: d0046de0a6e35334ba5ec4f2851ac02a, type: 3}
-  hubPrefab: {fileID: 1265435161693959988, guid: 5f17b18a82c28c14cb296af624e724e1, type: 3}
-  builderPrefab: {fileID: 7760554825853099499, guid: 41d4cbb38b3a4fe41807a6c45f4ba55a, type: 3}
-  coalGeneratorPrefab: {fileID: 1388157091394924419, guid: 9b23ef3dbaf0a1b4fa0eedcb6892fe12, type: 3}
-  advancedExtractorPrefab: {fileID: 1844209767019608870, guid: b3e6a0e0e9e65b049a3a7e0590f29350, type: 3}
-  junctionPrefab: {fileID: 4984034957206886652, guid: 14ea03d180e6ff043b423d5f0e3c78c8, type: 3}
-  splitterPrefab: {fileID: 3646279211497845444, guid: de85cabba61250346a6858aee2b3584c, type: 3}
-  mergerPrefab: {fileID: 4487903144796050029, guid: 16f8cdc7bf39917419e763dee3f38909, type: 3}
+  buildingPrefab: {fileID: 4764810542118973154, guid: fb4d246ec9eed594cbddc9d1294b4987, type: 3}
   resourcesSprite: {fileID: 100100200, guid: 03d1c93564a2c6344b2b08c40e0255f1, type: 3}
   extractorPreview: {fileID: 6773008830999798859, guid: 38da4848c0fd40149adb41431ad9ec01, type: 3}
   conveyorPreview: {fileID: 9189910684841454179, guid: 4949378352178914b841061d1670b107, type: 3}
@@ -1329,7 +1319,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0fd4fc235e110d443a183285297b1088, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  freeVisual: []
   tilemap: {fileID: 0}
+  buildingPrefab: {fileID: 0}
+  parent: {fileID: 0}
 --- !u!1 &2050732295
 GameObject:
   m_ObjectHideFlags: 0

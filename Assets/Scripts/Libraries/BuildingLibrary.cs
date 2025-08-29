@@ -105,5 +105,17 @@ public class BuildingLibrary : MonoBehaviour
 
     }
 
+    public Sprite GetBuildingSpriteForState(BuildingManager.buildingType type, bool state)
+    {
+        if (buildingStateSprite.TryGetValue(type, out var stateDict))
+        {
+            if (stateDict.TryGetValue(state, out Sprite buildingSprite))
+            {
+                return buildingSprite;
+            }
+        }
+        return null;
+    }
+
 
 }
