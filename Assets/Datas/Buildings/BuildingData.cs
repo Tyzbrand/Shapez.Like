@@ -12,9 +12,12 @@ public class BuildingData : ScriptableObject
 
     [Header("Foundry")]
     public int foundryCapacity;
+    public int foundryInput1Capacity;
+    public int foundryInput2Capacity;
 
     [Header("Builder")]
     public int builderCapacity;
+    public int builderInputCapacity;
 
     [Header("Coal Generator")]
     public int CoalGeneratorCapacity;

@@ -10,12 +10,13 @@ public class Builder : BuildingBH
 
     public int currentRecipeIndex = 0;
     public int capacity;
+    public int inputCapacity;
     public int currentStorageInput = 0;
     public int currentStorageOutput = 0;
     private float ejectInterval = 0.5f;
     private float ejectTimer = 0f;
     public float processTimer = 0f;
-    private float processInterval;
+    public float processInterval;
 
     public bool isProcessing = false;
 
@@ -37,8 +38,9 @@ public class Builder : BuildingBH
         if (data != null)
         {
             capacity = data.builderCapacity;
-            currentRecipe = recipe.BuilderRecipes[0];
+            currentRecipe = recipe.BuilderRecipes[currentRecipeIndex];
             processInterval = currentRecipe.craftSpeed;
+            inputCapacity = data.builderInputCapacity;
         }
 
 
@@ -53,9 +55,10 @@ public class Builder : BuildingBH
 
     public override void BuildingUpdate()
     {
-        if (currentStorageInput >= 1 && !isProcessing && capacity > currentStorageOutput)
+        if (currentStorageInput >= currentRecipe.inputCount && (capacity - currentStorageOutput) >= currentRecipe.outputCount && !isProcessing)
         {
             isProcessing = true;
+            processTimer = 0f;
         }
 
         if (isProcessing)
@@ -64,14 +67,12 @@ public class Builder : BuildingBH
 
             if (processTimer >= processInterval)
             {
-                currentStorageInput--;
-                currentStorageOutput++;
+                currentStorageInput-=currentRecipe.inputCount;
+                currentStorageOutput+=currentRecipe.outputCount;
 
-                playerStats.IncrementFloatStat(Statistics.statType.ProcessedResourceAllTime, 1f);
+                playerStats.IncrementFloatStat(Statistics.statType.ProcessedResourceAllTime, currentRecipe.outputCount);
 
                 isProcessing = false;
-
-                processTimer = 0;
             }
         }
 
@@ -95,7 +96,7 @@ public class Builder : BuildingBH
     public override void BuildingAction(ItemBH item, Vector2 nextPos, BuildingBH useless)
     {
         if (!ItemManager.IsItNextBuildingExit(item, this, nextPos)) return;
-        if (item.itemType == currentRecipe.Input && currentStorageInput == 0)
+        if (item.itemType == currentRecipe.Input && currentStorageInput < inputCapacity)
         {
             currentStorageInput++;
             ItemManager.itemToRemove.Add(item);

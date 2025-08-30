@@ -70,7 +70,7 @@ public class BuilderUI : MonoBehaviour
     {
         storageText.text = activeBuilder.currentStorageOutput + "/" + activeBuilder.capacity;
         productionTimeText.text = (1 / activeBuilder.currentRecipe.craftSpeed).ToString("0.0") + "/s";
-        inputStorage1Text.text = activeBuilder.currentStorageInput + "/1";
+        inputStorage1Text.text = activeBuilder.currentStorageInput + "/" + activeBuilder.inputCapacity;
         
 
         process.highValue = activeBuilder.currentRecipe.craftSpeed;
@@ -107,8 +107,10 @@ public class BuilderUI : MonoBehaviour
         activeBuilder.currentRecipe = activeBuilder.recipe.BuilderRecipes[activeBuilder.currentRecipeIndex];
         activeBuilder.currentStorageInput = 0;
         activeBuilder.currentStorageOutput = 0;
+        activeBuilder.processInterval = activeBuilder.currentRecipe.craftSpeed;
         activeBuilder.processTimer = 0f;
         activeBuilder.isProcessing = false;
+        
 
         currentRecipeText.text = activeBuilder.currentRecipe.Input + " => " + activeBuilder.currentRecipe.Output; 
     }

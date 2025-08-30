@@ -83,6 +83,10 @@ public class ItemManager : MonoBehaviour
         return true;
     }
 
+
+
+
+
     public void ClearItems()
     {
         foreach (ItemBH item in itemReferencer.ToList())

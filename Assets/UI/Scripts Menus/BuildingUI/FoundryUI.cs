@@ -73,8 +73,8 @@ public class FoundryUI : MonoBehaviour
     {
         storageText.text = activeFoundry.currentStorageOutput + "/" + activeFoundry.capacity;
         productionTimeText.text = (1 / activeFoundry.currentRecipe.craftSpeed).ToString("0.0") + "/s";
-        inputStorage1Text.text = activeFoundry.currentStorageInput1 + "/1";
-        inputStorage2Text.text = activeFoundry.currentStorageInput2 + "/1";
+        inputStorage1Text.text = activeFoundry.currentStorageInput1 + "/" + activeFoundry.input1Capacity;
+        inputStorage2Text.text = activeFoundry.currentStorageInput2 + "/" + activeFoundry.input2Capacity;
         
 
         process.highValue = activeFoundry.currentRecipe.craftSpeed;
@@ -87,14 +87,6 @@ public class FoundryUI : MonoBehaviour
         foundryToggle.SetValueWithoutNotify(activeFoundry.IsActive);
         currentRecipeText.text = activeFoundry.currentRecipe.input1 + " + " + activeFoundry.currentRecipe.input2 + " => " + activeFoundry.currentRecipe.output;
     }
-
-
-
-
-
-
-
-
 
     public void FoundryUIOnShow(Foundry foundry)
     {
@@ -116,6 +108,7 @@ public class FoundryUI : MonoBehaviour
         activeFoundry.currentRecipe = activeFoundry.recipe.foundryRecipes[activeFoundry.currentRecipeIndex];
         activeFoundry.currentStorageInput2 = 0;
         activeFoundry.currentStorageOutput = 0;
+        activeFoundry.processInterval = activeFoundry.currentRecipe.craftSpeed;
         activeFoundry.processTimer = 0f;
         activeFoundry.isProcessing = false;
 

@@ -15,13 +15,21 @@ MonoBehaviour:
   BuilderRecipes:
   - Input: 4
     Output: 5
+    inputCount: 1
+    outputCount: 1
     craftSpeed: 5
   - Input: 7
     Output: 8
+    inputCount: 1
+    outputCount: 1
     craftSpeed: 5
   - Input: 5
     Output: 11
+    inputCount: 1
+    outputCount: 1
     craftSpeed: 5
   - Input: 7
     Output: 12
+    inputCount: 1
+    outputCount: 2
     craftSpeed: 2

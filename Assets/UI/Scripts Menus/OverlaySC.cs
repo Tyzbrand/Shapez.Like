@@ -134,7 +134,7 @@ public class OverlaySC : MonoBehaviour
         if (player.electricityBalance < 0) electricityBalanceText.style.color = red;
         else if (player.electricityBalance > 0) electricityBalanceText.style.color = green;
         else if (player.electricityBalance == 0) electricityBalanceText.style.color = defaultColor;
-        electricityBalanceText.text = player.electricityBalance + " kW";
+        electricityBalanceText.text = player.electricityBalance.ToString();
     }
 
 

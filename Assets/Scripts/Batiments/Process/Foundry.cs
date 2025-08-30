@@ -12,13 +12,15 @@ public class Foundry : BuildingBH
 
     public int currentRecipeIndex = 0;
     public int capacity;
+    public int input1Capacity;
+    public int input2Capacity;
     public int currentStorageInput1 = 0;
     public int currentStorageInput2 = 0;
     public int currentStorageOutput = 0;
     private float ejectInterval = 0.5f;
     private float ejectTimer = 0f;
     public float processTimer = 0f;
-    private float processInterval;
+    public float processInterval;
 
     //state texture
     private Sprite idle;
@@ -47,6 +49,8 @@ public class Foundry : BuildingBH
 
             currentRecipe = recipe.foundryRecipes[currentRecipeIndex];
             processInterval = currentRecipe.craftSpeed;
+            input1Capacity = data.foundryInput1Capacity;
+            input2Capacity = data.foundryInput2Capacity;
         }
 
         idle = buildingLibrary.GetBuildingSpriteForState(buildingType, false);
@@ -59,9 +63,10 @@ public class Foundry : BuildingBH
 
     public override void BuildingUpdate()
     {
-        if (currentStorageInput1 >= 1 && currentStorageInput2 >= 1 && !isProcessing && capacity > currentStorageOutput)
+        if (currentStorageInput1 >= currentRecipe.input1Count && currentStorageInput2 >= currentRecipe.input2Count && !isProcessing && (capacity - currentStorageOutput) >= currentRecipe.outputCount)
         {
             isProcessing = true;
+            processTimer = 0f;
             SetActionTexture();
         }
 
@@ -71,18 +76,16 @@ public class Foundry : BuildingBH
 
             if (processTimer >= processInterval)
             {
-                currentStorageInput1 -= 1;
-                currentStorageInput2 -= 1;
+                currentStorageInput1 -= currentRecipe.input1Count;
+                currentStorageInput2 -= currentRecipe.input2Count;
 
-                currentStorageOutput += 1;
+                currentStorageOutput += currentRecipe.outputCount;
 
-                playerStats.IncrementFloatStat(Statistics.statType.ProcessedResourceAllTime, 1f);
+                playerStats.IncrementFloatStat(Statistics.statType.ProcessedResourceAllTime, currentRecipe.outputCount);
 
                 isProcessing = false;
                 SetIdleTexture();
-                
 
-                processTimer = 0f;
             }
         }
 
@@ -107,12 +110,12 @@ public class Foundry : BuildingBH
     public override void BuildingAction(ItemBH item, Vector2 nextPos, BuildingBH useless)
     {
         if (!ItemManager.IsItNextBuildingExit(item, this, nextPos)) return;
-        if (item.itemType == currentRecipe.input1 && currentStorageInput1 == 0)
+        if (item.itemType == currentRecipe.input1 && currentStorageInput1 < input1Capacity)
         {
             currentStorageInput1 += 1;
             ItemManager.itemToRemove.Add(item);
         }
-        if (item.itemType == currentRecipe.input2 && currentStorageInput2 == 0)
+        if (item.itemType == currentRecipe.input2 && currentStorageInput2 < input2Capacity)
         {
             currentStorageInput2 += 1;
             ItemManager.itemToRemove.Add(item);

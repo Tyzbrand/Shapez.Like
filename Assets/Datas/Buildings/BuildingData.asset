@@ -17,7 +17,10 @@ MonoBehaviour:
   advancedExtractorRessourcesPerSecond: 1.2
   advancedExtractorCapacity: 30
   advancedExtractorConsomationPerSec: 0.2
-  foundryCapacity: 5
-  builderCapacity: 5
+  foundryCapacity: 10
+  foundryInput1Capacity: 10
+  foundryInput2Capacity: 10
+  builderCapacity: 10
+  builderInputCapacity: 10
   CoalGeneratorCapacity: 10
   CoalGeneratorkWhPerSec: 0.4

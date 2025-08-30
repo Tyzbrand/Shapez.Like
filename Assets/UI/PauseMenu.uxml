@@ -2,11 +2,11 @@
     <Style src="project://database/Assets/UI/MainStyle.uss?fileID=7433441132597879392&amp;guid=fb7be9aa5a514a24590e44ddec9baadd&amp;type=3#MainStyle" />
     <ui:VisualElement name="InGameOverlay" picking-mode="Ignore" style="flex-grow: 1; display: flex;">
         <ui:VisualElement name="Background" class="BackgroundStyle" style="flex-grow: 1; width: 1217px; height: 97px; position: absolute; top: 0; left: 704px; flex-direction: row; align-content: center; align-self: center; justify-content: flex-start; -unity-text-align: middle-center; translate: 0 -1px;">
-            <ui:Label text="Label" name="MoneyTxt" style="translate: 55px 0; width: 247px; position: absolute; top: 23px; left: -23px; -unity-text-align: middle-center;" />
-            <ui:Label text="Label" name="StorageTxt" style="translate: 317px 0; width: 247px; position: absolute; top: 23px; left: -23px; -unity-text-align: middle-center;" />
-            <ui:Label text="Label" name="ObjectiveTxt" style="translate: 579px 0; width: 247px; position: absolute; top: 23px; left: -23px; -unity-text-align: middle-center;" />
-            <ui:Label text="26.5/100 kWh" name="ElectricityTxt" style="translate: 841px 0; width: 247px; position: absolute; top: 23px; left: -23px; -unity-text-align: middle-center;" />
-            <ui:Label text="-245.5 kW" name="ElectricityBalanceTxt" style="translate: 1071px 0; width: 132px; position: absolute; top: 45px; left: -33px; -unity-text-align: middle-left; font-size: 9px; height: 8px;" />
+            <ui:Label text="Label" name="MoneyTxt" style="translate: 55px 0; width: 247px; position: absolute; top: 25px; left: -45px; -unity-text-align: middle-center;" />
+            <ui:Label text="Label" name="StorageTxt" style="translate: 317px 0; width: 247px; position: absolute; top: 25px; left: -66px; -unity-text-align: middle-center;" />
+            <ui:Label text="Label" name="ObjectiveTxt" style="translate: 579px 0; width: 247px; position: absolute; top: 23px; left: -78px; -unity-text-align: middle-center;" />
+            <ui:Label text="2600/1000 kWh" name="ElectricityTxt" style="translate: 841px 0; width: 247px; position: absolute; top: 23px; left: -45px; -unity-text-align: middle-center;" />
+            <ui:Label text="-245.5 " name="ElectricityBalanceTxt" style="translate: 1071px 0; width: 132px; position: absolute; top: 45px; left: -22px; -unity-text-align: middle-left; font-size: 9px; height: 8px;" />
         </ui:VisualElement>
         <ui:VisualElement name="Background3" class="BackgroundStyle" style="flex-grow: 1; width: 198px; height: 59px; position: absolute; top: 20px; left: 380px;">
             <ui:Label text="Label" name="DayTxt" />
@@ -81,10 +81,10 @@
                 <ui:Label text="0.3/s" name="BUProductionSpeedTxt" style="width: 189px; position: absolute; translate: 220px 0; -unity-text-align: middle-right;" />
                 <ui:Label text="0/5" name="BUStorageTxt" style="width: 189px; position: absolute; translate: 220px 43px; -unity-text-align: middle-right;" />
                 <ui:Label text="Recipe" style="position: absolute; translate: 0 112px; -unity-font-style: bold; color: rgb(229, 229, 229); font-size: 22px;" />
-                <ui:Label text="Raw Material" style="position: absolute; translate: 0 160px; -unity-font-style: bold; color: rgb(135, 135, 135); font-size: 17px;" />
+                <ui:Label text="Input" style="position: absolute; translate: 0 160px; -unity-font-style: bold; color: rgb(135, 135, 135); font-size: 17px;" />
                 <ui:Label text="Coal -&gt; Iron -&gt; Iron Ingot" name="BUCurrentRecipeTxt" style="position: absolute; translate: 0 226px; -unity-font-style: bold; color: rgb(135, 135, 135); font-size: 17px; width: 300px;" />
                 <ui:Button text="↺" name="BURecipeChangerBtn" class="button" style="position: absolute; top: 266px; left: 234px; width: 64px; height: 64px; translate: 78px -57px; font-size: 41px; border-left-color: rgb(36, 36, 34); border-right-color: rgb(36, 36, 34); border-top-color: rgb(36, 36, 34); border-bottom-color: rgb(36, 36, 34); border-top-width: 2px; border-right-width: 2px; border-bottom-width: 2px; border-left-width: 2px; background-color: rgb(69, 69, 64);" />
-                <ui:Label text="0/1" name="BUCurrentIn1Txt" style="position: absolute; translate: 368px 160px; -unity-font-style: bold; color: rgb(135, 135, 135); font-size: 17px;" />
+                <ui:Label text="0/10" name="BUCurrentIn1Txt" style="position: absolute; translate: 368px 160px; -unity-font-style: bold; color: rgb(135, 135, 135); font-size: 17px;" />
             </ui:VisualElement>
             <ui:VisualElement name="Process" style="flex-grow: 1; position: absolute; height: 35px; width: 403px; top: 460px; left: 7px; translate: 0 -77px;">
                 <ui:ProgressBar value="0" name="BUProgressBar" high-value="1" />
