@@ -14,20 +14,28 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prices:
   - ressourceType: 0
-    price: 25
+    price: 0
   - ressourceType: 1
-    price: 34
+    price: 25
   - ressourceType: 2
-    price: 75
+    price: 25
   - ressourceType: 3
-    price: 100
+    price: 75
   - ressourceType: 4
-    price: 27
+    price: 100
   - ressourceType: 5
-    price: 54
+    price: 110
   - ressourceType: 6
-    price: 73
+    price: 54
   - ressourceType: 7
-    price: 49
+    price: 73
   - ressourceType: 8
+    price: 82
+  - ressourceType: 11
+    price: 150
+  - ressourceType: 8
+    price: 69
+  - ressourceType: 9
+    price: 132
+  - ressourceType: 9
     price: 69

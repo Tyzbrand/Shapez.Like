@@ -739,9 +739,9 @@ MonoBehaviour:
   extractorCopper: {fileID: 21300000, guid: 22e4b2b015160e940bba8dc7703d4430, type: 3}
   extractorIron: {fileID: 21300000, guid: dadc133596b5b344d97e86be6a7dbd0b, type: 3}
   Conveyor: {fileID: 21300000, guid: 1c1c17de6641fde4aaa36c12296bfe13, type: 3}
-  merger: {fileID: 21300000, guid: 617528d6328533f49b213ea6c443fe88, type: 3}
-  splitter: {fileID: 21300000, guid: 6d96dddc4d3bce342aa49f0ce2e66072, type: 3}
-  junction: {fileID: 21300000, guid: e4ea1b4281fde2f4c9b5a3ea5c888665, type: 3}
+  merger: {fileID: 21300000, guid: 9665fb892cac9064aa5bf38af4e7008c, type: 3}
+  splitter: {fileID: 21300000, guid: d27df5455a0ca124983719c93ba6545d, type: 3}
+  junction: {fileID: 21300000, guid: 644c1c4096c5d7b46b5fd2959b6f6834, type: 3}
   advancedExtractor: {fileID: 21300000, guid: a3081fe2bcaaa614881c39134de59d1d, type: 3}
   builder: {fileID: 21300000, guid: 12460868ed992ad4c89541bb2aa2653c, type: 3}
   coalGenerator: {fileID: 21300000, guid: d2ab6e4170d81e6438da47b383dc1af8, type: 3}

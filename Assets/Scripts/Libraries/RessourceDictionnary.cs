@@ -14,7 +14,7 @@ public class RessourceDictionnary : MonoBehaviour
         {RessourceBehaviour.RessourceType.Iron, "Iron-ore"}, {RessourceBehaviour.RessourceType.Copper, "Copper-ore"},
         {RessourceBehaviour.RessourceType.Coal, "Coal"}, {RessourceBehaviour.RessourceType.Silver, "Silver-ore"}, {RessourceBehaviour.RessourceType.IronIngot, "Iron-Ingot"},
         {RessourceBehaviour.RessourceType.CopperIngot, "Copper-Ingot"}, {RessourceBehaviour.RessourceType.SilverIngot, "Silver-Ingot"}, {RessourceBehaviour.RessourceType.IronPlate, "Iron-plate"},
-        {RessourceBehaviour.RessourceType.CopperPlate, "Copper-plate"}, {RessourceBehaviour.RessourceType.Stone, "Stone"}};
+        {RessourceBehaviour.RessourceType.CopperPlate, "Copper-plate"}, {RessourceBehaviour.RessourceType.Stone, "Stone"}, {RessourceBehaviour.RessourceType.Gear, "Gear"}, {RessourceBehaviour.RessourceType.WireCoil, "Wire-coil"}};
 
     }
 
