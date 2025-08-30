@@ -133,7 +133,7 @@ public class BuildingManager : MonoBehaviour
     private void AddVisual(BuildingBH building, Vector2Int tilePos)
     {
         Sprite spriteToUse = buildingLibrary.GetBuildingSpriteForState(building.buildingType, false);
-        if (spriteToUse == null) Debug.Log("Pas de sprite trouvé pour le batiment");
+        if (spriteToUse == null) Debug.Log("Pas de sprite trouvé pour le batiment: " + building.buildingType);
 
         Vector3Int tilePos3D = new Vector3Int(tilePos.x, tilePos.y, 0);
         Vector3 worldPos3D = tilemap.CellToWorld(tilePos3D);

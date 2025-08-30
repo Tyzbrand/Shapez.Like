@@ -87,7 +87,7 @@ public class BuildingLibrary : MonoBehaviour
             {BuildingManager.buildingType.AdvancedExtractor, new Dictionary<bool, Sprite>{{true, advancedExtractor}, {false, advancedExtractor}}},
             {BuildingManager.buildingType.builder, new Dictionary<bool, Sprite>{{true, builder}, {false, builder}}},
             {BuildingManager.buildingType.CoalGenerator, new Dictionary<bool, Sprite>{{true, coalGenerator}, {false, coalGenerator}}},
-            {BuildingManager.buildingType.marketplace, new Dictionary<bool, Sprite>{{true, marketplace}}},
+            {BuildingManager.buildingType.marketplace, new Dictionary<bool, Sprite>{{false, marketplace}}},
             {BuildingManager.buildingType.Hub, new Dictionary<bool, Sprite>{{false, hub}}},
         };
     }
