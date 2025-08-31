@@ -747,6 +747,16 @@ MonoBehaviour:
   coalGenerator: {fileID: 21300000, guid: d2ab6e4170d81e6438da47b383dc1af8, type: 3}
   marketplace: {fileID: 21300000, guid: 1dc2d8d6e74e03f40a798a095af1e015, type: 3}
   hub: {fileID: 21300000, guid: 74a0b827e7dc9c347ab99b01dee39838, type: 3}
+  Stone: {fileID: 3975597194909281041, guid: e7dc1f03844b82d48ac54b3956fbef66, type: 3}
+  Coal: {fileID: 21300000, guid: 8d5e9256beb7b234491ab827279eb281, type: 3}
+  iron: {fileID: 3782393562786338483, guid: 8287f16a6c59b154b9e07ae444cdebf7, type: 3}
+  copper: {fileID: 3108458115833487003, guid: 511ddd6b22551214585aa3e18ae5fa25, type: 3}
+  ironIngot: {fileID: -2805880647531563524, guid: 4da356b4556a70d469310d07ea9277ff, type: 3}
+  copperIngot: {fileID: -6086368668284294036, guid: f9a67eff105f4c041bf1d3ce1f208d53, type: 3}
+  copperPlate: {fileID: 6209227893216668190, guid: e495d2837ffd178449528936bb7a9d51, type: 3}
+  ironPlate: {fileID: 550476946272679604, guid: d279d4e7741cd4d43831b6dc3b27d340, type: 3}
+  gear: {fileID: -2011169481890461396, guid: 0d742294460c9c5419d3147b510765fc, type: 3}
+  wireCoil: {fileID: -5045876670797870985, guid: e2c68a3ec9def294ab51fd7aadcfbcb9, type: 3}
 --- !u!1 &619394800
 GameObject:
   m_ObjectHideFlags: 0

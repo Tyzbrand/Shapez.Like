@@ -32,4 +32,4 @@ MonoBehaviour:
     Output: 12
     inputCount: 1
     outputCount: 2
-    craftSpeed: 2
+    craftSpeed: 5

@@ -30,6 +30,18 @@ public class TextureHolder : MonoBehaviour
 
     public Sprite hub;
 
+    [Header("Ressources")]
+    public Sprite Stone;
+    public Sprite Coal;
+    public Sprite iron;
+    public Sprite copper;
+    public Sprite ironIngot;
+    public Sprite copperIngot;
+    public Sprite copperPlate;
+    public Sprite ironPlate;
+    public Sprite gear;
+    public Sprite wireCoil;
+
     void Awake()
     {
         instance = this;

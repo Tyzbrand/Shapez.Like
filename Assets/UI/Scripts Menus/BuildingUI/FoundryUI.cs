@@ -6,13 +6,15 @@ public class FoundryUI : MonoBehaviour
 {
     private UIDocument uI;
     public VisualElement panel;
+    public VisualElement recipepanel;
 
     private UIManager uIManager;
     private PlayerVariables player;
+    private RessourceDictionnary ressourceLibrary;
 
     private ProgressBar process;
-    private Label productionTimeText, storageText, inputStorage1Text, inputStorage2Text, currentRecipeText;
-    private Button recipeChangerBtn;
+    private Label productionTimeText, storageText, inputStorage1Text, inputStorage2Text;
+    private Button recipeChangerBtn, recipeListQuit, recipeUse0, recipeUse1;
     private Toggle foundryToggle;
 
     private Foundry activeFoundry = null;
@@ -23,11 +25,18 @@ public class FoundryUI : MonoBehaviour
         uI = ReferenceHolder.instance.uIDocument;
         uIManager = ReferenceHolder.instance.uIManager;
         player = ReferenceHolder.instance.playervariable;
+        ressourceLibrary = ReferenceHolder.instance.ressourceDictionnary;
 
         panel = uI.rootVisualElement.Q<VisualElement>("FoundryUI");
         uIManager.RegisterPanel(panel);
 
+        recipepanel = panel.Q<VisualElement>("FoundryRecipeList");
+
         recipeChangerBtn = panel.Q<Button>("FORecipeChangerBtn");
+        recipeListQuit = recipepanel.Q<Button>("QuitBtn");
+        recipeUse0 = recipepanel.Q<Button>("Recipe0Use");
+        recipeUse1 = recipepanel.Q<Button>("Recipe1Use");
+
 
         process = panel.Q<ProgressBar>("FOProgressBar");
 
@@ -35,7 +44,6 @@ public class FoundryUI : MonoBehaviour
         productionTimeText = panel.Q<Label>("FOProductionSpeedTxt");
         inputStorage1Text = panel.Q<Label>("FOCurrentIn1Txt");
         inputStorage2Text = panel.Q<Label>("FOCurrentIn2Txt");
-        currentRecipeText = panel.Q<Label>("FOCurrentRecipeTxt");
 
         foundryToggle = panel.Q<Toggle>("FOToggle");
         foundryToggle.RegisterValueChangedCallback(evt =>
@@ -47,8 +55,17 @@ public class FoundryUI : MonoBehaviour
             else DisableBuilding();
         });
 
-        recipeChangerBtn.clicked += ChangeRecipe;
-     
+        recipeChangerBtn.clicked -= OpenRecipeList;
+        recipeUse0.clicked -= () => ChooseRecipe(0);
+        recipeUse1.clicked -= () => ChooseRecipe(1);
+        recipeListQuit.clicked -= CloseRecipeList;
+
+        recipeChangerBtn.clicked += OpenRecipeList;
+        recipeUse0.clicked += () => ChooseRecipe(0);
+        recipeUse1.clicked += () => ChooseRecipe(1);
+        recipeListQuit.clicked += CloseRecipeList;
+
+
 
     }
 
@@ -75,7 +92,7 @@ public class FoundryUI : MonoBehaviour
         productionTimeText.text = (1 / activeFoundry.currentRecipe.craftSpeed).ToString("0.0") + "/s";
         inputStorage1Text.text = activeFoundry.currentStorageInput1 + "/" + activeFoundry.input1Capacity;
         inputStorage2Text.text = activeFoundry.currentStorageInput2 + "/" + activeFoundry.input2Capacity;
-        
+
 
         process.highValue = activeFoundry.currentRecipe.craftSpeed;
         process.value = activeFoundry.processTimer % process.highValue;
@@ -85,14 +102,16 @@ public class FoundryUI : MonoBehaviour
     {
         activeFoundry = foundry;
         foundryToggle.SetValueWithoutNotify(activeFoundry.IsActive);
-        currentRecipeText.text = activeFoundry.currentRecipe.input1 + " + " + activeFoundry.currentRecipe.input2 + " => " + activeFoundry.currentRecipe.output;
+
+        ChangeButtonTexture(recipeChangerBtn, 75, 55);
+
     }
 
     public void FoundryUIOnShow(Foundry foundry)
     {
         activeFoundry = foundry;
-        currentRecipeText.text = activeFoundry.currentRecipe.input1 + " + " + activeFoundry.currentRecipe.input2 + " => " + activeFoundry.currentRecipe.output;
         player.isInUI = true;
+        ChangeButtonTexture(recipeChangerBtn, 75, 55);
         foundryToggle.SetValueWithoutNotify(activeFoundry.IsActive);
     }
 
@@ -100,20 +119,36 @@ public class FoundryUI : MonoBehaviour
     {
         activeFoundry = null;
         player.isInUI = false;
+        CloseRecipeList();
     }
 
-    private void ChangeRecipe()
+    private void OpenRecipeList()
     {
-        activeFoundry.currentRecipeIndex = (activeFoundry.currentRecipeIndex + 1) % activeFoundry.recipe.foundryRecipes.Count;
-        activeFoundry.currentRecipe = activeFoundry.recipe.foundryRecipes[activeFoundry.currentRecipeIndex];
+        recipepanel.style.display = DisplayStyle.Flex;
+    }
+
+    private void CloseRecipeList()
+    {
+        recipepanel.style.display = DisplayStyle.None;
+    }
+
+    private void ChooseRecipe(int indx)
+    {
+        activeFoundry.currentRecipe = activeFoundry.recipe.foundryRecipes[indx];
         activeFoundry.currentStorageInput2 = 0;
         activeFoundry.currentStorageOutput = 0;
         activeFoundry.processInterval = activeFoundry.currentRecipe.craftSpeed;
         activeFoundry.processTimer = 0f;
         activeFoundry.isProcessing = false;
 
-        currentRecipeText.text = activeFoundry.currentRecipe.input1 + " + " + activeFoundry.currentRecipe.input2 + " => " + activeFoundry.currentRecipe.output;
+        ChangeButtonTexture(recipeChangerBtn, 75, 55);
 
-        if(!activeFoundry.isProcessing) activeFoundry.SetIdleTexture();
+        if (!activeFoundry.isProcessing) activeFoundry.SetIdleTexture();
+    }
+
+    private void ChangeButtonTexture(Button button, int width, int height)
+    {
+        button.style.backgroundImage = new StyleBackground(ressourceLibrary.GetIcon(activeFoundry.currentRecipe.output));
+        button.style.backgroundSize = new BackgroundSize(new Length(width, LengthUnit.Percent), new Length(height, LengthUnit.Percent));
     }
 }
