@@ -46,7 +46,7 @@ public class Inventory : MonoBehaviour
 
         inventory[type] += amount;
         totalItemCount += amount;
-        hubUI.RefreshInventoryUI();
+        hubUI.RefreshInventoryUI(hubUI.currentSortMode);
     }
 
     public bool Remove(RessourceBehaviour.RessourceType type, int amount)
@@ -61,7 +61,7 @@ public class Inventory : MonoBehaviour
         }
         inventory[type] -= amount;
         totalItemCount -= amount;
-        hubUI.RefreshInventoryUI();
+        hubUI.RefreshInventoryUI(hubUI.currentSortMode);
         return true;
     }
 

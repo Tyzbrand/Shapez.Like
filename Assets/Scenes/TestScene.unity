@@ -757,6 +757,10 @@ MonoBehaviour:
   ironPlate: {fileID: 550476946272679604, guid: d279d4e7741cd4d43831b6dc3b27d340, type: 3}
   gear: {fileID: -2011169481890461396, guid: 0d742294460c9c5419d3147b510765fc, type: 3}
   wireCoil: {fileID: -5045876670797870985, guid: e2c68a3ec9def294ab51fd7aadcfbcb9, type: 3}
+  sortNum: {fileID: 21300000, guid: 79278862e42b58c4b8f44af81b86f71a, type: 3}
+  sortNumDescending: {fileID: 21300000, guid: addb32f92d4571b459d8a907d19d86ea, type: 3}
+  sortAlpha: {fileID: 21300000, guid: 0c745d63af97d4841bf5fab3ff569fdd, type: 3}
+  sortAlphaDescending: {fileID: 21300000, guid: 0ef3c291d267e78418e0950cdfe30c0a, type: 3}
 --- !u!1 &619394800
 GameObject:
   m_ObjectHideFlags: 0
@@ -1173,6 +1177,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7951538441bd17742bac80b2c0ea17f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentSortMode: 0
 --- !u!114 &1409634703
 MonoBehaviour:
   m_ObjectHideFlags: 0

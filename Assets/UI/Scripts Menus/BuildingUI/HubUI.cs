@@ -1,5 +1,7 @@
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
+using Unity.Collections;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -11,6 +13,27 @@ public class HubUI : MonoBehaviour
     private Inventory inventory;
     private PlayerVariables player;
     private UIManager uIManager;
+
+    private Button sortButton;
+
+    public enum SortMode
+    {
+        Default,
+        Amount,
+        AmountDescending,
+        Alphabetical,
+        AlphabeticalDescending
+    }
+
+    public SortMode currentSortMode = SortMode.Default;
+    private SortMode[] sortModes = new SortMode[]
+    {
+        SortMode.Amount,
+        SortMode.AmountDescending,
+        SortMode.Alphabetical,
+        SortMode.AlphabeticalDescending
+    };
+    private int sortModeIndx = 0;
 
     private List<KeyValuePair<RessourceBehaviour.RessourceType, int>> inventoryData;
 
@@ -25,8 +48,14 @@ public class HubUI : MonoBehaviour
         uIManager.RegisterPanel(panel);
         inventoryList = panel.Q<ListView>("InventoryList");
 
+        sortButton = uI.rootVisualElement.Q<Button>("SortButton");
+
+        sortButton.clicked -= SwitchSorMode;
+        sortButton.clicked += SwitchSorMode;
+
         inventoryData = new List<KeyValuePair<RessourceBehaviour.RessourceType, int>>(inventory.GetInventory()
             .Where(kv => kv.Key != RessourceBehaviour.RessourceType.Empty)
+            .Where(kv => kv.Value > 0)
             .ToList()
         );
 
@@ -59,15 +88,33 @@ public class HubUI : MonoBehaviour
 
 
     //Rafraichir la liste d'items
-    public void RefreshInventoryUI()
+    public void RefreshInventoryUI(SortMode sortMode)
     {
-        inventoryData.Clear();
-        inventoryData.AddRange(
-        inventory.GetInventory()
-            .Where(kv => kv.Key != RessourceBehaviour.RessourceType.Empty)
-        );
+        switch (sortMode)
+        {
+            case SortMode.Default:
+                SortDefault();
+                break;
+            case SortMode.Amount:
+                SortByAmount();
+                break;
+            case SortMode.AmountDescending:
+                SortByAmountDesending();
+                break;
+            case SortMode.Alphabetical:
+                SortAlphabetical();
+                break;
+            case SortMode.AlphabeticalDescending:
+                SortAlphabeticalDescending();
+                break;
+        }
+    }
 
-        inventoryList.RefreshItems();
+    private void SwitchSorMode()
+    {
+        sortModeIndx = (sortModeIndx + 1) % sortModes.Length;
+        currentSortMode = sortModes[sortModeIndx];
+        RefreshInventoryUI(currentSortMode);
     }
 
 
@@ -82,5 +129,64 @@ public class HubUI : MonoBehaviour
     public void HubUIOnHide()
     {
         player.isInUI = false;
+    }
+
+    private void SortByAmount()
+    {
+        sortButton.style.backgroundImage = new StyleBackground(TextureHolder.instance.sortNum);
+        inventoryData.Clear();
+        inventoryData.AddRange(inventory.GetInventory()
+            .Where(Kv => Kv.Key != RessourceBehaviour.RessourceType.Empty && Kv.Value > 0)
+            .OrderBy(Kv => Kv.Value)
+        );
+        inventoryList.RefreshItems();
+    }
+
+    private void SortByAmountDesending()
+    {   
+        sortButton.style.backgroundImage = new StyleBackground(TextureHolder.instance.sortNumDescending);
+        inventoryData.Clear();
+        inventoryData.AddRange(inventory.GetInventory()
+            .Where(Kv => Kv.Key != RessourceBehaviour.RessourceType.Empty && Kv.Value > 0)
+            .OrderByDescending(Kv => Kv.Value)
+        );
+        inventoryList.RefreshItems();
+    }
+
+    private void SortDefault()
+    {
+        inventoryData.Clear();
+        inventoryData.AddRange(
+        inventory.GetInventory()
+            .Where(kv => kv.Key != RessourceBehaviour.RessourceType.Empty && kv.Value > 0)
+        );
+
+        inventoryList.RefreshItems();
+    }
+
+    private void SortAlphabetical()
+    {   
+        sortButton.style.backgroundImage = new StyleBackground(TextureHolder.instance.sortAlpha);
+        inventoryData.Clear();
+        inventoryData.AddRange(
+        inventory.GetInventory()
+            .Where(kv => kv.Key != RessourceBehaviour.RessourceType.Empty && kv.Value > 0)
+            .OrderBy(kv => kv.Key.ToString())
+        );
+
+        inventoryList.RefreshItems();
+    }
+
+    private void SortAlphabeticalDescending()
+    {   
+        sortButton.style.backgroundImage = new StyleBackground(TextureHolder.instance.sortAlphaDescending);
+        inventoryData.Clear();
+        inventoryData.AddRange(
+        inventory.GetInventory()
+            .Where(kv => kv.Key != RessourceBehaviour.RessourceType.Empty && kv.Value > 0)
+            .OrderByDescending(kv => kv.Key.ToString())
+        );
+
+        inventoryList.RefreshItems();
     }
 }

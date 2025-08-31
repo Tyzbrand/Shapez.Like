@@ -42,6 +42,12 @@ public class TextureHolder : MonoBehaviour
     public Sprite gear;
     public Sprite wireCoil;
 
+
+    [Header("Icons")]
+    public Sprite sortNum;
+    public Sprite sortNumDescending;
+    public Sprite sortAlpha;
+    public Sprite sortAlphaDescending;
     void Awake()
     {
         instance = this;
