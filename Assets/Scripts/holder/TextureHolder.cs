@@ -44,6 +44,7 @@ public class TextureHolder : MonoBehaviour
 
 
     [Header("Icons")]
+    public Sprite defaultSort;
     public Sprite sortNum;
     public Sprite sortNumDescending;
     public Sprite sortAlpha;

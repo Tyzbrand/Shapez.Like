@@ -27,7 +27,8 @@ public class HubUI : MonoBehaviour
 
     public SortMode currentSortMode = SortMode.Default;
     private SortMode[] sortModes = new SortMode[]
-    {
+    {   
+        SortMode.Default,
         SortMode.Amount,
         SortMode.AmountDescending,
         SortMode.Alphabetical,
@@ -137,7 +138,7 @@ public class HubUI : MonoBehaviour
         inventoryData.Clear();
         inventoryData.AddRange(inventory.GetInventory()
             .Where(Kv => Kv.Key != RessourceBehaviour.RessourceType.Empty && Kv.Value > 0)
-            .OrderBy(Kv => Kv.Value)
+            .OrderByDescending(Kv => Kv.Value)
         );
         inventoryList.RefreshItems();
     }
@@ -148,13 +149,14 @@ public class HubUI : MonoBehaviour
         inventoryData.Clear();
         inventoryData.AddRange(inventory.GetInventory()
             .Where(Kv => Kv.Key != RessourceBehaviour.RessourceType.Empty && Kv.Value > 0)
-            .OrderByDescending(Kv => Kv.Value)
+            .OrderBy(Kv => Kv.Value)
         );
         inventoryList.RefreshItems();
     }
 
     private void SortDefault()
-    {
+    {   
+        sortButton.style.backgroundImage = new StyleBackground(TextureHolder.instance.defaultSort);
         inventoryData.Clear();
         inventoryData.AddRange(
         inventory.GetInventory()
