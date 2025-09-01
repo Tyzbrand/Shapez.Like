@@ -96,6 +96,7 @@ public class ReferenceHolder : MonoBehaviour
     public DestructionOverlaySC overlayManager;
     public BuilderUI builderUI;
     public CoalGeneratorUI coalGeneratorUI;
+    public TooltipSC tooltipSC;
     
 
 

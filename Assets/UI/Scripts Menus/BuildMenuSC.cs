@@ -11,6 +11,7 @@ public class BuildMenuSC : MonoBehaviour
     private Placement placementSC;
     private BuildingLibrary buildPriceLibrary;
     private UIManager uIManager;
+    private TooltipSC tooltipSC;
 
     private Label extractorPrice, conveyorPrice, marketplacePrice, foundryPrice, builderPrice, coalGeneratorPrice, advancedExtractorPrice,
         junctionPrice, splitterPrice, mergerPrice;
@@ -28,11 +29,12 @@ public class BuildMenuSC : MonoBehaviour
         placementSC = ReferenceHolder.instance.placementSC;
         buildPriceLibrary = ReferenceHolder.instance.buildingLibrary;
         uIManager = ReferenceHolder.instance.uIManager;
+        tooltipSC = ReferenceHolder.instance.tooltipSC;
 
         panel = uI.rootVisualElement.Q<VisualElement>("BuildMenu");
         uIManager.RegisterPanel(panel);
         buildTools = uI.rootVisualElement.Q<VisualElement>("BuildTools");
-        
+
 
 
 
@@ -60,7 +62,7 @@ public class BuildMenuSC : MonoBehaviour
 
         rotateBtn = buildTools.Q<Button>("RotateBtn");
 
-
+        //Désabonnements
         extractorBuild.clicked -= ExtractorSelect;
         advancedExtractorBuild.clicked -= AdvancedExtractorSelect;
         conveyorBuild.clicked -= ConveyorSelect;
@@ -74,6 +76,7 @@ public class BuildMenuSC : MonoBehaviour
 
         rotateBtn.clicked -= Rotate;
 
+        //Abonnements
         extractorBuild.clicked += ExtractorSelect;
         advancedExtractorBuild.clicked += AdvancedExtractorSelect;
         conveyorBuild.clicked += ConveyorSelect;
@@ -87,6 +90,8 @@ public class BuildMenuSC : MonoBehaviour
 
         rotateBtn.clicked += Rotate;
 
+
+        //Assignation des valeures
         extractorPrice.text = buildPriceLibrary.GetBuildingPrice(BuildingManager.buildingType.Extractor) + " $";
         conveyorPrice.text = buildPriceLibrary.GetBuildingPrice(BuildingManager.buildingType.Conveyor) + " $";
         marketplacePrice.text = "Free";
@@ -97,6 +102,11 @@ public class BuildMenuSC : MonoBehaviour
         junctionPrice.text = buildPriceLibrary.GetBuildingPrice(BuildingManager.buildingType.Junction) + " $";
         splitterPrice.text = buildPriceLibrary.GetBuildingPrice(BuildingManager.buildingType.Splitter) + " $";
         mergerPrice.text = buildPriceLibrary.GetBuildingPrice(BuildingManager.buildingType.Merger) + " $";
+
+
+        //Tooltips
+        rotateBtn.RegisterCallback<PointerEnterEvent>(evt => tooltipSC.TooltipShow("Rotate"));
+        rotateBtn.RegisterCallback<PointerLeaveEvent>(evt => tooltipSC.TooltipHide());
 
     }
 

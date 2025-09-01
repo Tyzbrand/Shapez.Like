@@ -682,6 +682,7 @@ MonoBehaviour:
   overlayManager: {fileID: 1409634700}
   builderUI: {fileID: 1409634705}
   coalGeneratorUI: {fileID: 1409634707}
+  tooltipSC: {fileID: 1409634709}
 --- !u!114 &526294631
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1074,6 +1075,7 @@ GameObject:
   - component: {fileID: 1409634706}
   - component: {fileID: 1409634707}
   - component: {fileID: 1409634708}
+  - component: {fileID: 1409634709}
   m_Layer: 5
   m_Name: UI
   m_TagString: Untagged
@@ -1249,6 +1251,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7a29e82e2a02aa74aa2c9032f842d655, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1409634709
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1409634693}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd0c7b73d8e2d66469bb0a3bc25ff064, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1461742636

@@ -14,6 +14,7 @@ public class OverlaySC : MonoBehaviour
     private Destruction destructionSC;
     private Inventory inventorySC;
     private UIManager uIManager;
+    private TooltipSC tooltipSC;
 
     private Label moneyText, storageText, dayText, timeText, objectiveText, electricityText, electricityBalanceText;
     private Button buildMenuBtn, destructionBtn, itemDestructionBtn, pauseBtn, x1Btn, x2Btn, x3Btn;
@@ -33,6 +34,7 @@ public class OverlaySC : MonoBehaviour
         inventorySC = ReferenceHolder.instance.inventorySC;
         uI = ReferenceHolder.instance.uIDocument;
         uIManager = ReferenceHolder.instance.uIManager;
+        tooltipSC = ReferenceHolder.instance.tooltipSC;
 
 
         panel = uI.rootVisualElement.Q<VisualElement>("InGameOverlay");
@@ -62,6 +64,7 @@ public class OverlaySC : MonoBehaviour
 
 
         //Désabonnement
+        buildMenuBtn.clicked -= buildMenuAction;
         destructionBtn.clicked -= destructionSC.DestructionSet;
         itemDestructionBtn.clicked -= itemManager.ClearItems;
 
@@ -91,7 +94,27 @@ public class OverlaySC : MonoBehaviour
         UpdateElectricityStorageText();
         UpdateElectricityBalanceText();
 
+        //Compatibilité tooltip
+        buildMenuBtn.RegisterCallback<PointerEnterEvent>(evt => tooltipSC.TooltipShow("Build"));
+        buildMenuBtn.RegisterCallback<PointerLeaveEvent>(evt => tooltipSC.TooltipHide());
 
+        destructionBtn.RegisterCallback<PointerEnterEvent>(evt => tooltipSC.TooltipShow("Destroy"));
+        destructionBtn.RegisterCallback<PointerLeaveEvent>(evt => tooltipSC.TooltipHide());
+
+        itemDestructionBtn.RegisterCallback<PointerEnterEvent>(evt => tooltipSC.TooltipShow("Clear all items"));
+        itemDestructionBtn.RegisterCallback<PointerLeaveEvent>(evt => tooltipSC.TooltipHide());
+
+        pauseBtn.RegisterCallback<PointerEnterEvent>(evt => tooltipSC.TooltipShow("Pause"));
+        pauseBtn.RegisterCallback<PointerLeaveEvent>(evt => tooltipSC.TooltipHide());
+
+        x1Btn.RegisterCallback<PointerEnterEvent>(evt => tooltipSC.TooltipShow("x1"));
+        x1Btn.RegisterCallback<PointerLeaveEvent>(evt => tooltipSC.TooltipHide());
+
+        x2Btn.RegisterCallback<PointerEnterEvent>(evt => tooltipSC.TooltipShow("x2"));
+        x2Btn.RegisterCallback<PointerLeaveEvent>(evt => tooltipSC.TooltipHide());
+
+        x3Btn.RegisterCallback<PointerEnterEvent>(evt => tooltipSC.TooltipShow("x3"));
+        x3Btn.RegisterCallback<PointerLeaveEvent>(evt => tooltipSC.TooltipHide());
 
     }
 
