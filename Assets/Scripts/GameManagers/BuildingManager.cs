@@ -36,7 +36,7 @@ public class BuildingManager : MonoBehaviour
         marketplace,
         Foundry,
         builder,
-        CoalGenerator
+        CoalGenerator,
     }
 
     
@@ -56,6 +56,12 @@ public class BuildingManager : MonoBehaviour
             AddVisual(building, tilePos);
             building.visual = GetBuildingVisual(building);
             building.visualSpriteRenderer = building.visual.GetComponent<SpriteRenderer>();
+            if (building is Conveyor conveyor)
+            {
+                conveyor.UpdateSprite();
+                conveyor.UpdateNeighborSprites();
+            }
+                
 
         }
 

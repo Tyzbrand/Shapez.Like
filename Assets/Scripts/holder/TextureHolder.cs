@@ -15,6 +15,10 @@ public class TextureHolder : MonoBehaviour
     public Sprite extractorIron;
 
     public Sprite Conveyor;
+    public Sprite AdvancedConveyor;
+    public Sprite UtlimateConveyor;
+    public Sprite conveyorTurn;
+
 
     public Sprite merger;
     public Sprite splitter;
