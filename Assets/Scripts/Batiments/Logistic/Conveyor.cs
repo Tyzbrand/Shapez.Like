@@ -13,6 +13,7 @@ public class Conveyor : BuildingBH
     {
         Debug.Log("Conveyor !");
         buildingType = BuildingManager.buildingType.Conveyor;
+        conveyorSpeed = 2f;
     }
 
     public override void BuildingOnDestroy()

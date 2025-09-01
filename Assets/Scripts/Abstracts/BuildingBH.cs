@@ -26,6 +26,8 @@ public abstract class BuildingBH
     public float electricityProduction = 0f;
     public float electricityConsomation = 0f;
 
+    public float conveyorSpeed = 1f;
+
 
     public BuildingBH(Vector2 wordlPosition, int rotation, Tilemap tilemap)
     {

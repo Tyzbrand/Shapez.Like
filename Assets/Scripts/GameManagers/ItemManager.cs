@@ -198,7 +198,7 @@ public class ItemManager : MonoBehaviour
             if (currentBuilding != null)
             {
                 Vector2 currentDirection = currentBuilding.GetDirection();
-                Vector2 nextPos = item.worldPosition + currentDirection * Time.deltaTime;
+                Vector2 nextPos = item.worldPosition + currentDirection * Time.deltaTime * currentBuilding.conveyorSpeed;
 
                 BuildingBH nextBuilding = buildingManager.GetBuildingOnTile(nextPos);
 
