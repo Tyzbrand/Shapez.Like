@@ -16,7 +16,7 @@ public class BuildMenuSC : MonoBehaviour
     private Label extractorPrice, conveyorPrice, marketplacePrice, foundryPrice, builderPrice, coalGeneratorPrice, advancedExtractorPrice,
         junctionPrice, splitterPrice, mergerPrice;
     private Button extractorBuild, conveyorBuild, marketplaceBuild, foundryBuild, builderBuild, coalGeneratorBuild, advancedExtractorBuild,
-        junctionBuild, splitterBuild, mergerBuild, rotateBtn;
+        junctionBuild, splitterBuild, mergerBuild, rotateBtn, pickupBtn;
 
 
 
@@ -34,8 +34,6 @@ public class BuildMenuSC : MonoBehaviour
         panel = uI.rootVisualElement.Q<VisualElement>("BuildMenu");
         uIManager.RegisterPanel(panel);
         buildTools = uI.rootVisualElement.Q<VisualElement>("BuildTools");
-
-
 
 
         extractorPrice = panel.Q<Label>("ExtractorPriceTxt");
@@ -61,6 +59,7 @@ public class BuildMenuSC : MonoBehaviour
         mergerBuild = panel.Q<Button>("MergerBuildBtn");
 
         rotateBtn = buildTools.Q<Button>("RotateBtn");
+        pickupBtn = buildTools.Q<Button>("PickUpBtn");
 
         //Désabonnements
         extractorBuild.clicked -= ExtractorSelect;
@@ -75,6 +74,7 @@ public class BuildMenuSC : MonoBehaviour
         mergerBuild.clicked -= MergerSelect;
 
         rotateBtn.clicked -= Rotate;
+        pickupBtn.clicked -= pickup;
 
         //Abonnements
         extractorBuild.clicked += ExtractorSelect;
@@ -89,6 +89,7 @@ public class BuildMenuSC : MonoBehaviour
         mergerBuild.clicked += MergerSelect;
 
         rotateBtn.clicked += Rotate;
+        pickupBtn.clicked += pickup;
 
 
         //Assignation des valeures
@@ -258,6 +259,12 @@ public class BuildMenuSC : MonoBehaviour
     private void Rotate()
     {
         if (player.buildMode) player.rotation = (player.rotation + 90) % 360; 
+    }
+
+    private void pickup()
+    {
+        if (!player.pickupMode) player.pickupMode = true;
+        else player.pickupMode = false;
     }
 
     //----------Méthodes de gestion du menu----------

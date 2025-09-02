@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Tilemaps;
 using UnityEngine.EventSystems;
+using UnityEngine.UIElements;
+using Unity.VisualScripting;
 
 
 
@@ -18,6 +20,8 @@ public class Placement : MonoBehaviour
     private Camera playerCam;
     private PlayerVariables player;
     private OverlaySC OverlaySC;
+    private Preview previewSC;
+    private BuildingLibrary buildingLibrary;
     private BuildingManager buildingManager;
     private List<TileBase> restrictedTiles; //Liste des tuiles sur lesquelles je ne peux pas construire (NE FONCTIONNE PAS)
 
@@ -30,7 +34,9 @@ public class Placement : MonoBehaviour
     private GameObject foundry;
     private Tilemap tilemap;
     private bool allowConstruciton = false;
+    public bool hasPickup = false;
     public BuildingManager.buildingType currentBuildingType = BuildingManager.buildingType.None;
+    public BuildingManager.buildingType pickupType = BuildingManager.buildingType.None;
 
 
     //Dictionnaire
@@ -48,6 +54,8 @@ public class Placement : MonoBehaviour
         player = ReferenceHolder.instance.playervariable;
         buildingManager = ReferenceHolder.instance.buildingManager;
         OverlaySC = ReferenceHolder.instance.inGameOverlay;
+        previewSC = ReferenceHolder.instance.previewSC;
+        buildingLibrary = ReferenceHolder.instance.buildingLibrary;
 
 
         prices = ReferenceHolder.instance.buildingLibrary;
@@ -75,16 +83,34 @@ public class Placement : MonoBehaviour
 
                     if (!restrictedTiles.Contains(underTile) && underTile != null && !EventSystem.current.IsPointerOverGameObject())
                     {
-                        BuildingBH currentInstance = GetCurrentType(mousePos2D, tilemap);
+                        if (hasPickup)
+                        {
+                            BuildingBH pickupInstance = GetCurrentType(mousePos2D, tilemap, pickupType);
+                           
+                            buildingManager.AddBuilding(mousePos2D, pickupInstance);
+                            player.Money -= prices.GetBuildingPrice(pickupType);
+                            OverlaySC.UpdateMoneyText();
+                            hasPickup = false;
+                        }
+                        else
+                        {
+                            BuildingBH currentInstance = GetCurrentType(mousePos2D, tilemap, currentBuildingType);
 
-                        buildingManager.AddBuilding(mousePos2D, currentInstance);
-                        player.Money -= prices.GetBuildingPrice(currentBuildingType);
-                        OverlaySC.UpdateMoneyText();
+                            buildingManager.AddBuilding(mousePos2D, currentInstance);
+                            player.Money -= prices.GetBuildingPrice(currentBuildingType);
+                            OverlaySC.UpdateMoneyText();
+                        }
+                        
                     }
                 }
 
             }
             allowConstruciton = false;
+        }
+
+        if (player.pickupMode && Input.GetMouseButtonDown(0))
+        {
+            PickupBuilding();
         }
     }
 
@@ -98,17 +124,17 @@ public class Placement : MonoBehaviour
     {
         if (context.performed && player.buildMode == true)
         {
-            player.rotation = (player.rotation + 90)% 360;
+            player.rotation = (player.rotation + 90) % 360;
         }
     }
 
 
 
     private void Build(InputAction.CallbackContext context) //Permet de poser l'objet en question au clic Gauche
-    {   
+    {
 
         if (context.performed)
-        {   
+        {
             Vector3 mousePos3D = playerCam.ScreenToWorldPoint(Mouse.current.position.ReadValue());
             mousePos3D.z = 0;
             Vector2 mousePos2D = new Vector2(mousePos3D.x, mousePos3D.y);
@@ -127,9 +153,10 @@ public class Placement : MonoBehaviour
 
     }
 
-    private BuildingBH GetCurrentType(Vector2 mousePos2D, Tilemap buildingTilemap)
+    private BuildingBH GetCurrentType(Vector2 mousePos2D, Tilemap buildingTilemap, BuildingManager.buildingType typeSource)
     {
-        switch (currentBuildingType)
+
+        switch (typeSource)
         {
             case BuildingManager.buildingType.Extractor:
                 return new Extractor(mousePos2D, player.rotation, buildingTilemap);
@@ -154,6 +181,26 @@ public class Placement : MonoBehaviour
 
         }
         return null;
+    }
+
+    public void PickupBuilding()
+    {
+        Vector3 mousePos3D = playerCam.ScreenToWorldPoint(Mouse.current.position.ReadValue());
+        mousePos3D.z = 0;
+        Vector2 mousePos2D = new Vector2(mousePos3D.x, mousePos3D.y);
+
+        if (!buildingManager.IsTileUsed(mousePos2D)) { player.pickupMode = false; return; }
+        else
+        {
+            pickupType = buildingManager.GetBuildingOnTile(mousePos2D).buildingType;
+            hasPickup = true;
+            player.pickupMode = false;
+
+            previewSC.DestroyInstance();
+            previewSC.previewToUse = buildingLibrary.GetBuildingPreview(pickupType);
+            previewSC.CreateInstance();
+        }
+
     }
 }
 

@@ -13,6 +13,7 @@ public class PlayerVariables : MonoBehaviour
     public bool buildMode = false;
     public bool buildMenu = false;
     public bool destructionMode = false;
+    public bool pickupMode = false;
 
     public int rotation = 0;
 
@@ -39,7 +40,6 @@ public class PlayerVariables : MonoBehaviour
 
 
     // Est dans un menu
-    public bool movementBlock = false;
     public bool isInUI = false;
     public bool isInPauseUI = false;
 
@@ -52,10 +52,6 @@ public class PlayerVariables : MonoBehaviour
         buildMode = false;
     }
 
-    public void BuildModeOn()
-    {
-        buildMode = true;
-    }
 
 
 

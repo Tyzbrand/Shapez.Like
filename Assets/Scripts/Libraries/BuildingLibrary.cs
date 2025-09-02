@@ -7,6 +7,7 @@ public class BuildingLibrary : MonoBehaviour
 {
     private Dictionary<BuildingManager.buildingType, int> buildPrice;
     private Dictionary<BuildingManager.buildingType, Dictionary<bool, Sprite>> buildingStateSprite;
+    private Dictionary<BuildingManager.buildingType, GameObject> buildingPreview;
 
 
     private Placement placementSC;
@@ -90,6 +91,15 @@ public class BuildingLibrary : MonoBehaviour
             {BuildingManager.buildingType.marketplace, new Dictionary<bool, Sprite>{{false, marketplace}}},
             {BuildingManager.buildingType.Hub, new Dictionary<bool, Sprite>{{false, hub}}},
         };
+
+        buildingPreview = new Dictionary<BuildingManager.buildingType, GameObject>
+        {
+            {BuildingManager.buildingType.Extractor, ReferenceHolder.instance.extractorPreview}, {BuildingManager.buildingType.AdvancedExtractor, ReferenceHolder.instance.advancedExtractorPreview},
+            { BuildingManager.buildingType.builder, ReferenceHolder.instance.builderPrview}, {BuildingManager.buildingType.CoalGenerator, ReferenceHolder.instance.coalGeneratorPreview},
+            {BuildingManager.buildingType.Conveyor, ReferenceHolder.instance.conveyorPreview}, {BuildingManager.buildingType.Foundry, ReferenceHolder.instance.foundryPreview},
+            {BuildingManager.buildingType.Junction, ReferenceHolder.instance.junctionPreview}, {BuildingManager.buildingType.marketplace, ReferenceHolder.instance.marketplacePreview},
+            {BuildingManager.buildingType.Merger, ReferenceHolder.instance.mergerPreview}, {BuildingManager.buildingType.Splitter, ReferenceHolder.instance.splitterPreview},
+        };
     }
 
 
@@ -115,6 +125,13 @@ public class BuildingLibrary : MonoBehaviour
             }
         }
         return null;
+    }
+
+    public GameObject GetBuildingPreview(BuildingManager.buildingType type)
+    {
+        if (buildingPreview.TryGetValue(type, out var preview))
+            return preview;
+        else return null;
     }
 
 
