@@ -14,6 +14,7 @@ public class MiscInput : MonoBehaviour
     private Preview previewSC;
     private Destruction destructionSC;
     private HubUI hubUI;
+    private Placement placement;
     private ExtractorUI extractorUI;
     private BuilderUI builderUI;
     private FoundryUI foundryUI;
@@ -49,6 +50,7 @@ public class MiscInput : MonoBehaviour
         cam = ReferenceHolder.instance.mainCamera;
         uIManager = ReferenceHolder.instance.uIManager;
         coalGeneratorUI = ReferenceHolder.instance.coalGeneratorUI;
+        placement = ReferenceHolder.instance.placementSC;
 
 
     }
@@ -58,27 +60,23 @@ public class MiscInput : MonoBehaviour
     {
 
         if (Input.GetKeyDown(KeyCode.Escape) && !player.buildMenu && !player.buildMode && !player.isInUI && !player.destructionMode)//Ouvrir le menu pause
-        {   
-            if(uIManager.GetOpenPanel() == null) pauseMenu.TogglePauseMenu();
+        {
+            TogglePauseMenu();
         }
         else if (Input.GetKeyDown(KeyCode.Escape) && !player.buildMenu && player.buildMode)//quiiter le build mode ET le menu (retour normal)
         {
-            uIManager.TogglePanel(buildMenuSC.panel, () => buildMenuSC.BuildMenuOnShow(), () => buildMenuSC.BuildMenuOnHide());
-            player.buildMode = false;
-            previewSC.DestroyInstance();
+            QuiBuildFunction();
         }
-        else if (Input.GetKeyDown(KeyCode.Escape) && !player.buildMenu && !player.buildMode && player.destructionMode) destructionSC.DestructionSet(); //quitter le mode destruction
+        else if (Input.GetKeyDown(KeyCode.Escape) && !player.buildMenu && !player.buildMode && player.destructionMode) QuitDestructionMode(); //quitter le mode destruction
 
         if (Input.GetMouseButtonDown(1) && !player.buildMenu && player.buildMode)//quitter le build mode et revenir au menu
         {
-            uIManager.TogglePanel(buildMenuSC.panel, () => buildMenuSC.BuildMenuOnShow(), () => buildMenuSC.BuildMenuOnHide());
-            player.buildMode = false;
-            previewSC.DestroyInstance();
+            ComeBackToBuildMenu();
         }
 
         if (Input.GetMouseButtonDown(0) && !player.buildMode && !player.buildMenu && !player.destructionMode && !EventSystem.current.IsPointerOverGameObject()) //Toggle les ui des batiments
         {
-            
+
             Vector2 mousePos2D = cam.ScreenToWorldPoint(Input.mousePosition);
             var buildingSelected = buildingManager.GetBuildingOnTile(mousePos2D);
 
@@ -172,9 +170,36 @@ public class MiscInput : MonoBehaviour
         else if (currentPanel == builderUI.panel) uIManager.HidePanel(currentPanel, () => builderUI.BuilderUIOnHide());
         else if (currentPanel == coalGeneratorUI.panel) uIManager.HidePanel(currentPanel, () => coalGeneratorUI.CoalGeneratorUIOnHide());
         else if (currentPanel == advancedExtractorUI.panel) uIManager.HidePanel(currentPanel, () => advancedExtractorUI.AExtractorUIOnHide());
-    
+
     }
 
+    //----------Méthodes de gestion d'ui----------
+
+    private void TogglePauseMenu()
+    {
+        if (uIManager.GetOpenPanel() == null) pauseMenu.TogglePauseMenu();
+    }
+
+    private void QuiBuildFunction()
+    {
+        uIManager.TogglePanel(buildMenuSC.panel, () => buildMenuSC.BuildMenuOnShow(), () => buildMenuSC.BuildMenuOnHide());
+        player.buildMode = false;
+        placement.hasPickup = false;
+        previewSC.DestroyInstance();
+    }
+
+    private void QuitDestructionMode()
+    {
+        destructionSC.DestructionSet();
+    }
+
+    public void ComeBackToBuildMenu()
+    {
+        uIManager.TogglePanel(buildMenuSC.panel, () => buildMenuSC.BuildMenuOnShow(), () => buildMenuSC.BuildMenuOnHide());
+        player.buildMode = false;
+        placement.hasPickup = false;
+        previewSC.DestroyInstance();
+    }
 
 
 

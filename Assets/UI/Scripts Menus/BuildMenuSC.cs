@@ -109,6 +109,9 @@ public class BuildMenuSC : MonoBehaviour
         rotateBtn.RegisterCallback<PointerEnterEvent>(evt => tooltipSC.TooltipShow("Rotate"));
         rotateBtn.RegisterCallback<PointerLeaveEvent>(evt => tooltipSC.TooltipHide());
 
+        pickupBtn.RegisterCallback<PointerEnterEvent>(evt => tooltipSC.TooltipShow("Pick up"));
+        pickupBtn.RegisterCallback<PointerLeaveEvent>(evt => tooltipSC.TooltipHide());
+
     }
 
 
@@ -127,7 +130,7 @@ public class BuildMenuSC : MonoBehaviour
         player.buildMode = true;
         player.rotation = 0;
     }
-    
+
     private void AdvancedExtractorSelect()
     {
         uIManager.TogglePanel(panel, () => BuildMenuOnShow(), () => BuildMenuOnHide());
@@ -258,13 +261,13 @@ public class BuildMenuSC : MonoBehaviour
 
     private void Rotate()
     {
-        if (player.buildMode) player.rotation = (player.rotation + 90) % 360; 
+        if (player.buildMode) player.rotation = (player.rotation + 90) % 360;
     }
 
     private void pickup()
     {
-        if (!player.pickupMode) player.pickupMode = true;
-        else player.pickupMode = false;
+        if (!player.pickupMode) {player.pickupMode = true; previewSC.DestroyInstance(); player.buildMode = false; }
+        else if (player.pickupMode) player.pickupMode = false;
     }
 
     //----------Méthodes de gestion du menu----------
@@ -278,12 +281,30 @@ public class BuildMenuSC : MonoBehaviour
     }
 
     public void BuildMenuOnHide()
-    {   
+    {
         buildTools.style.display = DisplayStyle.None;
         player.isInUI = false;
         player.buildMenu = false;
+        player.pickupMode = false;
         previewSC.DestroyInstance();
 
+    }
+
+    //----------Gestion des états----------
+    private void UpdatePickUpButton()
+    {
+        if (player.pickupMode) pickupBtn.style.backgroundColor = new Color(100f/255f, 100f/255f, 90f/255f, 1f);
+        else pickupBtn.style.backgroundColor = new Color(44f/255f, 44f/255f, 41f/255f, 1f);
+    }
+
+    //----------Méthodes unity----------
+
+    private void Update()
+    {
+        if (buildTools.resolvedStyle.display == DisplayStyle.Flex)
+        {
+            UpdatePickUpButton();
+        }
     }
 
 }

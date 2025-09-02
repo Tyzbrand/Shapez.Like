@@ -23,15 +23,12 @@ public class Placement : MonoBehaviour
     private Preview previewSC;
     private BuildingLibrary buildingLibrary;
     private BuildingManager buildingManager;
+    private MiscInput miscInput;
     private List<TileBase> restrictedTiles; //Liste des tuiles sur lesquelles je ne peux pas construire (NE FONCTIONNE PAS)
 
     [HideInInspector]
     public GameObject currentBuild;
 
-    private GameObject Extractor;
-    private GameObject conveyor;
-    private GameObject marketPlace;
-    private GameObject foundry;
     private Tilemap tilemap;
     private bool allowConstruciton = false;
     public bool hasPickup = false;
@@ -56,6 +53,8 @@ public class Placement : MonoBehaviour
         OverlaySC = ReferenceHolder.instance.inGameOverlay;
         previewSC = ReferenceHolder.instance.previewSC;
         buildingLibrary = ReferenceHolder.instance.buildingLibrary;
+        miscInput = ReferenceHolder.instance.miscInput;
+
 
 
         prices = ReferenceHolder.instance.buildingLibrary;
@@ -77,7 +76,6 @@ public class Placement : MonoBehaviour
                     mousePos3D.z = 0;
                     Vector2 mousePos2D = new Vector2(mousePos3D.x, mousePos3D.y);
 
-                    int décalage = player.rotation;
                     Vector3Int cellPos = tilemap.WorldToCell(mousePos2D);
                     TileBase underTile = tilemap.GetTile(cellPos);
 
@@ -90,7 +88,6 @@ public class Placement : MonoBehaviour
                             buildingManager.AddBuilding(mousePos2D, pickupInstance);
                             player.Money -= prices.GetBuildingPrice(pickupType);
                             OverlaySC.UpdateMoneyText();
-                            hasPickup = false;
                         }
                         else
                         {
@@ -108,7 +105,7 @@ public class Placement : MonoBehaviour
             allowConstruciton = false;
         }
 
-        if (player.pickupMode && Input.GetMouseButtonDown(0))
+        if (player.pickupMode && Input.GetMouseButtonDown(0) && !EventSystem.current.IsPointerOverGameObject())
         {
             PickupBuilding();
         }
@@ -189,17 +186,20 @@ public class Placement : MonoBehaviour
         mousePos3D.z = 0;
         Vector2 mousePos2D = new Vector2(mousePos3D.x, mousePos3D.y);
 
-        if (!buildingManager.IsTileUsed(mousePos2D)) { player.pickupMode = false; return; }
+        if (!buildingManager.IsTileUsed(mousePos2D) || buildingManager.GetBuildingOnTile(mousePos2D) is Hub) { player.pickupMode = false; miscInput.ComeBackToBuildMenu(); }
         else
         {
             pickupType = buildingManager.GetBuildingOnTile(mousePos2D).buildingType;
             hasPickup = true;
             player.pickupMode = false;
 
+
             previewSC.DestroyInstance();
             previewSC.previewToUse = buildingLibrary.GetBuildingPreview(pickupType);
             previewSC.CreateInstance();
+            player.buildMode = true;
         }
+
 
     }
 }
