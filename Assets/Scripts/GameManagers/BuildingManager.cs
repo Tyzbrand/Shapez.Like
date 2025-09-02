@@ -59,7 +59,7 @@ public class BuildingManager : MonoBehaviour
             if (building is Conveyor conveyor)
             {
                 conveyor.UpdateSprite();
-                conveyor.UpdateNeighborSprites();
+                conveyor.UpdateNeighbor();
             }
                 
 

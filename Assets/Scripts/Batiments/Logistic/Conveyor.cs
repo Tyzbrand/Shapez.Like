@@ -38,11 +38,33 @@ public class Conveyor : BuildingBH
         Vector2 leftPos = worldPosition + leftDir;
         Vector2 rightPos = worldPosition + rightDir;
 
+        var forwardBuilding = buildingManager.GetBuildingOnTile(forwardPos);
+        var backwardBuilding = buildingManager.GetBuildingOnTile(backwardPos);
+        var leftBuilding = buildingManager.GetBuildingOnTile(leftPos);
+        var rightBuilding = buildingManager.GetBuildingOnTile(rightPos);
 
-        if (buildingManager.GetBuildingOnTile(forwardPos) is Conveyor) hasForward = true;
-        if (buildingManager.GetBuildingOnTile(backwardPos) is Conveyor) hasBackward = true;
-        if (buildingManager.GetBuildingOnTile(leftPos) is Conveyor) hasLeft = true;
-        if (buildingManager.GetBuildingOnTile(rightPos) is Conveyor) hasRight = true;
+       
+        if (forwardBuilding is Conveyor)
+        {   
+            Vector2 forwardBuildingDir = forwardBuilding.GetDirection();
+            if (forwardBuildingDir == forwardDir || forwardBuildingDir == -forwardDir) hasForward = true;
+        }
+        if (backwardBuilding is Conveyor)
+        {
+            Vector2 backBuildingDir = backwardBuilding.GetDirection();
+            if (backBuildingDir == backwardDir || backBuildingDir == -backwardDir) hasBackward = true;  
+        }
+        if (leftBuilding is Conveyor)
+        {   
+            Vector2 leftBuildingDir = leftBuilding.GetDirection();
+            if (leftBuildingDir == leftDir || leftBuildingDir == -leftDir) hasLeft = true;
+        }
+        if (rightBuilding is Conveyor)
+        {   
+            Vector2 rightBuildingDir = rightBuilding.GetDirection();
+            if (rightBuildingDir == rightDir || rightBuildingDir == -rightDir) hasRight = true;
+        }
+
 
         int connection = 0;
         if (hasForward) connection++;
@@ -52,29 +74,14 @@ public class Conveyor : BuildingBH
 
         Debug.Log("Conveyor connectés : " + connection);
 
-        if (visualSpriteRenderer == null) return;
-
         if (connection == 2)
         {
-            if ((hasForward && hasBackward) || (hasLeft && hasRight))
-            {
-                visualSpriteRenderer.sprite = TextureHolder.instance.Conveyor;
-                visual.transform.rotation = Quaternion.Euler(0, 0, rotation);
-            }
-            else
-            {
-                visualSpriteRenderer.sprite = TextureHolder.instance.conveyorTurn;
-
-                float turnRotation = GetTurnRotation(hasForward, hasBackward, hasLeft, hasRight);
-
-                visual.transform.rotation = Quaternion.Euler(0, 0, turnRotation);
-            }
-        }   
-        
+            if (hasRight && hasBackward) visualSpriteRenderer.sprite = TextureHolder.instance.conveyorTurn;
+        }
 
     }
-    
-    public void UpdateNeighborSprites()
+
+    public void UpdateNeighbor()
     {
         Vector2[] directions = { Vector2.up, Vector2.down, Vector2.left, Vector2.right };
         
@@ -88,22 +95,6 @@ public class Conveyor : BuildingBH
         }
     }
     
-    private float GetTurnRotation(bool hasForward, bool hasBackward, bool hasLeft, bool hasRight)
-    {
-
-        if (hasForward && hasRight) return -90f;
-        if (hasRight && hasBackward) return 0f;
-        if (hasBackward && hasLeft) return 90f;
-        if (hasLeft && hasForward) return 180f;
-
-
-        if (hasForward && hasLeft) return 90f;
-        if (hasLeft && hasBackward) return 0f;
-        if (hasBackward && hasRight) return -90f;
-        if (hasRight && hasForward) return 180f;
-
-        return 0f;
-    }
 
 
 }
