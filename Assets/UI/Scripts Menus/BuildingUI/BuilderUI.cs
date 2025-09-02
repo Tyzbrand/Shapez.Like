@@ -113,7 +113,6 @@ public class BuilderUI : MonoBehaviour
     public void BuilderUIOnShow(Builder builder)
     {
         activeBuilder = builder;
-        player.isInUI = true;
         ChangeButtonTexture(recipeChangerBtn, 75, 55);
         builderToggle.SetValueWithoutNotify(activeBuilder.IsActive);
     }
@@ -121,7 +120,6 @@ public class BuilderUI : MonoBehaviour
     public void BuilderUIOnHide()
     {
         activeBuilder = null;
-        player.isInUI = false;
         CloseRecipeList();
     }
 

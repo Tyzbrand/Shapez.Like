@@ -58,8 +58,8 @@ public class MiscInput : MonoBehaviour
     {
 
         if (Input.GetKeyDown(KeyCode.Escape) && !player.buildMenu && !player.buildMode && !player.isInUI && !player.destructionMode)//Ouvrir le menu pause
-        {
-            pauseMenu.TogglePauseMenu();
+        {   
+            if(uIManager.GetOpenPanel() == null) pauseMenu.TogglePauseMenu();
         }
         else if (Input.GetKeyDown(KeyCode.Escape) && !player.buildMenu && player.buildMode)//quiiter le build mode ET le menu (retour normal)
         {
@@ -137,7 +137,7 @@ public class MiscInput : MonoBehaviour
                     lastBuilding = buildingSelected;
                 }
             }
-            else if (buildingSelected is AdvancedExtractor advancedExtractor) //coal Generator
+            else if (buildingSelected is AdvancedExtractor advancedExtractor) //Advanced Extractor
             {
                 if (currentPanel == advancedExtractorUI.panel)
                 {
@@ -154,7 +154,7 @@ public class MiscInput : MonoBehaviour
 
         }
 
-        if (Input.GetKeyDown(KeyCode.Escape) && player.isInUI && !player.isInPauseUI && !player.destructionMode) //fermer un UI ouvert
+        if (Input.GetKeyDown(KeyCode.Escape) && !player.isInPauseUI && !player.destructionMode) //fermer un UI ouvert
         {
             VisualElement currentPanel = uIManager.GetOpenPanel();
             if (currentPanel != null) hideAllPanel(currentPanel);

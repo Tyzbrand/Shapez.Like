@@ -110,7 +110,6 @@ public class FoundryUI : MonoBehaviour
     public void FoundryUIOnShow(Foundry foundry)
     {
         activeFoundry = foundry;
-        player.isInUI = true;
         ChangeButtonTexture(recipeChangerBtn, 75, 55);
         foundryToggle.SetValueWithoutNotify(activeFoundry.IsActive);
     }
@@ -118,7 +117,6 @@ public class FoundryUI : MonoBehaviour
     public void FoundryUIOnHide()
     {
         activeFoundry = null;
-        player.isInUI = false;
         CloseRecipeList();
     }
 

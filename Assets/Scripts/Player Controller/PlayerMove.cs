@@ -66,10 +66,7 @@ public class PlayerMove : MonoBehaviour
             UnityEngine.Vector3 currentMousPos = cam.ScreenToWorldPoint(Mouse.current.position.ReadValue());
             transform.position += mousePosition - currentMousPos;
         }
-    }
 
-    private void FixedUpdate()
-    {
         //XY
         if (!player.isInUI && !player.isInPauseUI)
         {
