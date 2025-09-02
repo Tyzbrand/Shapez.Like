@@ -153,14 +153,14 @@ public class BuildingManager : MonoBehaviour
             else visualSprite.sortingOrder = 3;
 
             visual.transform.position = worldPos3D;
-            visual.transform.rotation = Quaternion.Euler(0f, 0f, player.rotation);
+            visual.transform.rotation = Quaternion.Euler(0f, 0f, building.rotation);
 
             visual.SetActive(true);
 
         }
         else
         {
-            GameObject visual = Instantiate(buildingPrefab, worldPos3D, Quaternion.Euler(0f, 0f, player.rotation), parent);
+            GameObject visual = Instantiate(buildingPrefab, worldPos3D, Quaternion.Euler(0f, 0f,  building.rotation), parent);
             var visualSprite = visual.GetComponent<SpriteRenderer>();
 
             buildingVisualReferencer.Add(building, visual);

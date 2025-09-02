@@ -34,6 +34,7 @@ public class Placement : MonoBehaviour
     public bool hasPickup = false;
     public BuildingManager.buildingType currentBuildingType = BuildingManager.buildingType.None;
     public BuildingManager.buildingType pickupType = BuildingManager.buildingType.None;
+    private int pickUpRotation;
 
 
     //Dictionnaire
@@ -81,23 +82,8 @@ public class Placement : MonoBehaviour
 
                     if (!restrictedTiles.Contains(underTile) && underTile != null && !EventSystem.current.IsPointerOverGameObject())
                     {
-                        if (hasPickup)
-                        {
-                            BuildingBH pickupInstance = GetCurrentType(mousePos2D, tilemap, pickupType);
-                           
-                            buildingManager.AddBuilding(mousePos2D, pickupInstance);
-                            player.Money -= prices.GetBuildingPrice(pickupType);
-                            OverlaySC.UpdateMoneyText();
-                        }
-                        else
-                        {
-                            BuildingBH currentInstance = GetCurrentType(mousePos2D, tilemap, currentBuildingType);
-
-                            buildingManager.AddBuilding(mousePos2D, currentInstance);
-                            player.Money -= prices.GetBuildingPrice(currentBuildingType);
-                            OverlaySC.UpdateMoneyText();
-                        }
-                        
+                        if (hasPickup) BuildPickUp(mousePos2D);
+                        else BuildCurrent(mousePos2D);
                     }
                 }
 
@@ -151,8 +137,7 @@ public class Placement : MonoBehaviour
     }
 
     private BuildingBH GetCurrentType(Vector2 mousePos2D, Tilemap buildingTilemap, BuildingManager.buildingType typeSource)
-    {
-
+    {        
         switch (typeSource)
         {
             case BuildingManager.buildingType.Extractor:
@@ -186,10 +171,13 @@ public class Placement : MonoBehaviour
         mousePos3D.z = 0;
         Vector2 mousePos2D = new Vector2(mousePos3D.x, mousePos3D.y);
 
-        if (!buildingManager.IsTileUsed(mousePos2D) || buildingManager.GetBuildingOnTile(mousePos2D) is Hub) { player.pickupMode = false; miscInput.ComeBackToBuildMenu(); }
+        var building = buildingManager.GetBuildingOnTile(mousePos2D);
+
+        if (!buildingManager.IsTileUsed(mousePos2D) || building is Hub) { player.pickupMode = false; miscInput.ComeBackToBuildMenu(); }
         else
         {
-            pickupType = buildingManager.GetBuildingOnTile(mousePos2D).buildingType;
+            pickupType = building.buildingType;
+            player.rotation = building.rotation;
             hasPickup = true;
             player.pickupMode = false;
 
@@ -198,9 +186,30 @@ public class Placement : MonoBehaviour
             previewSC.previewToUse = buildingLibrary.GetBuildingPreview(pickupType);
             previewSC.CreateInstance();
             player.buildMode = true;
+
+            if (building is Foundry foundry) { var recipe = foundry.currentRecipe; }
+            else if (building is Builder builder) { var recipe = builder.currentRecipe; }
         }
 
 
+    }
+
+    private void BuildPickUp(Vector2 mousePos2D)
+    {
+        BuildingBH pickupInstance = GetCurrentType(mousePos2D, tilemap, pickupType);
+
+        buildingManager.AddBuilding(mousePos2D, pickupInstance);
+        player.Money -= prices.GetBuildingPrice(pickupType);
+        OverlaySC.UpdateMoneyText();
+    }
+
+    private void BuildCurrent(Vector2 mousePos2D)
+    {
+        BuildingBH currentInstance = GetCurrentType(mousePos2D, tilemap, currentBuildingType);
+
+        buildingManager.AddBuilding(mousePos2D, currentInstance);
+        player.Money -= prices.GetBuildingPrice(currentBuildingType);
+        OverlaySC.UpdateMoneyText();
     }
 }
 
