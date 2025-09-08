@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -44,7 +45,7 @@ public class BuildingManager : MonoBehaviour
     //---------------Méthodes Implémentées---------------
     //Logique
 
-    public void AddBuilding(Vector2 worldPos, BuildingBH building)
+    public void AddBuilding(Vector2 worldPos, BuildingBH building, Action extraAction = null)
     {
         Vector2Int tilePos = ConvertInt(worldPos);
         if (!buildingReferencer.ContainsKey(tilePos))
@@ -56,6 +57,8 @@ public class BuildingManager : MonoBehaviour
             AddVisual(building, tilePos);
             building.visual = GetBuildingVisual(building);
             building.visualSpriteRenderer = building.visual.GetComponent<SpriteRenderer>();
+
+            extraAction?.Invoke();
 
         }
 

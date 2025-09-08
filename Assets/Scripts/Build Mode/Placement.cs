@@ -34,7 +34,8 @@ public class Placement : MonoBehaviour
     public bool hasPickup = false;
     public BuildingManager.buildingType currentBuildingType = BuildingManager.buildingType.None;
     public BuildingManager.buildingType pickupType = BuildingManager.buildingType.None;
-    private int pickUpRotation;
+    private RecipeParent actualRecipe = null;
+
 
 
     //Dictionnaire
@@ -187,8 +188,8 @@ public class Placement : MonoBehaviour
             previewSC.CreateInstance();
             player.buildMode = true;
 
-            if (building is Foundry foundry) { var recipe = foundry.currentRecipe; }
-            else if (building is Builder builder) { var recipe = builder.currentRecipe; }
+            if (building is Foundry foundry) { actualRecipe = foundry.currentRecipe; }
+            else if (building is Builder builder) { actualRecipe = builder.currentRecipe; }
         }
 
 
@@ -198,7 +199,17 @@ public class Placement : MonoBehaviour
     {
         BuildingBH pickupInstance = GetCurrentType(mousePos2D, tilemap, pickupType);
 
-        buildingManager.AddBuilding(mousePos2D, pickupInstance);
+        if (actualRecipe == null) buildingManager.AddBuilding(mousePos2D, pickupInstance);
+        else
+        {
+            buildingManager.AddBuilding(mousePos2D, pickupInstance, () =>
+            {
+                if (pickupInstance is Foundry foundry) foundry.currentRecipe = (Recipe11_1)actualRecipe;
+                else if (pickupInstance is Builder builder) builder.currentRecipe = (Recipe1_1)actualRecipe;
+            });
+            actualRecipe = null;
+        }
+        
         player.Money -= prices.GetBuildingPrice(pickupType);
         OverlaySC.UpdateMoneyText();
     }

@@ -8,7 +8,7 @@ public class Builder : BuildingBH
     private BuildingData data;
     private BuilderUI builderUI;
 
-    public int currentRecipeIndex = 0;
+    public int currentRecipeIndex = 1;
     public int capacity;
     public int inputCapacity;
     public int currentStorageInput = 0;

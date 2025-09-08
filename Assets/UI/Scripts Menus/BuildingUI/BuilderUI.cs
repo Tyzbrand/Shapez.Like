@@ -105,7 +105,7 @@ public class BuilderUI : MonoBehaviour
     {
         activeBuilder = builder;
         builderToggle.SetValueWithoutNotify(activeBuilder.IsActive);
-        ChangeButtonTexture(recipeChangerBtn, 75, 55);
+        ChangeButtonTexture(recipeChangerBtn);
     }
 
 
@@ -113,7 +113,7 @@ public class BuilderUI : MonoBehaviour
     public void BuilderUIOnShow(Builder builder)
     {
         activeBuilder = builder;
-        ChangeButtonTexture(recipeChangerBtn, 75, 55);
+        ChangeButtonTexture(recipeChangerBtn);
         builderToggle.SetValueWithoutNotify(activeBuilder.IsActive);
     }
 
@@ -142,14 +142,13 @@ public class BuilderUI : MonoBehaviour
         activeBuilder.processTimer = 0f;
         activeBuilder.isProcessing = false;
 
-        ChangeButtonTexture(recipeChangerBtn, 75, 55);
+        ChangeButtonTexture(recipeChangerBtn);
 
     }
 
-    private void ChangeButtonTexture(Button button, int width, int height)
+    private void ChangeButtonTexture(Button button)
     {
         button.style.backgroundImage = new StyleBackground(ressourceLibrary.GetIcon(activeBuilder.currentRecipe.Output));
-        button.style.backgroundSize = new BackgroundSize(new Length(width, LengthUnit.Percent), new Length(height, LengthUnit.Percent));
     }
 }   
 

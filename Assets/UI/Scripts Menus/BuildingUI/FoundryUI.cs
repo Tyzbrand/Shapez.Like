@@ -103,14 +103,14 @@ public class FoundryUI : MonoBehaviour
         activeFoundry = foundry;
         foundryToggle.SetValueWithoutNotify(activeFoundry.IsActive);
 
-        ChangeButtonTexture(recipeChangerBtn, 75, 55);
+        ChangeButtonTexture(recipeChangerBtn);
 
     }
 
     public void FoundryUIOnShow(Foundry foundry)
     {
         activeFoundry = foundry;
-        ChangeButtonTexture(recipeChangerBtn, 75, 55);
+        ChangeButtonTexture(recipeChangerBtn);
         foundryToggle.SetValueWithoutNotify(activeFoundry.IsActive);
     }
 
@@ -139,14 +139,13 @@ public class FoundryUI : MonoBehaviour
         activeFoundry.processTimer = 0f;
         activeFoundry.isProcessing = false;
 
-        ChangeButtonTexture(recipeChangerBtn, 75, 55);
+        ChangeButtonTexture(recipeChangerBtn);
 
         if (!activeFoundry.isProcessing) activeFoundry.SetIdleTexture();
     }
 
-    private void ChangeButtonTexture(Button button, int width, int height)
+    private void ChangeButtonTexture(Button button)
     {
         button.style.backgroundImage = new StyleBackground(ressourceLibrary.GetIcon(activeFoundry.currentRecipe.output));
-        button.style.backgroundSize = new BackgroundSize(new Length(width, LengthUnit.Percent), new Length(height, LengthUnit.Percent));
     }
 }

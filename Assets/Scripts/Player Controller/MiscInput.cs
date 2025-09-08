@@ -59,15 +59,16 @@ public class MiscInput : MonoBehaviour
     private void Update()
     {
 
-        if (Input.GetKeyDown(KeyCode.Escape) && !player.buildMenu && !player.buildMode && !player.isInUI && !player.destructionMode)//Ouvrir le menu pause
+        if (Input.GetKeyDown(KeyCode.Escape) && !player.buildMenu && !player.buildMode && !player.isInUI && !player.destructionMode && !player.pickupMode)//Ouvrir le menu pause
         {
             TogglePauseMenu();
         }
-        else if (Input.GetKeyDown(KeyCode.Escape) && !player.buildMenu && player.buildMode)//quiiter le build mode ET le menu (retour normal)
+        else if ((Input.GetKeyDown(KeyCode.Escape) || Input.GetMouseButtonDown(1)) && player.pickupMode && !placement.hasPickup) {QuitPickUpModeEmpty(); return;} //Quitter le pickup mode sans avoir choisi
+        else if (Input.GetKeyDown(KeyCode.Escape) && !player.buildMenu && player.buildMode && !player.pickupMode)//quiiter le build mode ET le menu (retour normal)
         {
             QuiBuildFunction();
         }
-        else if (Input.GetKeyDown(KeyCode.Escape) && !player.buildMenu && !player.buildMode && player.destructionMode) QuitDestructionMode(); //quitter le mode destruction
+        else if (Input.GetKeyDown(KeyCode.Escape) && !player.buildMenu && !player.buildMode && player.destructionMode && !player.pickupMode) QuitDestructionMode(); //quitter le mode destruction
 
         if (Input.GetMouseButtonDown(1) && !player.buildMenu && player.buildMode)//quitter le build mode et revenir au menu
         {
@@ -152,7 +153,7 @@ public class MiscInput : MonoBehaviour
 
         }
 
-        if (Input.GetKeyDown(KeyCode.Escape) && !player.isInPauseUI && !player.destructionMode) //fermer un UI ouvert
+        if (Input.GetKeyDown(KeyCode.Escape) && !player.isInPauseUI && !player.destructionMode && !player.pickupMode) //fermer un UI ouvert
         {
             VisualElement currentPanel = uIManager.GetOpenPanel();
             if (currentPanel != null) hideAllPanel(currentPanel);
@@ -178,6 +179,7 @@ public class MiscInput : MonoBehaviour
     private void TogglePauseMenu()
     {
         if (uIManager.GetOpenPanel() == null) pauseMenu.TogglePauseMenu();
+        
     }
 
     private void QuiBuildFunction()
@@ -199,6 +201,12 @@ public class MiscInput : MonoBehaviour
         player.buildMode = false;
         placement.hasPickup = false;
         previewSC.DestroyInstance();
+    }
+
+    public void QuitPickUpModeEmpty()
+    {
+        player.pickupMode = false;
+        uIManager.ShowPanel(buildMenuSC.panel, () => buildMenuSC.BuildMenuOnShow());
     }
 
 

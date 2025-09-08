@@ -266,8 +266,12 @@ public class BuildMenuSC : MonoBehaviour
 
     private void pickup()
     {
-        if (!player.pickupMode) {player.pickupMode = true; previewSC.DestroyInstance(); player.buildMode = false; }
-        else if (player.pickupMode) player.pickupMode = false;
+        if (!player.pickupMode) { player.pickupMode = true; previewSC.DestroyInstance(); player.buildMode = false; }
+        else if (player.pickupMode)
+        {
+            player.pickupMode = false;
+            uIManager.ShowPanel(panel, () => BuildMenuOnShow());
+        }
     }
 
     //----------Méthodes de gestion du menu----------
@@ -290,11 +294,12 @@ public class BuildMenuSC : MonoBehaviour
 
     }
 
+
     //----------Gestion des états----------
     private void UpdatePickUpButton()
     {
-        if (player.pickupMode) pickupBtn.style.backgroundColor = new Color(100f/255f, 100f/255f, 90f/255f, 1f);
-        else pickupBtn.style.backgroundColor = new Color(44f/255f, 44f/255f, 41f/255f, 1f);
+        if (player.pickupMode) pickupBtn.style.backgroundColor = new Color(100f / 255f, 100f / 255f, 90f / 255f, 1f);
+        else pickupBtn.style.backgroundColor = new Color(44f / 255f, 44f / 255f, 41f / 255f, 1f);
     }
 
     //----------Méthodes unity----------

@@ -1,7 +1,7 @@
 using System.Threading;
 
 [System.Serializable]
-public class Recipe11_1
+public class Recipe11_1 : RecipeParent
 {
     public RessourceBehaviour.RessourceType input1;
     public RessourceBehaviour.RessourceType input2;
