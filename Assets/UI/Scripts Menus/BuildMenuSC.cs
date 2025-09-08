@@ -16,7 +16,7 @@ public class BuildMenuSC : MonoBehaviour
     private Label extractorPrice, conveyorPrice, marketplacePrice, foundryPrice, builderPrice, coalGeneratorPrice, advancedExtractorPrice,
         junctionPrice, splitterPrice, mergerPrice;
     private Button extractorBuild, conveyorBuild, marketplaceBuild, foundryBuild, builderBuild, coalGeneratorBuild, advancedExtractorBuild,
-        junctionBuild, splitterBuild, mergerBuild, rotateBtn, pickupBtn;
+        junctionBuild, splitterBuild, mergerBuild, rotateBtn, pickupBtn, lineBuildBtn;
 
 
 
@@ -60,6 +60,7 @@ public class BuildMenuSC : MonoBehaviour
 
         rotateBtn = buildTools.Q<Button>("RotateBtn");
         pickupBtn = buildTools.Q<Button>("PickUpBtn");
+        lineBuildBtn = buildTools.Q<Button>("LineBuildBtn");
 
         //Désabonnements
         extractorBuild.clicked -= ExtractorSelect;
@@ -75,6 +76,7 @@ public class BuildMenuSC : MonoBehaviour
 
         rotateBtn.clicked -= Rotate;
         pickupBtn.clicked -= pickup;
+        lineBuildBtn.clicked -= LineBuild;
 
         //Abonnements
         extractorBuild.clicked += ExtractorSelect;
@@ -90,6 +92,7 @@ public class BuildMenuSC : MonoBehaviour
 
         rotateBtn.clicked += Rotate;
         pickupBtn.clicked += pickup;
+        lineBuildBtn.clicked += LineBuild;
 
 
         //Assignation des valeures
@@ -156,6 +159,7 @@ public class BuildMenuSC : MonoBehaviour
         previewSC.CreateInstance();
 
         player.buildMode = true;
+        player.lineBuild = true;
         player.rotation = 0;
     }
 
@@ -274,32 +278,39 @@ public class BuildMenuSC : MonoBehaviour
         }
     }
 
+    private void LineBuild()
+    {
+        if (!player.lineBuild) { player.lineBuild = true; }
+        else if (player.lineBuild){ player.lineBuild = false; }
+    }
+
     //----------Méthodes de gestion du menu----------
 
     public void BuildMenuOnShow()
     {
         player.isInUI = true;
         player.buildMenu = true;
-        buildTools.style.display = DisplayStyle.None;
+        buildTools.style.display = DisplayStyle.Flex;
 
     }
 
     public void BuildMenuOnHide()
     {
-        buildTools.style.display = DisplayStyle.None;
+        if(!player.buildMode) buildTools.style.display = DisplayStyle.None;
         player.isInUI = false;
         player.buildMenu = false;
         player.pickupMode = false;
+        player.lineBuild = false;
         previewSC.DestroyInstance();
 
     }
 
 
     //----------Gestion des états----------
-    private void UpdatePickUpButton()
+    private void UpdateButtonState(Button button, bool state)
     {
-        if (player.pickupMode) pickupBtn.style.backgroundColor = new Color(100f / 255f, 100f / 255f, 90f / 255f, 1f);
-        else pickupBtn.style.backgroundColor = new Color(44f / 255f, 44f / 255f, 41f / 255f, 1f);
+        if (state) button.style.backgroundColor = new Color(100f / 255f, 100f / 255f, 90f / 255f, 1f);
+        else button.style.backgroundColor = new Color(44f / 255f, 44f / 255f, 41f / 255f, 1f);
     }
 
     //----------Méthodes unity----------
@@ -308,7 +319,8 @@ public class BuildMenuSC : MonoBehaviour
     {
         if (buildTools.resolvedStyle.display == DisplayStyle.Flex)
         {
-            UpdatePickUpButton();
+            UpdateButtonState(pickupBtn, player.pickupMode);
+            UpdateButtonState(lineBuildBtn, player.lineBuild);
         }
     }
 

@@ -52,7 +52,7 @@
                 },
                 {
                     "name": "Build",
-                    "type": "Value",
+                    "type": "Button",
                     "id": "6c1316e3-d59c-4826-bb72-e1d2fa99e979",
                     "expectedControlType": "",
                     "processors": "",

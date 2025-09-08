@@ -21,6 +21,8 @@ public class Placement : MonoBehaviour
     private PlayerVariables player;
     private OverlaySC OverlaySC;
     private Preview previewSC;
+    private UIManager uIManager;
+    private BuildMenuSC buildMenuSC;
     private BuildingLibrary buildingLibrary;
     private BuildingManager buildingManager;
     private MiscInput miscInput;
@@ -32,9 +34,12 @@ public class Placement : MonoBehaviour
     private Tilemap tilemap;
     private bool allowConstruciton = false;
     public bool hasPickup = false;
+    private bool isHoldingBuild = false;
     public BuildingManager.buildingType currentBuildingType = BuildingManager.buildingType.None;
     public BuildingManager.buildingType pickupType = BuildingManager.buildingType.None;
     private RecipeParent actualRecipe = null;
+
+    private Vector3Int lasTilePos;
 
 
 
@@ -56,6 +61,8 @@ public class Placement : MonoBehaviour
         previewSC = ReferenceHolder.instance.previewSC;
         buildingLibrary = ReferenceHolder.instance.buildingLibrary;
         miscInput = ReferenceHolder.instance.miscInput;
+        buildMenuSC = ReferenceHolder.instance.buildMenu;
+        uIManager = ReferenceHolder.instance.uIManager;
 
 
 
@@ -66,7 +73,7 @@ public class Placement : MonoBehaviour
 
     private void Update()
     {
-        if (allowConstruciton)
+        if (allowConstruciton && !isHoldingBuild)
         {
 
             if (currentBuildingType != BuildingManager.buildingType.None)
@@ -83,7 +90,7 @@ public class Placement : MonoBehaviour
 
                     if (!restrictedTiles.Contains(underTile) && underTile != null && !EventSystem.current.IsPointerOverGameObject())
                     {
-                        if (hasPickup) BuildPickUp(mousePos2D);
+                        if (hasPickup) BuildPickUp(mousePos2D, false);
                         else BuildCurrent(mousePos2D);
                     }
                 }
@@ -92,10 +99,39 @@ public class Placement : MonoBehaviour
             allowConstruciton = false;
         }
 
-        if (player.pickupMode && Input.GetMouseButtonDown(0) && !EventSystem.current.IsPointerOverGameObject())
+        if (isHoldingBuild)
         {
-            PickupBuilding();
+            if (currentBuildingType != BuildingManager.buildingType.None)
+            {
+                if (player.buildMode)
+                {
+                    Vector3 mousePos3D = playerCam.ScreenToWorldPoint(Mouse.current.position.ReadValue());
+                    mousePos3D.z = 0;
+                    Vector2 mousePos2D = new Vector2(mousePos3D.x, mousePos3D.y);
+
+                    tilemap = player.tilemap1;
+
+                    Vector3Int cellPos = tilemap.WorldToCell(mousePos2D);
+                    TileBase underTile = tilemap.GetTile(cellPos);
+
+                    if (!restrictedTiles.Contains(underTile) && underTile != null && !EventSystem.current.IsPointerOverGameObject() && cellPos != lasTilePos)
+                    {
+                        if (hasPickup) BuildPickUp(mousePos2D, true);
+                        else BuildCurrent(mousePos2D);
+                        lasTilePos = cellPos;
+                    }
+
+
+                    
+                    
+                }
+            }
         }
+
+        if (player.pickupMode && Input.GetMouseButtonDown(0) && !EventSystem.current.IsPointerOverGameObject())
+            {
+                PickupBuilding();
+            }
     }
 
 
@@ -135,10 +171,13 @@ public class Placement : MonoBehaviour
 
         }
 
+        if (context.phase == InputActionPhase.Started && player.lineBuild) isHoldingBuild = true;
+        else if (context.phase == InputActionPhase.Canceled && player.lineBuild) isHoldingBuild = false;
+
     }
 
     private BuildingBH GetCurrentType(Vector2 mousePos2D, Tilemap buildingTilemap, BuildingManager.buildingType typeSource)
-    {        
+    {
         switch (typeSource)
         {
             case BuildingManager.buildingType.Extractor:
@@ -182,20 +221,24 @@ public class Placement : MonoBehaviour
             hasPickup = true;
             player.pickupMode = false;
 
+            player.buildMode = true;
+            uIManager.HidePanel(buildMenuSC.panel, () => buildMenuSC.BuildMenuOnHide());
 
             previewSC.DestroyInstance();
             previewSC.previewToUse = buildingLibrary.GetBuildingPreview(pickupType);
             previewSC.CreateInstance();
-            player.buildMode = true;
+
 
             if (building is Foundry foundry) { actualRecipe = foundry.currentRecipe; }
             else if (building is Builder builder) { actualRecipe = builder.currentRecipe; }
+
+            if (pickupType is BuildingManager.buildingType.Conveyor) player.lineBuild = true;
         }
 
 
     }
 
-    private void BuildPickUp(Vector2 mousePos2D)
+    private void BuildPickUp(Vector2 mousePos2D, bool save)
     {
         BuildingBH pickupInstance = GetCurrentType(mousePos2D, tilemap, pickupType);
 
@@ -207,20 +250,26 @@ public class Placement : MonoBehaviour
                 if (pickupInstance is Foundry foundry) foundry.currentRecipe = (Recipe11_1)actualRecipe;
                 else if (pickupInstance is Builder builder) builder.currentRecipe = (Recipe1_1)actualRecipe;
             });
-            actualRecipe = null;
+            if(!save) actualRecipe = null;
         }
         
+
         player.Money -= prices.GetBuildingPrice(pickupType);
         OverlaySC.UpdateMoneyText();
     }
 
     private void BuildCurrent(Vector2 mousePos2D)
-    {
+    {   
         BuildingBH currentInstance = GetCurrentType(mousePos2D, tilemap, currentBuildingType);
 
         buildingManager.AddBuilding(mousePos2D, currentInstance);
         player.Money -= prices.GetBuildingPrice(currentBuildingType);
         OverlaySC.UpdateMoneyText();
+    }
+
+    private void LineBuild()
+    {
+        
     }
 }
 

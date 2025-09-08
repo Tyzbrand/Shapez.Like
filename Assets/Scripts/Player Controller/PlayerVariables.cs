@@ -1,9 +1,7 @@
 using UnityEngine;
 using UnityEngine.Tilemaps;
-using UnityEngine.UIElements;
 
 //-------------------------------------Gère toute les variables dynamiques simples du joueur -------------------------------------
-//Utilisation dans : -Placement et -PlayerMove
 
 public class PlayerVariables : MonoBehaviour
 {
@@ -14,6 +12,7 @@ public class PlayerVariables : MonoBehaviour
     public bool buildMenu = false;
     public bool destructionMode = false;
     public bool pickupMode = false;
+    public bool lineBuild = false;
 
     public int rotation = 0;
 

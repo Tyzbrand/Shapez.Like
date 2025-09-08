@@ -187,6 +187,7 @@ public class MiscInput : MonoBehaviour
         uIManager.TogglePanel(buildMenuSC.panel, () => buildMenuSC.BuildMenuOnShow(), () => buildMenuSC.BuildMenuOnHide());
         player.buildMode = false;
         placement.hasPickup = false;
+        player.lineBuild = false;
         previewSC.DestroyInstance();
     }
 
@@ -200,6 +201,7 @@ public class MiscInput : MonoBehaviour
         uIManager.TogglePanel(buildMenuSC.panel, () => buildMenuSC.BuildMenuOnShow(), () => buildMenuSC.BuildMenuOnHide());
         player.buildMode = false;
         placement.hasPickup = false;
+        player.lineBuild = false;
         previewSC.DestroyInstance();
     }
 
