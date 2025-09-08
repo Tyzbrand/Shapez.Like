@@ -22,14 +22,14 @@ public class StackFeature : MonoBehaviour
     public void UndoAfterConstruct(Vector2 pos, BuildingBH building, int rotation)
     {
         if (undoStack.Count >= 15) CapUndo();
-        undoStack.Push((undo:() => buildingManager.RemoveBuilding(pos), redo: () => { player.rotation = rotation; buildingManager.AddBuilding(pos, building, false); }));
+        undoStack.Push((undo:() => buildingManager.RemoveBuilding(pos, false), redo: () => { player.rotation = rotation; buildingManager.AddBuilding(pos, building, false); }));
     }
 
     public void UndoAfterDestruct(BuildingBH building, Vector2 pos, int rotation, RecipeParent recipe = null)
     {
         if (undoStack.Count >= 15) CapUndo();
 
-        if (recipe == null) undoStack.Push((undo: () => { player.rotation = rotation; buildingManager.AddBuilding(pos, building, false); }, redo: () => buildingManager.RemoveBuilding(pos)));
+        if (recipe == null) undoStack.Push((undo: () => { player.rotation = rotation; buildingManager.AddBuilding(pos, building, false); }, redo: () => buildingManager.RemoveBuilding(pos, false)));
         else undoStack.Push(( undo : () =>
         {
             player.rotation = rotation;
@@ -38,7 +38,7 @@ public class StackFeature : MonoBehaviour
                 if (building is Foundry foundry) foundry.currentRecipe = (Recipe11_1)recipe;
                 else if (building is Builder builder) builder.currentRecipe = (Recipe1_1)recipe;
             });
-        }, redo : () => buildingManager.RemoveBuilding(pos)));
+        }, redo : () => buildingManager.RemoveBuilding(pos, false)));
 
     }
 

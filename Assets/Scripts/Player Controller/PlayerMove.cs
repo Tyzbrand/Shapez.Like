@@ -85,6 +85,7 @@ public class PlayerMove : MonoBehaviour
     //Input mouvements X Y
     private void Move(InputAction.CallbackContext context)
     {
+        if (Keyboard.current.ctrlKey.isPressed) return;
         moveInput = context.ReadValue<Vector2>();
     }
 

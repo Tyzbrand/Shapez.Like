@@ -33,24 +33,6 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "NextScene",
-                    "type": "Button",
-                    "id": "915aa004-b6b3-4d33-9b75-eb310693fd55",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "BuildMode",
-                    "type": "Button",
-                    "id": "cbccd363-52f5-4767-95e8-8d2fcd059927",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
                     "name": "Build",
                     "type": "Button",
                     "id": "6c1316e3-d59c-4826-bb72-e1d2fa99e979",
@@ -76,6 +58,51 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
+                },
+                {
+                    "name": "LineTool",
+                    "type": "Button",
+                    "id": "8df05101-c83d-4c1c-8ac6-eed54cd8affc",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "PickupTool",
+                    "type": "Button",
+                    "id": "17b842a7-bacc-4cc1-a35f-f257e56b1652",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Undo",
+                    "type": "Button",
+                    "id": "b161cd0e-0cfe-4ca0-b923-97b50cf4282e",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Redo",
+                    "type": "Button",
+                    "id": "14dd4447-4f97-4b0c-90e2-081c85ba3759",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "UndoTool",
+                    "type": "Button",
+                    "id": "cb47157a-f856-4918-9560-3f1cf69a15e6",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -158,28 +185,6 @@
                 },
                 {
                     "name": "",
-                    "id": "9360fe68-ff20-4147-bcec-9d02016a7898",
-                    "path": "<Keyboard>/p",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": ";Keyboard&Mouse",
-                    "action": "NextScene",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "a8339b40-06e7-421a-b6bc-72fff11c82c3",
-                    "path": "<Keyboard>/b",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": ";Keyboard&Mouse",
-                    "action": "BuildMode",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "a0be93e7-e586-4477-a73a-8efbe89c9974",
                     "path": "<Mouse>/leftButton",
                     "interactions": "",
@@ -210,14 +215,63 @@
                     "action": "Destroy",
                     "isComposite": false,
                     "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "f617272a-5b34-4c7f-8a14-14f798f01831",
+                    "path": "<Keyboard>/#(L)",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Keyboard&Mouse",
+                    "action": "LineTool",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "797ac844-9da7-49d1-94e7-5db7ef25c177",
+                    "path": "<Keyboard>/#(P)",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Keyboard&Mouse",
+                    "action": "PickupTool",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "738b1395-3e4d-4791-a678-91c55d1923fa",
+                    "path": "<Keyboard>/z",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Undo",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "1a35c33f-c31f-43e9-a95c-aeed57071716",
+                    "path": "<Keyboard>/y",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Keyboard&Mouse",
+                    "action": "Redo",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "95a72081-6612-44f0-8cd7-b845ac943339",
+                    "path": "<Keyboard>/z",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Keyboard&Mouse",
+                    "action": "UndoTool",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
-        },
-        {
-            "name": "UI",
-            "id": "272f6d14-89ba-496f-b7ff-215263d3219f",
-            "actions": [],
-            "bindings": []
         }
     ],
     "controlSchemes": [

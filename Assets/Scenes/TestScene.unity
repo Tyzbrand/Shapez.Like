@@ -466,26 +466,6 @@ MonoBehaviour:
     m_ActionId: 7c612ea1-5b81-4f1a-8472-b648059c2a72
     m_ActionName: 'Actions/DragMove[/Mouse/leftButton]'
   - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 915aa004-b6b3-4d33-9b75-eb310693fd55
-    m_ActionName: 'Actions/NextScene[/Keyboard/p]'
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: PlayerSwitchMode, Assembly-CSharp
-        m_MethodName: BuildMode
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: cbccd363-52f5-4767-95e8-8d2fcd059927
-    m_ActionName: 'Actions/BuildMode[/Keyboard/b]'
-  - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 526294626}
         m_TargetAssemblyTypeName: Placement, Assembly-CSharp
@@ -533,6 +513,74 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: a43de67e-1338-4ed0-9aff-f4a386782b73
     m_ActionName: 'Actions/Destroy[/Mouse/leftButton]'
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1409634706}
+        m_TargetAssemblyTypeName: BuildMenuSC, Assembly-CSharp
+        m_MethodName: LineBuildCTX
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 8df05101-c83d-4c1c-8ac6-eed54cd8affc
+    m_ActionName: 'Actions/LineTool[/Keyboard/l]'
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1409634706}
+        m_TargetAssemblyTypeName: BuildMenuSC, Assembly-CSharp
+        m_MethodName: pickupCTX
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 17b842a7-bacc-4cc1-a35f-f257e56b1652
+    m_ActionName: 'Actions/PickupTool[/Keyboard/p]'
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1409634706}
+        m_TargetAssemblyTypeName: BuildMenuSC, Assembly-CSharp
+        m_MethodName: UndoCTX
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: b161cd0e-0cfe-4ca0-b923-97b50cf4282e
+    m_ActionName: 'Actions/Undo[/Keyboard/z]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 14dd4447-4f97-4b0c-90e2-081c85ba3759
+    m_ActionName: 'Actions/Redo[/Keyboard/y]'
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1409634706}
+        m_TargetAssemblyTypeName: BuildMenuSC, Assembly-CSharp
+        m_MethodName: UndoCTX
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: cb47157a-f856-4918-9560-3f1cf69a15e6
+    m_ActionName: 'Actions/UndoTool[/Keyboard/z]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: Keyboard&Mouse
   m_DefaultActionMap: Actions

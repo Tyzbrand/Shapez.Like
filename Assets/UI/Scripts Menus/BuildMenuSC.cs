@@ -1,5 +1,6 @@
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.UIElements;
 
 public class BuildMenuSC : MonoBehaviour
@@ -302,6 +303,42 @@ public class BuildMenuSC : MonoBehaviour
     {
         stackFeature.Redo();
     }
+
+    //----------Gestion des Inputs----------
+    public void pickupCTX(InputAction.CallbackContext context)
+    {
+        if (!context.performed || buildTools.resolvedStyle.display == DisplayStyle.None) return;
+        if (!player.pickupMode) { player.pickupMode = true; previewSC.DestroyInstance(); player.buildMode = false; }
+        else if (player.pickupMode)
+        {
+            player.pickupMode = false;
+            uIManager.ShowPanel(panel, () => BuildMenuOnShow());
+        }
+    }
+
+    public void LineBuildCTX(InputAction.CallbackContext context)
+    {
+        if (!context.performed || buildTools.resolvedStyle.display == DisplayStyle.None) return;
+        if (!player.lineBuild) { player.lineBuild = true; }
+        else if (player.lineBuild) { player.lineBuild = false; }
+    }
+
+    public void UndoCTX(InputAction.CallbackContext context)
+    {
+        if (!context.performed) return;
+        if(Keyboard.current.ctrlKey.isPressed) stackFeature.Undo();
+    
+        Debug.Log("UNDO !");
+    }
+
+    public void RedoCTX(InputAction.CallbackContext context)
+    {   
+        if (!context.performed) return;
+        if(Keyboard.current.ctrlKey.isPressed) stackFeature.Redo();
+        Debug.Log("Redo !");
+    }
+
+
 
     //----------Méthodes de gestion du menu----------
 
