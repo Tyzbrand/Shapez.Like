@@ -24,6 +24,7 @@ public class ReferenceHolder : MonoBehaviour
     public Inventory inventorySC;
     public Statistics playerStats;
     public MiscInput miscInput;
+    public StackFeature stackFeature;
 
 
     //Game Managers

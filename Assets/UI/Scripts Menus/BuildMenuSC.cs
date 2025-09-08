@@ -1,3 +1,4 @@
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -9,6 +10,7 @@ public class BuildMenuSC : MonoBehaviour
     private PlayerVariables player;
     private Preview previewSC;
     private Placement placementSC;
+    private StackFeature stackFeature;
     private BuildingLibrary buildPriceLibrary;
     private UIManager uIManager;
     private TooltipSC tooltipSC;
@@ -16,7 +18,7 @@ public class BuildMenuSC : MonoBehaviour
     private Label extractorPrice, conveyorPrice, marketplacePrice, foundryPrice, builderPrice, coalGeneratorPrice, advancedExtractorPrice,
         junctionPrice, splitterPrice, mergerPrice;
     private Button extractorBuild, conveyorBuild, marketplaceBuild, foundryBuild, builderBuild, coalGeneratorBuild, advancedExtractorBuild,
-        junctionBuild, splitterBuild, mergerBuild, rotateBtn, pickupBtn, lineBuildBtn;
+        junctionBuild, splitterBuild, mergerBuild, rotateBtn, pickupBtn, lineBuildBtn, undoBtn, redoBtn;
 
 
 
@@ -30,6 +32,7 @@ public class BuildMenuSC : MonoBehaviour
         buildPriceLibrary = ReferenceHolder.instance.buildingLibrary;
         uIManager = ReferenceHolder.instance.uIManager;
         tooltipSC = ReferenceHolder.instance.tooltipSC;
+        stackFeature = ReferenceHolder.instance.stackFeature;
 
         panel = uI.rootVisualElement.Q<VisualElement>("BuildMenu");
         uIManager.RegisterPanel(panel);
@@ -61,6 +64,8 @@ public class BuildMenuSC : MonoBehaviour
         rotateBtn = buildTools.Q<Button>("RotateBtn");
         pickupBtn = buildTools.Q<Button>("PickUpBtn");
         lineBuildBtn = buildTools.Q<Button>("LineBuildBtn");
+        undoBtn = buildTools.Q<Button>("UndoBtn");
+        redoBtn = buildTools.Q<Button>("RedoBtn");
 
         //Désabonnements
         extractorBuild.clicked -= ExtractorSelect;
@@ -77,6 +82,8 @@ public class BuildMenuSC : MonoBehaviour
         rotateBtn.clicked -= Rotate;
         pickupBtn.clicked -= pickup;
         lineBuildBtn.clicked -= LineBuild;
+        undoBtn.clicked -= Undo;
+        redoBtn.clicked -= Redo;
 
         //Abonnements
         extractorBuild.clicked += ExtractorSelect;
@@ -93,6 +100,8 @@ public class BuildMenuSC : MonoBehaviour
         rotateBtn.clicked += Rotate;
         pickupBtn.clicked += pickup;
         lineBuildBtn.clicked += LineBuild;
+        undoBtn.clicked += Undo;
+        redoBtn.clicked += Redo;
 
 
         //Assignation des valeures
@@ -282,6 +291,16 @@ public class BuildMenuSC : MonoBehaviour
     {
         if (!player.lineBuild) { player.lineBuild = true; }
         else if (player.lineBuild){ player.lineBuild = false; }
+    }
+
+    private void Undo()
+    {
+        stackFeature.Undo();
+    }
+
+    private void Redo()
+    {
+        stackFeature.Redo();
     }
 
     //----------Méthodes de gestion du menu----------

@@ -38,12 +38,7 @@ public class Placement : MonoBehaviour
     public BuildingManager.buildingType currentBuildingType = BuildingManager.buildingType.None;
     public BuildingManager.buildingType pickupType = BuildingManager.buildingType.None;
     private RecipeParent actualRecipe = null;
-
     private Vector3Int lasTilePos;
-
-
-
-    //Dictionnaire
     private BuildingLibrary prices;
 
 
@@ -245,7 +240,7 @@ public class Placement : MonoBehaviour
         if (actualRecipe == null) buildingManager.AddBuilding(mousePos2D, pickupInstance);
         else
         {
-            buildingManager.AddBuilding(mousePos2D, pickupInstance, () =>
+            buildingManager.AddBuilding(mousePos2D, pickupInstance, true, () =>
             {
                 if (pickupInstance is Foundry foundry) foundry.currentRecipe = (Recipe11_1)actualRecipe;
                 else if (pickupInstance is Builder builder) builder.currentRecipe = (Recipe1_1)actualRecipe;
@@ -267,10 +262,6 @@ public class Placement : MonoBehaviour
         OverlaySC.UpdateMoneyText();
     }
 
-    private void LineBuild()
-    {
-        
-    }
 }
 
            

@@ -22,6 +22,7 @@ public class BuildingManager : MonoBehaviour
     public Tilemap tilemap;
     public GameObject buildingPrefab;
     public Transform parent;
+    private StackFeature stackFeature;
 
 
     public enum buildingType
@@ -45,7 +46,7 @@ public class BuildingManager : MonoBehaviour
     //---------------Méthodes Implémentées---------------
     //Logique
 
-    public void AddBuilding(Vector2 worldPos, BuildingBH building, Action extraAction = null)
+    public void AddBuilding(Vector2 worldPos, BuildingBH building, bool saveUndo = true, Action extraAction = null)
     {
         Vector2Int tilePos = ConvertInt(worldPos);
         if (!buildingReferencer.ContainsKey(tilePos))
@@ -60,11 +61,13 @@ public class BuildingManager : MonoBehaviour
 
             extraAction?.Invoke();
 
+            if (saveUndo) stackFeature.UndoAfterConstruct(tilePos, building, player.rotation);
+
         }
 
     }
 
-    public void RemoveBuilding(Vector2 worldPos)
+    public void RemoveBuilding(Vector2 worldPos, bool saveUndo = true)
     {
         Vector2Int tilePos = ConvertInt(worldPos);
         if (buildingReferencer.TryGetValue(tilePos, out BuildingBH building))
@@ -72,7 +75,10 @@ public class BuildingManager : MonoBehaviour
             RemoveVisual(building);
             building.BuildingOnDestroy();
             buildingReferencer.Remove(tilePos);
-            
+
+            if (saveUndo && !(building is Foundry) && !(building is Builder)) stackFeature.UndoAfterDestruct(building, worldPos, building.rotation);
+            else if (saveUndo) stackFeature.UndoAfterDestruct(building, worldPos, building.rotation);
+
         }
 
     }
@@ -112,7 +118,7 @@ public class BuildingManager : MonoBehaviour
 
                 Vector2 hubPos = new Vector2(basePos.x + x, basePos.y + y);
                 Hub hub = new Hub(hubPos, 0, tilemap);
-                AddBuilding(ConvertInt(hubPos), hub);
+                AddBuilding(ConvertInt(hubPos), hub, false);
 
             }
         }
@@ -205,6 +211,7 @@ public class BuildingManager : MonoBehaviour
         buildingLibrary = ReferenceHolder.instance.buildingLibrary;
         playerStats = ReferenceHolder.instance.playerStats;
         buildingPrefab = ReferenceHolder.instance.buildingPrefab;
+        stackFeature = ReferenceHolder.instance.stackFeature;
 
 
 

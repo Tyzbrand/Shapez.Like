@@ -344,6 +344,7 @@ GameObject:
   - component: {fileID: 526294627}
   - component: {fileID: 526294631}
   - component: {fileID: 526294628}
+  - component: {fileID: 526294637}
   - component: {fileID: 526294629}
   - component: {fileID: 526294634}
   - component: {fileID: 526294635}
@@ -552,6 +553,8 @@ MonoBehaviour:
   buildMode: 0
   buildMenu: 0
   destructionMode: 0
+  pickupMode: 0
+  lineBuild: 0
   rotation: 0
   currentBuild: {fileID: 0}
   currentPreview: {fileID: 0}
@@ -566,7 +569,6 @@ MonoBehaviour:
   realElectricityBalance: 0
   electricityMaxStorage: 1000
   tilemap1: {fileID: 0}
-  movementBlock: 0
   isInUI: 0
   isInPauseUI: 0
   timeScale: 1
@@ -583,7 +585,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentBuild: {fileID: 0}
+  hasPickup: 0
   currentBuildingType: 0
+  pickupType: 0
 --- !u!114 &526294627
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -645,6 +649,7 @@ MonoBehaviour:
   inventorySC: {fileID: 526294628}
   playerStats: {fileID: 526294635}
   miscInput: {fileID: 526294634}
+  stackFeature: {fileID: 526294637}
   buildingManager: {fileID: 1461742641}
   itemManager: {fileID: 1461742640}
   timeManager: {fileID: 1461742639}
@@ -763,6 +768,18 @@ MonoBehaviour:
   sortNumDescending: {fileID: 21300000, guid: addb32f92d4571b459d8a907d19d86ea, type: 3}
   sortAlpha: {fileID: 21300000, guid: 0c745d63af97d4841bf5fab3ff569fdd, type: 3}
   sortAlphaDescending: {fileID: 21300000, guid: 0ef3c291d267e78418e0950cdfe30c0a, type: 3}
+--- !u!114 &526294637
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 526294619}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4865c91a45849ff4bbe1e275caceb7bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &619394800
 GameObject:
   m_ObjectHideFlags: 0
