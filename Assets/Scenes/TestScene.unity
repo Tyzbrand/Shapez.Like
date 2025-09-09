@@ -758,6 +758,8 @@ MonoBehaviour:
   ironPlate: {fileID: 550476946272679604, guid: d279d4e7741cd4d43831b6dc3b27d340, type: 3}
   gear: {fileID: -2011169481890461396, guid: 0d742294460c9c5419d3147b510765fc, type: 3}
   wireCoil: {fileID: -5045876670797870985, guid: e2c68a3ec9def294ab51fd7aadcfbcb9, type: 3}
+  Compound: {fileID: 21300000, guid: 897b8eb2f33301d4a97406673f91c78c, type: 3}
+  Brick: {fileID: 21300000, guid: 34c982b42bfe7d94083a7ae7a2393aa2, type: 3}
   defaultSort: {fileID: 21300000, guid: 1a07c5b8b9b77fe4ca95e121e1f5b4dd, type: 3}
   sortNum: {fileID: 21300000, guid: 79278862e42b58c4b8f44af81b86f71a, type: 3}
   sortNumDescending: {fileID: 21300000, guid: addb32f92d4571b459d8a907d19d86ea, type: 3}

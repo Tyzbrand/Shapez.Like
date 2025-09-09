@@ -42,6 +42,7 @@ public class PlayerVariables : MonoBehaviour
     public bool movementBlock = false;
     public bool isInUI = false;
     public bool isInPauseUI = false;
+    public bool isInBuildingUI = false;
 
     //accélération
     public float timeScale = 1f;

@@ -41,6 +41,8 @@ public class TextureHolder : MonoBehaviour
     public Sprite ironPlate;
     public Sprite gear;
     public Sprite wireCoil;
+    public Sprite Compound;
+    public Sprite Brick;
 
 
     [Header("Icons")]
