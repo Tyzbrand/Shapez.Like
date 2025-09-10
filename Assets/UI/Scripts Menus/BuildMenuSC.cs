@@ -14,9 +14,9 @@ public class BuildMenuSC : MonoBehaviour
     private TooltipSC tooltipSC;
 
     private Label extractorPrice, conveyorPrice, marketplacePrice, foundryPrice, builderPrice, coalGeneratorPrice, advancedExtractorPrice,
-        junctionPrice, splitterPrice, mergerPrice;
+        junctionPrice, splitterPrice, mergerPrice, wallPrice;
     private Button extractorBuild, conveyorBuild, marketplaceBuild, foundryBuild, builderBuild, coalGeneratorBuild, advancedExtractorBuild,
-        junctionBuild, splitterBuild, mergerBuild, rotateBtn;
+        junctionBuild, splitterBuild, mergerBuild, wallBuild, rotateBtn;
 
 
 
@@ -48,6 +48,7 @@ public class BuildMenuSC : MonoBehaviour
         junctionPrice = panel.Q<Label>("JunctionPriceTxt");
         splitterPrice = panel.Q<Label>("SplitterPriceTxt");
         mergerPrice = panel.Q<Label>("MergerPriceTxt");
+        wallPrice = panel.Q<Label>("WallPriceTxt");
 
         extractorBuild = panel.Q<Button>("ExtractorBuildBtn");
         conveyorBuild = panel.Q<Button>("ConveyorBuildBtn");
@@ -59,6 +60,7 @@ public class BuildMenuSC : MonoBehaviour
         junctionBuild = panel.Q<Button>("JunctionBuildBtn");
         splitterBuild = panel.Q<Button>("SplitterBuildBtn");
         mergerBuild = panel.Q<Button>("MergerBuildBtn");
+        wallBuild = panel.Q<Button>("WallBuildBtn");
 
         rotateBtn = buildTools.Q<Button>("RotateBtn");
 
@@ -73,6 +75,7 @@ public class BuildMenuSC : MonoBehaviour
         junctionBuild.clicked -= JunctionSelect;
         splitterBuild.clicked -= SplitterSelect;
         mergerBuild.clicked -= MergerSelect;
+        wallBuild.clicked -= WallSelect;
 
         rotateBtn.clicked -= Rotate;
 
@@ -87,6 +90,7 @@ public class BuildMenuSC : MonoBehaviour
         junctionBuild.clicked += JunctionSelect;
         splitterBuild.clicked += SplitterSelect;
         mergerBuild.clicked += MergerSelect;
+        wallBuild.clicked += WallSelect;
 
         rotateBtn.clicked += Rotate;
 
@@ -102,6 +106,7 @@ public class BuildMenuSC : MonoBehaviour
         junctionPrice.text = buildPriceLibrary.GetBuildingPrice(BuildingManager.buildingType.Junction) + " $";
         splitterPrice.text = buildPriceLibrary.GetBuildingPrice(BuildingManager.buildingType.Splitter) + " $";
         mergerPrice.text = buildPriceLibrary.GetBuildingPrice(BuildingManager.buildingType.Merger) + " $";
+        wallPrice.text = buildPriceLibrary.GetBuildingPrice(BuildingManager.buildingType.Wall) + " $";
 
 
         //Tooltips
@@ -252,12 +257,26 @@ public class BuildMenuSC : MonoBehaviour
         player.buildMode = true;
         player.rotation = 0;
     }
+    
+    private void WallSelect()
+    {
+        uIManager.TogglePanel(panel, () => BuildMenuOnShow(), () => BuildMenuOnHide());
+        buildTools.style.display = DisplayStyle.Flex;
+        previewSC.previewToUse = ReferenceHolder.instance.wallPreview;
+        placementSC.currentBuildingType = BuildingManager.buildingType.Wall;
+
+        previewSC.DestroyInstance();
+        previewSC.CreateInstance();
+
+        player.buildMode = true;
+        player.rotation = 0;
+    }
 
     //----------Button panel----------
 
     private void Rotate()
     {
-        if (player.buildMode) player.rotation = (player.rotation + 90) % 360; 
+        if (player.buildMode) player.rotation = (player.rotation + 90) % 360;
     }
 
     //----------Méthodes de gestion du menu----------

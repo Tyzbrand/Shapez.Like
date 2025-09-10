@@ -36,6 +36,8 @@ public class BuildingLibrary : MonoBehaviour
 
     private Sprite hub;
 
+    private Sprite wall;
+
 
 
 
@@ -46,7 +48,7 @@ public class BuildingLibrary : MonoBehaviour
 
         buildPrice = new Dictionary<BuildingManager.buildingType, int>() { { BuildingManager.buildingType.Extractor, 100 }, { BuildingManager.buildingType.Conveyor, 10 }, { BuildingManager.buildingType.marketplace, 0 }, { BuildingManager.buildingType.Foundry, 500 },
         { BuildingManager.buildingType.builder, 750 }, { BuildingManager.buildingType.CoalGenerator, 1500 }, {BuildingManager.buildingType.AdvancedExtractor, 3000}, {BuildingManager.buildingType.Junction, 50}, {BuildingManager.buildingType.Splitter, 75},
-        { BuildingManager.buildingType.Merger, 75} };
+        { BuildingManager.buildingType.Merger, 75}, { BuildingManager.buildingType.Wall, 50} };
 
 
     }
@@ -75,6 +77,8 @@ public class BuildingLibrary : MonoBehaviour
 
         hub = TextureHolder.instance.hub;
 
+        wall = TextureHolder.instance.wall;
+
 
         buildingStateSprite = new Dictionary<BuildingManager.buildingType, Dictionary<bool, Sprite>>
         {
@@ -89,6 +93,7 @@ public class BuildingLibrary : MonoBehaviour
             {BuildingManager.buildingType.CoalGenerator, new Dictionary<bool, Sprite>{{true, coalGenerator}, {false, coalGenerator}}},
             {BuildingManager.buildingType.marketplace, new Dictionary<bool, Sprite>{{false, marketplace}}},
             {BuildingManager.buildingType.Hub, new Dictionary<bool, Sprite>{{false, hub}}},
+            {BuildingManager.buildingType.Wall, new Dictionary<bool, Sprite>{{false, wall}}}
         };
     }
 

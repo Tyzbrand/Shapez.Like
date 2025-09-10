@@ -36,7 +36,8 @@ public class BuildingManager : MonoBehaviour
         marketplace,
         Foundry,
         builder,
-        CoalGenerator
+        CoalGenerator,
+        Wall
     }
 
     

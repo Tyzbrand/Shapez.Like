@@ -65,7 +65,7 @@ public class ReferenceHolder : MonoBehaviour
     public GameObject junctionPreview;
     public GameObject splitterPreview;
     public GameObject mergerPreview;
-
+    public GameObject wallPreview;
 
     //Datas
     [Header("Données")]

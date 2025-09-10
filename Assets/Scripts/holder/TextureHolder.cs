@@ -30,6 +30,8 @@ public class TextureHolder : MonoBehaviour
 
     public Sprite hub;
 
+    public Sprite wall;
+
     [Header("Ressources")]
     public Sprite Stone;
     public Sprite Coal;
