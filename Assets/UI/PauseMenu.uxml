@@ -127,6 +127,7 @@
                     </ui:VisualElement>
                     <ui:VisualElement name="1" style="flex-grow: 1; width: 383px; background-color: rgb(46, 46, 43);">
                         <ui:VisualElement style="flex-grow: 1; position: absolute; height: 80px; width: 80px; top: 7px; left: 5px; background-image: url(&quot;project://database/Assets/Sprites/UI/Icons/resource%20icons/Copper-Ingot_icon.png?fileID=-6086368668284294036&amp;guid=f9a67eff105f4c041bf1d3ce1f208d53&amp;type=3#Copper-Ingot_icon_0&quot;); background-size: 110% 110%; translate: 8px 0;" />
+                    </ui:VisualElement>
                     <ui:VisualElement name="1" style="flex-grow: 1; width: 383px; background-color: rgb(46, 46, 43); padding-top: 55px; padding-right: 55px; padding-bottom: 55px; padding-left: 55px;">
                         <ui:VisualElement style="flex-grow: 1; position: absolute; height: 80px; width: 80px; top: 7px; left: 5px; background-image: url(&quot;project://database/Assets/Sprites/UI/Icons/resource%20icons/Copper-plate_icon.png?fileID=6209227893216668190&amp;guid=e495d2837ffd178449528936bb7a9d51&amp;type=3#Copper-plate_icon_0&quot;); background-size: 110% 110%; translate: 8px 0;" />
                         <ui:VisualElement style="flex-grow: 1; position: absolute; height: 80px; width: 80px; top: 7px; left: 5px; background-image: url(&quot;project://database/Assets/Sprites/UI/Icons/resource%20icons/Wire-coil-icon.png?fileID=-5045876670797870985&amp;guid=e2c68a3ec9def294ab51fd7aadcfbcb9&amp;type=3#Wire-coil-icon_0&quot;); background-size: 110% 110%; translate: 184px 0;" />
@@ -145,6 +146,7 @@
                         <ui:Label text="→" style="position: absolute; top: 29px; left: 39px; height: 19px; translate: 74px 0; font-size: 55px;" />
                         <ui:Label text="1" style="position: absolute; top: 34px; left: 242px; -unity-text-outline-width: 2px; -unity-text-outline-color: rgb(0, 0, 0); color: rgb(255, 205, 0); font-size: 25px; -unity-font-style: bold; -unity-text-align: middle-center;" />
                     </ui:VisualElement>
+                    
                     <ui:VisualElement name="3" style="flex-grow: 1; width: 383px; background-color: rgb(46, 46, 43); padding-top: 55px; padding-right: 55px; padding-bottom: 55px; padding-left: 55px;">
                         <ui:VisualElement style="flex-grow: 1; position: absolute; height: 80px; width: 80px; top: 7px; left: 5px; background-image: url(&quot;project://database/Assets/Sprites/UI/Icons/resource%20icons/Iron-plate_icon.png?fileID=550476946272679604&amp;guid=d279d4e7741cd4d43831b6dc3b27d340&amp;type=3#Iron-plate_icon_0&quot;); background-size: 110% 110%; translate: 8px 0;" />
                         <ui:VisualElement style="flex-grow: 1; position: absolute; height: 80px; width: 80px; top: 7px; left: 5px; background-image: url(&quot;project://database/Assets/Sprites/UI/Icons/resource%20icons/Gear_icon.png?fileID=-2011169481890461396&amp;guid=0d742294460c9c5419d3147b510765fc&amp;type=3#Gear_icon_0&quot;); background-size: 110% 110%; translate: 184px 0;" />

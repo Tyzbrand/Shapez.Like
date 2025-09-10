@@ -109,7 +109,7 @@ public class BuildingLibrary : MonoBehaviour
             {BuildingManager.buildingType.Extractor, ReferenceHolder.instance.extractorPreview}, {BuildingManager.buildingType.AdvancedExtractor, ReferenceHolder.instance.advancedExtractorPreview},
             { BuildingManager.buildingType.builder, ReferenceHolder.instance.builderPrview}, {BuildingManager.buildingType.CoalGenerator, ReferenceHolder.instance.coalGeneratorPreview},
             {BuildingManager.buildingType.Conveyor, ReferenceHolder.instance.conveyorPreview}, {BuildingManager.buildingType.Foundry, ReferenceHolder.instance.foundryPreview},
-            {BuildingManager.buildingType.Junction, ReferenceHolder.instance.junctionPreview}, {BuildingManager.buildingType.marketplace, ReferenceHolder.instance.marketplacePreview},
+            {BuildingManager.buildingType.Junction, ReferenceHolder.instance.junctionPreview}, {BuildingManager.buildingType.Depot, ReferenceHolder.instance.depotPreview},
             {BuildingManager.buildingType.Merger, ReferenceHolder.instance.mergerPreview}, {BuildingManager.buildingType.Splitter, ReferenceHolder.instance.splitterPreview},
         };
     }

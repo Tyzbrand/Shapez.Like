@@ -16,14 +16,10 @@ public class BuildMenuSC : MonoBehaviour
     private UIManager uIManager;
     private TooltipSC tooltipSC;
 
-    private Label extractorPrice, conveyorPrice, marketplacePrice, foundryPrice, builderPrice, coalGeneratorPrice, advancedExtractorPrice,
-        junctionPrice, splitterPrice, mergerPrice;
-    private Button extractorBuild, conveyorBuild, marketplaceBuild, foundryBuild, builderBuild, coalGeneratorBuild, advancedExtractorBuild,
-        junctionBuild, splitterBuild, mergerBuild, rotateBtn, pickupBtn, lineBuildBtn, undoBtn, redoBtn;
+    private Button extractorBuild, conveyorBuild, depotBuild, foundryBuild, builderBuild, coalGeneratorBuild, advancedExtractorBuild,
+        junctionBuild, splitterBuild, mergerBuild, wallBuild, rotateBtn, pickupBtn, lineBuildBtn, undoBtn, redoBtn;
     private Label extractorPrice, conveyorPrice, depotPrice, foundryPrice, builderPrice, coalGeneratorPrice, advancedExtractorPrice,
         junctionPrice, splitterPrice, mergerPrice, wallPrice;
-    private Button extractorBuild, conveyorBuild, depotBuild, foundryBuild, builderBuild, coalGeneratorBuild, advancedExtractorBuild,
-        junctionBuild, splitterBuild, mergerBuild, wallBuild, rotateBtn;
 
 
 
