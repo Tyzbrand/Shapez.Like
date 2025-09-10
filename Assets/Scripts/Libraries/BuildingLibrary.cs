@@ -7,7 +7,7 @@ public class BuildingLibrary : MonoBehaviour
 {
     private Dictionary<BuildingManager.buildingType, int> buildPrice;
     private Dictionary<BuildingManager.buildingType, Dictionary<bool, Sprite>> buildingStateSprite;
-
+    private Dictionary<RessourceBehaviour.RessourceType, Sprite> extractorState;
 
     private Placement placementSC;
 
@@ -95,6 +95,12 @@ public class BuildingLibrary : MonoBehaviour
             {BuildingManager.buildingType.Hub, new Dictionary<bool, Sprite>{{false, hub}}},
             {BuildingManager.buildingType.Wall, new Dictionary<bool, Sprite>{{false, wall}}}
         };
+
+        extractorState = new Dictionary<RessourceBehaviour.RessourceType, Sprite>
+        {
+            {RessourceBehaviour.RessourceType.Stone, TextureHolder.instance.extractorStone}, {RessourceBehaviour.RessourceType.Iron, TextureHolder.instance.extractorIron},
+            { RessourceBehaviour.RessourceType.Copper, TextureHolder.instance.extractorCopper}, {RessourceBehaviour.RessourceType.Coal, TextureHolder.instance.extractorCoal}
+        };
     }
 
 
@@ -118,6 +124,15 @@ public class BuildingLibrary : MonoBehaviour
             {
                 return buildingSprite;
             }
+        }
+        return null;
+    }
+
+    public Sprite GetExtractorStateSprite(RessourceBehaviour.RessourceType type)
+    {
+        if (extractorState.TryGetValue(type, out Sprite sprite))
+        {
+            return sprite;
         }
         return null;
     }

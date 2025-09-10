@@ -58,6 +58,8 @@ public class BuildingManager : MonoBehaviour
             building.visual = GetBuildingVisual(building);
             building.visualSpriteRenderer = building.visual.GetComponent<SpriteRenderer>();
 
+            building.BuildingLateStart();
+
         }
 
     }
