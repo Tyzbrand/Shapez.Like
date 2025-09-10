@@ -42,7 +42,7 @@ public class BuildingManager : MonoBehaviour
         Wall
     }
 
-    
+
 
     //---------------Méthodes Implémentées---------------
     //Logique
@@ -65,6 +65,22 @@ public class BuildingManager : MonoBehaviour
             if (saveUndo) stackFeature.UndoAfterConstruct(tilePos, building, player.rotation);
             building.BuildingLateStart();
 
+        }
+        else if (GetBuildingOnTile(tilePos) is Conveyor)
+        {
+            RemoveBuilding(tilePos);
+            buildingReferencer.Add(tilePos, building);
+            building.SetManagers(itemManager, buildingManager, electricityManager, buildingLibrary, playerStats);
+            building.SetDico(ressourceDictionnary);
+            building.BuidlingStart();
+            AddVisual(building, tilePos);
+            building.visual = GetBuildingVisual(building);
+            building.visualSpriteRenderer = building.visual.GetComponent<SpriteRenderer>();
+
+            extraAction?.Invoke();
+
+            if (saveUndo) stackFeature.UndoAfterConstruct(tilePos, building, player.rotation);
+            building.BuildingLateStart();
         }
 
     }

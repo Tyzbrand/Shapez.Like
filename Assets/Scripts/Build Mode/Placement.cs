@@ -154,15 +154,18 @@ public class Placement : MonoBehaviour
             mousePos3D.z = 0;
             Vector2 mousePos2D = new Vector2(mousePos3D.x, mousePos3D.y);
 
-            if (prices.GetBuildingPrice(currentBuildingType) <= player.Money && !buildingManager.IsTileUsed(mousePos2D))
+            int price = prices.GetBuildingPrice(currentBuildingType);
+
+            bool isTileUsed = buildingManager.IsTileUsed(mousePos2D);
+
+            if (price <= player.Money)
             {
+                if(!isTileUsed || (isTileUsed && buildingManager.GetBuildingOnTile(mousePos2D) is Conveyor))
                 allowConstruciton = true;
 
             }
-            else if (player.buildMode)
-            {
-                Debug.Log("Pas Assez d'argent");
-            }
+            else Debug.Log("Not enough Money !!!");
+
 
         }
 

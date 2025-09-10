@@ -51,7 +51,7 @@ public class Preview : MonoBehaviour
 
         if (GetComponent<PlayerVariables>().buildMode == true && currentPreview != null)
         {
-            decalage = GetComponent<PlayerVariables>().rotation;
+            decalage = player.rotation;
             tilemap = FindFirstObjectByType<Tilemap>();
 
             Vector3 mouseWorlPos = playerCam.ScreenToWorldPoint(Mouse.current.position.ReadValue());
@@ -79,7 +79,7 @@ public class Preview : MonoBehaviour
     public void CreateInstance()
     {
 
-        decalage = GetComponent<PlayerVariables>().rotation;
+        decalage = player.rotation;
         tilemap = FindFirstObjectByType<Tilemap>();
 
         Vector3 mouseWorlPos = playerCam.ScreenToWorldPoint(Mouse.current.position.ReadValue());
@@ -92,7 +92,6 @@ public class Preview : MonoBehaviour
 
 
         currentPreview = Instantiate(previewToUse, placementpos, Quaternion.Euler(0, 0, 0));
-        currentPreview.GetComponent<SpriteRenderer>().sortingOrder = 1;
        
     }
 
