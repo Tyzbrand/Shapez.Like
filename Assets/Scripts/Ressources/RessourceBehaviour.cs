@@ -17,7 +17,9 @@ public class RessourceBehaviour : MonoBehaviour
         Silver,
         SilverIngot,
         Gear,
-        WireCoil
+        WireCoil,
+        Compound,
+        Brick
 
     }
 

@@ -41,6 +41,7 @@ public class PlayerVariables : MonoBehaviour
     // Est dans un menu
     public bool isInUI = false;
     public bool isInPauseUI = false;
+    public bool isInBuildingUI = false;
 
     //accélération
     public float timeScale = 1f;

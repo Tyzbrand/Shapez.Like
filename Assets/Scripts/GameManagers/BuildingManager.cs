@@ -35,10 +35,11 @@ public class BuildingManager : MonoBehaviour
         Merger,
         AdvancedExtractor,
         Conveyor,
-        marketplace,
+        Depot,
         Foundry,
         builder,
-        CoalGenerator
+        CoalGenerator,
+        Wall
     }
 
     
@@ -62,6 +63,7 @@ public class BuildingManager : MonoBehaviour
             extraAction?.Invoke();
 
             if (saveUndo) stackFeature.UndoAfterConstruct(tilePos, building, player.rotation);
+            building.BuildingLateStart();
 
         }
 
