@@ -85,7 +85,7 @@ public class OverlaySC : MonoBehaviour
         x3Btn.clicked += timeManager.Setx3;
 
         //Assignation des textes
-        moneyText.text = player.Money + " $";
+        moneyText.text = player.Money.ToString();
         storageText.text = inventorySC.GetTotalItemCount() + "/" + inventorySC.inventoryCapacity;
         dayText.text = "Day " + player.day;
         timeText.text = player.minutes.ToString("00") + ":" + player.seconds.ToString("00");
@@ -123,7 +123,7 @@ public class OverlaySC : MonoBehaviour
 
     public void UpdateMoneyText()
     {
-        moneyText.text = player.Money + " $";
+        moneyText.text = player.Money.ToString();
     }
 
     public void UpdateStorageText()
@@ -148,7 +148,7 @@ public class OverlaySC : MonoBehaviour
 
     public void UpdateElectricityStorageText()
     {
-        electricityText.text = player.electricityStorage.ToString("0.0") + "/" + player.electricityMaxStorage + " kWh";
+        electricityText.text = player.electricityStorage.ToString("0.0") + "/" + player.electricityMaxStorage;
 
     }
 

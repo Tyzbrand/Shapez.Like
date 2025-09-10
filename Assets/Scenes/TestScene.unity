@@ -764,7 +764,7 @@ MonoBehaviour:
   advancedExtractor: {fileID: 21300000, guid: a3081fe2bcaaa614881c39134de59d1d, type: 3}
   builder: {fileID: 21300000, guid: e4d17dd62a5cc414192ccaff52d4c90f, type: 3}
   coalGenerator: {fileID: 21300000, guid: d2ab6e4170d81e6438da47b383dc1af8, type: 3}
-  depot: {fileID: 21300000, guid: 1dc2d8d6e74e03f40a798a095af1e015, type: 3}
+  depot: {fileID: 21300000, guid: a48eab10ba8d60a41bd610c94ab36a9f, type: 3}
   hub: {fileID: 21300000, guid: 74a0b827e7dc9c347ab99b01dee39838, type: 3}
   wall: {fileID: 21300000, guid: 872b55be7c6ba6f4d81f46cbe2f8e517, type: 3}
   Stone: {fileID: 3975597194909281041, guid: e7dc1f03844b82d48ac54b3956fbef66, type: 3}

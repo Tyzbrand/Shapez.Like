@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 03c004ae944c2cd42a0c70300f67eda0
+guid: a0365f4ab3a910141928e07eeffdabe5
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 8399011212269539787
-    second: Stone_0
+      213: 54522100239629001
+    second: Money-icon_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -51,7 +51,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 512
+  spritePixelsToUnits: 542
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -113,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Stone_0
+      name: Money-icon_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 512
-        height: 512
+        x: 172
+        y: 113
+        width: 168
+        height: 286
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: bc159db92384f8470800000000000000
-      internalID: 8399011212269539787
+      spriteID: 9caf031bf83b1c000800000000000000
+      internalID: 54522100239629001
       vertices: []
       indices: 
       edges: []
@@ -148,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Stone_0: 8399011212269539787
+      Money-icon_0: 54522100239629001
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

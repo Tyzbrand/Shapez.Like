@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: f9c63b43589273b45a1e2a7e20ff81e1
+guid: faee8e6cd5617b542a384603f082fe6a
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 2928835091128040309
-    second: Copper_512p_0
+      213: 6557117372846996255
+    second: Bolt-icon_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Copper_512p_0
+      name: Bolt-icon_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 512
-        height: 512
+        x: 138
+        y: 87
+        width: 236
+        height: 338
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 57bb26c6fff45a820800000000000000
-      internalID: 2928835091128040309
+      spriteID: f1b761f628f8ffa50800000000000000
+      internalID: 6557117372846996255
       vertices: []
       indices: 
       edges: []
@@ -148,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Copper_512p_0: 2928835091128040309
+      Bolt-icon_0: 6557117372846996255
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

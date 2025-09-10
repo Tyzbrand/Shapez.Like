@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 98066f3e2c24e6b4fa5b86ede444a7b3
+guid: a48eab10ba8d60a41bd610c94ab36a9f
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 9066488568232124588
-    second: Silver_512_0
+      213: -1448031836887756370
+    second: Depot_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,7 +113,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Silver_512_0
+      name: Depot_0
       rect:
         serializedVersion: 2
         x: 0
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: ca0ad950153a2dd70800000000000000
-      internalID: 9066488568232124588
+      spriteID: ea159d267be87ebe0800000000000000
+      internalID: -1448031836887756370
       vertices: []
       indices: 
       edges: []
@@ -148,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Silver_512_0: 9066488568232124588
+      Depot_0: -1448031836887756370
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
