@@ -15,7 +15,7 @@ public class Preview : MonoBehaviour
     public GameObject previewToUse;
     private GameObject extractorPreview;
     private GameObject conveyorPreview;
-    private GameObject marketPlacePreview;
+    private GameObject depotPreview;
     private GameObject foundryPreview;
     
     [HideInInspector]
@@ -32,7 +32,7 @@ public class Preview : MonoBehaviour
         playerCam = ReferenceHolder.instance.mainCamera;
         extractorPreview = ReferenceHolder.instance.extractorPreview;
         conveyorPreview = ReferenceHolder.instance.conveyorPreview;
-        marketPlacePreview = ReferenceHolder.instance.marketplacePreview;
+        depotPreview = ReferenceHolder.instance.depotPreview;
         foundryPreview = ReferenceHolder.instance.foundryPreview;
         player = ReferenceHolder.instance.playervariable;
 

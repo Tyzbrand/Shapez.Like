@@ -619,6 +619,7 @@ MonoBehaviour:
   tilemap1: {fileID: 0}
   isInUI: 0
   isInPauseUI: 0
+  isInBuildingUI: 0
   timeScale: 1
 --- !u!114 &526294626
 MonoBehaviour:
@@ -711,7 +712,7 @@ MonoBehaviour:
   resourcesSprite: {fileID: 100100200, guid: 03d1c93564a2c6344b2b08c40e0255f1, type: 3}
   extractorPreview: {fileID: 6773008830999798859, guid: 38da4848c0fd40149adb41431ad9ec01, type: 3}
   conveyorPreview: {fileID: 9189910684841454179, guid: 4949378352178914b841061d1670b107, type: 3}
-  marketplacePreview: {fileID: 1171279089280773970, guid: 680c320bd5322ba46ba3ccfeccb3cc44, type: 3}
+  depotPreview: {fileID: 1171279089280773970, guid: 680c320bd5322ba46ba3ccfeccb3cc44, type: 3}
   foundryPreview: {fileID: 8604809840985860986, guid: dd80545a143d0f54eb242958150dad2b, type: 3}
   builderPrview: {fileID: 9085326884051474714, guid: 34ac19af0f5b00a4b897f2789779bde3, type: 3}
   coalGeneratorPreview: {fileID: 1503961946427603055, guid: 9f1f3a49f26b9cd458de96417cf783f7, type: 3}
@@ -719,6 +720,7 @@ MonoBehaviour:
   junctionPreview: {fileID: 7355111769849983332, guid: 9ee8f94727a7099449a65db2f558bbee, type: 3}
   splitterPreview: {fileID: 7947787992822577350, guid: d7b071862f321234ab34ebe34e67e81a, type: 3}
   mergerPreview: {fileID: 7162004995697648388, guid: 796d5d5c2af507246874b33b9a1ebbba, type: 3}
+  wallPreview: {fileID: 3036254532453904605, guid: 3980f93f256b2f4438fa952a7922ac0d, type: 3}
   buildingData: {fileID: 11400000, guid: 5307edad733f7124ca993a72ff2076ef, type: 2}
   ressourceData: {fileID: 11400000, guid: 77cbd5c25f8dc794d96af61b9a0a0c0c, type: 2}
   foundryRecipe: {fileID: 11400000, guid: b06bb0981b70e2d49aca7c18ab065ebf, type: 2}
@@ -797,10 +799,11 @@ MonoBehaviour:
   splitter: {fileID: 21300000, guid: d27df5455a0ca124983719c93ba6545d, type: 3}
   junction: {fileID: 21300000, guid: 644c1c4096c5d7b46b5fd2959b6f6834, type: 3}
   advancedExtractor: {fileID: 21300000, guid: a3081fe2bcaaa614881c39134de59d1d, type: 3}
-  builder: {fileID: 21300000, guid: 12460868ed992ad4c89541bb2aa2653c, type: 3}
+  builder: {fileID: 21300000, guid: e4d17dd62a5cc414192ccaff52d4c90f, type: 3}
   coalGenerator: {fileID: 21300000, guid: d2ab6e4170d81e6438da47b383dc1af8, type: 3}
-  marketplace: {fileID: 21300000, guid: 1dc2d8d6e74e03f40a798a095af1e015, type: 3}
+  depot: {fileID: 21300000, guid: 1dc2d8d6e74e03f40a798a095af1e015, type: 3}
   hub: {fileID: 21300000, guid: 74a0b827e7dc9c347ab99b01dee39838, type: 3}
+  wall: {fileID: 21300000, guid: 872b55be7c6ba6f4d81f46cbe2f8e517, type: 3}
   Stone: {fileID: 3975597194909281041, guid: e7dc1f03844b82d48ac54b3956fbef66, type: 3}
   Coal: {fileID: 21300000, guid: 8d5e9256beb7b234491ab827279eb281, type: 3}
   iron: {fileID: 3782393562786338483, guid: 8287f16a6c59b154b9e07ae444cdebf7, type: 3}
@@ -811,6 +814,8 @@ MonoBehaviour:
   ironPlate: {fileID: 550476946272679604, guid: d279d4e7741cd4d43831b6dc3b27d340, type: 3}
   gear: {fileID: -2011169481890461396, guid: 0d742294460c9c5419d3147b510765fc, type: 3}
   wireCoil: {fileID: -5045876670797870985, guid: e2c68a3ec9def294ab51fd7aadcfbcb9, type: 3}
+  Compound: {fileID: 21300000, guid: 897b8eb2f33301d4a97406673f91c78c, type: 3}
+  Brick: {fileID: 21300000, guid: 34c982b42bfe7d94083a7ae7a2393aa2, type: 3}
   defaultSort: {fileID: 21300000, guid: 1a07c5b8b9b77fe4ca95e121e1f5b4dd, type: 3}
   sortNum: {fileID: 21300000, guid: 79278862e42b58c4b8f44af81b86f71a, type: 3}
   sortNumDescending: {fileID: 21300000, guid: addb32f92d4571b459d8a907d19d86ea, type: 3}

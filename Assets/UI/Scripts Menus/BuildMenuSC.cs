@@ -20,6 +20,10 @@ public class BuildMenuSC : MonoBehaviour
         junctionPrice, splitterPrice, mergerPrice;
     private Button extractorBuild, conveyorBuild, marketplaceBuild, foundryBuild, builderBuild, coalGeneratorBuild, advancedExtractorBuild,
         junctionBuild, splitterBuild, mergerBuild, rotateBtn, pickupBtn, lineBuildBtn, undoBtn, redoBtn;
+    private Label extractorPrice, conveyorPrice, depotPrice, foundryPrice, builderPrice, coalGeneratorPrice, advancedExtractorPrice,
+        junctionPrice, splitterPrice, mergerPrice, wallPrice;
+    private Button extractorBuild, conveyorBuild, depotBuild, foundryBuild, builderBuild, coalGeneratorBuild, advancedExtractorBuild,
+        junctionBuild, splitterBuild, mergerBuild, wallBuild, rotateBtn;
 
 
 
@@ -42,7 +46,7 @@ public class BuildMenuSC : MonoBehaviour
 
         extractorPrice = panel.Q<Label>("ExtractorPriceTxt");
         conveyorPrice = panel.Q<Label>("ConveyorPriceTxt");
-        marketplacePrice = panel.Q<Label>("MarketplacePriceTxt");
+        depotPrice = panel.Q<Label>("MarketplacePriceTxt");
         foundryPrice = panel.Q<Label>("FoundryPriceTxt");
         builderPrice = panel.Q<Label>("BuilderPriceTxt");
         coalGeneratorPrice = panel.Q<Label>("CoalGeneratorPriceTxt");
@@ -50,10 +54,11 @@ public class BuildMenuSC : MonoBehaviour
         junctionPrice = panel.Q<Label>("JunctionPriceTxt");
         splitterPrice = panel.Q<Label>("SplitterPriceTxt");
         mergerPrice = panel.Q<Label>("MergerPriceTxt");
+        wallPrice = panel.Q<Label>("WallPriceTxt");
 
         extractorBuild = panel.Q<Button>("ExtractorBuildBtn");
         conveyorBuild = panel.Q<Button>("ConveyorBuildBtn");
-        marketplaceBuild = panel.Q<Button>("MarketplaceBuildBtn");
+        depotBuild = panel.Q<Button>("MarketplaceBuildBtn");
         foundryBuild = panel.Q<Button>("FoundryBuildBtn");
         builderBuild = panel.Q<Button>("BuilderBuildBtn");
         coalGeneratorBuild = panel.Q<Button>("CoalGeneratorBuildBtn");
@@ -61,6 +66,7 @@ public class BuildMenuSC : MonoBehaviour
         junctionBuild = panel.Q<Button>("JunctionBuildBtn");
         splitterBuild = panel.Q<Button>("SplitterBuildBtn");
         mergerBuild = panel.Q<Button>("MergerBuildBtn");
+        wallBuild = panel.Q<Button>("WallBuildBtn");
 
         rotateBtn = buildTools.Q<Button>("RotateBtn");
         pickupBtn = buildTools.Q<Button>("PickUpBtn");
@@ -72,13 +78,14 @@ public class BuildMenuSC : MonoBehaviour
         extractorBuild.clicked -= ExtractorSelect;
         advancedExtractorBuild.clicked -= AdvancedExtractorSelect;
         conveyorBuild.clicked -= ConveyorSelect;
-        marketplaceBuild.clicked -= MarketplaceSelect;
+        depotBuild.clicked -= DepotSelect;
         foundryBuild.clicked -= FoundrySelect;
         builderBuild.clicked -= BuilderSelect;
         coalGeneratorBuild.clicked -= CoalGeneratorSelect;
         junctionBuild.clicked -= JunctionSelect;
         splitterBuild.clicked -= SplitterSelect;
         mergerBuild.clicked -= MergerSelect;
+        wallBuild.clicked -= WallSelect;
 
         rotateBtn.clicked -= Rotate;
         pickupBtn.clicked -= pickup;
@@ -90,13 +97,14 @@ public class BuildMenuSC : MonoBehaviour
         extractorBuild.clicked += ExtractorSelect;
         advancedExtractorBuild.clicked += AdvancedExtractorSelect;
         conveyorBuild.clicked += ConveyorSelect;
-        marketplaceBuild.clicked += MarketplaceSelect;
+        depotBuild.clicked += DepotSelect;
         foundryBuild.clicked += FoundrySelect;
         builderBuild.clicked += BuilderSelect;
         coalGeneratorBuild.clicked += CoalGeneratorSelect;
         junctionBuild.clicked += JunctionSelect;
         splitterBuild.clicked += SplitterSelect;
         mergerBuild.clicked += MergerSelect;
+        wallBuild.clicked += WallSelect;
 
         rotateBtn.clicked += Rotate;
         pickupBtn.clicked += pickup;
@@ -108,7 +116,7 @@ public class BuildMenuSC : MonoBehaviour
         //Assignation des valeures
         extractorPrice.text = buildPriceLibrary.GetBuildingPrice(BuildingManager.buildingType.Extractor) + " $";
         conveyorPrice.text = buildPriceLibrary.GetBuildingPrice(BuildingManager.buildingType.Conveyor) + " $";
-        marketplacePrice.text = "Free";
+        depotPrice.text = "Free";
         foundryPrice.text = buildPriceLibrary.GetBuildingPrice(BuildingManager.buildingType.Foundry) + " $";
         builderPrice.text = buildPriceLibrary.GetBuildingPrice(BuildingManager.buildingType.Extractor) + " $";
         coalGeneratorPrice.text = buildPriceLibrary.GetBuildingPrice(BuildingManager.buildingType.CoalGenerator) + " $";
@@ -116,6 +124,7 @@ public class BuildMenuSC : MonoBehaviour
         junctionPrice.text = buildPriceLibrary.GetBuildingPrice(BuildingManager.buildingType.Junction) + " $";
         splitterPrice.text = buildPriceLibrary.GetBuildingPrice(BuildingManager.buildingType.Splitter) + " $";
         mergerPrice.text = buildPriceLibrary.GetBuildingPrice(BuildingManager.buildingType.Merger) + " $";
+        wallPrice.text = buildPriceLibrary.GetBuildingPrice(BuildingManager.buildingType.Wall) + " $";
 
 
         //Tooltips
@@ -173,12 +182,12 @@ public class BuildMenuSC : MonoBehaviour
         player.rotation = 0;
     }
 
-    private void MarketplaceSelect()
+    private void DepotSelect()
     {
         uIManager.TogglePanel(panel, () => BuildMenuOnShow(), () => BuildMenuOnHide());
         buildTools.style.display = DisplayStyle.Flex;
-        previewSC.previewToUse = ReferenceHolder.instance.marketplacePreview;
-        placementSC.currentBuildingType = BuildingManager.buildingType.marketplace;
+        previewSC.previewToUse = ReferenceHolder.instance.depotPreview;
+        placementSC.currentBuildingType = BuildingManager.buildingType.Depot;
 
         previewSC.DestroyInstance();
         previewSC.CreateInstance();
@@ -263,6 +272,20 @@ public class BuildMenuSC : MonoBehaviour
         buildTools.style.display = DisplayStyle.Flex;
         previewSC.previewToUse = ReferenceHolder.instance.mergerPreview;
         placementSC.currentBuildingType = BuildingManager.buildingType.Merger;
+
+        previewSC.DestroyInstance();
+        previewSC.CreateInstance();
+
+        player.buildMode = true;
+        player.rotation = 0;
+    }
+    
+    private void WallSelect()
+    {
+        uIManager.TogglePanel(panel, () => BuildMenuOnShow(), () => BuildMenuOnHide());
+        buildTools.style.display = DisplayStyle.Flex;
+        previewSC.previewToUse = ReferenceHolder.instance.wallPreview;
+        placementSC.currentBuildingType = BuildingManager.buildingType.Wall;
 
         previewSC.DestroyInstance();
         previewSC.CreateInstance();

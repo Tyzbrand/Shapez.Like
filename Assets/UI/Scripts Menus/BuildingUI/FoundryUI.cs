@@ -14,7 +14,7 @@ public class FoundryUI : MonoBehaviour
 
     private ProgressBar process;
     private Label productionTimeText, storageText, inputStorage1Text, inputStorage2Text;
-    private Button recipeChangerBtn, recipeListQuit, recipeUse0, recipeUse1;
+    private Button recipeChangerBtn, recipeListQuit, recipeUse0, recipeUse1, recipeUse2;
     private Toggle foundryToggle;
 
     private Foundry activeFoundry = null;
@@ -36,6 +36,7 @@ public class FoundryUI : MonoBehaviour
         recipeListQuit = recipepanel.Q<Button>("QuitBtn");
         recipeUse0 = recipepanel.Q<Button>("Recipe0Use");
         recipeUse1 = recipepanel.Q<Button>("Recipe1Use");
+        recipeUse2 = recipepanel.Q<Button>("Recipe2Use");
 
 
         process = panel.Q<ProgressBar>("FOProgressBar");
@@ -58,11 +59,13 @@ public class FoundryUI : MonoBehaviour
         recipeChangerBtn.clicked -= OpenRecipeList;
         recipeUse0.clicked -= () => ChooseRecipe(0);
         recipeUse1.clicked -= () => ChooseRecipe(1);
+        recipeUse2.clicked -= () => ChooseRecipe(2);
         recipeListQuit.clicked -= CloseRecipeList;
 
         recipeChangerBtn.clicked += OpenRecipeList;
         recipeUse0.clicked += () => ChooseRecipe(0);
         recipeUse1.clicked += () => ChooseRecipe(1);
+        recipeUse2.clicked += () => ChooseRecipe(2);
         recipeListQuit.clicked += CloseRecipeList;
 
 
@@ -112,11 +115,13 @@ public class FoundryUI : MonoBehaviour
         activeFoundry = foundry;
         ChangeButtonTexture(recipeChangerBtn);
         foundryToggle.SetValueWithoutNotify(activeFoundry.IsActive);
+        player.isInBuildingUI = true;
     }
 
     public void FoundryUIOnHide()
     {
         activeFoundry = null;
+        player.isInBuildingUI = false;
         CloseRecipeList();
     }
 

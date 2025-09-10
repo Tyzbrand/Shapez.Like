@@ -15,13 +15,15 @@ public class RessourceDictionnary : MonoBehaviour
         {RessourceBehaviour.RessourceType.Iron, "Iron-ore"}, {RessourceBehaviour.RessourceType.Copper, "Copper-ore"},
         {RessourceBehaviour.RessourceType.Coal, "Coal"}, {RessourceBehaviour.RessourceType.Silver, "Silver-ore"}, {RessourceBehaviour.RessourceType.IronIngot, "Iron-Ingot"},
         {RessourceBehaviour.RessourceType.CopperIngot, "Copper-Ingot"}, {RessourceBehaviour.RessourceType.SilverIngot, "Silver-Ingot"}, {RessourceBehaviour.RessourceType.IronPlate, "Iron-plate"},
-        {RessourceBehaviour.RessourceType.CopperPlate, "Copper-plate"}, {RessourceBehaviour.RessourceType.Stone, "Stone"}, {RessourceBehaviour.RessourceType.Gear, "Gear"}, {RessourceBehaviour.RessourceType.WireCoil, "Wire-coil"}};
+        {RessourceBehaviour.RessourceType.CopperPlate, "Copper-plate"}, {RessourceBehaviour.RessourceType.Stone, "Stone"}, {RessourceBehaviour.RessourceType.Gear, "Gear"}, {RessourceBehaviour.RessourceType.WireCoil, "Wire-coil"},
+        {RessourceBehaviour.RessourceType.Compound, "Compound"}, {RessourceBehaviour.RessourceType.Brick, "Bricks"}};
 
         ressourceIcons = new Dictionary<RessourceBehaviour.RessourceType, Sprite>{
         {RessourceBehaviour.RessourceType.Iron, TextureHolder.instance.iron}, {RessourceBehaviour.RessourceType.Copper, TextureHolder.instance.copper},
         {RessourceBehaviour.RessourceType.Coal, TextureHolder.instance.Coal}, {RessourceBehaviour.RessourceType.IronIngot, TextureHolder.instance.ironIngot}, {RessourceBehaviour.RessourceType.CopperIngot, TextureHolder.instance.copperIngot},
         {RessourceBehaviour.RessourceType.IronPlate, TextureHolder.instance.ironPlate},{RessourceBehaviour.RessourceType.CopperPlate, TextureHolder.instance.copperPlate}, {RessourceBehaviour.RessourceType.Stone, TextureHolder.instance.Stone},
-        { RessourceBehaviour.RessourceType.Gear, TextureHolder.instance.gear}, {RessourceBehaviour.RessourceType.WireCoil, TextureHolder.instance.wireCoil}
+        { RessourceBehaviour.RessourceType.Gear, TextureHolder.instance.gear}, {RessourceBehaviour.RessourceType.WireCoil, TextureHolder.instance.wireCoil}, {RessourceBehaviour.RessourceType.Compound, TextureHolder.instance.Compound},
+        {RessourceBehaviour.RessourceType.Brick, TextureHolder.instance.Brick}
         };
 
     }
