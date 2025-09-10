@@ -1,12 +1,12 @@
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
-public class Depot : BuildingBH
+public class Marketplace : BuildingBH
 {
     private OverlaySC overlay;
     private PlayerVariables player;
     private RessourceData data;
-    public Depot(Vector2 worldPosition, int rotation, Tilemap tilemap) : base(worldPosition, rotation, tilemap)
+    public Marketplace(Vector2 worldPosition, int rotation, Tilemap tilemap) : base(worldPosition, rotation, tilemap)
     {
 
     }
@@ -17,7 +17,7 @@ public class Depot : BuildingBH
         player = ReferenceHolder.instance.playervariable;
         data = ReferenceHolder.instance.ressourceData;
 
-        buildingType = BuildingManager.buildingType.Depot;
+        buildingType = BuildingManager.buildingType.marketplace;
         Debug.Log("MarketPlace !");
     }
 

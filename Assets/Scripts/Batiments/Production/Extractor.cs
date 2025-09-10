@@ -17,6 +17,7 @@ public class Extractor : BuildingBH
     private bool canExtract = false;
     private String ressourceType;
     private BuildingData data;
+    private ExtractorUI extractorUI;
 
     public Extractor(Vector2 worldPosition, int rotation, Tilemap tilemap) : base(worldPosition, rotation, tilemap)
     {
@@ -29,6 +30,7 @@ public class Extractor : BuildingBH
         Debug.Log("Extractor !");
         data = ReferenceHolder.instance.buildingData;
         buildingLibrary = ReferenceHolder.instance.buildingLibrary;
+        extractorUI = ReferenceHolder.instance.extractorUI;
 
         buildingType = BuildingManager.buildingType.Extractor;
 
@@ -53,16 +55,10 @@ public class Extractor : BuildingBH
                 canExtract = true;
             }
         }
-    }
 
-    public override void BuildingLateStart()
-    {
-        if (underTile != null)
-        {
-            Sprite newTexture = buildingLibrary.GetExtractorStateSprite(underTile.tileType);
-            if (visualSpriteRenderer != null && newTexture != null) visualSpriteRenderer.sprite = newTexture;
-        }
+       
         
+
     }
 
     public override void BuildingOnDestroy()
@@ -71,7 +67,7 @@ public class Extractor : BuildingBH
     }
 
     public override void BuildingUpdate()
-    {   
+    {
 
         if (canExtract && currentStorage < capacity) //Gestion de la production logique
         {

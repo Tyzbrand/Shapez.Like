@@ -124,12 +124,12 @@ public class HubUI : MonoBehaviour
     //----------Méthodes d'affichage de l'ui----------
     public void HubUIOnShow()
     {
-        player.isInBuildingUI = true;
+        
     }
 
     public void HubUIOnHide()
     {
-        player.isInBuildingUI = false;
+        
     }
 
     private void SortByAmount()

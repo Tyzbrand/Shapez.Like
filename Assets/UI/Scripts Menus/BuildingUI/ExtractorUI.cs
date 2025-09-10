@@ -78,16 +78,14 @@ public class ExtractorUI : MonoBehaviour
     //----------Méthodes d'affichage----------
 
     public void ExtractorUIOnShow(Extractor extractor)
-    {
+    {   
         activeExtractor = extractor;
         extractorToggle.SetValueWithoutNotify(activeExtractor.IsActive);
-        player.isInBuildingUI = true;
     }
 
     public void ExtractorUIOnHide()
     {
         activeExtractor = null;
-        player.isInBuildingUI = false;
     }
     
 

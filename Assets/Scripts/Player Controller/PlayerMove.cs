@@ -52,7 +52,7 @@ public class PlayerMove : MonoBehaviour
     private void Update()
     {
         //Scroll
-        if (!player.isInUI && !player.isInPauseUI && !player.isInBuildingUI)
+        if (!player.isInUI && !player.isInPauseUI)
         {
             cam.orthographicSize -= scrollInput * zoomSpeed;
             cam.orthographicSize = Mathf.Clamp(cam.orthographicSize, minZoom, maxZoom);

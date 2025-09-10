@@ -179,8 +179,8 @@ public class Placement : MonoBehaviour
                 return new Extractor(mousePos2D, player.rotation, buildingTilemap);
             case BuildingManager.buildingType.Conveyor:
                 return new Conveyor(mousePos2D, player.rotation, buildingTilemap);
-            case BuildingManager.buildingType.Depot:
-                return new Depot(mousePos2D, player.rotation, buildingTilemap);
+            case BuildingManager.buildingType.marketplace:
+                return new Marketplace(mousePos2D, player.rotation, buildingTilemap);
             case BuildingManager.buildingType.Foundry:
                 return new Foundry(mousePos2D, player.rotation, buildingTilemap);
             case BuildingManager.buildingType.builder:
@@ -195,8 +195,7 @@ public class Placement : MonoBehaviour
                 return new Splitter(mousePos2D, player.rotation, buildingTilemap);
             case BuildingManager.buildingType.Merger:
                 return new Merger(mousePos2D, player.rotation, buildingTilemap);
-            case BuildingManager.buildingType.Wall:
-                return new Wall(mousePos2D, player.rotation, buildingTilemap);
+
         }
         return null;
     }

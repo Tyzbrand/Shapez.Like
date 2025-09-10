@@ -26,11 +26,9 @@ public class TextureHolder : MonoBehaviour
 
     public Sprite coalGenerator;
 
-    public Sprite depot;
+    public Sprite marketplace;
 
     public Sprite hub;
-
-    public Sprite wall;
 
     [Header("Ressources")]
     public Sprite Stone;
@@ -43,8 +41,6 @@ public class TextureHolder : MonoBehaviour
     public Sprite ironPlate;
     public Sprite gear;
     public Sprite wireCoil;
-    public Sprite Compound;
-    public Sprite Brick;
 
 
     [Header("Icons")]

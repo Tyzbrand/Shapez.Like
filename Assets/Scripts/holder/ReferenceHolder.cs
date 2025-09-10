@@ -58,7 +58,7 @@ public class ReferenceHolder : MonoBehaviour
     [Header("Preview")]
     public GameObject extractorPreview;
     public GameObject conveyorPreview;
-    public GameObject depotPreview;
+    public GameObject marketplacePreview;
     public GameObject foundryPreview;
     public GameObject builderPrview;
     public GameObject coalGeneratorPreview;
@@ -66,7 +66,7 @@ public class ReferenceHolder : MonoBehaviour
     public GameObject junctionPreview;
     public GameObject splitterPreview;
     public GameObject mergerPreview;
-    public GameObject wallPreview;
+
 
     //Datas
     [Header("Données")]

@@ -14,7 +14,7 @@ public class BuilderUI : MonoBehaviour
 
     private ProgressBar process;
     private Label productionTimeText, storageText, inputStorage1Text;
-    private Button recipeChangerBtn, recipeListQuit, recipeUse0, recipeUse1, recipeUse2, recipeUse3, recipeUse4;
+    private Button recipeChangerBtn, recipeListQuit, recipeUse0, recipeUse1, recipeUse2, recipeUse3;
     private Toggle builderToggle;
 
     private Builder activeBuilder = null;
@@ -38,7 +38,6 @@ public class BuilderUI : MonoBehaviour
         recipeUse1 = recipePanel.Q<Button>("Recipe1Use");
         recipeUse2 = recipePanel.Q<Button>("Recipe2Use");
         recipeUse3 = recipePanel.Q<Button>("Recipe3Use");
-        recipeUse4 = recipePanel.Q<Button>("Recipe4Use");
 
 
         process = panel.Q<ProgressBar>("BUProgressBar");
@@ -61,7 +60,6 @@ public class BuilderUI : MonoBehaviour
         recipeUse1.clicked -= () => ChangeRecipe(3);
         recipeUse2.clicked -= () => ChangeRecipe(0);
         recipeUse3.clicked -= () => ChangeRecipe(2);
-        recipeUse4.clicked -= () => ChangeRecipe(4);
 
         recipeChangerBtn.clicked += OpenRecipeList;
         recipeListQuit.clicked += CloseRecipeList;
@@ -69,7 +67,6 @@ public class BuilderUI : MonoBehaviour
         recipeUse1.clicked += () => ChangeRecipe(3);
         recipeUse2.clicked += () => ChangeRecipe(0);
         recipeUse3.clicked += () => ChangeRecipe(2);
-        recipeUse4.clicked += () => ChangeRecipe(4);
 
 
 
@@ -118,13 +115,11 @@ public class BuilderUI : MonoBehaviour
         activeBuilder = builder;
         ChangeButtonTexture(recipeChangerBtn);
         builderToggle.SetValueWithoutNotify(activeBuilder.IsActive);
-        player.isInBuildingUI = true;
     }
 
     public void BuilderUIOnHide()
     {
         activeBuilder = null;
-        player.isInBuildingUI = false;
         CloseRecipeList();
     }
 

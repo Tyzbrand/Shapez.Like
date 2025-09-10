@@ -28,9 +28,9 @@ MonoBehaviour:
     outputCount: 1
     craftSpeed: 3
   - input1: 2
-    input2: 1
-    output: 14
+    input2: 9
+    output: 10
     input1Count: 1
-    input2Count: 4
+    input2Count: 1
     outputCount: 1
-    craftSpeed: 5
+    craftSpeed: 3
