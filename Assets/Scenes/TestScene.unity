@@ -545,42 +545,6 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 17b842a7-bacc-4cc1-a35f-f257e56b1652
     m_ActionName: 'Actions/PickupTool[/Keyboard/p]'
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1409634706}
-        m_TargetAssemblyTypeName: BuildMenuSC, Assembly-CSharp
-        m_MethodName: UndoCTX
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: b161cd0e-0cfe-4ca0-b923-97b50cf4282e
-    m_ActionName: 'Actions/Undo[/Keyboard/z]'
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 14dd4447-4f97-4b0c-90e2-081c85ba3759
-    m_ActionName: 'Actions/Redo[/Keyboard/y]'
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1409634706}
-        m_TargetAssemblyTypeName: BuildMenuSC, Assembly-CSharp
-        m_MethodName: UndoCTX
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: cb47157a-f856-4918-9560-3f1cf69a15e6
-    m_ActionName: 'Actions/UndoTool[/Keyboard/z]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: Keyboard&Mouse
   m_DefaultActionMap: Actions
@@ -705,7 +669,6 @@ MonoBehaviour:
   uIManager: {fileID: 1409634699}
   electricityManager: {fileID: 1461742637}
   restrictedTiles:
-  - {fileID: 11400000, guid: 259d30b634d1fa24f9f317cae504e735, type: 2}
   - {fileID: 11400000, guid: 588ca63fe0bc71144bf26c33db30ad15, type: 2}
   itemPrefab: {fileID: 9126002369858062041, guid: d0046de0a6e35334ba5ec4f2851ac02a, type: 3}
   buildingPrefab: {fileID: 4764810542118973154, guid: fb4d246ec9eed594cbddc9d1294b4987, type: 3}
