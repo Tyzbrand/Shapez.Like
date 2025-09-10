@@ -110,7 +110,7 @@ public class Placement : MonoBehaviour
                     TileBase underTile = tilemap.GetTile(cellPos);
 
                     if (!restrictedTiles.Contains(underTile) && underTile != null && !EventSystem.current.IsPointerOverGameObject() && cellPos != lasTilePos)
-                    {
+                    {   
                         if (hasPickup) BuildPickUp(mousePos2D, true);
                         else BuildCurrent(mousePos2D);
                         lasTilePos = cellPos;
@@ -158,15 +158,8 @@ public class Placement : MonoBehaviour
 
             bool isTileUsed = buildingManager.IsTileUsed(mousePos2D);
 
-            if (price <= player.Money)
-            {
-                if(!isTileUsed || (isTileUsed && buildingManager.GetBuildingOnTile(mousePos2D) is Conveyor))
-                allowConstruciton = true;
 
-            }
-            else Debug.Log("Not enough Money !!!");
-
-
+            if (!isTileUsed || (isTileUsed && buildingManager.GetBuildingOnTile(mousePos2D) is Conveyor)) allowConstruciton = true;
         }
 
         if (context.phase == InputActionPhase.Started && player.lineBuild) isHoldingBuild = true;
@@ -241,6 +234,8 @@ public class Placement : MonoBehaviour
     {
         BuildingBH pickupInstance = GetCurrentType(mousePos2D, tilemap, pickupType);
 
+        if (buildingLibrary.GetBuildingPrice(pickupInstance.buildingType) >= player.Money) { Debug.Log("not enough Money !!!");  return; }
+
         if (actualRecipe == null) buildingManager.AddBuilding(mousePos2D, pickupInstance);
         else
         {
@@ -249,7 +244,7 @@ public class Placement : MonoBehaviour
                 if (pickupInstance is Foundry foundry) foundry.currentRecipe = (Recipe11_1)actualRecipe;
                 else if (pickupInstance is Builder builder) builder.currentRecipe = (Recipe1_1)actualRecipe;
             });
-            if(!save) actualRecipe = null;
+            if (!save) actualRecipe = null;
         }
         
 
@@ -258,9 +253,10 @@ public class Placement : MonoBehaviour
     }
 
     private void BuildCurrent(Vector2 mousePos2D)
-    {   
+    {       
         BuildingBH currentInstance = GetCurrentType(mousePos2D, tilemap, currentBuildingType);
 
+        if (buildingLibrary.GetBuildingPrice(currentInstance.buildingType) >= player.Money) { Debug.Log("not enough Money !!!");  return; }
         buildingManager.AddBuilding(mousePos2D, currentInstance);
         player.Money -= prices.GetBuildingPrice(currentBuildingType);
         OverlaySC.UpdateMoneyText();

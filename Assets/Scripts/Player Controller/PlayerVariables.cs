@@ -39,7 +39,7 @@ public class PlayerVariables : MonoBehaviour
 
 
     // Est dans un menu
-    public bool isInUI = false;
+    public bool isInMenu = false;
     public bool isInPauseUI = false;
     public bool isInBuildingUI = false;
 
@@ -47,10 +47,6 @@ public class PlayerVariables : MonoBehaviour
     public float timeScale = 1f;
 
 
-    public void BuildModeOff()
-    {
-        buildMode = false;
-    }
 
 
 

@@ -12,6 +12,16 @@ public class UIManager : MonoBehaviour
 
 
 
+    //UI ouvrables
+    private HubUI hubUI;
+    private ExtractorUI extractorUI;
+    private FoundryUI foundryUI;
+    private BuilderUI builderUI;
+    private CoalGeneratorUI coalGeneratorUI;
+    private AdvancedExtractorUI advancedExtractorUI;
+    private BuildMenuSC buildMenuSC;
+
+
     private void Awake()
     {
         DontDestroyOnLoad(gameObject);
@@ -20,6 +30,13 @@ public class UIManager : MonoBehaviour
     private void Start()
     {
         miscInput = ReferenceHolder.instance.miscInput;
+        hubUI = ReferenceHolder.instance.hubUI;
+        extractorUI = ReferenceHolder.instance.extractorUI;
+        builderUI = ReferenceHolder.instance.builderUI;
+        advancedExtractorUI = ReferenceHolder.instance.advancedExtractorUI;
+        foundryUI = ReferenceHolder.instance.foundryUI;
+        coalGeneratorUI = ReferenceHolder.instance.coalGeneratorUI;
+        buildMenuSC = ReferenceHolder.instance.buildMenu;
     }
 
     public void RegisterPanel(VisualElement panel)
@@ -65,6 +82,20 @@ public class UIManager : MonoBehaviour
 
         }
         return null;
+    }
+
+    public void hideOpenPanel()
+    {
+        var currentPanel = GetOpenPanel();
+
+        if (currentPanel == hubUI.panel) HidePanel(currentPanel, () => hubUI.HubUIOnHide());
+        else if (currentPanel == extractorUI.panel) HidePanel(currentPanel, () => extractorUI.ExtractorUIOnHide());
+        else if (currentPanel == foundryUI.panel) HidePanel(currentPanel, () => foundryUI.FoundryUIOnHide());
+        else if (currentPanel == buildMenuSC.panel) HidePanel(currentPanel, () => buildMenuSC.BuildMenuOnHide());
+        else if (currentPanel == builderUI.panel) HidePanel(currentPanel, () => builderUI.BuilderUIOnHide());
+        else if (currentPanel == coalGeneratorUI.panel) HidePanel(currentPanel, () => coalGeneratorUI.CoalGeneratorUIOnHide());
+        else if (currentPanel == advancedExtractorUI.panel) HidePanel(currentPanel, () => advancedExtractorUI.AExtractorUIOnHide());
+
     }
 
 

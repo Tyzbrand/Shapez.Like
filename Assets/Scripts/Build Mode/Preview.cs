@@ -49,7 +49,7 @@ public class Preview : MonoBehaviour
     private void Update()
     {
 
-        if (GetComponent<PlayerVariables>().buildMode == true && currentPreview != null)
+        if (player.buildMode == true && currentPreview != null)
         {
             decalage = player.rotation;
             tilemap = FindFirstObjectByType<Tilemap>();

@@ -10,6 +10,7 @@ public class BuildMenuSC : MonoBehaviour
 
     private PlayerVariables player;
     private Preview previewSC;
+    private Destruction destructionSC;
     private Placement placementSC;
     private StackFeature stackFeature;
     private BuildingLibrary buildPriceLibrary;
@@ -34,6 +35,7 @@ public class BuildMenuSC : MonoBehaviour
         uIManager = ReferenceHolder.instance.uIManager;
         tooltipSC = ReferenceHolder.instance.tooltipSC;
         stackFeature = ReferenceHolder.instance.stackFeature;
+        destructionSC = ReferenceHolder.instance.destructionSC;
 
         panel = uI.rootVisualElement.Q<VisualElement>("BuildMenu");
         uIManager.RegisterPanel(panel);
@@ -363,16 +365,16 @@ public class BuildMenuSC : MonoBehaviour
 
     public void BuildMenuOnShow()
     {
-        player.isInUI = true;
+        player.isInMenu = true;
         player.buildMenu = true;
         buildTools.style.display = DisplayStyle.Flex;
-
+        if(player.destructionMode) destructionSC.DestructionSet();
     }
 
     public void BuildMenuOnHide()
     {
         if(!player.buildMode) buildTools.style.display = DisplayStyle.None;
-        player.isInUI = false;
+        player.isInMenu = false;
         player.buildMenu = false;
         player.pickupMode = false;
         player.lineBuild = false;

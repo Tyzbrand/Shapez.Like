@@ -59,7 +59,7 @@ public class MiscInput : MonoBehaviour
     private void Update()
     {
 
-        if (Input.GetKeyDown(KeyCode.Escape) && !player.buildMenu && !player.buildMode && !player.isInUI && !player.destructionMode && !player.pickupMode)//Ouvrir le menu pause
+        if (Input.GetKeyDown(KeyCode.Escape) && !player.buildMenu && !player.buildMode && !player.isInMenu && !player.destructionMode && !player.pickupMode)//Ouvrir le menu pause
         {
             TogglePauseMenu();
         }
@@ -149,30 +149,18 @@ public class MiscInput : MonoBehaviour
                     lastBuilding = buildingSelected;
                 }
             }
-            else if (player.isInUI) return;
+            else if (player.isInMenu) return;
 
         }
 
         if (Input.GetKeyDown(KeyCode.Escape) && !player.isInPauseUI && !player.destructionMode && !player.pickupMode) //fermer un UI ouvert
         {
             VisualElement currentPanel = uIManager.GetOpenPanel();
-            if (currentPanel != null) hideAllPanel(currentPanel);
+            uIManager.hideOpenPanel();
 
         }
     }
 
-
-    private void hideAllPanel(VisualElement currentPanel)
-    {
-        if (currentPanel == hubUI.panel) uIManager.HidePanel(currentPanel, () => hubUI.HubUIOnHide());
-        else if (currentPanel == extractorUI.panel) uIManager.HidePanel(currentPanel, () => extractorUI.ExtractorUIOnHide());
-        else if (currentPanel == foundryUI.panel) uIManager.HidePanel(currentPanel, () => foundryUI.FoundryUIOnHide());
-        else if (currentPanel == buildMenuSC.panel) uIManager.HidePanel(currentPanel, () => buildMenuSC.BuildMenuOnHide());
-        else if (currentPanel == builderUI.panel) uIManager.HidePanel(currentPanel, () => builderUI.BuilderUIOnHide());
-        else if (currentPanel == coalGeneratorUI.panel) uIManager.HidePanel(currentPanel, () => coalGeneratorUI.CoalGeneratorUIOnHide());
-        else if (currentPanel == advancedExtractorUI.panel) uIManager.HidePanel(currentPanel, () => advancedExtractorUI.AExtractorUIOnHide());
-
-    }
 
     //----------Méthodes de gestion d'ui----------
 
