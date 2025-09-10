@@ -33,7 +33,7 @@ public class BuildingManager : MonoBehaviour
         Merger,
         AdvancedExtractor,
         Conveyor,
-        marketplace,
+        Depot,
         Foundry,
         builder,
         CoalGenerator,

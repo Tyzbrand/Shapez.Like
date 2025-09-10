@@ -26,7 +26,7 @@ public class TextureHolder : MonoBehaviour
 
     public Sprite coalGenerator;
 
-    public Sprite marketplace;
+    public Sprite depot;
 
     public Sprite hub;
 

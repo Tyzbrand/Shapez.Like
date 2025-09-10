@@ -262,7 +262,7 @@
                         <ui:Button text="Build" name="BuilderBuildBtn" class="button" style="position: absolute; top: 176px; left: 13px; width: 224px; height: 30px; border-left-color: rgb(0, 0, 0); border-right-color: rgb(0, 0, 0); border-top-color: rgb(0, 0, 0); border-bottom-color: rgb(0, 0, 0); border-top-width: 3px; border-right-width: 3px; border-bottom-width: 3px; border-left-width: 3px; background-color: rgb(30, 30, 28); font-size: 21px;" />
                     </ui:VisualElement>
                     <ui:VisualElement name="MarketplaceBox" style="height: 217px; width: 261px; background-color: rgb(44, 44, 41); border-top-width: 2px; border-right-width: 2px; border-bottom-width: 2px; border-left-width: 2px; border-left-color: rgb(0, 0, 0); border-right-color: rgb(0, 0, 0); border-top-color: rgb(0, 0, 0); border-bottom-color: rgb(0, 0, 0);">
-                        <ui:Label text="Marketplace" name="MarketplaceNameTxt" />
+                        <ui:Label text="Depot" name="MarketplaceNameTxt" />
                         <ui:Label text="Label" name="MarketplacePriceTxt" style="height: 15px; width: 111px; font-size: 18px; position: absolute; top: 43px; left: 67px;" />
                         <ui:Button text="Build" name="MarketplaceBuildBtn" class="button" style="position: absolute; top: 176px; left: 13px; width: 224px; height: 30px; border-left-color: rgb(0, 0, 0); border-right-color: rgb(0, 0, 0); border-top-color: rgb(0, 0, 0); border-bottom-color: rgb(0, 0, 0); border-top-width: 3px; border-right-width: 3px; border-bottom-width: 3px; border-left-width: 3px; background-color: rgb(30, 30, 28); font-size: 21px;" />
                     </ui:VisualElement>

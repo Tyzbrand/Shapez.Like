@@ -57,7 +57,7 @@ public class ReferenceHolder : MonoBehaviour
     [Header("Preview")]
     public GameObject extractorPreview;
     public GameObject conveyorPreview;
-    public GameObject marketplacePreview;
+    public GameObject depotPreview;
     public GameObject foundryPreview;
     public GameObject builderPrview;
     public GameObject coalGeneratorPreview;

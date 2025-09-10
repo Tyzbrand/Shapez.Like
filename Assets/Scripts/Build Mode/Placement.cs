@@ -135,8 +135,8 @@ public class Placement : MonoBehaviour
                 return new Extractor(mousePos2D, player.rotation, buildingTilemap);
             case BuildingManager.buildingType.Conveyor:
                 return new Conveyor(mousePos2D, player.rotation, buildingTilemap);
-            case BuildingManager.buildingType.marketplace:
-                return new Marketplace(mousePos2D, player.rotation, buildingTilemap);
+            case BuildingManager.buildingType.Depot:
+                return new Depot(mousePos2D, player.rotation, buildingTilemap);
             case BuildingManager.buildingType.Foundry:
                 return new Foundry(mousePos2D, player.rotation, buildingTilemap);
             case BuildingManager.buildingType.builder:
