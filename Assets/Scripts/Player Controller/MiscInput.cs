@@ -63,7 +63,7 @@ public class MiscInput : MonoBehaviour
         {
             TogglePauseMenu();
         }
-        else if ((Input.GetKeyDown(KeyCode.Escape) || Input.GetMouseButtonDown(1)) && player.pickupMode && !placement.hasPickup) {QuitPickUpModeEmpty(); return;} //Quitter le pickup mode sans avoir choisi
+        else if ((Input.GetKeyDown(KeyCode.Escape) || Input.GetMouseButtonDown(1)) && player.pickupMode && !placement.hasPickup) { QuitPickUpModeEmpty(); return; } //Quitter le pickup mode sans avoir choisi
         else if (Input.GetKeyDown(KeyCode.Escape) && !player.buildMenu && player.buildMode && !player.pickupMode)//quiiter le build mode ET le menu (retour normal)
         {
             QuiBuildFunction();
@@ -159,6 +159,7 @@ public class MiscInput : MonoBehaviour
             uIManager.hideOpenPanel();
 
         }
+
     }
 
 

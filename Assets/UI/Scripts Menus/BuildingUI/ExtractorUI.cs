@@ -42,7 +42,10 @@ public class ExtractorUI : MonoBehaviour
 
     private void Update()
     {
-        if (activeExtractor != null) UpdateUI();
+        if (activeExtractor == null) return;
+        if (panel.resolvedStyle.display == DisplayStyle.Flex) UpdateUI();
+        if (panel.resolvedStyle.display == DisplayStyle.Flex && !activeExtractor.isSelected) activeExtractor.BuildingSelectionToggle();
+        if (panel.resolvedStyle.display == DisplayStyle.None) activeExtractor.BuildingSelectionToggle();
 
     }
 
@@ -85,7 +88,7 @@ public class ExtractorUI : MonoBehaviour
     }
 
     public void ExtractorUIOnHide()
-    {
+    {   
         activeExtractor = null;
         player.isInBuildingUI = false;
     }
