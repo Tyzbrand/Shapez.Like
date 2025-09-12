@@ -78,13 +78,13 @@ public class CoalGeneratorUI : MonoBehaviour
     public void CoalGeneratorUIOnShow(CoalGenerator coalGenerator)
     {
         activeCoalGenerator = coalGenerator;
-        player.isInUI = true;
         coalGToggle.SetValueWithoutNotify(activeCoalGenerator.IsActive);
+        player.isInBuildingUI = true;
     }
 
     public void CoalGeneratorUIOnHide()
     {
         activeCoalGenerator = null;
-        player.isInUI = false;
+        player.isInBuildingUI = false;
     }
 }

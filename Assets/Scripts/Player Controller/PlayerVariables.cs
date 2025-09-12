@@ -1,9 +1,7 @@
 using UnityEngine;
 using UnityEngine.Tilemaps;
-using UnityEngine.UIElements;
 
 //-------------------------------------Gère toute les variables dynamiques simples du joueur -------------------------------------
-//Utilisation dans : -Placement et -PlayerMove
 
 public class PlayerVariables : MonoBehaviour
 {
@@ -13,6 +11,8 @@ public class PlayerVariables : MonoBehaviour
     public bool buildMode = false;
     public bool buildMenu = false;
     public bool destructionMode = false;
+    public bool pickupMode = false;
+    public bool lineBuild = false;
 
     public int rotation = 0;
 
@@ -39,23 +39,15 @@ public class PlayerVariables : MonoBehaviour
 
 
     // Est dans un menu
-    public bool movementBlock = false;
-    public bool isInUI = false;
+    public bool isInMenu = false;
     public bool isInPauseUI = false;
+    public bool isInBuildingUI = false;
 
     //accélération
     public float timeScale = 1f;
 
 
-    public void BuildModeOff()
-    {
-        buildMode = false;
-    }
 
-    public void BuildModeOn()
-    {
-        buildMode = true;
-    }
 
 
 

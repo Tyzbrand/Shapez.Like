@@ -1,5 +1,6 @@
 using Unity.Mathematics;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using UnityEngine.Networking.PlayerConnection;
 using Vector2 = UnityEngine.Vector2;
@@ -29,7 +30,8 @@ public class PlayerMove : MonoBehaviour
 
     //Drag and move variables
     private UnityEngine.Vector3 mousePosition;
-   public bool isDragging = false;
+    public bool isDragging = false;
+    public bool isMoving = false;
 
 
 
@@ -52,7 +54,7 @@ public class PlayerMove : MonoBehaviour
     private void Update()
     {
         //Scroll
-        if (!player.isInUI && !player.isInPauseUI)
+        if (!player.isInMenu && !player.isInPauseUI && !player.isInBuildingUI)
         {
             cam.orthographicSize -= scrollInput * zoomSpeed;
             cam.orthographicSize = Mathf.Clamp(cam.orthographicSize, minZoom, maxZoom);
@@ -61,17 +63,14 @@ public class PlayerMove : MonoBehaviour
         }
 
         //Drag and move
-        if (isDragging)
+        if (isDragging && !EventSystem.current.currentSelectedGameObject)
         {
             UnityEngine.Vector3 currentMousPos = cam.ScreenToWorldPoint(Mouse.current.position.ReadValue());
             transform.position += mousePosition - currentMousPos;
         }
-    }
 
-    private void FixedUpdate()
-    {
         //XY
-        if (!player.isInUI && !player.isInPauseUI)
+        if (!player.isInPauseUI)
         {
             Vector3 movement = new Vector3(moveInput.x, moveInput.y, 0f) * speed * finalSpeed * Time.fixedDeltaTime;
             transform.position += movement;
@@ -88,6 +87,7 @@ public class PlayerMove : MonoBehaviour
     //Input mouvements X Y
     private void Move(InputAction.CallbackContext context)
     {
+        if (Keyboard.current.ctrlKey.isPressed) return;
         moveInput = context.ReadValue<Vector2>();
     }
 
@@ -100,7 +100,7 @@ public class PlayerMove : MonoBehaviour
     //Input Drag and Move avec la souris
     private void DragMove(InputAction.CallbackContext context)
     {
-        if (context.performed && !player.buildMode && !player.isInUI && !player.isInPauseUI)
+        if (context.performed && !player.buildMode && !player.isInPauseUI)
         {
             isDragging = true;
             mousePosition = cam.ScreenToWorldPoint(Mouse.current.position.ReadValue());

@@ -33,3 +33,8 @@ MonoBehaviour:
     inputCount: 1
     outputCount: 2
     craftSpeed: 5
+  - Input: 14
+    Output: 13
+    inputCount: 1
+    outputCount: 1
+    craftSpeed: 5

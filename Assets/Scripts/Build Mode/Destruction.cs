@@ -1,3 +1,4 @@
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
@@ -8,6 +9,8 @@ public class Destruction : MonoBehaviour
     private PlayerVariables player;
     private Preview previewSc;
     private Camera playerCam;
+    private BuildMenuSC buildMenuSC;
+    private UIManager uIManager;
     private DestructionOverlaySC destructionOverlay;
     private BuildingManager buildingManager;
     private bool allowDestruction = false;
@@ -20,6 +23,8 @@ public class Destruction : MonoBehaviour
         playerCam = ReferenceHolder.instance.mainCamera;
         destructionOverlay = ReferenceHolder.instance.overlayManager;
         buildingManager = ReferenceHolder.instance.buildingManager;
+        uIManager = ReferenceHolder.instance.uIManager;
+        buildMenuSC = ReferenceHolder.instance.buildMenu;
     }
 
 
@@ -27,9 +32,10 @@ public class Destruction : MonoBehaviour
     public void DestructionSet()
     {
         if (!player.destructionMode)
-        {
+        {   
             DestructionModeOn();
             destructionOverlay.DestructionOverlayOn();
+            uIManager.hideOpenPanel();
 
         }
         else if (player.destructionMode)
@@ -77,7 +83,7 @@ public class Destruction : MonoBehaviour
     private void DestructionModeOn()
     {
         player.destructionMode = true;
-        player.BuildModeOff();
+        if(player.buildMode) player.buildMode = false;
 
 
         if (previewSc.currentPreview != null)

@@ -10,6 +10,9 @@ public class TooltipSC : MonoBehaviour
 
     private Label tooltipText;
 
+    private int xOffset = -50;
+    private int yOffset = -40;
+
     private void Start()
     {
 
@@ -46,8 +49,8 @@ public class TooltipSC : MonoBehaviour
             mousePos.x = Mathf.Clamp(mousePos.x, 0, Screen.width - panel.resolvedStyle.width);
             mousePos.y = Mathf.Clamp(mousePos.y, 0, Screen.height - panel.resolvedStyle.height);
 
-            panel.style.left = mousePos.x + 15;
-            panel.style.top = mousePos.y + 15;
+            panel.style.left = mousePos.x + xOffset;
+            panel.style.top = mousePos.y + yOffset;
 
         }
     }

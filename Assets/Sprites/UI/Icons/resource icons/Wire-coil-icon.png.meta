@@ -116,12 +116,12 @@ TextureImporter:
       name: Wire-coil-icon_0
       rect:
         serializedVersion: 2
-        x: 121
-        y: 163
-        width: 270
-        height: 186
+        x: 0
+        y: 0
+        width: 512
+        height: 512
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -138,7 +138,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: dab4ff06f1af2a548b5f516cd8945e27
     internalID: 0
     vertices: []
     indices: 

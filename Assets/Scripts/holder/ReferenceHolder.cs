@@ -24,6 +24,7 @@ public class ReferenceHolder : MonoBehaviour
     public Inventory inventorySC;
     public Statistics playerStats;
     public MiscInput miscInput;
+    public StackFeature stackFeature;
 
 
     //Game Managers
@@ -57,7 +58,7 @@ public class ReferenceHolder : MonoBehaviour
     [Header("Preview")]
     public GameObject extractorPreview;
     public GameObject conveyorPreview;
-    public GameObject marketplacePreview;
+    public GameObject depotPreview;
     public GameObject foundryPreview;
     public GameObject builderPrview;
     public GameObject coalGeneratorPreview;
@@ -65,7 +66,7 @@ public class ReferenceHolder : MonoBehaviour
     public GameObject junctionPreview;
     public GameObject splitterPreview;
     public GameObject mergerPreview;
-
+    public GameObject wallPreview;
 
     //Datas
     [Header("Données")]

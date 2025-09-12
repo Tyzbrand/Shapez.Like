@@ -87,13 +87,13 @@ public class AdvancedExtractorUI : MonoBehaviour
     public void AExtractorUIOnShow(AdvancedExtractor extractor)
     {
         activeExtractor = extractor;
-        player.isInUI = true;
         extractorToggle.SetValueWithoutNotify(activeExtractor.IsActive);
+        player.isInBuildingUI = true;
     }
 
     public void AExtractorUIOnHide()
     {
         activeExtractor = null;
-        player.isInUI = false;
+        player.isInBuildingUI = false;
     }
 }

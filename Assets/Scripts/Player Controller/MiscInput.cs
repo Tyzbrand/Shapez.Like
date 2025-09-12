@@ -14,6 +14,7 @@ public class MiscInput : MonoBehaviour
     private Preview previewSC;
     private Destruction destructionSC;
     private HubUI hubUI;
+    private Placement placement;
     private ExtractorUI extractorUI;
     private BuilderUI builderUI;
     private FoundryUI foundryUI;
@@ -49,6 +50,7 @@ public class MiscInput : MonoBehaviour
         cam = ReferenceHolder.instance.mainCamera;
         uIManager = ReferenceHolder.instance.uIManager;
         coalGeneratorUI = ReferenceHolder.instance.coalGeneratorUI;
+        placement = ReferenceHolder.instance.placementSC;
 
 
     }
@@ -57,28 +59,25 @@ public class MiscInput : MonoBehaviour
     private void Update()
     {
 
-        if (Input.GetKeyDown(KeyCode.Escape) && !player.buildMenu && !player.buildMode && !player.isInUI && !player.destructionMode)//Ouvrir le menu pause
+        if (Input.GetKeyDown(KeyCode.Escape) && !player.buildMenu && !player.buildMode && !player.isInMenu && !player.destructionMode && !player.pickupMode)//Ouvrir le menu pause
         {
-            pauseMenu.TogglePauseMenu();
+            TogglePauseMenu();
         }
-        else if (Input.GetKeyDown(KeyCode.Escape) && !player.buildMenu && player.buildMode)//quiiter le build mode ET le menu (retour normal)
+        else if ((Input.GetKeyDown(KeyCode.Escape) || Input.GetMouseButtonDown(1)) && player.pickupMode && !placement.hasPickup) {QuitPickUpModeEmpty(); return;} //Quitter le pickup mode sans avoir choisi
+        else if (Input.GetKeyDown(KeyCode.Escape) && !player.buildMenu && player.buildMode && !player.pickupMode)//quiiter le build mode ET le menu (retour normal)
         {
-            uIManager.TogglePanel(buildMenuSC.panel, () => buildMenuSC.BuildMenuOnShow(), () => buildMenuSC.BuildMenuOnHide());
-            player.buildMode = false;
-            previewSC.DestroyInstance();
+            QuiBuildFunction();
         }
-        else if (Input.GetKeyDown(KeyCode.Escape) && !player.buildMenu && !player.buildMode && player.destructionMode) destructionSC.DestructionSet(); //quitter le mode destruction
+        else if (Input.GetKeyDown(KeyCode.Escape) && !player.buildMenu && !player.buildMode && player.destructionMode && !player.pickupMode) QuitDestructionMode(); //quitter le mode destruction
 
         if (Input.GetMouseButtonDown(1) && !player.buildMenu && player.buildMode)//quitter le build mode et revenir au menu
         {
-            uIManager.TogglePanel(buildMenuSC.panel, () => buildMenuSC.BuildMenuOnShow(), () => buildMenuSC.BuildMenuOnHide());
-            player.buildMode = false;
-            previewSC.DestroyInstance();
+            ComeBackToBuildMenu();
         }
 
         if (Input.GetMouseButtonDown(0) && !player.buildMode && !player.buildMenu && !player.destructionMode && !EventSystem.current.IsPointerOverGameObject()) //Toggle les ui des batiments
         {
-            
+
             Vector2 mousePos2D = cam.ScreenToWorldPoint(Input.mousePosition);
             var buildingSelected = buildingManager.GetBuildingOnTile(mousePos2D);
 
@@ -137,7 +136,7 @@ public class MiscInput : MonoBehaviour
                     lastBuilding = buildingSelected;
                 }
             }
-            else if (buildingSelected is AdvancedExtractor advancedExtractor) //coal Generator
+            else if (buildingSelected is AdvancedExtractor advancedExtractor) //Advanced Extractor
             {
                 if (currentPanel == advancedExtractorUI.panel)
                 {
@@ -150,31 +149,55 @@ public class MiscInput : MonoBehaviour
                     lastBuilding = buildingSelected;
                 }
             }
-            else if (player.isInUI) return;
+            else if (player.isInMenu) return;
 
         }
 
-        if (Input.GetKeyDown(KeyCode.Escape) && player.isInUI && !player.isInPauseUI && !player.destructionMode) //fermer un UI ouvert
+        if (Input.GetKeyDown(KeyCode.Escape) && !player.isInPauseUI && !player.destructionMode && !player.pickupMode) //fermer un UI ouvert
         {
             VisualElement currentPanel = uIManager.GetOpenPanel();
-            if (currentPanel != null) hideAllPanel(currentPanel);
+            uIManager.hideOpenPanel();
 
         }
     }
 
 
-    private void hideAllPanel(VisualElement currentPanel)
+    //----------Méthodes de gestion d'ui----------
+
+    private void TogglePauseMenu()
     {
-        if (currentPanel == hubUI.panel) uIManager.HidePanel(currentPanel, () => hubUI.HubUIOnHide());
-        else if (currentPanel == extractorUI.panel) uIManager.HidePanel(currentPanel, () => extractorUI.ExtractorUIOnHide());
-        else if (currentPanel == foundryUI.panel) uIManager.HidePanel(currentPanel, () => foundryUI.FoundryUIOnHide());
-        else if (currentPanel == buildMenuSC.panel) uIManager.HidePanel(currentPanel, () => buildMenuSC.BuildMenuOnHide());
-        else if (currentPanel == builderUI.panel) uIManager.HidePanel(currentPanel, () => builderUI.BuilderUIOnHide());
-        else if (currentPanel == coalGeneratorUI.panel) uIManager.HidePanel(currentPanel, () => coalGeneratorUI.CoalGeneratorUIOnHide());
-        else if (currentPanel == advancedExtractorUI.panel) uIManager.HidePanel(currentPanel, () => advancedExtractorUI.AExtractorUIOnHide());
-    
+        if (uIManager.GetOpenPanel() == null) pauseMenu.TogglePauseMenu();
+        
     }
 
+    private void QuiBuildFunction()
+    {
+        uIManager.TogglePanel(buildMenuSC.panel, () => buildMenuSC.BuildMenuOnShow(), () => buildMenuSC.BuildMenuOnHide());
+        player.buildMode = false;
+        placement.hasPickup = false;
+        player.lineBuild = false;
+        previewSC.DestroyInstance();
+    }
+
+    private void QuitDestructionMode()
+    {
+        destructionSC.DestructionSet();
+    }
+
+    public void ComeBackToBuildMenu()
+    {
+        uIManager.TogglePanel(buildMenuSC.panel, () => buildMenuSC.BuildMenuOnShow(), () => buildMenuSC.BuildMenuOnHide());
+        player.buildMode = false;
+        placement.hasPickup = false;
+        player.lineBuild = false;
+        previewSC.DestroyInstance();
+    }
+
+    public void QuitPickUpModeEmpty()
+    {
+        player.pickupMode = false;
+        uIManager.ShowPanel(buildMenuSC.panel, () => buildMenuSC.BuildMenuOnShow());
+    }
 
 
 

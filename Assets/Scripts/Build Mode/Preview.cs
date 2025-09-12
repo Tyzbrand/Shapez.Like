@@ -15,7 +15,7 @@ public class Preview : MonoBehaviour
     public GameObject previewToUse;
     private GameObject extractorPreview;
     private GameObject conveyorPreview;
-    private GameObject marketPlacePreview;
+    private GameObject depotPreview;
     private GameObject foundryPreview;
     
     [HideInInspector]
@@ -32,7 +32,7 @@ public class Preview : MonoBehaviour
         playerCam = ReferenceHolder.instance.mainCamera;
         extractorPreview = ReferenceHolder.instance.extractorPreview;
         conveyorPreview = ReferenceHolder.instance.conveyorPreview;
-        marketPlacePreview = ReferenceHolder.instance.marketplacePreview;
+        depotPreview = ReferenceHolder.instance.depotPreview;
         foundryPreview = ReferenceHolder.instance.foundryPreview;
         player = ReferenceHolder.instance.playervariable;
 
@@ -49,9 +49,9 @@ public class Preview : MonoBehaviour
     private void Update()
     {
 
-        if (GetComponent<PlayerVariables>().buildMode == true && currentPreview != null)
+        if (player.buildMode == true && currentPreview != null)
         {
-            decalage = GetComponent<PlayerVariables>().rotation;
+            decalage = player.rotation;
             tilemap = FindFirstObjectByType<Tilemap>();
 
             Vector3 mouseWorlPos = playerCam.ScreenToWorldPoint(Mouse.current.position.ReadValue());
@@ -79,7 +79,7 @@ public class Preview : MonoBehaviour
     public void CreateInstance()
     {
 
-        decalage = GetComponent<PlayerVariables>().rotation;
+        decalage = player.rotation;
         tilemap = FindFirstObjectByType<Tilemap>();
 
         Vector3 mouseWorlPos = playerCam.ScreenToWorldPoint(Mouse.current.position.ReadValue());
@@ -92,7 +92,6 @@ public class Preview : MonoBehaviour
 
 
         currentPreview = Instantiate(previewToUse, placementpos, Quaternion.Euler(0, 0, 0));
-        currentPreview.GetComponent<SpriteRenderer>().sortingOrder = 1;
        
     }
 

@@ -46,6 +46,11 @@ public abstract class BuildingBH
 
     }
 
+    public virtual void BuildingLateStart()
+    {
+        
+    }
+
     public virtual void BuildingOnDestroy()
     {
 
