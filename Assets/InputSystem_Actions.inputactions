@@ -139,6 +139,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "UpgradeBtn",
+                    "type": "Button",
+                    "id": "ff8c87d4-8a0d-4137-a786-1d8c139a8d06",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
                 }
             ],
             "bindings": [
@@ -381,6 +390,17 @@
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
                     "action": "x3",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "35a6a9be-858e-4ee3-b8a2-47cc1ff50493",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Keyboard&Mouse",
+                    "action": "UpgradeBtn",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

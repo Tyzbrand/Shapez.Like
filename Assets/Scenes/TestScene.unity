@@ -350,6 +350,7 @@ GameObject:
   - component: {fileID: 526294635}
   - component: {fileID: 526294636}
   - component: {fileID: 526294630}
+  - component: {fileID: 526294638}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -658,6 +659,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 8132173f-e716-44ea-81e9-10f56397e1b3
     m_ActionName: 'Actions/x3[/Keyboard/3,/Keyboard/numpad3]'
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 526294638}
+        m_TargetAssemblyTypeName: Upgrade, Assembly-CSharp
+        m_MethodName: KeyUpgrade
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: ff8c87d4-8a0d-4137-a786-1d8c139a8d06
+    m_ActionName: 'Actions/UpgradeBtn[/Mouse/leftButton]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: Keyboard&Mouse
   m_DefaultActionMap: Actions
@@ -680,6 +697,7 @@ MonoBehaviour:
   destructionMode: 0
   pickupMode: 0
   lineBuild: 0
+  upgradeMode: 0
   rotation: 0
   currentBuild: {fileID: 0}
   currentPreview: {fileID: 0}
@@ -910,6 +928,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4865c91a45849ff4bbe1e275caceb7bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &526294638
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 526294619}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a001c63df2ab124da11f646bc1c321d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &619394800

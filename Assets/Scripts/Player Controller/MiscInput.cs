@@ -59,11 +59,12 @@ public class MiscInput : MonoBehaviour
     private void Update()
     {
 
-        if (Input.GetKeyDown(KeyCode.Escape) && !player.buildMenu && !player.buildMode && !player.isInMenu && !player.destructionMode && !player.pickupMode)//Ouvrir le menu pause
+        if (Input.GetKeyDown(KeyCode.Escape) && !player.buildMenu && !player.buildMode && !player.isInMenu && !player.destructionMode && !player.pickupMode && !player.upgradeMode)//Ouvrir le menu pause
         {
             TogglePauseMenu();
         }
-        else if ((Input.GetKeyDown(KeyCode.Escape) || Input.GetMouseButtonDown(1)) && player.pickupMode && !placement.hasPickup) {QuitPickUpModeEmpty(); return;} //Quitter le pickup mode sans avoir choisi
+        else if ((Input.GetKeyDown(KeyCode.Escape) || Input.GetMouseButtonDown(1)) && player.pickupMode && !placement.hasPickup) { QuitPickUpModeEmpty(); return; } //Quitter le pickup mode sans avoir choisi
+        else if ((Input.GetKeyDown(KeyCode.Escape) || Input.GetMouseButtonDown(1)) && player.upgradeMode) { QuitUpgradeMode(); return; }
         else if (Input.GetKeyDown(KeyCode.Escape) && !player.buildMenu && player.buildMode && !player.pickupMode)//quiiter le build mode ET le menu (retour normal)
         {
             QuiBuildFunction();
@@ -82,7 +83,7 @@ public class MiscInput : MonoBehaviour
             var buildingSelected = buildingManager.GetBuildingOnTile(mousePos2D);
 
             var currentPanel = uIManager.GetOpenPanel();
-            if (buildingSelected is Conveyor conveyor) conveyor.UpgradeLevel();
+
             if (buildingSelected is Hub) uIManager.TogglePanel(hubUI.panel, () => hubUI.HubUIOnShow(), () => hubUI.HubUIOnHide());
             else if (buildingSelected is Extractor extractor) //Extracteur
             {
@@ -167,7 +168,7 @@ public class MiscInput : MonoBehaviour
     private void TogglePauseMenu()
     {
         if (uIManager.GetOpenPanel() == null) pauseMenu.TogglePauseMenu();
-        
+
     }
 
     private void QuiBuildFunction()
@@ -196,6 +197,12 @@ public class MiscInput : MonoBehaviour
     public void QuitPickUpModeEmpty()
     {
         player.pickupMode = false;
+        uIManager.ShowPanel(buildMenuSC.panel, () => buildMenuSC.BuildMenuOnShow());
+    }
+
+    public void QuitUpgradeMode()
+    {
+        player.upgradeMode = false;
         uIManager.ShowPanel(buildMenuSC.panel, () => buildMenuSC.BuildMenuOnShow());
     }
 

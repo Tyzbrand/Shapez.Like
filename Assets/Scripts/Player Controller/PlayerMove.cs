@@ -63,7 +63,7 @@ public class PlayerMove : MonoBehaviour
         }
 
         //Drag and move
-        if (isDragging && !EventSystem.current.currentSelectedGameObject)
+        if (isDragging && !EventSystem.current.currentSelectedGameObject && !player.upgradeMode)
         {
             UnityEngine.Vector3 currentMousPos = cam.ScreenToWorldPoint(Mouse.current.position.ReadValue());
             transform.position += mousePosition - currentMousPos;

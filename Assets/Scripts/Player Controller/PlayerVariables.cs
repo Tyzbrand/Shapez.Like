@@ -13,6 +13,7 @@ public class PlayerVariables : MonoBehaviour
     public bool destructionMode = false;
     public bool pickupMode = false;
     public bool lineBuild = false;
+    public bool upgradeMode = false;
 
     public int rotation = 0;
 

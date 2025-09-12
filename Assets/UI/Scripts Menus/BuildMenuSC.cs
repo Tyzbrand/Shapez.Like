@@ -1,4 +1,5 @@
 using UnityEditor;
+using UnityEditor.Rendering.Universal;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UIElements;
@@ -18,9 +19,9 @@ public class BuildMenuSC : MonoBehaviour
     private TooltipSC tooltipSC;
 
     private Button extractorBuild, conveyorBuild, depotBuild, foundryBuild, builderBuild, coalGeneratorBuild, advancedExtractorBuild,
-        junctionBuild, splitterBuild, mergerBuild, wallBuild, rotateBtn, pickupBtn, lineBuildBtn, undoBtn, redoBtn;
+    junctionBuild, splitterBuild, mergerBuild, wallBuild, rotateBtn, pickupBtn, lineBuildBtn, undoBtn, redoBtn, upgradeBtn;
     private Label extractorPrice, conveyorPrice, depotPrice, foundryPrice, builderPrice, coalGeneratorPrice, advancedExtractorPrice,
-        junctionPrice, splitterPrice, mergerPrice, wallPrice;
+    junctionPrice, splitterPrice, mergerPrice, wallPrice;
 
 
 
@@ -65,12 +66,14 @@ public class BuildMenuSC : MonoBehaviour
         splitterBuild = panel.Q<Button>("SplitterBuildBtn");
         mergerBuild = panel.Q<Button>("MergerBuildBtn");
         wallBuild = panel.Q<Button>("WallBuildBtn");
+        
 
         rotateBtn = buildTools.Q<Button>("RotateBtn");
         pickupBtn = buildTools.Q<Button>("PickUpBtn");
         lineBuildBtn = buildTools.Q<Button>("LineBuildBtn");
         undoBtn = buildTools.Q<Button>("UndoBtn");
         redoBtn = buildTools.Q<Button>("RedoBtn");
+        upgradeBtn = buildTools.Q<Button>("UpgradeBtn");
 
         //Désabonnements
         extractorBuild.clicked -= ExtractorSelect;
@@ -90,6 +93,7 @@ public class BuildMenuSC : MonoBehaviour
         lineBuildBtn.clicked -= LineBuild;
         undoBtn.clicked -= Undo;
         redoBtn.clicked -= Redo;
+        upgradeBtn.clicked -= UpgradeMode;
 
         //Abonnements
         extractorBuild.clicked += ExtractorSelect;
@@ -109,6 +113,7 @@ public class BuildMenuSC : MonoBehaviour
         lineBuildBtn.clicked += LineBuild;
         undoBtn.clicked += Undo;
         redoBtn.clicked += Redo;
+        upgradeBtn.clicked += UpgradeMode;
 
 
         //Assignation des valeures
@@ -140,6 +145,9 @@ public class BuildMenuSC : MonoBehaviour
 
         redoBtn.RegisterCallback<PointerEnterEvent>(evt => tooltipSC.TooltipShow("Redo"));
         redoBtn.RegisterCallback<PointerLeaveEvent>(evt => tooltipSC.TooltipHide());
+
+        upgradeBtn.RegisterCallback<PointerEnterEvent>(evt => tooltipSC.TooltipShow("Upgrade conveyor"));
+        upgradeBtn.RegisterCallback<PointerLeaveEvent>(evt => tooltipSC.TooltipHide());
 
     }
 
@@ -334,6 +342,22 @@ public class BuildMenuSC : MonoBehaviour
         stackFeature.Redo();
     }
 
+    private void UpgradeMode()
+    {
+        if (!player.upgradeMode)
+        {
+            player.upgradeMode = true;
+            previewSC.DestroyInstance();
+            player.buildMode = false;
+            uIManager.HidePanel(panel, () => BuildMenuOnHide());
+        }
+        else if (player.upgradeMode)
+        {
+            player.upgradeMode = false;
+            uIManager.ShowPanel(panel, () => BuildMenuOnShow());
+        }
+    }
+
     //----------Gestion des Inputs----------
     public void pickupCTX(InputAction.CallbackContext context)
     {
@@ -376,6 +400,7 @@ public class BuildMenuSC : MonoBehaviour
     {
         player.isInMenu = true;
         player.buildMenu = true;
+        player.upgradeMode = false;
         buildTools.style.display = DisplayStyle.Flex;
         if(player.destructionMode) destructionSC.DestructionSet();
     }
@@ -407,6 +432,7 @@ public class BuildMenuSC : MonoBehaviour
         {
             UpdateButtonState(pickupBtn, player.pickupMode);
             UpdateButtonState(lineBuildBtn, player.lineBuild);
+            UpdateButtonState(upgradeBtn, player.upgradeMode);
         }
     }
 
