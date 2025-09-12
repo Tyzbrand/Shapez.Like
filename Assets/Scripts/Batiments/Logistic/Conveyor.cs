@@ -1,9 +1,11 @@
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
 public class Conveyor : BuildingBH
 {
+    public int level = 1;
+    public float speed = 1f;
+
     public Conveyor(Vector2 worldPosition, int rotation, Tilemap tilemap) : base(worldPosition, rotation, tilemap)
     {
 
@@ -13,7 +15,6 @@ public class Conveyor : BuildingBH
     {
         Debug.Log("Conveyor !");
         buildingType = BuildingManager.buildingType.Conveyor;
-        conveyorSpeed = 2f;
     }
 
     public override void BuildingOnDestroy()
@@ -21,7 +22,28 @@ public class Conveyor : BuildingBH
         Debug.Log("Conveyor Détruit");
     }
 
-    public void UpdateSprite()
+
+    public void UpgradeLevel()
+    {
+        if (level > 2) return;
+
+        if (level == 1)
+        {
+            speed = 2f;
+            visualSpriteRenderer.sprite = TextureHolder.instance.advancedConveyor;
+            level++;
+        }
+        else if (level == 2)
+        {   
+            speed = 3f;
+            visualSpriteRenderer.sprite = TextureHolder.instance.utlimateConveyor;
+            level++;
+        }
+    }
+
+
+
+    /* public void UpdateSprite()
     {
         bool hasForward = false;
         bool hasBackward = false;
@@ -43,24 +65,24 @@ public class Conveyor : BuildingBH
         var leftBuilding = buildingManager.GetBuildingOnTile(leftPos);
         var rightBuilding = buildingManager.GetBuildingOnTile(rightPos);
 
-       
+
         if (forwardBuilding is Conveyor)
-        {   
+        {
             Vector2 forwardBuildingDir = forwardBuilding.GetDirection();
             if (forwardBuildingDir == forwardDir || forwardBuildingDir == -forwardDir) hasForward = true;
         }
         if (backwardBuilding is Conveyor)
         {
             Vector2 backBuildingDir = backwardBuilding.GetDirection();
-            if (backBuildingDir == backwardDir || backBuildingDir == -backwardDir) hasBackward = true;  
+            if (backBuildingDir == backwardDir || backBuildingDir == -backwardDir) hasBackward = true;
         }
         if (leftBuilding is Conveyor)
-        {   
+        {
             Vector2 leftBuildingDir = leftBuilding.GetDirection();
             if (leftBuildingDir == leftDir || leftBuildingDir == -leftDir) hasLeft = true;
         }
         if (rightBuilding is Conveyor)
-        {   
+        {
             Vector2 rightBuildingDir = rightBuilding.GetDirection();
             if (rightBuildingDir == rightDir || rightBuildingDir == -rightDir) hasRight = true;
         }
@@ -94,6 +116,7 @@ public class Conveyor : BuildingBH
             }
         }
     }
+    */
     
 
 

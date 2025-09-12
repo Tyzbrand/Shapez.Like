@@ -392,6 +392,7 @@ MonoBehaviour:
   minZoom: 3
   maxZoom: 30
   isDragging: 0
+  isMoving: 0
 --- !u!114 &526294622
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -581,7 +582,7 @@ MonoBehaviour:
   realElectricityBalance: 0
   electricityMaxStorage: 1000
   tilemap1: {fileID: 0}
-  isInUI: 0
+  isInMenu: 0
   isInPauseUI: 0
   isInBuildingUI: 0
   timeScale: 1
@@ -758,8 +759,8 @@ MonoBehaviour:
   extractorCopper: {fileID: 21300000, guid: 22e4b2b015160e940bba8dc7703d4430, type: 3}
   extractorIron: {fileID: 21300000, guid: dadc133596b5b344d97e86be6a7dbd0b, type: 3}
   Conveyor: {fileID: 21300000, guid: 1c1c17de6641fde4aaa36c12296bfe13, type: 3}
-  AdvancedConveyor: {fileID: 21300000, guid: 1c727170547117841bc6077e418acc9f, type: 3}
-  UtlimateConveyor: {fileID: 21300000, guid: 2cba6f87df286d448aedfab133a74599, type: 3}
+  advancedConveyor: {fileID: 21300000, guid: 1c727170547117841bc6077e418acc9f, type: 3}
+  utlimateConveyor: {fileID: 21300000, guid: 2cba6f87df286d448aedfab133a74599, type: 3}
   conveyorTurn: {fileID: 8193956638338861178, guid: 8f57309b0f78b8145bb25a7922e3370d, type: 3}
   merger: {fileID: 21300000, guid: 9665fb892cac9064aa5bf38af4e7008c, type: 3}
   splitter: {fileID: 21300000, guid: d27df5455a0ca124983719c93ba6545d, type: 3}

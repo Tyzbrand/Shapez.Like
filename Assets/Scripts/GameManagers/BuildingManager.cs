@@ -39,7 +39,7 @@ public class BuildingManager : MonoBehaviour
         Foundry,
         builder,
         CoalGenerator,
-        wall
+        Wall
     }
 
 
@@ -60,10 +60,7 @@ public class BuildingManager : MonoBehaviour
             building.visual = GetBuildingVisual(building);
             building.visualSpriteRenderer = building.visual.GetComponent<SpriteRenderer>();
             if (building is Conveyor conveyor)
-            {
-                conveyor.UpdateSprite();
-                conveyor.UpdateNeighbor();
-            }
+            
                 
 
             extraAction?.Invoke();
@@ -72,7 +69,7 @@ public class BuildingManager : MonoBehaviour
             building.BuildingLateStart();
 
         }
-        else if (GetBuildingOnTile(tilePos) is Conveyor)
+        else if (GetBuildingOnTile(tilePos) is Conveyor && !(placement.currentBuildingType is buildingType.Conveyor))
         {
             RemoveBuilding(tilePos);
             buildingReferencer.Add(tilePos, building);
