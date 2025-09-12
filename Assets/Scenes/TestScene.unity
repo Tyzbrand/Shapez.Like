@@ -392,6 +392,7 @@ MonoBehaviour:
   minZoom: 3
   maxZoom: 30
   isDragging: 0
+  isMoving: 0
 --- !u!114 &526294622
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -545,6 +546,118 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 17b842a7-bacc-4cc1-a35f-f257e56b1652
     m_ActionName: 'Actions/PickupTool[/Keyboard/p]'
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1409634698}
+        m_TargetAssemblyTypeName: OverlaySC, Assembly-CSharp
+        m_MethodName: KeyBuildMenu
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 1bc4cafc-d844-4cc9-8110-ab766894f5c8
+    m_ActionName: 'Actions/BuildMenu[/Keyboard/b]'
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1409634698}
+        m_TargetAssemblyTypeName: OverlaySC, Assembly-CSharp
+        m_MethodName: KeyDestrucytionMode
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: d77acb33-d11e-444a-bf88-0d4f9faa17b2
+    m_ActionName: 'Actions/destructionMode[/Keyboard/delete]'
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1409634698}
+        m_TargetAssemblyTypeName: OverlaySC, Assembly-CSharp
+        m_MethodName: KeyClearItems
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: bf453943-b827-4523-bab2-b9fc5f24ef33
+    m_ActionName: 'Actions/ClearItems[/Keyboard/tab]'
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1461742639}
+        m_TargetAssemblyTypeName: TimeManager, Assembly-CSharp
+        m_MethodName: KeyTogglePause
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: f2f7dda8-4b05-406c-a468-70471c9281fc
+    m_ActionName: 'Actions/Tooglepause[/Keyboard/space]'
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1461742639}
+        m_TargetAssemblyTypeName: TimeManager, Assembly-CSharp
+        m_MethodName: KeySetX2
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 08d7d87c-853b-450b-98f5-db6b3f0e6d47
+    m_ActionName: 'Actions/x2[/Keyboard/2,/Keyboard/numpad2]'
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1461742639}
+        m_TargetAssemblyTypeName: TimeManager, Assembly-CSharp
+        m_MethodName: KeySetPlay
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: ed4e4f04-c91e-4ce6-8474-a380a8a44ff1
+    m_ActionName: 'Actions/x1[/Keyboard/1,/Keyboard/numpad1]'
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1461742639}
+        m_TargetAssemblyTypeName: TimeManager, Assembly-CSharp
+        m_MethodName: KeySetX3
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 8132173f-e716-44ea-81e9-10f56397e1b3
+    m_ActionName: 'Actions/x3[/Keyboard/3,/Keyboard/numpad3]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: Keyboard&Mouse
   m_DefaultActionMap: Actions
@@ -581,7 +694,7 @@ MonoBehaviour:
   realElectricityBalance: 0
   electricityMaxStorage: 1000
   tilemap1: {fileID: 0}
-  isInUI: 0
+  isInMenu: 0
   isInPauseUI: 0
   isInBuildingUI: 0
   timeScale: 1
@@ -1298,6 +1411,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd0c7b73d8e2d66469bb0a3bc25ff064, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  xOffset: -35
+  yOffset: -50
 --- !u!1 &1461742636
 GameObject:
   m_ObjectHideFlags: 0
@@ -1428,7 +1543,7 @@ MonoBehaviour:
     m_Bits: 1
   m_VolumeTrigger: {fileID: 0}
   m_VolumeFrameworkUpdateModeOption: 2
-  m_RenderPostProcessing: 1
+  m_RenderPostProcessing: 0
   m_Antialiasing: 2
   m_AntialiasingQuality: 2
   m_StopNaN: 0

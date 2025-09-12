@@ -132,6 +132,15 @@ public class BuildMenuSC : MonoBehaviour
         pickupBtn.RegisterCallback<PointerEnterEvent>(evt => tooltipSC.TooltipShow("Pick up"));
         pickupBtn.RegisterCallback<PointerLeaveEvent>(evt => tooltipSC.TooltipHide());
 
+        lineBuildBtn.RegisterCallback<PointerEnterEvent>(evt => tooltipSC.TooltipShow("Line build"));
+        lineBuildBtn.RegisterCallback<PointerLeaveEvent>(evt => tooltipSC.TooltipHide());
+
+        undoBtn.RegisterCallback<PointerEnterEvent>(evt => tooltipSC.TooltipShow("Undo"));
+        undoBtn.RegisterCallback<PointerLeaveEvent>(evt => tooltipSC.TooltipHide());
+
+        redoBtn.RegisterCallback<PointerEnterEvent>(evt => tooltipSC.TooltipShow("Redo"));
+        redoBtn.RegisterCallback<PointerLeaveEvent>(evt => tooltipSC.TooltipHide());
+
     }
 
 

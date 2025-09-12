@@ -15,7 +15,7 @@ public class Extractor : BuildingBH
     public float ressourcesPerSecond;
     private TileType underTile;
     private bool canExtract = false;
-    private String ressourceType;
+    private RessourceBehaviour.RessourceType ressourceType;
     private BuildingData data;
 
     public Extractor(Vector2 worldPosition, int rotation, Tilemap tilemap) : base(worldPosition, rotation, tilemap)
@@ -46,12 +46,8 @@ public class Extractor : BuildingBH
 
         if (underTile != null)
         {
-            ressourceType = RessourceDictionnary.GetRessourceSpriteName(underTile.tileType);
-
-            if (ressourceType != null)
-            {
-                canExtract = true;
-            }
+            ressourceType = underTile.tileType;
+            canExtract = true;  
         }
     }
 

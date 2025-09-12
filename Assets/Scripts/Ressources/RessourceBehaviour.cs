@@ -14,8 +14,6 @@ public class RessourceBehaviour : MonoBehaviour
         Copper,
         CopperIngot,
         CopperPlate,
-        Silver,
-        SilverIngot,
         Gear,
         WireCoil,
         Compound,

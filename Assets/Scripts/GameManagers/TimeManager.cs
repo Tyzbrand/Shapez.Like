@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class TimeManager : MonoBehaviour
 {
@@ -13,7 +14,7 @@ public class TimeManager : MonoBehaviour
         overlayManager = ReferenceHolder.instance.overlayManager;
         player = ReferenceHolder.instance.playervariable;
         overlay = ReferenceHolder.instance.inGameOverlay;
-    }   
+    }
 
     private void Update()
     {
@@ -41,13 +42,13 @@ public class TimeManager : MonoBehaviour
             player.minutes = 0;
             overlay.UpdateDayText();
         }
-        
+
     }
 
     public void SetPause(bool overlay)
     {
         Time.timeScale = 0f;
-        if(overlay) overlayManager.PauseOverlayOn();
+        if (overlay) overlayManager.PauseOverlayOn();
     }
 
     public void SetPlay()
@@ -67,4 +68,34 @@ public class TimeManager : MonoBehaviour
         Time.timeScale = 3f;
         overlayManager.PauseOverlayOff();
     }
+
+    //keyBinds
+
+    public void KeyTogglePause(InputAction.CallbackContext context)
+    {
+        if (!context.performed) return;
+
+        if (Time.timeScale == 0f) SetPlay();
+        else SetPause(true);
+    }
+
+    public void KeySetPlay(InputAction.CallbackContext context)
+    {
+        if (!context.performed) return;
+        SetPlay();
+    }
+
+    public void KeySetX2(InputAction.CallbackContext context)
+    {
+        if (!context.performed) return;
+        SetX2();
+    }
+
+    public void KeySetX3(InputAction.CallbackContext context)
+    {
+        if (!context.performed) return;
+        Setx3();
+    }
+    
+    
 }

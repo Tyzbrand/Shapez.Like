@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.UIElements;
 
 public class OverlaySC : MonoBehaviour
@@ -166,6 +167,27 @@ public class OverlaySC : MonoBehaviour
     {
         timeManager.SetPause(true);
     }
+
+    //----------KeyBinds----------
+
+    public void KeyBuildMenu(InputAction.CallbackContext context)
+    {
+        if (!context.performed) return;
+        buildMenuAction();
+    }
+
+    public void KeyDestrucytionMode(InputAction.CallbackContext context)
+    {
+        if (!context.performed) return;
+        destructionSC.DestructionSet();
+    }
+
+    public void KeyClearItems(InputAction.CallbackContext context)
+    {
+        if (!context.performed) return;
+        itemManager.ClearItems();
+    }
+
 
 
 
