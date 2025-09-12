@@ -82,7 +82,7 @@ public class MiscInput : MonoBehaviour
             var buildingSelected = buildingManager.GetBuildingOnTile(mousePos2D);
 
             var currentPanel = uIManager.GetOpenPanel();
-
+            if (buildingSelected is Conveyor conveyor) conveyor.UpgradeLevel();
             if (buildingSelected is Hub) uIManager.TogglePanel(hubUI.panel, () => hubUI.HubUIOnShow(), () => hubUI.HubUIOnHide());
             else if (buildingSelected is Extractor extractor) //Extracteur
             {

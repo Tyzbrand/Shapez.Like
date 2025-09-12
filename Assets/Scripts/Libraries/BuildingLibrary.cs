@@ -22,7 +22,8 @@ public class BuildingLibrary : MonoBehaviour
     private Sprite extractorCopper;
     private Sprite extractorIron;
 
-    private Sprite Conveyor;
+    private Sprite conveyor;
+    private Sprite conveyorTurn;
 
     private Sprite merger;
     private Sprite splitter;
@@ -63,7 +64,8 @@ public class BuildingLibrary : MonoBehaviour
 
         extractorIdle = TextureHolder.instance.extractorIdle;
 
-        Conveyor = TextureHolder.instance.Conveyor;
+        conveyor = TextureHolder.instance.Conveyor;
+        conveyorTurn = TextureHolder.instance.conveyorTurn;
 
         merger = TextureHolder.instance.merger;
         splitter = TextureHolder.instance.splitter;
@@ -86,8 +88,8 @@ public class BuildingLibrary : MonoBehaviour
         {
             {BuildingManager.buildingType.Foundry, new Dictionary<bool, Sprite>{{true, foundryAction}, {false, foundryIdle}}},
             {BuildingManager.buildingType.Extractor, new Dictionary<bool, Sprite>{{true, extractorIdle}, {false, extractorIdle}}},
-            {BuildingManager.buildingType.Conveyor, new Dictionary<bool, Sprite>{{false, Conveyor}}},
-            {BuildingManager.buildingType.Merger, new Dictionary<bool, Sprite>{{false, merger}}},
+            {BuildingManager.buildingType.Conveyor, new Dictionary<bool, Sprite>{{false, conveyor}}},
+            {BuildingManager.buildingType.Merger, new Dictionary<bool, Sprite>{{false, conveyorTurn}}},
             {BuildingManager.buildingType.Splitter, new Dictionary<bool, Sprite>{{false, splitter}}},
             {BuildingManager.buildingType.Junction, new Dictionary<bool, Sprite>{{false, junction}}},
             {BuildingManager.buildingType.AdvancedExtractor, new Dictionary<bool, Sprite>{{true, advancedExtractor}, {false, advancedExtractor}}},

@@ -59,6 +59,9 @@ public class BuildingManager : MonoBehaviour
             AddVisual(building, tilePos);
             building.visual = GetBuildingVisual(building);
             building.visualSpriteRenderer = building.visual.GetComponent<SpriteRenderer>();
+            if (building is Conveyor conveyor)
+            
+                
 
             extraAction?.Invoke();
 
@@ -66,7 +69,7 @@ public class BuildingManager : MonoBehaviour
             building.BuildingLateStart();
 
         }
-        else if (GetBuildingOnTile(tilePos) is Conveyor)
+        else if (GetBuildingOnTile(tilePos) is Conveyor && !(placement.currentBuildingType is buildingType.Conveyor))
         {
             RemoveBuilding(tilePos);
             buildingReferencer.Add(tilePos, building);
