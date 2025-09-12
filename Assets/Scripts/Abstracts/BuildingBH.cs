@@ -27,6 +27,7 @@ public abstract class BuildingBH
     public float electricityConsomation = 0f;
 
 
+
     public BuildingBH(Vector2 wordlPosition, int rotation, Tilemap tilemap)
     {
         this.worldPosition = wordlPosition;
