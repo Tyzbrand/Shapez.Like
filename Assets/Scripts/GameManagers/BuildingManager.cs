@@ -59,11 +59,13 @@ public class BuildingManager : MonoBehaviour
             AddVisual(building, tilePos);
             building.visual = GetBuildingVisual(building);
             building.visualSpriteRenderer = building.visual.GetComponent<SpriteRenderer>();
+            building.OutlineChild = building.visual.transform.Find("Outline").gameObject;
+            building.outlineChildSprtieRenderer = building.OutlineChild.GetComponent<SpriteRenderer>();
             if (building is Conveyor conveyor)
-            
-                
 
-            extraAction?.Invoke();
+
+
+                extraAction?.Invoke();
 
             if (saveUndo) stackFeature.UndoAfterConstruct(tilePos, building, player.rotation);
             building.BuildingLateStart();
@@ -79,6 +81,8 @@ public class BuildingManager : MonoBehaviour
             AddVisual(building, tilePos);
             building.visual = GetBuildingVisual(building);
             building.visualSpriteRenderer = building.visual.GetComponent<SpriteRenderer>();
+            building.OutlineChild = building.visual.transform.Find("Outline").gameObject;
+            building.outlineChildSprtieRenderer = building.OutlineChild.GetComponent<SpriteRenderer>();
 
             extraAction?.Invoke();
 

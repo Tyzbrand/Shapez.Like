@@ -1,27 +1,23 @@
 using UnityEngine;
 using UnityEngine.UIElements;
 
-public class ExtractorUI : MonoBehaviour
+public class ExtractorUI : AbstractBuildingUI
 {
-    private UIDocument uI;
-    public VisualElement panel;
+
     private ProgressBar processBar;
-    private UIManager uIManager;
-    private PlayerVariables player;
     public Extractor activeExtractor = null;
 
     private Label resourcePerSecText, storageText;
     public Toggle extractorToggle;
+    
 
-    private void Start()
+    protected override void Start()
     {
-        uIManager = ReferenceHolder.instance.uIManager;
-        player = ReferenceHolder.instance.playervariable;
-
-        uI = ReferenceHolder.instance.uIDocument;
+        base.Start();
 
         panel = uI.rootVisualElement.Q<VisualElement>("ExtractorUI");
-        uIManager.RegisterPanel(panel);
+        uIManager.RegisterPanel(panel, this);
+        buildingLibrary.RegisterUIPanel(panel, UIManager.uIType.Extractor);
         processBar = panel.Q<ProgressBar>("EXProgressBar");
 
 
@@ -67,30 +63,38 @@ public class ExtractorUI : MonoBehaviour
         activeExtractor.BuildingOnDisable();
     }
 
-    public void refreshUI(Extractor extractor)
+    public override void RefreshUI(BuildingBH building)
     {
-        activeExtractor = extractor;
-        extractorToggle.SetValueWithoutNotify(activeExtractor.IsActive);
+        if (building is Extractor extractor)
+        {
+            activeExtractor = extractor;
+            extractorToggle.SetValueWithoutNotify(activeExtractor.IsActive);
+        }
+
     }
 
 
 
     //----------Méthodes d'affichage----------
 
-    public void ExtractorUIOnShow(Extractor extractor)
+    public override void UIOnShow(BuildingBH building)
     {
-        activeExtractor = extractor;
-        extractorToggle.SetValueWithoutNotify(activeExtractor.IsActive);
-        player.isInBuildingUI = true;
+        if (building is Extractor extractor)
+        {
+            activeExtractor = extractor;
+            extractorToggle.SetValueWithoutNotify(activeExtractor.IsActive);
+            player.isInBuildingUI = true;
+            activeExtractor.BuildingOnSelect();
+        }
+
     }
 
-    public void ExtractorUIOnHide()
-    {
+    public override void UIOnHide()
+    {   
+        activeExtractor.BuildingOnDeselect();
         activeExtractor = null;
         player.isInBuildingUI = false;
+        Debug.Log("Extractor");
     }
-    
-
-    
 
 }

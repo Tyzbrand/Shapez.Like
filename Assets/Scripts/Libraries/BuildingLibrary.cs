@@ -11,8 +11,18 @@ public class BuildingLibrary : MonoBehaviour
 
     private Dictionary<RessourceBehaviour.RessourceType, Sprite> extractorState;
 
+    private Dictionary<BuildingManager.buildingType, UIManager.uIType> typeLink;
+    private Dictionary<UIManager.uIType, VisualElement> buildingUI = new();
+
     private Placement placementSC;
 
+    //UI----------------------------------------------
+
+    private ExtractorUI extracorUI;
+    private BuildMenuSC buildUI;
+
+
+    //------------------------------------------------
     private Sprite foundryIdle;
     private Sprite foundryAction;
 
@@ -58,6 +68,8 @@ public class BuildingLibrary : MonoBehaviour
 
     private void Start()
     {
+        extracorUI = ReferenceHolder.instance.extractorUI;
+        buildUI = ReferenceHolder.instance.buildMenu;
 
         foundryIdle = TextureHolder.instance.foundryIdle;
         foundryAction = TextureHolder.instance.foundryAction;
@@ -114,6 +126,12 @@ public class BuildingLibrary : MonoBehaviour
             {BuildingManager.buildingType.Junction, ReferenceHolder.instance.junctionPreview}, {BuildingManager.buildingType.Depot, ReferenceHolder.instance.depotPreview},
             {BuildingManager.buildingType.Merger, ReferenceHolder.instance.mergerPreview}, {BuildingManager.buildingType.Splitter, ReferenceHolder.instance.splitterPreview},
         };
+
+        typeLink = new Dictionary<BuildingManager.buildingType, UIManager.uIType>
+        {
+            {BuildingManager.buildingType.Extractor, UIManager.uIType.Extractor}, {BuildingManager.buildingType.Hub, UIManager.uIType.Hub}, {BuildingManager.buildingType.AdvancedExtractor, UIManager.uIType.AdvancedExtractor},
+            {BuildingManager.buildingType.builder, UIManager.uIType.Builder}, {BuildingManager.buildingType.CoalGenerator, UIManager.uIType.CoalGenerator}, {BuildingManager.buildingType.Foundry, UIManager.uIType.Foundry}
+        };
     }
 
 
@@ -155,6 +173,35 @@ public class BuildingLibrary : MonoBehaviour
         }
         return null;
     }
+
+    public VisualElement GetBuildingUI(BuildingManager.buildingType type)
+    {
+        if (typeLink.TryGetValue(type, out var uI))
+        {
+            if (buildingUI.TryGetValue(uI, out VisualElement panel)) return panel;
+            else return null;
+        }
+        else return null;
+
+    }
+
+    public VisualElement GetBuildingUI(UIManager.uIType type)
+    {
+
+        if (buildingUI.TryGetValue(type, out VisualElement panel)) return panel;
+        else return null;
+
+    }
+
+
+    public void RegisterUIPanel(VisualElement panel, UIManager.uIType type)
+    {
+        if (!buildingUI.ContainsKey(type)) buildingUI.Add(type, panel);
+    }
+
+
+
+    
 
 
 }

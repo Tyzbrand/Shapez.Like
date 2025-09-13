@@ -39,7 +39,7 @@ public class OverlaySC : MonoBehaviour
 
 
         panel = uI.rootVisualElement.Q<VisualElement>("InGameOverlay");
-        buildMenuAction = () => uIManager.TogglePanel(buildMenuSC.panel, () => buildMenuSC.BuildMenuOnShow(), () => buildMenuSC.BuildMenuOnHide());
+        buildMenuAction = () => uIManager.TogglePanel(UIManager.uIType.BuildMenu, () => buildMenuSC.UIOnShow(null), () => buildMenuSC.UIOnHide());
 
         moneyText = panel.Q<Label>("MoneyTxt");
         storageText = panel.Q<Label>("StorageTxt");

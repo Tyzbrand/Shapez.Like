@@ -6,7 +6,6 @@ public class Builder : BuildingBH
     public Recipe1_1 currentRecipe;
     public BuilderRecipe recipe;
     private BuildingData data;
-    private BuilderUI builderUI;
 
     public int currentRecipeIndex = 1;
     public int capacity;
@@ -31,7 +30,7 @@ public class Builder : BuildingBH
 
         recipe = ReferenceHolder.instance.builderRecipe;
         data = ReferenceHolder.instance.buildingData;
-        builderUI = ReferenceHolder.instance.builderUI;
+        uIScript = ReferenceHolder.instance.builderUI;
 
         buildingType = BuildingManager.buildingType.builder;
 

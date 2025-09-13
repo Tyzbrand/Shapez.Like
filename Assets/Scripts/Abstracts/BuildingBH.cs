@@ -18,9 +18,13 @@ public abstract class BuildingBH
     public bool IsActive = true;
     public bool enoughtElectricity = false;
     public VisualElement buildingUI = null;
+    public bool isSelected = false;
     public BuildingManager.buildingType buildingType;
     public GameObject visual;
     public SpriteRenderer visualSpriteRenderer;
+    public GameObject OutlineChild;
+    public SpriteRenderer outlineChildSprtieRenderer;
+    public AbstractBuildingUI uIScript = null;
 
 
     public float electricityProduction = 0f;
@@ -68,6 +72,28 @@ public abstract class BuildingBH
     public virtual void BuildingAction(ItemBH item, Vector2 nextPos, BuildingBH currentBuilding)
     {
         
+    }
+
+    public virtual void BuildingOnSelect()
+    {
+        visualSpriteRenderer.sortingOrder = 10;
+        outlineChildSprtieRenderer.sortingOrder = 6;
+        OutlineChild.SetActive(true);
+        isSelected = true;
+    }
+
+    public virtual void BuildingOnDeselect()
+    {
+        OutlineChild.SetActive(false);
+        isSelected = false;
+        visualSpriteRenderer.sortingOrder = 3;
+        outlineChildSprtieRenderer.sortingOrder = 0;
+    }
+
+    public virtual void BuildingSelectionToggle()
+    {
+        if (OutlineChild.activeSelf) BuildingOnDeselect();
+        else BuildingOnSelect();
     }
 
 

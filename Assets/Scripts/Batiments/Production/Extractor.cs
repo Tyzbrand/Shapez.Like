@@ -29,8 +29,10 @@ public class Extractor : BuildingBH
         Debug.Log("Extractor !");
         data = ReferenceHolder.instance.buildingData;
         buildingLibrary = ReferenceHolder.instance.buildingLibrary;
+        uIScript = ReferenceHolder.instance.extractorUI;
 
         buildingType = BuildingManager.buildingType.Extractor;
+        
 
         if (data != null)
         {
@@ -58,6 +60,7 @@ public class Extractor : BuildingBH
             Sprite newTexture = buildingLibrary.GetExtractorStateSprite(underTile.tileType);
             if (visualSpriteRenderer != null && newTexture != null) visualSpriteRenderer.sprite = newTexture;
         }
+        
         
     }
 
@@ -104,8 +107,8 @@ public class Extractor : BuildingBH
         }
 
 
-
     }
+
 
     public float GetProgress()
     {

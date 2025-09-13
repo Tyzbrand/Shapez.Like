@@ -57,6 +57,22 @@ public class TextureHolder : MonoBehaviour
     public Sprite sortNumDescending;
     public Sprite sortAlpha;
     public Sprite sortAlphaDescending;
+
+
+
+    [Header("Materials")]
+    public Material outlineMaterial;
+
+    [Header("Shaders")]
+    public Shader outlineSelection;
+
+
+
+
+
+
+
+
     void Awake()
     {
         instance = this;

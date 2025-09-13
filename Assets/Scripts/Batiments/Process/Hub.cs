@@ -4,7 +4,6 @@ using UnityEngine.Tilemaps;
 public class Hub : BuildingBH
 {
     private Inventory inventory;
-    private HubUI hubUI;
     private OverlaySC overlay;
     public Hub(Vector2 worldPosition, int rotation, Tilemap tilemap) : base(worldPosition, rotation, tilemap)
     {
@@ -13,9 +12,9 @@ public class Hub : BuildingBH
 
     public override void BuidlingStart()
     {
-        hubUI = ReferenceHolder.instance.hubUI;
         inventory = ReferenceHolder.instance.inventorySC;
         overlay = ReferenceHolder.instance.inGameOverlay;
+        uIScript = ReferenceHolder.instance.hubUI;
         buildingType = BuildingManager.buildingType.Hub;
 
     }

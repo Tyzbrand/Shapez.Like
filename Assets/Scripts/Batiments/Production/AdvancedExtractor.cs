@@ -29,6 +29,7 @@ public class AdvancedExtractor : BuildingBH
 
         data = ReferenceHolder.instance.buildingData;
         extractorUI = ReferenceHolder.instance.advancedExtractorUI;
+        uIScript = ReferenceHolder.instance.advancedExtractorUI;
 
         if (data != null)
         {

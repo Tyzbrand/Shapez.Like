@@ -213,7 +213,7 @@ public class Placement : MonoBehaviour
             player.pickupMode = false;
 
             player.buildMode = true;
-            uIManager.HidePanel(buildMenuSC.panel, () => buildMenuSC.BuildMenuOnHide());
+            uIManager.HidePanel(buildMenuSC.panel, () => buildMenuSC.UIOnHide());
 
             previewSC.DestroyInstance();
             previewSC.previewToUse = buildingLibrary.GetBuildingPreview(pickupType);
