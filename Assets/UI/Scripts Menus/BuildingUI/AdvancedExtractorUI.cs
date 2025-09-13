@@ -90,12 +90,14 @@ public class AdvancedExtractorUI : AbstractBuildingUI
             activeExtractor = extractor;
             extractorToggle.SetValueWithoutNotify(activeExtractor.IsActive);
             player.isInBuildingUI = true;
+            activeExtractor.BuildingOnSelect();
         }
 
     }
 
     public override void UIOnHide()
-    {
+    {   
+        activeExtractor.BuildingOnDeselect();
         activeExtractor = null;
         player.isInBuildingUI = false;
         Debug.Log("ADV extyractor");

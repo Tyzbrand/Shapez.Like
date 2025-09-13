@@ -115,12 +115,14 @@ public class FoundryUI : AbstractBuildingUI
             ChangeButtonTexture(recipeChangerBtn);
             foundryToggle.SetValueWithoutNotify(activeFoundry.IsActive);
             player.isInBuildingUI = true;
+            activeFoundry.BuildingOnSelect();
         }
 
     }
 
     public override void UIOnHide()
-    {
+    {   
+        activeFoundry.BuildingOnDeselect();
         activeFoundry = null;
         player.isInBuildingUI = false;
         CloseRecipeList();

@@ -80,12 +80,14 @@ public class CoalGeneratorUI : AbstractBuildingUI
             activeCoalGenerator = coalGenerator;
             coalGToggle.SetValueWithoutNotify(activeCoalGenerator.IsActive);
             player.isInBuildingUI = true;
+            activeCoalGenerator.BuildingOnSelect();
         }
 
     }
 
     public override void UIOnHide()
-    {
+    {   
+        activeCoalGenerator.BuildingOnDeselect();
         activeCoalGenerator = null;
         player.isInBuildingUI = false;
         Debug.Log("Coal gen");

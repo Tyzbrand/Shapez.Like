@@ -78,7 +78,13 @@ public class UIManager : MonoBehaviour
         foreach (var panel in panels.Keys)
         {
             if (panel == uI) panel.style.display = DisplayStyle.Flex;
-            else panel.style.display = DisplayStyle.None;
+            else if(panel.resolvedStyle.display == DisplayStyle.Flex)
+            {
+                panels.TryGetValue(panel, out var uIScript);
+                {
+                    HidePanel(panel, () => uIScript.UIOnHide());
+                }
+            }
         }
         if (OnShow == null) Debug.Log("Nada");
 
@@ -91,7 +97,13 @@ public class UIManager : MonoBehaviour
         foreach (var panel in panels.Keys)
         {
             if (panel == uI) panel.style.display = DisplayStyle.Flex;
-            else panel.style.display = DisplayStyle.None;
+            else if(panel.resolvedStyle.display == DisplayStyle.Flex)
+            {
+                panels.TryGetValue(panel, out var uIScript);
+                {
+                    HidePanel(panel, () => uIScript.UIOnHide());
+                }
+            }
         }
         
         OnShow?.Invoke();
@@ -138,6 +150,7 @@ public class UIManager : MonoBehaviour
     public void hideOpenPanel()
     {
         var currentPanel = GetOpenPanel();
+        if (currentPanel == null) return;
         panels.TryGetValue(currentPanel, out var uIScript);
         {
             HidePanel(currentPanel, () => uIScript.UIOnHide());

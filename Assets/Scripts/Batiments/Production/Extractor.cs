@@ -64,7 +64,7 @@ public class Extractor : BuildingBH
             Sprite newTexture = buildingLibrary.GetExtractorStateSprite(underTile.tileType);
             if (visualSpriteRenderer != null && newTexture != null) visualSpriteRenderer.sprite = newTexture;
         }
-        OutlineChild = visual.transform.Find("Outline").gameObject;
+        
         
     }
 

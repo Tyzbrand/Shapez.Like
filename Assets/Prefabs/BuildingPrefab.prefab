@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7581514934648799933}
   - component: {fileID: 3847215041342277601}
+  - component: {fileID: 6272127617485523848}
   m_Layer: 0
   m_Name: Outline
   m_TagString: Untagged
@@ -87,6 +88,23 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &6272127617485523848
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2915611207247723290}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 172515602e62fb746b5d573b38a5fe58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IsGlobal: 1
+  priority: 0
+  blendDistance: 0
+  weight: 1
+  sharedProfile: {fileID: 11400000, guid: 785d927e590e78c40a18187b469d7e47, type: 2}
 --- !u!1 &4764810542118973154
 GameObject:
   m_ObjectHideFlags: 0

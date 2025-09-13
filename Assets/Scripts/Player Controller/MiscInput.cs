@@ -75,34 +75,8 @@ public class MiscInput : MonoBehaviour
             ComeBackToBuildMenu();
         }
 
-        if (Input.GetMouseButtonDown(0) && !player.buildMode && !player.buildMenu && !player.destructionMode && !EventSystem.current.IsPointerOverGameObject()) //Toggle les ui des batiments
-        {
+        if (Input.GetMouseButtonDown(0) && !player.buildMode && !player.buildMenu && !player.destructionMode && !EventSystem.current.IsPointerOverGameObject()) SelectBuilding(); //Selectionner les batiments
 
-            Vector2 mousePos2D = cam.ScreenToWorldPoint(Input.mousePosition);
-            var buildingSelected = buildingManager.GetBuildingOnTile(mousePos2D);
-
-            var currentPanel = uIManager.GetOpenPanel();
-
-            if (buildingSelected != null && buildingSelected.uIScript != null)
-            {
-
-                if (currentPanel == buildingSelected.uIScript.panel)
-                {
-                    if (buildingSelected == lastBuilding) uIManager.TogglePanel(buildingSelected.buildingType, () => buildingSelected.uIScript.UIOnShow(buildingSelected), () => buildingSelected.uIScript.UIOnHide());
-                    else { buildingSelected.uIScript.RefreshUI(buildingSelected); lastBuilding = buildingSelected; }
-                }
-                else
-                {
-                    uIManager.TogglePanel(buildingSelected.buildingType, () => buildingSelected.uIScript.UIOnShow(buildingSelected), () => buildingSelected.uIScript.UIOnHide());
-                    lastBuilding = buildingSelected;
-                }
-
-
-                
-            }
-            
-
-        }
 
         if (Input.GetKeyDown(KeyCode.Escape) && !player.isInPauseUI && !player.destructionMode && !player.pickupMode) //fermer un UI ouvert
         {
@@ -119,12 +93,12 @@ public class MiscInput : MonoBehaviour
     private void TogglePauseMenu()
     {
         if (uIManager.GetOpenPanel() == null) pauseMenu.TogglePauseMenu();
-        
+
     }
 
     private void QuiBuildFunction()
     {
-        uIManager.TogglePanel(UIManager.uIType.BuildMenu, () =>  buildMenuSC.UIOnShow(null), () =>  buildMenuSC.UIOnHide());
+        uIManager.TogglePanel(UIManager.uIType.BuildMenu, () => buildMenuSC.UIOnShow(null), () => buildMenuSC.UIOnHide());
         player.buildMode = false;
         placement.hasPickup = false;
         player.lineBuild = false;
@@ -151,6 +125,37 @@ public class MiscInput : MonoBehaviour
         uIManager.ShowPanel(UIManager.uIType.BuildMenu, () => buildMenuSC.UIOnShow(null));
     }
 
+    private void SelectBuilding()
+    {
+        Vector2 mousePos2D = cam.ScreenToWorldPoint(Input.mousePosition);
+        var buildingSelected = buildingManager.GetBuildingOnTile(mousePos2D);
+
+        var currentPanel = uIManager.GetOpenPanel();
+
+        if (buildingSelected != null && buildingSelected.uIScript != null)
+        {
+
+            if (currentPanel == buildingSelected.uIScript.panel)
+            {
+                if (buildingSelected == lastBuilding) uIManager.TogglePanel(buildingSelected.buildingType, () => buildingSelected.uIScript.UIOnShow(buildingSelected), () => buildingSelected.uIScript.UIOnHide());
+                else
+                {
+                    buildingSelected.uIScript.RefreshUI(buildingSelected);
+                    lastBuilding.BuildingOnDeselect();
+                    buildingSelected.BuildingOnSelect();
+                    lastBuilding = buildingSelected;
+                }
+            }
+            else
+            {
+                uIManager.TogglePanel(buildingSelected.buildingType, () => buildingSelected.uIScript.UIOnShow(buildingSelected), () => buildingSelected.uIScript.UIOnHide());
+                lastBuilding = buildingSelected;
+            }
+
+
+
+        }
+    }
 
 
 }

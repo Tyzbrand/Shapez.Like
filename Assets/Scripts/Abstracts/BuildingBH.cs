@@ -23,6 +23,7 @@ public abstract class BuildingBH
     public GameObject visual;
     public SpriteRenderer visualSpriteRenderer;
     public GameObject OutlineChild;
+    public SpriteRenderer outlineChildSprtieRenderer;
     public AbstractBuildingUI uIScript = null;
 
 
@@ -75,6 +76,8 @@ public abstract class BuildingBH
 
     public virtual void BuildingOnSelect()
     {
+        visualSpriteRenderer.sortingOrder = 10;
+        outlineChildSprtieRenderer.sortingOrder = 6;
         OutlineChild.SetActive(true);
         isSelected = true;
     }
@@ -83,6 +86,8 @@ public abstract class BuildingBH
     {
         OutlineChild.SetActive(false);
         isSelected = false;
+        visualSpriteRenderer.sortingOrder = 3;
+        outlineChildSprtieRenderer.sortingOrder = 0;
     }
 
     public virtual void BuildingSelectionToggle()

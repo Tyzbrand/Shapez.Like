@@ -113,19 +113,21 @@ public class BuilderUI : AbstractBuildingUI
 
 
     public override void UIOnShow(BuildingBH building)
-    {   
+    {
         if (building is Builder builder)
         {
             activeBuilder = builder;
             ChangeButtonTexture(recipeChangerBtn);
             builderToggle.SetValueWithoutNotify(activeBuilder.IsActive);
             player.isInBuildingUI = true;
+            activeBuilder.BuildingOnSelect();
         }
 
     }
 
     public override void UIOnHide()
-    {
+    {   
+        activeBuilder.BuildingOnDeselect();
         activeBuilder = null;
         player.isInBuildingUI = false;
         CloseRecipeList();
