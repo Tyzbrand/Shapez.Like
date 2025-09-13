@@ -161,7 +161,7 @@ public class MiscInput : MonoBehaviour
     public void QuitUpgradeMode()
     {
         player.upgradeMode = false;
-        uIManager.ShowPanel(buildMenuSC.panel, () => buildMenuSC.BuildMenuOnShow());
+        uIManager.ShowPanel(UIManager.uIType.BuildMenu, () => buildMenuSC.UIOnShow(null));
     }
 
 

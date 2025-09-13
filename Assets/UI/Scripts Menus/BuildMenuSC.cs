@@ -349,12 +349,12 @@ public class BuildMenuSC : AbstractBuildingUI
             player.upgradeMode = true;
             previewSC.DestroyInstance();
             player.buildMode = false;
-            uIManager.HidePanel(panel, () => BuildMenuOnHide());
+            uIManager.HidePanel(panel, () => UIOnHide());
         }
         else if (player.upgradeMode)
         {
             player.upgradeMode = false;
-            uIManager.ShowPanel(panel, () => BuildMenuOnShow());
+            uIManager.ShowPanel(UIManager.uIType.BuildMenu, () => UIOnShow(null));
         }
     }
 
