@@ -1362,6 +1362,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7951538441bd17742bac80b2c0ea17f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  uI: {fileID: 0}
+  uIManager: {fileID: 0}
+  player: {fileID: 0}
+  buildingLibrary: {fileID: 0}
   currentSortMode: 0
 --- !u!114 &1409634703
 MonoBehaviour:
@@ -1391,6 +1395,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7d3bd8ffd6b80f4881eee871af30681, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  uI: {fileID: 0}
+  uIManager: {fileID: 0}
+  player: {fileID: 0}
+  buildingLibrary: {fileID: 0}
 --- !u!114 &1409634705
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1403,6 +1411,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69ea4146fd996c04aaebd97c4fd859bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  uI: {fileID: 0}
+  uIManager: {fileID: 0}
+  player: {fileID: 0}
+  buildingLibrary: {fileID: 0}
 --- !u!114 &1409634706
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1431,6 +1443,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 402d622393d3b994ebab0637dfa215a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  uI: {fileID: 0}
+  uIManager: {fileID: 0}
+  player: {fileID: 0}
+  buildingLibrary: {fileID: 0}
 --- !u!114 &1409634708
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1443,6 +1459,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a29e82e2a02aa74aa2c9032f842d655, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  uI: {fileID: 0}
+  uIManager: {fileID: 0}
+  player: {fileID: 0}
+  buildingLibrary: {fileID: 0}
 --- !u!114 &1409634709
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1603,7 +1623,7 @@ MonoBehaviour:
     m_Bits: 1
   m_VolumeTrigger: {fileID: 0}
   m_VolumeFrameworkUpdateModeOption: 2
-  m_RenderPostProcessing: 0
+  m_RenderPostProcessing: 1
   m_Antialiasing: 2
   m_AntialiasingQuality: 2
   m_StopNaN: 0
