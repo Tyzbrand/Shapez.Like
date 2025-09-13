@@ -1,18 +1,11 @@
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
-using Unity.Collections;
-using UnityEngine;
 using UnityEngine.UIElements;
 
-public class HubUI : MonoBehaviour
+public class HubUI : AbstractBuildingUI
 {
-    private UIDocument uI;
-    public VisualElement panel;
     private ListView inventoryList;
     private Inventory inventory;
-    private PlayerVariables player;
-    private UIManager uIManager;
 
     private Button sortButton;
 
@@ -38,15 +31,14 @@ public class HubUI : MonoBehaviour
 
     private List<KeyValuePair<RessourceBehaviour.RessourceType, int>> inventoryData;
 
-    private void Start()
+    protected override void Start()
     {
-        uI = ReferenceHolder.instance.uIDocument;
-        inventory = ReferenceHolder.instance.inventorySC;
-        player = ReferenceHolder.instance.playervariable;
-        uIManager = ReferenceHolder.instance.uIManager;
+        base.Start();
 
+        inventory = ReferenceHolder.instance.inventorySC;
         panel = uI.rootVisualElement.Q<VisualElement>("InventoryUI");
-        uIManager.RegisterPanel(panel);
+        uIManager.RegisterPanel(panel, this);
+        buildingLibrary.RegisterUIPanel(panel, UIManager.uIType.Hub);
         inventoryList = panel.Q<ListView>("InventoryList");
 
         sortButton = uI.rootVisualElement.Q<Button>("SortButton");
@@ -122,14 +114,15 @@ public class HubUI : MonoBehaviour
 
 
     //----------Méthodes d'affichage de l'ui----------
-    public void HubUIOnShow()
+    public override void UIOnShow(BuildingBH building)
     {
         player.isInBuildingUI = true;
     }
 
-    public void HubUIOnHide()
+    public override void UIOnHide()
     {
         player.isInBuildingUI = false;
+        UnityEngine.Debug.Log("invanitre");
     }
 
     private void SortByAmount()

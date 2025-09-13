@@ -23,6 +23,7 @@ public abstract class BuildingBH
     public GameObject visual;
     public SpriteRenderer visualSpriteRenderer;
     public GameObject OutlineChild;
+    public AbstractBuildingUI uIScript = null;
 
 
     public float electricityProduction = 0f;

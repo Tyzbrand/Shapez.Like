@@ -2,27 +2,22 @@ using System;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-public class CoalGeneratorUI : MonoBehaviour
-{
-    private UIDocument uI;
-    public VisualElement panel;
+public class CoalGeneratorUI : AbstractBuildingUI
 
-    private UIManager uIManager;
-    private PlayerVariables player;
+{
 
     private Label productionText, storageText, fuelText;
     private Toggle coalGToggle;
 
     public CoalGenerator activeCoalGenerator;
 
-    private void Start()
+    protected override void Start()
     {
-        uI = ReferenceHolder.instance.uIDocument;
-        player = ReferenceHolder.instance.playervariable;
-        uIManager = ReferenceHolder.instance.uIManager;
+        base.Start();
 
         panel = uI.rootVisualElement.Q<VisualElement>("CoalGeneratorUI");
-        uIManager.RegisterPanel(panel);
+        uIManager.RegisterPanel(panel, this);
+        buildingLibrary.RegisterUIPanel(panel, UIManager.uIType.CoalGenerator);
 
         productionText = panel.Q<Label>("CGProductionTxt");
         storageText = panel.Q<Label>("CGStorageTxt");
@@ -69,22 +64,30 @@ public class CoalGeneratorUI : MonoBehaviour
 
     }
 
-    public void refreshUI(CoalGenerator coalGenerator)
+    public override void RefreshUI(BuildingBH building)
     {
-        activeCoalGenerator = coalGenerator;
-        coalGToggle.SetValueWithoutNotify(activeCoalGenerator.IsActive);
+        if (building is CoalGenerator coalGenerator)
+        {
+            activeCoalGenerator = coalGenerator;
+            coalGToggle.SetValueWithoutNotify(activeCoalGenerator.IsActive);
+        }
     }
 
-    public void CoalGeneratorUIOnShow(CoalGenerator coalGenerator)
+    public override void UIOnShow(BuildingBH building)
     {
-        activeCoalGenerator = coalGenerator;
-        coalGToggle.SetValueWithoutNotify(activeCoalGenerator.IsActive);
-        player.isInBuildingUI = true;
+        if (building is CoalGenerator coalGenerator)
+        {
+            activeCoalGenerator = coalGenerator;
+            coalGToggle.SetValueWithoutNotify(activeCoalGenerator.IsActive);
+            player.isInBuildingUI = true;
+        }
+
     }
 
-    public void CoalGeneratorUIOnHide()
+    public override void UIOnHide()
     {
         activeCoalGenerator = null;
         player.isInBuildingUI = false;
+        Debug.Log("Coal gen");
     }
 }

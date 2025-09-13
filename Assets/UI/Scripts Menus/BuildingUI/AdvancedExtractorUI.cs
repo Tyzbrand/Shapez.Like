@@ -1,27 +1,22 @@
 using UnityEngine;
 using UnityEngine.UIElements;
 
-public class AdvancedExtractorUI : MonoBehaviour
+public class AdvancedExtractorUI : AbstractBuildingUI
 {
-    private UIDocument uI;
-    public VisualElement panel;
+
     private ProgressBar processBar;
-    private UIManager uIManager;
-    private PlayerVariables player;
     public AdvancedExtractor activeExtractor = null;
 
     private Label resourcePerSecText, storageText, consumationText, warningText;
     public Toggle extractorToggle;
 
-    private void Start()
+    protected override void Start()
     {
-        uIManager = ReferenceHolder.instance.uIManager;
-        player = ReferenceHolder.instance.playervariable;
-
-        uI = ReferenceHolder.instance.uIDocument;
+        base.Start();
 
         panel = uI.rootVisualElement.Q<VisualElement>("AExtractorUI");
-        uIManager.RegisterPanel(panel);
+        uIManager.RegisterPanel(panel, this);
+        buildingLibrary.RegisterUIPanel(panel, UIManager.uIType.AdvancedExtractor);
         processBar = panel.Q<ProgressBar>("AEXProgressBar");
 
 
@@ -74,26 +69,35 @@ public class AdvancedExtractorUI : MonoBehaviour
         activeExtractor.BuildingOnDisable();
     }
 
-    public void refreshUI(AdvancedExtractor extractor)
+    public override void RefreshUI(BuildingBH building)
     {
-        activeExtractor = extractor;
-        extractorToggle.SetValueWithoutNotify(activeExtractor.IsActive);
+        if (building is AdvancedExtractor extractor)
+        {
+            activeExtractor = extractor;
+            extractorToggle.SetValueWithoutNotify(activeExtractor.IsActive);
+        }
+
     }
 
 
 
     //----------Méthodes d'affichage----------
 
-    public void AExtractorUIOnShow(AdvancedExtractor extractor)
+    public override void UIOnShow(BuildingBH building)
     {
-        activeExtractor = extractor;
-        extractorToggle.SetValueWithoutNotify(activeExtractor.IsActive);
-        player.isInBuildingUI = true;
+        if (building is AdvancedExtractor extractor)
+        {
+            activeExtractor = extractor;
+            extractorToggle.SetValueWithoutNotify(activeExtractor.IsActive);
+            player.isInBuildingUI = true;
+        }
+
     }
 
-    public void AExtractorUIOnHide()
+    public override void UIOnHide()
     {
         activeExtractor = null;
         player.isInBuildingUI = false;
+        Debug.Log("ADV extyractor");
     }
 }

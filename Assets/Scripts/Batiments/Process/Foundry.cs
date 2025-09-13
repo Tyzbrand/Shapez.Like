@@ -40,6 +40,7 @@ public class Foundry : BuildingBH
         data = ReferenceHolder.instance.buildingData;
         foundryUI = ReferenceHolder.instance.foundryUI;
         recipe = ReferenceHolder.instance.foundryRecipe;
+        uIScript = ReferenceHolder.instance.foundryUI;
 
         buildingType = BuildingManager.buildingType.Foundry;
 

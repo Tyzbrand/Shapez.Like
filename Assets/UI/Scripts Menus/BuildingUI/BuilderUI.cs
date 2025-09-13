@@ -2,14 +2,9 @@ using System;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-public class BuilderUI : MonoBehaviour
+public class BuilderUI : AbstractBuildingUI
 {
-    private UIDocument uI;
-    public VisualElement panel;
     public VisualElement recipePanel;
-
-    private UIManager uIManager;
-    private PlayerVariables player;
     private RessourceDictionnary ressourceLibrary;
 
     private ProgressBar process;
@@ -20,15 +15,15 @@ public class BuilderUI : MonoBehaviour
     private Builder activeBuilder = null;
 
 
-    private void Start()
+    protected override void Start()
     {
-        uI = ReferenceHolder.instance.uIDocument;
-        uIManager = ReferenceHolder.instance.uIManager;
-        player = ReferenceHolder.instance.playervariable;
+        base.Start();
+
         ressourceLibrary = ReferenceHolder.instance.ressourceDictionnary;
 
         panel = uI.rootVisualElement.Q<VisualElement>("BuilderUI");
-        uIManager.RegisterPanel(panel);
+        uIManager.RegisterPanel(panel, this);
+        buildingLibrary.RegisterUIPanel(panel, UIManager.uIType.Builder);
 
         recipePanel = panel.Q<VisualElement>("BuilderRecipeList");
 
@@ -104,28 +99,37 @@ public class BuilderUI : MonoBehaviour
         process.value = activeBuilder.processTimer % process.highValue;
     }
 
-    public void refreshUI(Builder builder)
+    public override void RefreshUI(BuildingBH building)
     {
-        activeBuilder = builder;
-        builderToggle.SetValueWithoutNotify(activeBuilder.IsActive);
-        ChangeButtonTexture(recipeChangerBtn);
+        if (building is Builder builder)
+        {
+            activeBuilder = builder;
+            builderToggle.SetValueWithoutNotify(activeBuilder.IsActive);
+            ChangeButtonTexture(recipeChangerBtn);
+        }
+
     }
 
 
 
-    public void BuilderUIOnShow(Builder builder)
-    {
-        activeBuilder = builder;
-        ChangeButtonTexture(recipeChangerBtn);
-        builderToggle.SetValueWithoutNotify(activeBuilder.IsActive);
-        player.isInBuildingUI = true;
+    public override void UIOnShow(BuildingBH building)
+    {   
+        if (building is Builder builder)
+        {
+            activeBuilder = builder;
+            ChangeButtonTexture(recipeChangerBtn);
+            builderToggle.SetValueWithoutNotify(activeBuilder.IsActive);
+            player.isInBuildingUI = true;
+        }
+
     }
 
-    public void BuilderUIOnHide()
+    public override void UIOnHide()
     {
         activeBuilder = null;
         player.isInBuildingUI = false;
         CloseRecipeList();
+        Debug.Log("builder");
     }
 
     private void CloseRecipeList()
@@ -152,7 +156,7 @@ public class BuilderUI : MonoBehaviour
     }
 
     private void ChangeButtonTexture(Button button)
-    {
+    {   
         button.style.backgroundImage = new StyleBackground(ressourceLibrary.GetIcon(activeBuilder.currentRecipe.Output));
     }
 }   

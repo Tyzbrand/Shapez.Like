@@ -25,8 +25,8 @@ public class CoalGenerator : BuildingBH
     public override void BuidlingStart()
     {
         data = ReferenceHolder.instance.buildingData;
-        coalGeneratorUI = ReferenceHolder.instance.coalGeneratorUI
-        ;
+        coalGeneratorUI = ReferenceHolder.instance.coalGeneratorUI;
+        uIScript = ReferenceHolder.instance.coalGeneratorUI;
         ElectricityManager.RegisterProducter(this);
 
         buildingType = BuildingManager.buildingType.CoalGenerator;

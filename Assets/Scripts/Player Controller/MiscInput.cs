@@ -82,74 +82,25 @@ public class MiscInput : MonoBehaviour
             var buildingSelected = buildingManager.GetBuildingOnTile(mousePos2D);
 
             var currentPanel = uIManager.GetOpenPanel();
-            if (buildingSelected is Conveyor conveyor) conveyor.UpgradeLevel();
-            if (buildingSelected is Hub) uIManager.TogglePanel(hubUI.panel, () => hubUI.HubUIOnShow(), () => hubUI.HubUIOnHide());
-            else if (buildingSelected is Extractor extractor) //Extracteur
+
+            if (buildingSelected != null && buildingSelected.uIScript != null)
             {
-                if (currentPanel == extractorUI.panel)
+
+                if (currentPanel == buildingSelected.uIScript.panel)
                 {
-                    if (buildingSelected == lastBuilding) uIManager.TogglePanel(extractorUI.panel, () => extractorUI.ExtractorUIOnShow(extractor), () => extractorUI.ExtractorUIOnHide());
-                    else { extractorUI.refreshUI(extractor); lastBuilding = buildingSelected; }
+                    if (buildingSelected == lastBuilding) uIManager.TogglePanel(buildingSelected.buildingType, () => buildingSelected.uIScript.UIOnShow(buildingSelected), () => buildingSelected.uIScript.UIOnHide());
+                    else { buildingSelected.uIScript.RefreshUI(buildingSelected); lastBuilding = buildingSelected; }
                 }
                 else
                 {
-                    uIManager.TogglePanel(extractorUI.panel, () => extractorUI.ExtractorUIOnShow(extractor), () => extractorUI.ExtractorUIOnHide());
+                    uIManager.TogglePanel(buildingSelected.buildingType, () => buildingSelected.uIScript.UIOnShow(buildingSelected), () => buildingSelected.uIScript.UIOnHide());
                     lastBuilding = buildingSelected;
                 }
+
+
+                
             }
-            else if (buildingSelected is Foundry foundry) //Foundry
-            {
-                if (currentPanel == foundryUI.panel)
-                {
-                    if (buildingSelected == lastBuilding) uIManager.TogglePanel(foundryUI.panel, () => foundryUI.FoundryUIOnShow(foundry), () => foundryUI.FoundryUIOnHide());
-                    else { foundryUI.refreshUI(foundry); lastBuilding = buildingSelected; }
-                }
-                else
-                {
-                    uIManager.TogglePanel(foundryUI.panel, () => foundryUI.FoundryUIOnShow(foundry), () => foundryUI.FoundryUIOnHide());
-                    lastBuilding = buildingSelected;
-                }
-            }
-            else if (buildingSelected is Builder builder) //Builder
-            {
-                if (currentPanel == builderUI.panel)
-                {
-                    if (buildingSelected == lastBuilding) uIManager.TogglePanel(builderUI.panel, () => builderUI.BuilderUIOnShow(builder), () => builderUI.BuilderUIOnHide());
-                    else { builderUI.refreshUI(builder); lastBuilding = buildingSelected; }
-                }
-                else
-                {
-                    uIManager.TogglePanel(builderUI.panel, () => builderUI.BuilderUIOnShow(builder), () => builderUI.BuilderUIOnHide());
-                    lastBuilding = buildingSelected;
-                }
-            }
-            else if (buildingSelected is CoalGenerator coalGenerator) //coal Generator
-            {
-                if (currentPanel == coalGeneratorUI.panel)
-                {
-                    if (buildingSelected == lastBuilding) uIManager.TogglePanel(coalGeneratorUI.panel, () => coalGeneratorUI.CoalGeneratorUIOnShow(coalGenerator), () => coalGeneratorUI.CoalGeneratorUIOnHide());
-                    else { coalGeneratorUI.refreshUI(coalGenerator); lastBuilding = buildingSelected; }
-                }
-                else
-                {
-                    uIManager.TogglePanel(coalGeneratorUI.panel, () => coalGeneratorUI.CoalGeneratorUIOnShow(coalGenerator), () => coalGeneratorUI.CoalGeneratorUIOnHide());
-                    lastBuilding = buildingSelected;
-                }
-            }
-            else if (buildingSelected is AdvancedExtractor advancedExtractor) //Advanced Extractor
-            {
-                if (currentPanel == advancedExtractorUI.panel)
-                {
-                    if (buildingSelected == lastBuilding) uIManager.TogglePanel(advancedExtractorUI.panel, () => advancedExtractorUI.AExtractorUIOnShow(advancedExtractor), () => advancedExtractorUI.AExtractorUIOnHide());
-                    else { advancedExtractorUI.refreshUI(advancedExtractor); lastBuilding = buildingSelected; }
-                }
-                else
-                {
-                    uIManager.TogglePanel(advancedExtractorUI.panel, () => advancedExtractorUI.AExtractorUIOnShow(advancedExtractor), () => advancedExtractorUI.AExtractorUIOnHide());
-                    lastBuilding = buildingSelected;
-                }
-            }
-            else if (player.isInMenu) return;
+            
 
         }
 
@@ -173,7 +124,7 @@ public class MiscInput : MonoBehaviour
 
     private void QuiBuildFunction()
     {
-        uIManager.TogglePanel(buildMenuSC.panel, () => buildMenuSC.BuildMenuOnShow(), () => buildMenuSC.BuildMenuOnHide());
+        uIManager.TogglePanel(UIManager.uIType.BuildMenu, () =>  buildMenuSC.UIOnShow(null), () =>  buildMenuSC.UIOnHide());
         player.buildMode = false;
         placement.hasPickup = false;
         player.lineBuild = false;
@@ -187,7 +138,7 @@ public class MiscInput : MonoBehaviour
 
     public void ComeBackToBuildMenu()
     {
-        uIManager.TogglePanel(buildMenuSC.panel, () => buildMenuSC.BuildMenuOnShow(), () => buildMenuSC.BuildMenuOnHide());
+        uIManager.TogglePanel(UIManager.uIType.BuildMenu, () => buildMenuSC.UIOnShow(null), () => buildMenuSC.UIOnHide());
         player.buildMode = false;
         placement.hasPickup = false;
         player.lineBuild = false;
@@ -197,12 +148,9 @@ public class MiscInput : MonoBehaviour
     public void QuitPickUpModeEmpty()
     {
         player.pickupMode = false;
-        uIManager.ShowPanel(buildMenuSC.panel, () => buildMenuSC.BuildMenuOnShow());
+        uIManager.ShowPanel(UIManager.uIType.BuildMenu, () => buildMenuSC.UIOnShow(null));
     }
 
 
 
 }
-
-    
-

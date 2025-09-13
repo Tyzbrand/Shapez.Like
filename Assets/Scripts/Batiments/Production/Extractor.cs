@@ -29,6 +29,7 @@ public class Extractor : BuildingBH
         Debug.Log("Extractor !");
         data = ReferenceHolder.instance.buildingData;
         buildingLibrary = ReferenceHolder.instance.buildingLibrary;
+        uIScript = ReferenceHolder.instance.extractorUI;
 
         buildingType = BuildingManager.buildingType.Extractor;
         

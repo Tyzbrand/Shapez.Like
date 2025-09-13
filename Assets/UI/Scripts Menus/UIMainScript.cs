@@ -5,9 +5,7 @@ using UnityEngine.UIElements;
 
 public class UIManager : MonoBehaviour
 {
-    private List<VisualElement> panels = new();
-    private Dictionary<VisualElement, MonoBehaviour> uIScript;
-    public VisualElement activePanel;
+    private Dictionary<VisualElement, AbstractBuildingUI> panels = new();
     public MiscInput miscInput;
 
 
@@ -20,7 +18,19 @@ public class UIManager : MonoBehaviour
     private CoalGeneratorUI coalGeneratorUI;
     private AdvancedExtractorUI advancedExtractorUI;
     private BuildMenuSC buildMenuSC;
+    private BuildingLibrary buildingLibrary;
 
+
+    public enum uIType
+    {
+        Extractor,
+        AdvancedExtractor,
+        Builder,
+        CoalGenerator,
+        Foundry,
+        Hub,
+        BuildMenu
+    }
 
     private void Awake()
     {
@@ -37,46 +47,87 @@ public class UIManager : MonoBehaviour
         foundryUI = ReferenceHolder.instance.foundryUI;
         coalGeneratorUI = ReferenceHolder.instance.coalGeneratorUI;
         buildMenuSC = ReferenceHolder.instance.buildMenu;
+        buildingLibrary = ReferenceHolder.instance.buildingLibrary;
     }
 
-    public void RegisterPanel(VisualElement panel)
+    public void RegisterPanel(VisualElement panel, AbstractBuildingUI uIScript)
     {
-        if (!panels.Contains(panel)) panels.Add(panel);
+        if (!panels.ContainsKey(panel)) panels.Add(panel, uIScript);
     }
 
-    public void HidePanel(VisualElement panelToHide, Action OnHide = null)
+
+    public void HidePanel(BuildingManager.buildingType type, Action OnHide = null)
     {
-        panelToHide.style.display = DisplayStyle.None;
+        var uI = buildingLibrary.GetBuildingUI(type);
+        uI.style.display = DisplayStyle.None;
+
+        OnHide?.Invoke();
+    }
+    
+
+    public void HidePanel(VisualElement panel, Action OnHide = null)
+    {
+        panel.style.display = DisplayStyle.None;
 
         OnHide?.Invoke();
     }
 
-    public void ShowPanel(VisualElement panelToShow, Action OnShow = null)
+    public void ShowPanel(BuildingManager.buildingType type, Action OnShow = null)
     {
-        foreach (var panel in panels)
+        var uI = buildingLibrary.GetBuildingUI(type);
+        foreach (var panel in panels.Keys)
         {
-            if (panel == panelToShow) panel.style.display = DisplayStyle.Flex;
+            if (panel == uI) panel.style.display = DisplayStyle.Flex;
             else panel.style.display = DisplayStyle.None;
         }
+        if (OnShow == null) Debug.Log("Nada");
 
         OnShow?.Invoke();
     }
 
-    public void TogglePanel(VisualElement panelToToggle, Action OnShow = null, Action OnHide = null)
-    {
-        if (panelToToggle.resolvedStyle.display == DisplayStyle.None)
+    public void ShowPanel(UIManager.uIType type, Action OnShow = null)
+    {    
+        var uI = buildingLibrary.GetBuildingUI(type);
+        foreach (var panel in panels.Keys)
         {
-            ShowPanel(panelToToggle, OnShow);
+            if (panel == uI) panel.style.display = DisplayStyle.Flex;
+            else panel.style.display = DisplayStyle.None;
+        }
+        
+        OnShow?.Invoke();
+    }
+
+
+    public void TogglePanel(BuildingManager.buildingType type, Action OnShow = null, Action OnHide = null)
+    {
+        var uI = buildingLibrary.GetBuildingUI(type);
+        if (uI.resolvedStyle.display == DisplayStyle.None)
+        {
+            ShowPanel(type, OnShow);
         }
         else
         {
-            HidePanel(panelToToggle, OnHide);
+            HidePanel(uI, OnHide);
+            miscInput.lastBuilding = null;
+        }
+    }
+
+    public void TogglePanel(UIManager.uIType type, Action OnShow = null, Action OnHide = null)
+    {
+        var uI = buildingLibrary.GetBuildingUI(type);
+        if (uI.resolvedStyle.display == DisplayStyle.None)
+        {
+            ShowPanel(type, OnShow);
+        }
+        else
+        {
+            HidePanel(uI, OnHide);
             miscInput.lastBuilding = null;
         }
     }
     public VisualElement GetOpenPanel()
     {
-        foreach (var panel in panels)
+        foreach (var panel in panels.Keys)
         {
             if (panel.resolvedStyle.display == DisplayStyle.Flex) return panel;
 
@@ -87,14 +138,12 @@ public class UIManager : MonoBehaviour
     public void hideOpenPanel()
     {
         var currentPanel = GetOpenPanel();
+        panels.TryGetValue(currentPanel, out var uIScript);
+        {
+            HidePanel(currentPanel, () => uIScript.UIOnHide());
+        }
+        
 
-        if (currentPanel == hubUI.panel) HidePanel(currentPanel, () => hubUI.HubUIOnHide());
-        else if (currentPanel == extractorUI.panel) HidePanel(currentPanel, () => extractorUI.ExtractorUIOnHide());
-        else if (currentPanel == foundryUI.panel) HidePanel(currentPanel, () => foundryUI.FoundryUIOnHide());
-        else if (currentPanel == buildMenuSC.panel) HidePanel(currentPanel, () => buildMenuSC.BuildMenuOnHide());
-        else if (currentPanel == builderUI.panel) HidePanel(currentPanel, () => builderUI.BuilderUIOnHide());
-        else if (currentPanel == coalGeneratorUI.panel) HidePanel(currentPanel, () => coalGeneratorUI.CoalGeneratorUIOnHide());
-        else if (currentPanel == advancedExtractorUI.panel) HidePanel(currentPanel, () => advancedExtractorUI.AExtractorUIOnHide());
 
     }
 

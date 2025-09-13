@@ -138,7 +138,7 @@ public class BuildingManager : MonoBehaviour
             {
 
                 Vector2 hubPos = new Vector2(basePos.x + x, basePos.y + y);
-                Hub hub = new Hub(hubPos, 0, tilemap);
+                Extractor hub = new Extractor(hubPos, 0, tilemap);
                 AddBuilding(ConvertInt(hubPos), hub, false);
 
             }

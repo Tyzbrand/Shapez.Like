@@ -3,18 +3,17 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UIElements;
 
-public class BuildMenuSC : MonoBehaviour
+public class BuildMenuSC : AbstractBuildingUI
 {
-    private UIDocument uI;
-    public VisualElement panel, buildTools;
 
-    private PlayerVariables player;
+    public VisualElement  buildTools;
+
     private Preview previewSC;
     private Destruction destructionSC;
     private Placement placementSC;
     private StackFeature stackFeature;
     private BuildingLibrary buildPriceLibrary;
-    private UIManager uIManager;
+
     private TooltipSC tooltipSC;
 
     private Button extractorBuild, conveyorBuild, depotBuild, foundryBuild, builderBuild, coalGeneratorBuild, advancedExtractorBuild,
@@ -25,20 +24,21 @@ public class BuildMenuSC : MonoBehaviour
 
 
 
-    private void Start()
+    protected override void Start()
     {
-        uI = ReferenceHolder.instance.uIDocument;
-        player = ReferenceHolder.instance.playervariable;
+        base.Start();
+
+
         previewSC = ReferenceHolder.instance.previewSC;
         placementSC = ReferenceHolder.instance.placementSC;
         buildPriceLibrary = ReferenceHolder.instance.buildingLibrary;
-        uIManager = ReferenceHolder.instance.uIManager;
         tooltipSC = ReferenceHolder.instance.tooltipSC;
         stackFeature = ReferenceHolder.instance.stackFeature;
         destructionSC = ReferenceHolder.instance.destructionSC;
 
         panel = uI.rootVisualElement.Q<VisualElement>("BuildMenu");
-        uIManager.RegisterPanel(panel);
+        uIManager.RegisterPanel(panel, this);
+        buildingLibrary.RegisterUIPanel(panel, UIManager.uIType.BuildMenu);
         buildTools = uI.rootVisualElement.Q<VisualElement>("BuildTools");
 
 
@@ -139,7 +139,7 @@ public class BuildMenuSC : MonoBehaviour
 
     private void ExtractorSelect()
     {
-        uIManager.TogglePanel(panel, () => BuildMenuOnShow(), () => BuildMenuOnHide());
+        uIManager.TogglePanel(UIManager.uIType.BuildMenu, () => UIOnShow(null), () => UIOnHide());
         buildTools.style.display = DisplayStyle.Flex;
         previewSC.previewToUse = ReferenceHolder.instance.extractorPreview;
         placementSC.currentBuildingType = BuildingManager.buildingType.Extractor;
@@ -153,7 +153,7 @@ public class BuildMenuSC : MonoBehaviour
 
     private void AdvancedExtractorSelect()
     {
-        uIManager.TogglePanel(panel, () => BuildMenuOnShow(), () => BuildMenuOnHide());
+        uIManager.TogglePanel(UIManager.uIType.BuildMenu, () => UIOnShow(null), () => UIOnHide());
         buildTools.style.display = DisplayStyle.Flex;
         previewSC.previewToUse = ReferenceHolder.instance.advancedExtractorPreview;
         placementSC.currentBuildingType = BuildingManager.buildingType.AdvancedExtractor;
@@ -167,7 +167,7 @@ public class BuildMenuSC : MonoBehaviour
 
     private void ConveyorSelect()
     {
-        uIManager.TogglePanel(panel, () => BuildMenuOnShow(), () => BuildMenuOnHide());
+        uIManager.TogglePanel(UIManager.uIType.BuildMenu, () => UIOnShow(null), () => UIOnHide());
         buildTools.style.display = DisplayStyle.Flex;
         previewSC.previewToUse = ReferenceHolder.instance.conveyorPreview;
         placementSC.currentBuildingType = BuildingManager.buildingType.Conveyor;
@@ -182,7 +182,7 @@ public class BuildMenuSC : MonoBehaviour
 
     private void DepotSelect()
     {
-        uIManager.TogglePanel(panel, () => BuildMenuOnShow(), () => BuildMenuOnHide());
+        uIManager.TogglePanel(UIManager.uIType.BuildMenu, () => UIOnShow(null), () => UIOnHide());
         buildTools.style.display = DisplayStyle.Flex;
         previewSC.previewToUse = ReferenceHolder.instance.depotPreview;
         placementSC.currentBuildingType = BuildingManager.buildingType.Depot;
@@ -196,7 +196,7 @@ public class BuildMenuSC : MonoBehaviour
 
     private void FoundrySelect()
     {
-        uIManager.TogglePanel(panel, () => BuildMenuOnShow(), () => BuildMenuOnHide());
+        uIManager.TogglePanel(UIManager.uIType.BuildMenu, () => UIOnShow(null), () => UIOnHide());
         buildTools.style.display = DisplayStyle.Flex;
         previewSC.previewToUse = ReferenceHolder.instance.foundryPreview;
         placementSC.currentBuildingType = BuildingManager.buildingType.Foundry;
@@ -210,7 +210,7 @@ public class BuildMenuSC : MonoBehaviour
 
     private void BuilderSelect()
     {
-        uIManager.TogglePanel(panel, () => BuildMenuOnShow(), () => BuildMenuOnHide());
+        uIManager.TogglePanel(UIManager.uIType.BuildMenu, () => UIOnShow(null), () => UIOnHide());
         buildTools.style.display = DisplayStyle.Flex;
         previewSC.previewToUse = ReferenceHolder.instance.builderPrview;
         placementSC.currentBuildingType = BuildingManager.buildingType.builder;
@@ -224,7 +224,7 @@ public class BuildMenuSC : MonoBehaviour
 
     private void CoalGeneratorSelect()
     {
-        uIManager.TogglePanel(panel, () => BuildMenuOnShow(), () => BuildMenuOnHide());
+        uIManager.TogglePanel(UIManager.uIType.BuildMenu, () => UIOnShow(null), () => UIOnHide());
         buildTools.style.display = DisplayStyle.Flex;
         previewSC.previewToUse = ReferenceHolder.instance.coalGeneratorPreview;
         placementSC.currentBuildingType = BuildingManager.buildingType.CoalGenerator;
@@ -238,7 +238,7 @@ public class BuildMenuSC : MonoBehaviour
 
     private void JunctionSelect()
     {
-        uIManager.TogglePanel(panel, () => BuildMenuOnShow(), () => BuildMenuOnHide());
+        uIManager.TogglePanel(UIManager.uIType.BuildMenu, () => UIOnShow(null), () => UIOnHide());
         buildTools.style.display = DisplayStyle.Flex;
         previewSC.previewToUse = ReferenceHolder.instance.junctionPreview;
         placementSC.currentBuildingType = BuildingManager.buildingType.Junction;
@@ -252,7 +252,7 @@ public class BuildMenuSC : MonoBehaviour
 
     private void SplitterSelect()
     {
-        uIManager.TogglePanel(panel, () => BuildMenuOnShow(), () => BuildMenuOnHide());
+        uIManager.TogglePanel(UIManager.uIType.BuildMenu, () => UIOnShow(null), () => UIOnHide());
         buildTools.style.display = DisplayStyle.Flex;
         previewSC.previewToUse = ReferenceHolder.instance.splitterPreview;
         placementSC.currentBuildingType = BuildingManager.buildingType.Splitter;
@@ -266,7 +266,7 @@ public class BuildMenuSC : MonoBehaviour
 
     private void MergerSelect()
     {
-        uIManager.TogglePanel(panel, () => BuildMenuOnShow(), () => BuildMenuOnHide());
+        uIManager.TogglePanel(UIManager.uIType.BuildMenu, () => UIOnShow(null), () => UIOnHide());
         buildTools.style.display = DisplayStyle.Flex;
         previewSC.previewToUse = ReferenceHolder.instance.mergerPreview;
         placementSC.currentBuildingType = BuildingManager.buildingType.Merger;
@@ -280,7 +280,7 @@ public class BuildMenuSC : MonoBehaviour
     
     private void WallSelect()
     {
-        uIManager.TogglePanel(panel, () => BuildMenuOnShow(), () => BuildMenuOnHide());
+        uIManager.TogglePanel(UIManager.uIType.BuildMenu, () => UIOnShow(null), () => UIOnHide());
         buildTools.style.display = DisplayStyle.Flex;
         previewSC.previewToUse = ReferenceHolder.instance.wallPreview;
         placementSC.currentBuildingType = BuildingManager.buildingType.Wall;
@@ -305,7 +305,7 @@ public class BuildMenuSC : MonoBehaviour
         else if (player.pickupMode)
         {
             player.pickupMode = false;
-            uIManager.ShowPanel(panel, () => BuildMenuOnShow());
+            uIManager.ShowPanel(UIManager.uIType.BuildMenu, () => UIOnShow(null));
         }
     }
 
@@ -333,7 +333,7 @@ public class BuildMenuSC : MonoBehaviour
         else if (player.pickupMode)
         {
             player.pickupMode = false;
-            uIManager.ShowPanel(panel, () => BuildMenuOnShow());
+            uIManager.ShowPanel(UIManager.uIType.BuildMenu, () => UIOnShow(null));
         }
     }
 
@@ -363,7 +363,7 @@ public class BuildMenuSC : MonoBehaviour
 
     //----------Méthodes de gestion du menu----------
 
-    public void BuildMenuOnShow()
+    public override void UIOnShow(BuildingBH building)
     {
         player.isInMenu = true;
         player.buildMenu = true;
@@ -371,14 +371,15 @@ public class BuildMenuSC : MonoBehaviour
         if(player.destructionMode) destructionSC.DestructionSet();
     }
 
-    public void BuildMenuOnHide()
+    public override void UIOnHide()
     {
-        if(!player.buildMode) buildTools.style.display = DisplayStyle.None;
+        if (!player.buildMode) buildTools.style.display = DisplayStyle.None;
         player.isInMenu = false;
         player.buildMenu = false;
         player.pickupMode = false;
         player.lineBuild = false;
         previewSC.DestroyInstance();
+        Debug.Log("MENU");
 
     }
 

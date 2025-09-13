@@ -2,14 +2,10 @@ using System;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-public class FoundryUI : MonoBehaviour
+public class FoundryUI : AbstractBuildingUI
 {
-    private UIDocument uI;
-    public VisualElement panel;
     public VisualElement recipepanel;
 
-    private UIManager uIManager;
-    private PlayerVariables player;
     private RessourceDictionnary ressourceLibrary;
 
     private ProgressBar process;
@@ -20,15 +16,15 @@ public class FoundryUI : MonoBehaviour
     private Foundry activeFoundry = null;
 
 
-    private void Start()
+    protected override void Start()
     {
-        uI = ReferenceHolder.instance.uIDocument;
-        uIManager = ReferenceHolder.instance.uIManager;
-        player = ReferenceHolder.instance.playervariable;
+        base.Start();
+        
         ressourceLibrary = ReferenceHolder.instance.ressourceDictionnary;
 
         panel = uI.rootVisualElement.Q<VisualElement>("FoundryUI");
-        uIManager.RegisterPanel(panel);
+        uIManager.RegisterPanel(panel, this);
+        buildingLibrary.RegisterUIPanel(panel, UIManager.uIType.Foundry);
 
         recipepanel = panel.Q<VisualElement>("FoundryRecipeList");
 
@@ -101,28 +97,34 @@ public class FoundryUI : MonoBehaviour
         process.value = activeFoundry.processTimer % process.highValue;
     }
 
-    public void refreshUI(Foundry foundry)
+    public override void RefreshUI(BuildingBH building)
     {
-        activeFoundry = foundry;
-        foundryToggle.SetValueWithoutNotify(activeFoundry.IsActive);
+        if (building is Foundry foundry)
+        {
+            activeFoundry = foundry;
+            foundryToggle.SetValueWithoutNotify(activeFoundry.IsActive);
+             ChangeButtonTexture(recipeChangerBtn);
+        }
+    }
 
-        ChangeButtonTexture(recipeChangerBtn);
+    public override void UIOnShow(BuildingBH building)
+    {
+        if (building is Foundry foundry)
+        {
+            activeFoundry = foundry;
+            ChangeButtonTexture(recipeChangerBtn);
+            foundryToggle.SetValueWithoutNotify(activeFoundry.IsActive);
+            player.isInBuildingUI = true;
+        }
 
     }
 
-    public void FoundryUIOnShow(Foundry foundry)
-    {
-        activeFoundry = foundry;
-        ChangeButtonTexture(recipeChangerBtn);
-        foundryToggle.SetValueWithoutNotify(activeFoundry.IsActive);
-        player.isInBuildingUI = true;
-    }
-
-    public void FoundryUIOnHide()
+    public override void UIOnHide()
     {
         activeFoundry = null;
         player.isInBuildingUI = false;
         CloseRecipeList();
+        Debug.Log("Foundry");
     }
 
     private void OpenRecipeList()
